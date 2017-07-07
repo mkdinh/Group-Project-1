@@ -5,3 +5,7 @@ Simbad: put in query, get detailed info: http://simbad.u-strasbg.fr/simbad/
 Open Notify ISS location: http://open-notify.org/Open-Notify-API/ISS-Location-Now/
 
 Dark Sky: for weather: https://darksky.net/dev/
+
+Fireball data: (solar?): https://ssd-api.jpl.nasa.gov/doc/fireball.html
+
+SBDB Close-approach Data: on comets and asteroids passing close to planets: https://ssd-api.jpl.nasa.gov/doc/cad.html
