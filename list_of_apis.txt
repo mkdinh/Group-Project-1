@@ -3,3 +3,5 @@ Skywatch: satellite imagery: http://www.skywatch.co/products/api
 Simbad: put in query, get detailed info: http://simbad.u-strasbg.fr/simbad/
 
 Open Notify ISS location: http://open-notify.org/Open-Notify-API/ISS-Location-Now/
+
+Dark Sky: for weather: https://darksky.net/dev/
