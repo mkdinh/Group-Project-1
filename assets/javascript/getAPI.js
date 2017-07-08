@@ -67,12 +67,8 @@ function getWeather(){
             dataType: "json",
             success: function(data){
                console.log(data);
-                for(var i = 0; i < 7; i++){
-                    $("#d"+ i +"skyConditions").html("<br>" + data.daily.data[i].summary);
-                    $("#d"+ i +"temperature").html("<br> HI: " + data.daily.data[i].apparentTemperatureMax + "<br>LOW: " + data.daily.data[i].apparentTemperatureMin);
-                    $("#d"+ i +"visiblity").html("<br>" +data.daily.data[i].visibility);
-                    
-                }
+
+               getWeekDays(data);
             },
             error: function(errorMessage){
                 alert("Error" + errorMessage);
@@ -80,11 +76,83 @@ function getWeather(){
         });
 }
 
-function getWeekDays{
-    var date= new Date();
-    var weekday = date.getDay();
-    var fullWeekdaysl
+function getWeekDays(data){
+    // var date = new Date();
+    // var weekday = date.getDay();
+    // console.log(weekday)
+    var eventCon = $('#eventContainer')
+    //get the 5 days
+    for(var i = 0; i < 7; i++){
+    	//Create card Container
+    	var cardCon = $('<div>');
+    	cardCon.addClass('card');
+
+    	//Create day of week div
+    	var currentDay = moment().add(1*i,'days').format('dddd');
+    	var cardDate = $('<span>');
+    	cardDate.addClass('card-title day');
+    	cardDate.text(currentDay);
+    	cardCon.append(cardDate);
+
+    	//Create image condition
+    	var imgCon = $('<div>');
+    	imgCon.addClass('card-image activator waves-effect waves-block waves-light');
+    	var img = $('<img>');
+    	img.attr('src','assets/image/nskc.png')
+    	imgCon.append(img);
+    	cardCon.append(imgCon);
+
+    	// add card content/weather info
+    	var infoCon = $('<div>');
+    	infoCon.addClass('card-content center')
+    	var infoTitle = $('<p>');
+    	// infoTitle.addClass('card-title activator');
+    	// infoTitle.text("Forecast");
+    	// infoCon.append(infoTitle);
+
+    	// Weather info
+    	var sky = $('<p>')
+    	sky.addClass('forecast sky')
+    	sky.text('Sky Cond: ',data.daily.data[i].icon)
+    	var temp = $('<p>')
+    	temp.addClass('forecast temp center')
+    	temp.text(data.daily.data[i].apparentTemperatureMin+" - "+data.daily.data[i].apparentTemperatureMax)
+    	var sunset = $('<p>')
+    	sunset.addClass('forecast sunset')
+    	sunset.text('Sunset: '+ moment(data.daily.data[i].sunsetTime).format('HH:mm'))
+    	infoCon.append(temp,sky,sunset)
+
+    	//add modal button
+    	modalBtn = $('<a>');
+    	modalBtn.addClass('expand-event')
+    	modalBtn.attr('href','#modal1')
+    	modalBtn.html('<i class="material-icons">view_list</i></a>')
+    	infoCon.append(modalBtn);
+    	cardCon.append(infoCon);
+
+    	//append to event Container
+    	eventCon.append(cardCon)
+    }
+	eventCon.fadeToggle('slow')
 }
+
+  	// <div class="card">
+			// 	  		<div class="day">
+			// 	  			<span class="card-title">Monday</span>
+			// 	  		</div>
+			// 		    <div class="card-image waves-effect waves-block waves-light">
+			// 		    	<img class="activator" src="assets/image/nskc.png">
+			// 		    </div>
+			// 		    <div class="card-content">
+			// 		      <span class="card-title activator">Forecast</span>
+			// 			  <p class="forecast sky">Sky Conditions:</p>
+			// 		      <p class="forecast temp">Temperature:</p>
+			// 		      <p class="forecast visibility">visibility</p>
+			// 		      <!-- Modal Trigger -->
+		 //  				<a class=" expand-event" href="#modal1"><i class="material-icons">view_list</i></a>
+			// 		    </div>					    
+			// 		 </div>
+
 
 // function getWeekDays() {
 //     var date = new Date();
@@ -158,9 +226,7 @@ function getWeekDays{
     $('.modal').modal();
     
      getLocation();
-     getWeekDays();
+    // getWeekDays();
   });
-
-
 
 

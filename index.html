@@ -55,8 +55,6 @@
 			<!-- popup button-->
 		<div class="container">
 
-
-
 		  <!-- Modal Structure -->
 		  <div id="modal1" class="modal">
 		    <div class="modal-content">
@@ -77,125 +75,13 @@
 
 			<!-- First Row div -->
 			<div class="row">
+				<!-- week/day event cards -->
 				<div class="col s12" id="eventContainer"> 
+   
+				</div>
 
-					<!-- toggle action cards -->
-				  	<div class="card">
-				  		<div class="day">
-				  			<span class="card-title">Monday</span>
-				  		</div>
-					    <div class="card-image waves-effect waves-block waves-light">
-					    	<img class="activator" src="assets/image/nskc.png">
-					    </div>
-					    <div class="card-content">
-					      <span class="card-title activator">Forecast</span>
-						  <p class="forecast sky">Sky Conditions:</p>
-					      <p class="forecast temp">Temperature:</p>
-					      <p class="forecast visibility">visibility</p>
-					      <!-- Modal Trigger -->
-		  				<a class=" expand-event" href="#modal1"><i class="material-icons">view_list</i></a>
-					    </div>					    
-					 </div>
-
-					 <div class="card">
-				  		<div class="day">
-				  			<span class="card-title">Tuesday</span>
-				  		</div>					 
-					    <div class="card-image waves-effect waves-block waves-light">
-					    	<img class="activator" src="assets/image/nbkn.png">
-					    </div>
-					    <div class="card-content">
-					      <span class="card-title activator">Forecast</span>
-						  <p class="forecast sky">Sky Conditions:</p>
-					      <p class="forecast temp">Temperature:</p>
-					      <p class="forecast visibility">visibility</p>
-					      <a class=" expand-event" href="#modal1"><i class="material-icons">view_list</i></a>
-					    </div>
-					 </div>
-
-					 <div class="card">
-				  		<div class="day">
-				  			<span class="card-title">Wednesday</span>
-				  		</div>
-					    <div class="card-image waves-effect waves-block waves-light">
-					    	<img class="activator" src="assets/image/novc.png">
-					    </div>
-					    <div class="card-content">
-					      <span class="card-title activator">Forecast</span>
-						  <p class="forecast sky">Sky Conditions:</p>
-					      <p class="forecast temp">Temperature:</p>
-					      <p class="forecast visibility">visibility</p>
-					      <!-- Modal Trigger -->
-		  				<a class=" expand-event" href="#modal1"><i class="material-icons">view_list</i></a>
-					    </div>
-					 </div>
-
-					 <div class="card">
-				  		<div class="day"> 
-				  			<span class="card-title">Thursday</span>
-				  		</div>
-					    <div class="card-image waves-effect waves-block waves-light">
-					    	<img class="activator" src="assets/image/nsct.png">
-					    </div>
-					    <div class="card-content">
-					      <span class="card-title activator">Forecast</span>
-						  <p class="forecast sky">Sky Conditions:</p>
-					      <p class="forecast temp">Temperature:</p>
-					      <p class="forecast visibility">visibility</p>
-					      <!-- Modal Trigger -->
-		  				  <a class=" expand-event" href="#modal1"><i class="material-icons">view_list</i></a>
-					    </div>
-					 </div>
-
-					 <div class="card">
-				  		<div class="day">
-				  			<span class="card-title">Friday</span>
-				  		</div>
-					    <div class="card-image waves-effect waves-block waves-light">
-					    	<img class="activator" src="assets/image/nskc.png">
-					    </div>
-					    <div class="card-content">
-					      <span class="card-title activator">Forecast</span>
-						  <p class="forecast sky">Sky Conditions:</p>
-					      <p class="forecast temp">Temperature:</p>
-					      <p class="forecast visibility">visibility</p>
-					      <a class=" expand-event" href="#modal1"><i class="material-icons">view_list</i></a>
-					    </div>
-					 </div>
-
-					 <div class="card">
-				  		<div class="day">
-				  			<span class="card-title">Saturday</span>
-				  		</div>
-					    <div class="card-image waves-effect waves-block waves-light">
-					    	<img class="activator" src="assets/image/nbkn.png">
-					    </div>
-					    <div class="card-content">
-					      <span class="card-title activator">Forecast</span>
-						  <p class="forecast sky">Sky Conditions:</p>
-					      <p class="forecast temp">Temperature:</p>
-					      <p class="forecast visibility">visibility</p>
-					      <a class=" expand-event" href="#modal1"><i class="material-icons">view_list</i></a>
-					    </div>					   
-					 </div>
-
-					 <div class="card">
- 				  		<div class="day">
-				  			<span class="card-title">Sunday</span>
-				  		</div>
-					    <div class="card-image waves-effect waves-block waves-light">
-					    	<img class="activator" src="assets/image/novc.png">
-					    </div>
-					    <div class="card-content">
-					      <span class="card-title activator">Forecast</span>
-						  <p class="forecast sky">Sky Conditions:</p>
-					      <p class="forecast temp">Temperature:</p>
-					      <p class="forecast visibility">visibility</p>
-					      <a class=" expand-event" href="#modal1"><i class="material-icons">view_list</i></a>
-					    </div>
-					 </div>
 					<!-- end of action cards -->
-					<hr>
+
 					<!-- day view div -->
 					<div class="row">
 						<div class="col s2"></div>
@@ -260,8 +146,10 @@
 		</div>
 
       	<!--Import jQuery before materialize.js-->
+      	<script type="text/javascript" src="assets/javascript/moment.js"></script>
 	    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	    <script type="text/javascript" src="assets/javascript/materialize.min.js"></script>
+	   	<script type="text/javascript" src="assets/javascript/getAPI.js"></script>
 	    <script type="text/javascript" src="assets/javascript/logic.js"></script>
     </body>
   </html>

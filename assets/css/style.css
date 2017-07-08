@@ -31,7 +31,7 @@
 
 
 	#search{
-		background-color:none;
+		background-color:none:;
 		border:none;
 	}
 
@@ -40,7 +40,7 @@
 	}
 
 	.container{
-		width:98%;
+		width:96%;
 	}
 	
 	.row{margin:0;}
@@ -50,6 +50,7 @@
 		padding:50px 10px;
 		overflow:hidden;
 		width:100%;
+		display:none;
 	}
 
 
@@ -73,7 +74,7 @@
 	}
 	
 	.forecast{
-		text-align: left
+		text-align: center
 	}
 
 	.expand-event{
@@ -139,11 +140,7 @@
 		margin-top:25px;
 		color:grey;
 	}
-
-	#login-modal .input-field {
-		background-color: rgba(255, 255, 255, 0.5);
-	}
-
+	
 	.login-submit{
 		border:1px solid black;
 		padding:10px;
