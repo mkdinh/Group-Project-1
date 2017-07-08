@@ -109,7 +109,9 @@
 		background-color: rgba(192,192,192,.3);
 	}
 	
-	.submit-login{
-		margin:25px;
+	.submit-wrapper{
+		margin-top:25px;
+		box-shadow: 0 0 5px black;
+		border:1px solid black;
 	}
  }
