@@ -31,7 +31,7 @@
 
 
 	#search{
-		background-color:none:;
+		background-color:none;
 		border:none;
 	}
 
@@ -138,6 +138,10 @@
 	.profile-input{
 		margin-top:25px;
 		color:grey;
+	}
+
+	#login-modal .input-field {
+		background-color: rgba(255, 255, 255, 0.5);
 	}
 
 	.login-submit{
