@@ -13,54 +13,33 @@ $("#login").click(function (e) {
   $("#login-modal").modal('open');
 });
 
+// To hold user's display information
+var currentUser = {
+  displayName: "",
+  photoURL: ""
+}
+
 // handle log in or out
 function logInOut() {
   var user = firebase.auth().currentUser;
     console.log("logInOut received:", user); // the object logged here has displayName set correctly
   if (user) {
     // User is signed in
-    $("#splashModal").modal('close');
+    $("#login-modal").modal('close');
     currentUser.displayName = user.displayName;
-    // BUG: the two lines below log null on first time createUser
     console.log("user.displayName:", user.displayName);
     console.log("currentUser.displayName", currentUser.displayName);
-    currentUser.email = user.email;
     currentUser.photoURL = user.photoURL;
+    Materialize.toast("Welcome " + currentUser.displayName + "!");
+    $("#login").html(`<img class="img-responsive circle" src=${currentUser.photoURL}>`);
     // var emailVerified = user.emailVerified;
     // var isAnonymous = user.isAnonymous; //?
     // var uid = user.uid;
     // var providerData = user.providerData;
-    $("#messages").empty();
-    glowOrange($("#messages"), `<img src="${currentUser.photoURL}" class="user-pic img-responsive circle">Welcome ${currentUser.displayName}!`);
-    // update firebase with the order in which players have arrived
-    database.ref("players").once("value").then(function(snapshot){
-      var players = snapshot.val();
-      // If you're the first one here...
-      if (players.player1 === "") {
-        database.ref("players/player1").set(currentUser.displayName);
-        playerNum = "player1";
-        signedIn = true;
-        // a little timeout just for the appearance of it
-        setTimeout(function() {
-          glowOrange($("#messages"), "Now waiting for Player 2...");
-        }, 1000);
-      } else if (players.player2 === "") { // if you're the second one here...
-        database.ref("players/player2").set(currentUser.displayName);
-        playerNum = "player2";
-        signedIn = true;
-        // a little timeout just for the appearance of it
-        setTimeout(function() {
-          glowOrange($("#messages"), players.player1 + " is already waiting for you!");
-        }, 1000);
-      } else {
-        glowOrange($("#messages"), `Sorry, ${players.player1} is playing ${players.player2} right now. Wait for one of them to sign out.`)
-      }
-    });
-    // TODO: fix the fact that if one player reloads the page they are now playing themself
   } else if (!user) {
     // User is signed out.
     console.log("no user");
-    
+    $("#login").html('<a class="btn btn-floating pulse"><i class="material-icons">perm_identity</i></a>');
   }
 }
 
@@ -102,6 +81,9 @@ function handleAuthError(error) {
     Materialize.toast(errorToastTxt);
   }
 }
+
+// one function for login or logout
+firebase.auth().onAuthStateChanged(logInOut);
 
 // Make Materialize toasts dismissible with click
 $(document).on("click", ".toast", function () {
