@@ -89,8 +89,8 @@ function getWeekDays(data){
 
     	//Create day of week div
     	var currentDay = moment().add(1*i,'days').format('dddd');
-    	var cardDate = $('<span>');
-    	cardDate.addClass('card-title day');
+    	var cardDate = $('<p>');
+    	cardDate.addClass('day card-title');
     	cardDate.text(currentDay);
     	cardCon.append(cardDate);
 
@@ -98,7 +98,7 @@ function getWeekDays(data){
     	var imgCon = $('<div>');
     	imgCon.addClass('card-image activator waves-effect waves-block waves-light');
     	var img = $('<img>');
-    	img.attr('src','assets/image/nskc.png')
+    	img.attr('src',cloudCover(data,i))
     	imgCon.append(img);
     	cardCon.append(imgCon);
 
@@ -136,7 +136,28 @@ function getWeekDays(data){
 	eventCon.fadeToggle('slow')
 }
 
- 
+function cloudCover(data,i){
+	var cloud = data.daily.data[i].cloudCover;
+	var cloudImg;
+	if(cloud < .20){
+		cloudImg = "assets/image/nksc.png"
+	}
+	else if(cloud < .40){
+		cloudImg = "assets/image/nfew.png"
+	}
+	else if(cloud < .60){
+		cloudImg = "assets/image/nsct.png"
+	}
+	else if(cloud < .80){
+		cloudImg = "assets/image/nbkn.png"
+	}
+	else{
+		cloudImg = "assets/image/novc.png"
+	}
+	console.log(cloudImg)
+	return cloudImg
+}
+
 // Initialize collapse button
   $(".button-collapse").sideNav();
   // Initialize collapsible (uncomment the line below if you use the dropdown variation)
