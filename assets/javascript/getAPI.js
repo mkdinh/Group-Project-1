@@ -131,7 +131,8 @@ function getWeekDays(data){
     	//append to event Container
     	eventCon.append(cardCon)
     }
-	eventCon.fadeToggle('slow')
+
+    $("#day-view").fadeToggle('fast')
 }
 
 function cloudCover(data,i){
@@ -155,6 +156,12 @@ function cloudCover(data,i){
 	console.log(cloudImg)
 	return cloudImg
 }
+
+function updateClock() {
+  $('#clock').html(moment().format('HH:mm'));
+}
+
+setInterval(updateClock, 1000);
 
 // Initialize collapse button
   $(".button-collapse").sideNav();
