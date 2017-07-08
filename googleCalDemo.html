@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<!--
+  NB: you'll have to be running a server to test.
+  Right now it looks like I have to first authorize,
+  then create the event in two steps.
+  Maybe we could handle that in the app by having a button that says
+  ... wait a minute ....
+-->
+<html>
+  <head>
+    <title>Google Calendar API Quickstart</title>
+    <meta charset='utf-8' />
+  </head>
+  <body>
+    <p>Google Calendar API Quickstart</p>
+
+    <!--TODO: make a form here to input data-->
+    <form id="add-form">
+      Event title:<br>
+      <input type="text" id="summary"><br>
+      Description:<br>
+      <input type="text" id="description"><br>
+      Start time:<br>
+      <input type="datetime-local" id="start-dateTime"><br>
+      End time:<br>
+      <input type="datetime-local" id="end-dateTime"><br>
+      Location:<br>
+      <input type="text" id="location"><br>
+      <input type="submit" value="Add event to my Google Calendar">
+    </form>
+
+    <div id="output"></div>
+
+    <!--Add buttons to initiate auth sequence and sign out-->
+    <button id="authorize-button" style="display: none;">Authorize</button>
+    <button id="signout-button" style="display: none;">Sign Out</button>
+
+    <!--link jQuery-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+    <script type="text/javascript">
+      // Client ID and API key from the Developer Console
+      var CLIENT_ID = '684241832249-bjgaqjvt9408fvm3iokba1fj0mdabiht.apps.googleusercontent.com';
+
+      // Array of API discovery doc URLs for APIs used by the quickstart
+      var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
+
+      // Authorization scopes required by the API; multiple scopes can be
+      // included, separated by spaces.
+      var SCOPES = "https://www.googleapis.com/auth/calendar";
+
+      var form = document.getElementById('add-form');
+      var authorizeButton = document.getElementById('authorize-button');
+      var signoutButton = document.getElementById('signout-button');
+
+      /**
+       *  On load, called to load the auth2 library and API client library.
+       */
+      function handleClientLoad() {
+        gapi.load('client:auth2', initClient);
+      }
+
+      /**
+       *  Initializes the API client library and sets up sign-in state
+       *  listeners.
+       */
+      function initClient() {
+        gapi.client.init({
+          discoveryDocs: DISCOVERY_DOCS,
+          clientId: CLIENT_ID,
+          scope: SCOPES
+        }).then(function () {
+          // Listen for sign-in state changes.
+          gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+
+          // Handle the initial sign-in state.
+          updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+          authorizeButton.onclick = handleAuthClick;
+          signoutButton.onclick = handleSignoutClick;
+        });
+      }
+
+      /**
+       *  Called when the signed in status changes, to update the UI
+       *  appropriately. After a sign-in, the API is called.
+       */
+      function updateSigninStatus(isSignedIn) {
+        if (isSignedIn) {
+          authorizeButton.style.display = 'none';
+          signoutButton.style.display = 'block';
+          form.style.display = 'block';
+        } else {
+          authorizeButton.style.display = 'block';
+          signoutButton.style.display = 'none';
+          form.style.display = 'none';
+        }
+      }
+
+      /**
+       *  Sign in the user upon button click.
+       */
+      function handleAuthClick(event) {
+        gapi.auth2.getAuthInstance().signIn();
+      }
+
+      /**
+       *  Sign out the user upon button click.
+       */
+      function handleSignoutClick(event) {
+        gapi.auth2.getAuthInstance().signOut();
+      }
+
+      /*
+        * format and submit form data
+        */
+
+      // add seconds and timezone
+      function formatDate(dateStr) {
+        // add seconds
+        dateStr += ":00";
+        // grab GMT timezone from javascript Date
+        var timeZone = new Date().toString().match(/([-\+][0-9]+)\s/)[1];
+        // insert ":" between hh and mm
+        timeZone = timeZone.slice(0, -2) + ":" + timeZone.slice(-2);
+        return dateStr + timeZone;
+      }
+
+      $("#add-form").on("submit", function (e) {
+        e.preventDefault();
+        var event = {
+          'summary': $('#summary').val().trim(),
+          'description': $('#description').val().trim(),
+          'start': {
+            // format yyyy-mm-ddThh:mm:ss{time zone, format eg -05:00}
+            'dateTime': formatDate($('#start-dateTime').val())
+          },
+          'end': {
+            'dateTime': formatDate($('#end-dateTime').val())
+          },
+          'location': $("#location").val().trim()
+        }
+
+        var request = gapi.client.calendar.events.insert({
+          'calendarId': 'primary',
+          'resource': event
+        });
+        
+        request.execute(function(event) {
+          $("#output").append("Event created: <a>" + event.htmlLink + "</a>");
+        });
+      });
+
+
+    </script>
+
+    <script async defer src="https://apis.google.com/js/api.js"
+      onload="this.onload=function(){};handleClientLoad()"
+      onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
+  </body>
+</html>
