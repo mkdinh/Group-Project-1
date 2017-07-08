@@ -38,3 +38,10 @@
   Materialize.toast(errorToastTxt);
   }
 }
+
+// Make Materialize toasts dismissible with click
+$(document).on("click", ".toast", function () {
+  $(this).fadeOut(function(){
+    $(this).remove();
+  });
+});
