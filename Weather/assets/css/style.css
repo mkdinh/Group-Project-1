@@ -1,0 +1,115 @@
+
+
+@media (min-width: 768px) {
+
+	body{
+		background-color: rgba(25,12,38,1);
+		background-image: url("../image/background2.jpg");
+		font-family: 'Ubuntu', sans-serif;
+	}
+	
+	nav{
+		/*background-color: rgba(20,28,58,1);*/
+		background-color: rgba(20,28,58,.7);
+	}
+	
+	#profile-button{
+		position:absolute;
+		bottom:10px;
+		right:10px;
+		color:white;
+	}
+
+	#search-input:active{
+		border-bottom:white;
+	}
+
+	.brand-logo{
+		margin-left:10px;
+		font-family: 'Scope One', serif;
+	}
+
+
+	#search{
+		background-color:none:;
+		border:none;
+	}
+
+	.btn-floating{
+		background-color:grey;
+	}
+
+	.container{
+		width:98%;
+	}
+	
+	.row{margin:0;}
+
+	#eventContainer{
+		text-align:center;
+		padding:50px 10px;
+		overflow:hidden;
+		width:100%;
+	}
+
+
+	.card{
+		color:white;
+		width:13%;
+		position:relative;
+		display:inline-block;
+		text-align:center;
+		background-color: rgba(25,12,38,0.7);
+		margin:5px;
+		border:1px solid black;
+		border-radius:10px 
+	}
+	
+	.day{margin:10px;}
+	
+	.card-title.activator{
+		font-size:15px;
+		text-align:left;
+	}
+	
+	.forecast{
+		text-align: left
+	}
+
+	.expand-event{
+		position:absolute;
+		bottom:0px;
+		right:5px;
+		color:white;
+	}
+
+	/*Login Page*/
+	
+	.modal-login{
+		height:500px;
+		overflow:hidden;
+	}
+
+	.login{
+		text-align:left;
+		width:25%;
+		margin-top:30px;
+	}
+
+	.profile-input{
+		margin-top:25px;
+		color:grey;
+	}
+
+	.login-submit{
+		border:1px solid black;
+		padding:10px;
+		font:bold 25px  'Ubuntu', sans-serif;
+		color:white;
+		background-color: rgba(192,192,192,.3);
+	}
+	
+	.submit-login{
+		margin:25px;
+	}
+ }

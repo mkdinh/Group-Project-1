@@ -1,5 +1,7 @@
 var longitude;
 var latitude;
+var todaysDate;
+
 function getLocation() {
     if(navigator.geolocation){
         navigator.geolocation.getCurrentPosition(showPosition)
@@ -11,6 +13,16 @@ function getLocation() {
 function showPosition(position){
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
+    
+    console.log("Latitude: " + latitude + " Longitude: " + longitude);
+}
+
+function getTodaysDate() {
+    var date = new Date();
+    var y = date.getFullYear();
+    var m = date.getMonth();
+    var d = date.getDate();
+    todaysDate = y + "/" + m + "/" + d
 }
 
 //Run some jQuery
@@ -73,13 +85,15 @@ $(document).ready(function(){
        
     //Gets Date
     var date = $("#date").val();
-    //API url with searchTerm
-       //if location radio is checked set url to be url with their 
-       if($("#location").checked){
-        getLocation();
-        var url = "http://api.predictthesky.org/events/all&lat="+ latitude + "&long=" + longitude + "&limit=10&date="+ date;
-    }
     
+    //get users location
+    getLocation();
+    getTodaysDate();
+       
+    //API url with searchTerm, longitude, latitude, and date
+    var url = "http://api.predictthesky.org/events/all&lat="+ latitude + "&long=" + longitude + "&limit=10&date="+ todaysDate;
+    
+    "http://api.predictthesky.org/events/all&lat=35.9000918&long=-79.0124182"
        
        //ajax call
        $.ajax({
@@ -88,7 +102,7 @@ $(document).ready(function(){
         async: false,
         dataType: "json",
         success: function(data){
-            
+            console.log(data);
         },
         error: function(errorMessage){
             alert("Error" + errorMessage);
