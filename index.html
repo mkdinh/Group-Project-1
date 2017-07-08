@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!-- Import Google Font -->
+      <link href="https://fonts.googleapis.com/css?family=Scope+One" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css"  media="screen,projection"/>
+      <!-- personal css -->
+      <link type="text/css" rel="stylesheet" href="assets/css/style.css">
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+    	<!-- Profile Button -->
+		<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons show-on-large small" id="profile-button">settings</i></a>
+
+		<!-- NavBar -->
+		<nav>
+			<div class="nav-wrapper">
+				<a href="index.html" class="brand-logo"><i class="material-icons">cloud</i>Night By Night</a>
+				<ul class="right hide-on-med-and-down">
+					<li><input type="text" id="search-input"></li>
+				    <li><i class="material-icons">search</i></a></li>	
+				    <li><a href="index.html" id="refresh"><i class="material-icons">refresh</i></a></li>
+				    <li><a href="login.html" class="btn btn-floating pulse" id="login"><i class="material-icons">perm_identity</i></a></li>
+			  	</ul>
+			</div>
+		</nav>
+		
+		<!-- Side Nav -->
+
+		<ul id="slide-out" class="side-nav"  style="background-color: rgba(135,136,156,.8)">
+		    <li>
+			    <div class="user-view">
+			      <div class="background">
+			      </div>
+			      <a href="#!user"><img class="circle" src="http://www.pieglobal.com/wp-content/uploads/2015/10/placeholder-user.png" style="margin:auto"></a>
+			      <a href="#!name"><span class="white-text name">John Doe</span></a>
+			      <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+			    </div>
+		    </li>
+		    <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+		    <li><a href="#!">Second Link</a></li>
+		    <li><div class="divider"></div></li>
+		    <li><a class="subheader">Subheader</a></li>
+		    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+		</ul>
+
+		<!-- Main Content -->
+			<!-- popup button-->
+		<div class="container">
+
+			<!-- First Row div -->
+			<div class="row">
+				<div class="col s12" id="eventContainer"> 
+
+					<!-- toggle action cards -->
+				  	<div class="card">
+				  		<div class="day">
+				  			<span class="card-title">Monday</span>
+				  		</div>
+					    <div class="card-image waves-effect waves-block waves-light">
+					    	<img class="activator" src="assets/image/nskc.png">
+					    </div>
+					    <div class="card-content">
+					      <span class="card-title activator">Forecast</span>
+						  <p class="forecast sky">Sky Conditions:</p>
+					      <p class="forecast temp">Temperature:</p>
+					      <p class="forecast visibility">visibility</p>
+					      <i class="material-icons right expand-event">view_list</i>
+					    </div>					    
+					    <div class="card-reveal">
+					      <span class="card-title">Astronomical Events<i class="material-icons right expand-event">close</i></span>
+					      <p>Here is some more information about tonight astronomical events that is only revealed once clicked on.</p>
+					    </div>
+					 </div>
+
+					 <div class="card">
+				  		<div class="day">
+				  			<span class="card-title">Tuesday</span>
+				  		</div>					 
+					    <div class="card-image waves-effect waves-block waves-light">
+					    	<img class="activator" src="assets/image/nbkn.png">
+					    </div>
+					    <div class="card-content">
+					      <span class="card-title activator">Forecast</span>
+						  <p class="forecast sky">Sky Conditions:</p>
+					      <p class="forecast temp">Temperature:</p>
+					      <p class="forecast visibility">visibility</p>
+					      <i class="material-icons right expand-event">view_list</i>
+					    </div>
+					    <div class="card-reveal">
+					      <span class="card-title">Astronomical Events<i class="material-icons right expand-event">close</i></span>
+					      <p>Here is some more information about tonight astronomical events that is only revealed once clicked on.</p>
+					    </div>
+					 </div>
+
+					 <div class="card">
+				  		<div class="day">
+				  			<span class="card-title">Wednesday</span>
+				  		</div>
+					    <div class="card-image waves-effect waves-block waves-light">
+					    	<img class="activator" src="assets/image/novc.png">
+					    </div>
+					    <div class="card-content">
+					      <span class="card-title activator">Forecast</span>
+						  <p class="forecast sky">Sky Conditions:</p>
+					      <p class="forecast temp">Temperature:</p>
+					      <p class="forecast visibility">visibility</p>
+					      <i class="material-icons right expand-event">view_list</i>
+					    </div>
+					    <div class="card-reveal">
+					      <span class="card-title">Astronomical Events<i class="material-icons right">close</i></span>
+					      <p>Here is some more information about tonight astronomical events that is only revealed once clicked on.</p>
+					    </div>
+					 </div>
+
+					 <div class="card">
+				  		<div class="day"> 
+				  			<span class="card-title">Thursday</span>
+				  		</div>
+					    <div class="card-image waves-effect waves-block waves-light">
+					    	<img class="activator" src="assets/image/nsct.png">
+					    </div>
+					    <div class="card-content">
+					      <span class="card-title activator">Forecast</span>
+						  <p class="forecast sky">Sky Conditions:</p>
+					      <p class="forecast temp">Temperature:</p>
+					      <p class="forecast visibility">visibility</p>
+					      <i class="activator material-icons expand-event">view_list</i>
+					    </div>
+					    <div class="card-reveal">
+					      <span class="card-title">Astronomical Events<i class="material-icons right">close</i></span>
+					      <p>Here is some more information about tonight astronomical events that is only revealed once clicked on.</p>
+					    </div>
+					 </div>
+
+					 <div class="card">
+				  		<div class="day">
+				  			<span class="card-title">Friday</span>
+				  		</div>
+					    <div class="card-image waves-effect waves-block waves-light">
+					    	<img class="activator" src="assets/image/nskc.png">
+					    </div>
+					    <div class="card-content">
+					      <span class="card-title activator">Forecast</span>
+						  <p class="forecast sky">Sky Conditions:</p>
+					      <p class="forecast temp">Temperature:</p>
+					      <p class="forecast visibility">visibility</p>
+					      <i class="material-icons right expand-event">view_list</i>
+					    </div>
+					    <div class="card-reveal">
+					      <span class="card-title">Astronomical Events<i class="material-icons right">close</i></span>
+					      <p>Here is some more information about tonight astronomical events that is only revealed once clicked on.</p>
+					    </div>
+					 </div>
+
+					 <div class="card">
+				  		<div class="day">
+				  			<span class="card-title">Saturday</span>
+				  		</div>
+					    <div class="card-image waves-effect waves-block waves-light">
+					    	<img class="activator" src="assets/image/nbkn.png">
+					    </div>
+					    <div class="card-content">
+					      <span class="card-title activator">Forecast</span>
+						  <p class="forecast sky">Sky Conditions:</p>
+					      <p class="forecast temp">Temperature:</p>
+					      <p class="forecast visibility">visibility</p>
+					      <i class="material-icons right expand-event">view_list</i>
+					    </div>
+					    <div class="card-reveal">
+					      <span class="card-title">Astronomical Events<i class="material-icons right">close</i></span>
+					      <p>Here is some more information about tonight astronomical events that is only revealed once clicked on.</p>
+					    </div>
+					 </div>
+
+					 <div class="card">
+ 				  		<div class="day">
+				  			<span class="card-title">Sunday</span>
+				  		</div>
+					    <div class="card-image waves-effect waves-block waves-light">
+					    	<img class="activator" src="assets/image/novc.png">
+					    </div>
+					    <div class="card-content">
+					      <span class="card-title activator">Forecast</span>
+						  <p class="forecast sky">Sky Conditions:</p>
+					      <p class="forecast temp">Temperature:</p>
+					      <p class="forecast visibility">visibility</p>
+					      <i class="material-icons right expand-event">view_list</i>
+					    </div>
+					    <div class="card-reveal">
+					      <span class="card-title">Astronomical Events<i class="material-icons right">close</i></span>
+					      <p>Here is some more information about tonight astronomical events that is only revealed once clicked on.</p>
+					    </div>
+					 </div>
+					<!-- end of action cards -->
+				<!-- close col s12 div -->
+				</div>
+			<!-- close first row div -->
+			</div>	
+		<!-- close container div -->
+		</div>
+
+      	<!--Import jQuery before materialize.js-->
+	    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	    <script type="text/javascript" src="assets/javascript/materialize.min.js"></script>
+	    <script type="text/javascript" src="assets/javascript/logic.js"></script>
+    </body>
+  </html>
+        
