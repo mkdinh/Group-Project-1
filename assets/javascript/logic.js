@@ -13,12 +13,53 @@ $("#login").click(function (e) {
   $("#login-modal").modal('open');
 });
 
+// To hold user's display information
+var currentUser = {
+  displayName: "",
+  photoURL: ""
+}
 
+// handle log in or out
+function logInOut() {
+  var user = firebase.auth().currentUser;
+    console.log("logInOut received:", user); // the object logged here has displayName set correctly
+  if (user) {
+    // User is signed in
+    $("#login-modal").modal('close');
+    currentUser.displayName = user.displayName;
+    console.log("user.displayName:", user.displayName);
+    console.log("currentUser.displayName", currentUser.displayName);
+    currentUser.photoURL = user.photoURL;
+    Materialize.toast("Welcome " + currentUser.displayName + "!");
+    $("#login").html(`<img class="img-responsive circle" src=${currentUser.photoURL}>`);
+    // var emailVerified = user.emailVerified;
+    // var isAnonymous = user.isAnonymous; //?
+    // var uid = user.uid;
+    // var providerData = user.providerData;
+  } else if (!user) {
+    // User is signed out.
+    console.log("no user");
+    $("#login").html('<a class="btn btn-floating pulse"><i class="material-icons">perm_identity</i></a>');
+  }
+}
 
+// Sign in w email and password
 $("#profile-input").submit(function (e) {
   e.preventDefault();
   firebase.auth().signInWithEmailAndPassword(email, password)
     .catch(handleAuthError);
+});
+
+// sign in with Google
+$(document).on("click", "#g-signin", function (e) { 
+  e.preventDefault();
+  var provider = new firebase.auth.GoogleAuthProvider();
+  // send the user off on a redirect to Google sign in
+  firebase.auth().signInWithRedirect(provider);
+  // handle what happens when they get back
+  firebase.auth().getRedirectResult()
+  // .then(logInOut)
+  .catch(handleAuthError);
 });
 
 function handleAuthError(error) {
@@ -40,6 +81,9 @@ function handleAuthError(error) {
     Materialize.toast(errorToastTxt);
   }
 }
+
+// one function for login or logout
+firebase.auth().onAuthStateChanged(logInOut);
 
 // Make Materialize toasts dismissible with click
 $(document).on("click", ".toast", function () {
