@@ -1,10 +1,7 @@
 /*
   IMPORTANT: include this script at the bottom of the main HTML page
   to load Google API:
-    <script async defer src="https://apis.google.com/js/api.js"
-      onload="this.onload=function(){};handleClientLoad()"
-      onreadystatechange="if (this.readyState === 'complete') this.onload()">
-    </script>
+    <script async defer src="https://apis.google.com/js/api.js"></script>
 */
 
 /*
@@ -25,9 +22,9 @@ var SCOPES = "https://www.googleapis.com/auth/calendar";
 /**
  *  On load, called to load the auth2 library and API client library.
  */
-function handleClientLoad() {
+$(window).ready(function () {
   gapi.load('client:auth2', initClient);
-}
+});
 
 /**
  *  Initializes the API client library and sets up sign-in state
