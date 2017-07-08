@@ -67,7 +67,7 @@ function getWeather(){
             dataType: "json",
             success: function(data){
                console.log(data);
-
+               updateTodayWeather(data)
                getWeekDays(data);
             },
             error: function(errorMessage){
@@ -76,6 +76,14 @@ function getWeather(){
         });
 }
 
+function updateTodayWeather(data){
+	console.log("in")
+	var weatherCond = data.currently.icon.toUpperCase();
+	var todayTemp = data.currently.apparentTemperature;
+	$('#day-temperature').html(todayTemp+"<sup>&deg;F</sup>")
+
+
+}
 function getWeekDays(data){
 
     var eventCon = $('#week-view')
@@ -109,16 +117,16 @@ function getWeekDays(data){
     	// infoCon.append(infoTitle);
 
     	// Weather info
-    	var sky = $('<p>')
-    	sky.addClass('forecast sky')
-    	sky.text('Sky Cond: ',data.daily.data[i].icon)
+    	// var sky = $('<p>')
+    	// sky.addClass('forecast sky')
+    	// sky.text(data.daily.data[i].icon)
     	var temp = $('<p>')
     	temp.addClass('forecast temp center')
     	temp.text(data.daily.data[i].apparentTemperatureMin+" - "+data.daily.data[i].apparentTemperatureMax)
     	var sunset = $('<p>')
     	sunset.addClass('forecast sunset')
     	sunset.text('Sunset: '+ moment(data.daily.data[i].sunsetTime).format('HH:mm'))
-    	infoCon.append(temp,sky,sunset)
+    	infoCon.append(temp,sunset)
 
     	//add modal button
     	modalBtn = $('<a>');
