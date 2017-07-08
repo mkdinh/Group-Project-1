@@ -84,11 +84,16 @@
 	}
 
 	/*Login Page*/
+	
+	.modal-login{
+		height:500px;
+		overflow:hidden;
+	}
 
 	.login{
 		text-align:left;
 		width:25%;
-		margin-top:0px;
+		margin-top:30px;
 	}
 
 	.profile-input{
@@ -102,5 +107,9 @@
 		font:bold 25px  'Ubuntu', sans-serif;
 		color:white;
 		background-color: rgba(192,192,192,.3);
+	}
+	
+	.submit-login{
+		margin:25px;
 	}
  }
