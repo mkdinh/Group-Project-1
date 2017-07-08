@@ -8,4 +8,7 @@
     $('.modal').modal();
   });
 
- 
+ $("#login").click(function (e) { 
+   e.preventDefault();
+   $("#login-modal").modal('open');
+ });
