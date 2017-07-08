@@ -7,6 +7,11 @@
     </script>
 */
 
+/*
+  See https://developers.google.com/google-apps/calendar/v3/reference/events/insert#examples
+  for examples of request formatting
+*/
+
 // Client ID and API key from the Developer Console
 var CLIENT_ID = '684241832249-bjgaqjvt9408fvm3iokba1fj0mdabiht.apps.googleusercontent.com';
 
