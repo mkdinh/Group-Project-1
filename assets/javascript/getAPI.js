@@ -136,23 +136,7 @@ function getWeekDays(data){
 	eventCon.fadeToggle('slow')
 }
 
-  	// <div class="card">
-			// 	  		<div class="day">
-			// 	  			<span class="card-title">Monday</span>
-			// 	  		</div>
-			// 		    <div class="card-image waves-effect waves-block waves-light">
-			// 		    	<img class="activator" src="assets/image/nskc.png">
-			// 		    </div>
-			// 		    <div class="card-content">
-			// 		      <span class="card-title activator">Forecast</span>
-			// 			  <p class="forecast sky">Sky Conditions:</p>
-			// 		      <p class="forecast temp">Temperature:</p>
-			// 		      <p class="forecast visibility">visibility</p>
-			// 		      <!-- Modal Trigger -->
-		 //  				<a class=" expand-event" href="#modal1"><i class="material-icons">view_list</i></a>
-			// 		    </div>					    
-			// 		 </div>
-
+ 
 
 // function getWeekDays() {
 //     var date = new Date();
