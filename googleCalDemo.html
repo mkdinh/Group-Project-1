@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <!--
-  NB: you'll have to be running a server to test
+  NB: you'll have to be running a server to test.
+  Right now it looks like I have to first authorize,
+  then create the event in two steps.
+  Maybe we could handle that in the app by having a button that says
+  ... wait a minute ....
 -->
 <html>
   <head>
@@ -142,7 +146,7 @@
         });
         
         request.execute(function(event) {
-          $("#output").append("Event created: <a>" + event.htmlLink + </a>);
+          $("#output").append("Event created: <a>" + event.htmlLink + "</a>");
         });
       });
 
