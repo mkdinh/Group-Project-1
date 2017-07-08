@@ -83,6 +83,43 @@
 		color:white;
 	}
 
+	#today-weather{
+		text-align: left;
+		padding-top:20px;
+		padding-bottom:40px;
+		border-radius: 0;
+	}
+
+	#today-events{
+		text-align: left;
+		padding: 0 20px;
+		border-radius: 0;
+	}
+	#day-weather img{width:125px;}
+
+	#day-temperature{
+		font: bold 50px sans-serif;
+		margin: 25px auto;
+		text-align: center;
+		border-left: 1px solid grey;
+		border-right:1px solid grey;
+		line-height: 100px
+	}
+
+	#day-wind img{
+		width:125px;
+		margin: 20px auto;
+	}
+
+	.weather-info{
+		margin:5px 0;
+	}
+	
+	.collection-events{
+		color:black;
+		margin:25px 0;
+	}
+
 	/*Login Page*/
 	
 	.modal-login{
@@ -116,4 +153,6 @@
 		box-shadow: 0 0 5px black;
 		border:1px solid black;
 	}
+
+
  }
