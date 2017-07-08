@@ -27,6 +27,7 @@
 					<li><input type="text" id="search-input"></li>
 				    <li><i class="material-icons">search</i></a></li>	
 				    <li><a href="index.html" id="refresh"><i class="material-icons">refresh</i></a></li>
+				    <li><i class="material-icons" id="switch-view">view_quilt</i></a></li>
 				    <li><a href="login.html" class="btn btn-floating pulse" id="login"><i class="material-icons">perm_identity</i></a></li>
 			  	</ul>
 			</div>
@@ -78,12 +79,14 @@
 			<!-- First Row div -->
 			<div class="row">
 				<!-- weem view div -->
-				<div class="col s12" id="eventContainer"> 
+				<div class="col s12">
+					<div id="week-view"> 
 					<!-- week view close-->
-					 </div>
+					</div>
 					<!-- end of action cards -->
+
 					<!-- day view div -->
-					<div class="row">
+					<div class="row" id="day-view">
 						<div class="col s2"></div>
 						<div class='col s5' id="today-weather-container">
 							<div class='col s12 card left' id="today-weather">
@@ -95,21 +98,15 @@
 									<div class='col s4' id='day-temperature'>40 F</div>
 									<div class='col s4' id='day-wind'><img src="assets/image/sample-wind.png"></div>
 								</div>
-								<hr>
-							
-							<div class='row'>
-								<div class='col s6 weather-info'>Pressure:</div>
-								<div class='col s6 weather-info'>Visibility:</div>
-							</div>
-
-
-							<div class='row'>
-								<div class='col s6 weather-info'>Rainfall:</div>
-								<div class='col s6 weather-info'>Humidity:</div>
-							</div>
-
-
-
+								<hr>				
+								<div class='row'>
+									<div class='col s6 weather-info'>Pressure:</div>
+									<div class='col s6 weather-info'>Visibility:</div>
+								</div>
+								<div class='row'>
+									<div class='col s6 weather-info'>Rainfall:</div>
+									<div class='col s6 weather-info'>Humidity:</div>
+								</div>
 							</div>
 						</div>
 						
@@ -131,7 +128,6 @@
 							      <li class="collection-item">Object 1</li>
 							      <li class="collection-item">Object 2</li>
 							      <li class="collection-item">Object 3</li>
-							      <li class="collection-item">Object 4</li>
 							    </ul>
 							</div>
 						</div>

@@ -77,10 +77,8 @@ function getWeather(){
 }
 
 function getWeekDays(data){
-    // var date = new Date();
-    // var weekday = date.getDay();
-    // console.log(weekday)
-    var eventCon = $('#eventContainer')
+
+    var eventCon = $('#week-view')
     //get the 5 days
     for(var i = 0; i < 7; i++){
     	//Create card Container
@@ -168,7 +166,19 @@ function cloudCover(data,i){
     $('.modal').modal();
     
      getLocation();
-    // getWeekDays();
+
+  	$('#switch-view').click(function(){
+  		if($('#day-view').css('display') === 'none'){
+  			console.log($('#day-view').css('display'))
+			$("#week-view").css("display","none");
+			setTimeout(function(){$("#day-view").fadeToggle('slow'),500})
+			$('#switch-view').text('view_week')
+		}else{
+			$("#day-view").css("display","none");
+			setTimeout(function(){$("#week-view").fadeToggle('slow'),500})
+			$('#switch-view').text('view_quilt')
+	}
+	})
   });
 
 
