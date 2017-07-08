@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!-- Import Google Font -->
+      <link href="https://fonts.googleapis.com/css?family=Scope+One" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css"  media="screen,projection"/>
+      <!-- personal css -->
+      <link type="text/css" rel="stylesheet" href="assets/css/style.css">
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 	
+    </head>
+
+    <body>
+    	<!-- Profile Button -->
+		<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons show-on-large small" id="profile-button">settings</i></a>
+
+		<!-- NavBar -->
+		<nav>
+			<div class="nav-wrapper">
+				<a href="index.html" class="brand-logo"><i class="material-icons">cloud</i>Night By Night</a>
+				<ul class="right hide-on-med-and-down">
+					<li><input type="search" id="search-input"></li>
+				    <li><i class="material-icons">search</i></a></li>	
+				    <li><a href="login.html" id="refresh"><i class="material-icons">refresh</i></a></li>
+				    <li><a href="login.html" class="btn btn-floating pulse" id="login"><i class="material-icons">perm_identity</i></a></li>
+			  	</ul>
+			</div>
+		</nav>
+		
+		<!-- Side Nav -->
+
+		<ul id="slide-out" class="side-nav"  style="background-color: rgba(135,136,156,.8)">
+		    <li>
+			    <div class="user-view">
+			      <div class="background">
+			      </div>
+			      <a href="#!user"><img class="circle" src="http://www.pieglobal.com/wp-content/uploads/2015/10/placeholder-user.png" style="margin:auto"></a>
+			      <a href="#!name"><span class="white-text name">John Doe</span></a>
+			      <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+			    </div>
+		    </li>
+		    <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+		    <li><a href="#!">Second Link</a></li>
+		    <li><div class="divider"></div></li>
+		    <li><a class="subheader">Subheader</a></li>
+		    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+		</ul>
+
+		<!-- Main Content -->
+			<!-- popup button-->
+		<div class="container">
+
+			<!-- First Row div -->
+			<div class="row">
+				<div class="col s12" id="eventContainer"> 
+
+					<!-- Login Div -->
+
+			       	<div class="card-panel card login">
+				        <h5 class="white-text">Login</h5>
+						<hr>
+				        <form class="profile-input">
+							<h7>Email</h7>
+							<input type="email" placeholder="JohnSmith@email.com">
+							<h7>Password</h7>
+							<input type="password">
+							<input type="submit" class=" login-submit center waves-effect waves-block waves-light ">
+				        </form>    
+
+				       	<p class="center">Don't have an account?</p>
+				       	<p class="center"><a href='#modal1'>Sign Up</a></p>
+ 
+					<!-- close login Div -->
+					</div>
+
+					<!-- Modal Structure -->
+					  <div id="modal1" class="modal">
+					    <div class="modal-content signUp center">
+					      <h4>Make your profile!</h4>
+
+					       <!-- Sign Up Form -->
+						    <form>
+						      <div class="row">
+						     	<div class="input-field col s6">
+						          <input id="last_name" type="text" class="validate">
+						          <label for="last_name">First Name</label>
+						        </div>
+						        <div class="input-field col s6">
+						          <input id="last_name" type="text" class="validate">
+						          <label for="last_name">Last Name</label>
+						        </div>
+						      </div>
+						      <div class="row">
+						        <div class="input-field col s12">
+						          <input id="password" type="password" class="validate">
+						          <label for="password">Password</label>
+						        </div>
+						      </div>
+						      <div class="row">
+						        <div class="input-field col s12">
+						          <input id="email" type="email" class="validate">
+						          <label for="email">Email</label>
+						        </div>
+						      </div>
+						      <div class="row">
+						        <div class="col s6">
+						          <div class="input-field inline">
+						            <input id="city" type="text" class="validate">
+						            <label for="city">City</label>
+						          </div>
+						        </div>
+
+						        <div class="col s6">
+						          <div class="input-field inline">
+						            <input id="zip" type="email" class="validate">
+						            <label for="zip">Zip Code</label>
+						          </div>
+						        </div>
+						      </div>
+						  <!-- close sign up form -->
+						    </form>
+        					
+					    </div>
+					    <div class="modal-footer">
+					      <a href="#!" class="modal-action modal-close waves-effect btn-flat">Close</a>
+					    </div>
+					  </div>
+				<!-- close col s12 div -->
+				</div>
+			<!-- close first row div -->
+			</div>	
+		<!-- close container div -->
+		</div>
+
+      	<!--Import jQuery before materialize.js-->
+	    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	    <script type="text/javascript" src="assets/javascript/materialize.min.js"></script>
+	    <script type="text/javascript" src="assets/javascript/logic.js"></script>
+    </body>
+  </html>
+        

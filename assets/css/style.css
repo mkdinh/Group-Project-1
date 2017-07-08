@@ -78,7 +78,29 @@
 
 	.expand-event{
 		position:absolute;
-		bottom:5px;
+		bottom:0px;
 		right:5px;
+		color:white;
+	}
+
+	/*Login Page*/
+
+	.login{
+		text-align:left;
+		width:25%;
+		margin-top:0px;
+	}
+
+	.profile-input{
+		margin-top:25px;
+		color:grey;
+	}
+
+	.login-submit{
+		border:1px solid black;
+		padding:10px;
+		font:bold 25px  'Ubuntu', sans-serif;
+		color:white;
+		background-color: rgba(192,192,192,.3);
 	}
  }
