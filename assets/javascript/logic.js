@@ -13,12 +13,74 @@ $("#login").click(function (e) {
   $("#login-modal").modal('open');
 });
 
+// handle log in or out
+function logInOut() {
+  var user = firebase.auth().currentUser;
+    console.log("logInOut received:", user); // the object logged here has displayName set correctly
+  if (user) {
+    // User is signed in
+    $("#splashModal").modal('close');
+    currentUser.displayName = user.displayName;
+    // BUG: the two lines below log null on first time createUser
+    console.log("user.displayName:", user.displayName);
+    console.log("currentUser.displayName", currentUser.displayName);
+    currentUser.email = user.email;
+    currentUser.photoURL = user.photoURL;
+    // var emailVerified = user.emailVerified;
+    // var isAnonymous = user.isAnonymous; //?
+    // var uid = user.uid;
+    // var providerData = user.providerData;
+    $("#messages").empty();
+    glowOrange($("#messages"), `<img src="${currentUser.photoURL}" class="user-pic img-responsive circle">Welcome ${currentUser.displayName}!`);
+    // update firebase with the order in which players have arrived
+    database.ref("players").once("value").then(function(snapshot){
+      var players = snapshot.val();
+      // If you're the first one here...
+      if (players.player1 === "") {
+        database.ref("players/player1").set(currentUser.displayName);
+        playerNum = "player1";
+        signedIn = true;
+        // a little timeout just for the appearance of it
+        setTimeout(function() {
+          glowOrange($("#messages"), "Now waiting for Player 2...");
+        }, 1000);
+      } else if (players.player2 === "") { // if you're the second one here...
+        database.ref("players/player2").set(currentUser.displayName);
+        playerNum = "player2";
+        signedIn = true;
+        // a little timeout just for the appearance of it
+        setTimeout(function() {
+          glowOrange($("#messages"), players.player1 + " is already waiting for you!");
+        }, 1000);
+      } else {
+        glowOrange($("#messages"), `Sorry, ${players.player1} is playing ${players.player2} right now. Wait for one of them to sign out.`)
+      }
+    });
+    // TODO: fix the fact that if one player reloads the page they are now playing themself
+  } else if (!user) {
+    // User is signed out.
+    console.log("no user");
+    
+  }
+}
 
-
+// Sign in w email and password
 $("#profile-input").submit(function (e) {
   e.preventDefault();
   firebase.auth().signInWithEmailAndPassword(email, password)
     .catch(handleAuthError);
+});
+
+// sign in with Google
+$(document).on("click", "#g-signin", function (e) { 
+  e.preventDefault();
+  var provider = new firebase.auth.GoogleAuthProvider();
+  // send the user off on a redirect to Google sign in
+  firebase.auth().signInWithRedirect(provider);
+  // handle what happens when they get back
+  firebase.auth().getRedirectResult()
+  // .then(logInOut)
+  .catch(handleAuthError);
 });
 
 function handleAuthError(error) {
