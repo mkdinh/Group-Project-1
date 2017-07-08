@@ -133,7 +133,7 @@ function getWeekDays(data){
     	//append to event Container
     	eventCon.append(cardCon)
     }
-	eventCon.fadeToggle('slow')
+	eventCon.fadeIn('slow')
 }
 
  
