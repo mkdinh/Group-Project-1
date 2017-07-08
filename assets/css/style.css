@@ -5,6 +5,7 @@
 	body{
 		background-color: rgba(25,12,38,1);
 		background-image: url("../image/background2.jpg");
+		font-family: 'Ubuntu', sans-serif;
 	}
 	
 	nav{
