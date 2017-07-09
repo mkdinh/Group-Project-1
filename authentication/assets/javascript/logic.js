@@ -20,10 +20,7 @@ $(document).ready(function () {
   $('.modal').modal();
 });
 
-$("#login").click(function (e) {
-  e.preventDefault();
-  $("#login-modal").modal('open');
-});
+var signedIn = false;
 
 // To hold user's display information
 var currentUser = {
@@ -37,10 +34,10 @@ function logInOut() {
     console.log("logInOut received:", user); // the object logged here has displayName set correctly
   if (user) {
     // User is signed in
+    signedIn = true;
     $("#login-modal").modal('close');
     currentUser.displayName = user.displayName;
     console.log("user.displayName:", user.displayName);
-    console.log("currentUser.displayName", currentUser.displayName);
     currentUser.photoURL = user.photoURL;
     Materialize.toast("Welcome " + currentUser.displayName + "!", 5000);
     $("#login").html(`<img class="img-responsive circle userpic" src=${currentUser.photoURL}>`);
@@ -50,6 +47,7 @@ function logInOut() {
     // var providerData = user.providerData;
   } else if (!user) {
     // User is signed out.
+    signedIn = false;
     console.log("no user");
     $("#login").empty();
     $("#login").html('<a class="btn btn-floating pulse"><i class="material-icons">perm_identity</i></a>');
@@ -96,6 +94,22 @@ function handleAuthError(error) {
 
 // one function for login or logout
 firebase.auth().onAuthStateChanged(logInOut);
+
+// open sign in or sign out modal
+$("#login").click(function (e) {
+  e.preventDefault();
+  if (signedIn) {
+    $("#logout-modal").modal('open');
+  } else{
+    $("#login-modal").modal('open');
+  }
+});
+
+$("#signout").click(function (e) { 
+  e.preventDefault();
+  firebase.auth().signOut();
+  $("#logout-modal").modal('close');
+});
 
 // Make Materialize toasts dismissible with click
 $(document).on("click", ".toast", function () {
