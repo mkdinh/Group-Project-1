@@ -236,14 +236,22 @@ nav{
 	border:1px solid black;
 }
 @media (max-width: 768px) {
+	.brand-logo i.material-icons{display:none;}
 	.divider{display:none;}
 	#clock{display:none;}
 	#search-input,.material-icons.nav-search,.material-icons.refresh,#login{display:none;}
-	#switch-view{ position:absolute; top:0px; right:70px; font-size:32px}
+	#switch-view{ position:absolute; top:0px; left:15px; font-size:32px}
 	#profile-button{right:15px; top:17px; z-index:2;}
 	#today-weather-container{width:100%;}
 	#today-events-container{width:100%;}
 	.card.week{display:inline-block; width:25%;}
 	.card .card-image img {display:none;}
 	.moonphase{width:100%;}
+
+	#toast-container {
+	  top: 12%;
+	  right: 0;
+	  bottom: auto !important;
+	  left: auto !important;  
+	}
  }
