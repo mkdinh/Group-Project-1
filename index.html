@@ -90,12 +90,18 @@
 
 					<!-- day view div -->
 					<div class="row" id="day-view">
-						<div class="col s2"></div>
+					  <div class="col s2"></div>
 						<div class='col s5' id="today-weather-container">
-							<div class='col s12 card left' id="today-weather">
-								<h5> Forecast </h5>
-								<hr>
 
+						    <ul class="tabs">
+						        <li class="tab col s3" tab-data="tab-forecast"><a class='active' href="#tab-forecast">Forecast</a></li>
+						        <li class="tab col s3" tab-data="tab-events"><a href="#tab-events">Events</a></li>
+						        <li class="tab col s3" tab-data="tab-news"><a href="#tab-news">News</a></li>
+						        <li class="tab col s3" tab-data="tab-constellation"><a href="#tab-constellation">Constellation</a></li>
+					      	</ul>
+							<div class='col s12 card left' id="today-weather">
+							
+							<div id="tab-forecast">
 								<div class='row weather-info-container center'>
 									<div class='col s4' id='day-weather'>
 										<canvas class="skycons" id="skycons"></canvas>
@@ -122,20 +128,35 @@
 							            <td class="visibility"></td>
 							          </tr>
 							        </tbody>
-							      </table>
-            
+							      </table>  
+							 <!-- close tab-forecast -->
+							 </div>
+
+		  					<div id="tab-events">
+								put events here
 							</div>
+
+							<div id='tab-news'>
+								put news here
+							</div>
+
+							<div id='tab-constellation'>
+								put constellation here
+							</div>
+
+							 <!-- close today-weather-container -->
+						  	</div>	
+						<!-- close col s5 div -->
 						</div>
 						
 						<div class='col s3' id="today-events-container">
 							<div class="col s12 card left" id ='today-events'>
-								<h5>Events</h5>
-								<hr>
-								 <ul class="collection collection-events">
+								<h5>Upcoming Event</h5>
+								<hr>								 <ul class="collection collection-events">
 
 							      	<li class="collection-item ">
 								      	<div>
-									      	<i class="material-icons event-item secondary-content left">add</i>
+									      	<a href="#"><i class="material-icons event-item secondary-content left">add</i></a>
 									      	<span class="event-name">Event 1</span>
 									      	<a href="#modal1" class="secondary-content"><i class="material-icons event-more">send</i></a>
 								      	</div>
@@ -143,7 +164,7 @@
 
 							      	<li class="collection-item">
 								      	<div>
-									      <i class="material-icons event-item secondary-content left">add</i>
+									      <a href="#"><i class="material-icons event-item secondary-content left">add</i></a>
 									      	<span class="event-name">Event 2</span>
 									      	<a href="#modal1" class="secondary-content"><i class="material-icons event-more">send</i></a>
 								      	</div>
@@ -151,7 +172,7 @@
 
 							      	<li class="collection-item">
 								      	<div>
-									      	<i class="material-icons event-item secondary-content left">add</i>
+									      	<a href="#"><i class="material-icons event-item secondary-content left">add</i></a>
 									      	<span class="event-name">Event 3</span>
 									      	<a href="#modal1" class="secondary-content"><i class="material-icons event-more">send</i></a>
 								      	</div>
@@ -159,7 +180,7 @@
 
 							      	<li class="collection-item">
 								      	<div>
-									      	<i class="material-icons event-item secondary-content left">add</i>
+									      	<a href="#"><i class="material-icons event-item secondary-content left">add</i></a>
 									      	<span class="event-name">Event 4</span>
 									      	<a href="#modal1" class="secondary-content"><i class="material-icons event-more">send</i></a>
 								      	</div>

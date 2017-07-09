@@ -66,7 +66,7 @@
 		background-color: rgba(25,12,38,0.9);
 		margin:5px;
 		/*border:1px solid white;*/
-		border-radius:10px 
+		border-radius:5px 
 	}
 
 
@@ -107,6 +107,19 @@
 	}
 
 	/*Week View css*/
+
+	.tabs{
+		background-color: rgba(255,255,255,1);
+		margin:5px 0 0 0;
+	}
+
+	.tabs .tab a:hover, .tabs .tab a.active{color:maroon;}
+
+	.tabs .tab a{color:#cc7070;}
+
+	.indicator {
+    	background-color: maroon  !important;;
+	}
 
 	.weather-info-container{
 		background-color: rgba(255,255,255,.1);

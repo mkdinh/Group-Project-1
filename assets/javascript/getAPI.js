@@ -103,7 +103,7 @@ function updateTodayWeather(data){
 	$('#day-temperature').html(todayTemp+"<sup>&deg;F</sup>")
 
 	//Updating WindSpeed
-	$('.windSpeed').html(data.currently.windSpeed)
+	$('.windSpeed').html(data.currently.windSpeed + " mph")
 
 	//Updating Addtional Info
 	$(".humidity").html(data.currently.humidity)
@@ -177,7 +177,7 @@ function cloudCover(data,i){
 	var cloud = data.daily.data[i].cloudCover;
 	var cloudImg;
 	if(cloud < .20){
-		cloudImg = "assets/image/Cloud-Cover/nksc.png"
+		cloudImg = "assets/image/Cloud-Cover/nskc.png"
 	}
 	else if(cloud < .40){
 		cloudImg = "assets/image/Cloud-Cover/nfew.png"
@@ -257,4 +257,11 @@ $('.event-item').click(function(){
 	})
   });
 
+ // fade in tab
+ $('.tab').click(function(){
+ 	$('.initial-indicator').remove()
+ 	var tab = $(this).attr('tab-data');
+ 	console.log(tab)
+ 	$('#'+tab).fadeIn('slow')
+ })
 
