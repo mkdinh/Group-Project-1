@@ -112,7 +112,8 @@
 		background-color: rgba(255,255,255,.1);
 		margin:20px 0 0 0;
 	}
-
+	
+	
 	#today-weather{
 		text-align: left;
 		padding-top:20px;
@@ -122,7 +123,7 @@
 
 	#today-events{
 		text-align: left;
-		padding: 0 1	0px;
+		padding: 20px 15px 5px 15px;
 		border-radius: 0;
 	}
 	.skycons {
@@ -158,6 +159,27 @@
 	.collection-events{
 		color:black;
 		margin:25px 0;
+	}
+
+	.collection .collection-item{
+		background-color: rgba(255,255,255,1);
+		color:black;
+	}
+	
+	.event-item{
+		color:orange;
+	}
+
+	
+	#toast-container {
+	  top: 12%;
+	  right: 3.5%;
+	  bottom: auto !important;
+	  left: auto !important;  
+	}
+
+	.object-more,.event-more{
+		color:maroon;
 	}
 
 	/*Login Page*/

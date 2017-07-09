@@ -197,7 +197,6 @@ function cloudCover(data,i){
 function moonPhase(data,i){
 	var moon = data.daily.data[i].moonPhase;
 	var moonImg;
-	console.log(moon)
 	if(moon >= 0 && moon <= .1){
 		moonImg = "assets/image/Moon-Phase/new.png"
 	}else if(moon >.1 && moon <= .2){
@@ -232,6 +231,11 @@ setInterval(updateClock, 1000);
   $(".button-collapse").sideNav();
   // Initialize collapsible (uncomment the line below if you use the dropdown variation)
   $('.collapsible').collapsible();
+
+ // Toast js
+$('.event-item').click(function(){
+ Materialize.toast("Event added", 3000) // 4000 is the duration of the toast
+})
 
  $(document).ready(function(){
     // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
