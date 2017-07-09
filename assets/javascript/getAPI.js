@@ -67,7 +67,7 @@ function getWeather(){
             dataType: "json",
             success: function(data){
                console.log(data);
-
+               updateTodayWeather(data)
                getWeekDays(data);
             },
             error: function(errorMessage){
@@ -76,11 +76,17 @@ function getWeather(){
         });
 }
 
+function updateTodayWeather(data){
+	console.log("in")
+	var weatherCond = data.currently.icon.toUpperCase();
+	var todayTemp = data.currently.apparentTemperature;
+	$('#day-temperature').html(todayTemp+"<sup>&deg;F</sup>")
+
+
+}
 function getWeekDays(data){
-    // var date = new Date();
-    // var weekday = date.getDay();
-    // console.log(weekday)
-    var eventCon = $('#eventContainer')
+
+    var eventCon = $('#week-view')
     //get the 5 days
     for(var i = 0; i < 7; i++){
     	//Create card Container
@@ -89,8 +95,8 @@ function getWeekDays(data){
 
     	//Create day of week div
     	var currentDay = moment().add(1*i,'days').format('dddd');
-    	var cardDate = $('<span>');
-    	cardDate.addClass('card-title day');
+    	var cardDate = $('<p>');
+    	cardDate.addClass('day card-title');
     	cardDate.text(currentDay);
     	cardCon.append(cardDate);
 
@@ -98,7 +104,7 @@ function getWeekDays(data){
     	var imgCon = $('<div>');
     	imgCon.addClass('card-image activator waves-effect waves-block waves-light');
     	var img = $('<img>');
-    	img.attr('src','assets/image/nskc.png')
+    	img.attr('src',cloudCover(data,i))
     	imgCon.append(img);
     	cardCon.append(imgCon);
 
@@ -111,16 +117,16 @@ function getWeekDays(data){
     	// infoCon.append(infoTitle);
 
     	// Weather info
-    	var sky = $('<p>')
-    	sky.addClass('forecast sky')
-    	sky.text('Sky Cond: ',data.daily.data[i].icon)
+    	// var sky = $('<p>')
+    	// sky.addClass('forecast sky')
+    	// sky.text(data.daily.data[i].icon)
     	var temp = $('<p>')
     	temp.addClass('forecast temp center')
     	temp.text(data.daily.data[i].apparentTemperatureMin+" - "+data.daily.data[i].apparentTemperatureMax)
     	var sunset = $('<p>')
     	sunset.addClass('forecast sunset')
     	sunset.text('Sunset: '+ moment(data.daily.data[i].sunsetTime).format('HH:mm'))
-    	infoCon.append(temp,sky,sunset)
+    	infoCon.append(temp,sunset)
 
     	//add modal button
     	modalBtn = $('<a>');
@@ -133,10 +139,38 @@ function getWeekDays(data){
     	//append to event Container
     	eventCon.append(cardCon)
     }
-	eventCon.fadeToggle('slow')
+
+    $("#day-view").fadeToggle('fast')
 }
 
- 
+function cloudCover(data,i){
+	var cloud = data.daily.data[i].cloudCover;
+	var cloudImg;
+	if(cloud < .20){
+		cloudImg = "assets/image/nksc.png"
+	}
+	else if(cloud < .40){
+		cloudImg = "assets/image/nfew.png"
+	}
+	else if(cloud < .60){
+		cloudImg = "assets/image/nsct.png"
+	}
+	else if(cloud < .80){
+		cloudImg = "assets/image/nbkn.png"
+	}
+	else{
+		cloudImg = "assets/image/novc.png"
+	}
+	console.log(cloudImg)
+	return cloudImg
+}
+
+function updateClock() {
+  $('#clock').html(moment().format('HH:mm'));
+}
+
+setInterval(updateClock, 1000);
+
 // Initialize collapse button
   $(".button-collapse").sideNav();
   // Initialize collapsible (uncomment the line below if you use the dropdown variation)
@@ -147,7 +181,19 @@ function getWeekDays(data){
     $('.modal').modal();
     
      getLocation();
-    // getWeekDays();
+
+  	$('#switch-view').click(function(){
+  		if($('#day-view').css('display') === 'none'){
+  			console.log($('#day-view').css('display'))
+			$("#week-view").css("display","none");
+			setTimeout(function(){$("#day-view").fadeToggle('slow'),500})
+			$('#switch-view').text('view_week')
+		}else{
+			$("#day-view").css("display","none");
+			setTimeout(function(){$("#week-view").fadeToggle('slow'),500})
+			$('#switch-view').text('view_quilt')
+	}
+	})
   });
 
 

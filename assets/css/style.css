@@ -40,12 +40,12 @@
 	}
 
 	.container{
-		width:98%;
+		width:96%;
 	}
 	
 	.row{margin:0;}
 
-	#eventContainer{
+	#week-view{
 		text-align:center;
 		padding:50px 10px;
 		overflow:hidden;
@@ -53,6 +53,9 @@
 		display:none;
 	}
 
+	#day-view{
+		display:none;
+	}
 
 	.card{
 		color:white;
@@ -74,7 +77,7 @@
 	}
 	
 	.forecast{
-		text-align: left
+		text-align: center
 	}
 
 	.expand-event{
@@ -93,7 +96,7 @@
 
 	#today-events{
 		text-align: left;
-		padding: 0 20px;
+		padding: 0 10px;
 		border-radius: 0;
 	}
 	#day-weather img{width:125px;}
