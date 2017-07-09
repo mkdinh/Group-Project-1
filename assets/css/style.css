@@ -236,6 +236,7 @@ nav{
 	border:1px solid black;
 }
 @media (max-width: 768px) {
+	.container{width:94%;margin:auto;}
 	.brand-logo i.material-icons{display:none;}
 	.divider{display:none;}
 	#clock{display:none;}
@@ -244,14 +245,12 @@ nav{
 	#profile-button{right:15px; top:17px; z-index:2;}
 	#today-weather-container{width:100%;}
 	#today-events-container{width:100%;}
-	.card.week{display:inline-block; width:25%;}
+	.card.week{display:inline-block; width:100%;}
 	.card .card-image img {display:none;}
-	.moonphase{width:100%;}
+	img.forecast.moonPhase{display:none;}
 	
 	/*day-view*/
 	#toast-container {	
-	  position:fixed;
-	  text-outline: 0;
 	  right: 0;
 	  bottom: auto !important;
 	  left: auto !important;  
