@@ -193,7 +193,7 @@ function updateClock() {
   $('#clock').html(moment().format('HH:mm'));
 }
 
-setInterval(updateClock, 1000);
+setInterval(updateClock, 60000);
 
 // Initialize collapse button
   $(".button-collapse").sideNav();
