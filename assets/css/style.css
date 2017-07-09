@@ -129,7 +129,7 @@
 	
 	#today-weather{
 		text-align: left;
-		padding-top:20px;
+		padding-top:10px;
 		padding-bottom:40px;
 		border-radius: 0;
 	}
@@ -140,8 +140,8 @@
 		border-radius: 0;
 	}
 	.skycons {
-		width:125%;
-		margin:15px auto 5px auto;
+		width:100%;
+		margin:25px auto 5px auto;
 		color:white;
 	}
 	.skycons-label{margin:0;}
@@ -195,6 +195,11 @@
 		color:maroon;
 	}
 
+
+	/*Event Page*/
+	#tab-event{padding-top:10px;}
+	#event-input{width:40%; margin:0 10px;}
+	.search-icon{font-size:30px;vertical-align: bottom}
 	/*Login Page*/
 	
 	.modal-login{
