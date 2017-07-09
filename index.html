@@ -96,20 +96,34 @@
 								<h5> Forecast </h5>
 								<hr>
 
-								<div class='row'>
-									<div class='col s4' id='day-weather'><img src="assets/image/sample-weather.png"></div>
-									<div class='col s4' id='day-temperature'>40 F</div>
-									<div class='col s4' id='day-wind'><img src="assets/image/sample-wind.png"></div>
+								<div class='row weather-info-container center'>
+									<div class='col s4' id='day-weather'>
+										<canvas class="skycons" id="skycons"></canvas>
+										<p class="skycons-label"></p>
+									</div>
+									<div class='col s4' id='day-temperature'></div>
+									<div class='col s4' id='day-wind'><img src="assets/image/wind.png"><p class="windSpeed"></p></div>
+
 								</div>
+								<div class="additional-info"><h7 class="additional-info"> Additional Info </h7></div>
 								<hr>				
-								<div class='row'>
-									<div class='col s6 weather-info'>Pressure:</div>
-									<div class='col s6 weather-info'>Visibility:</div>
-								</div>
-								<div class='row'>
-									<div class='col s6 weather-info'>Rainfall:</div>
-									<div class='col s6 weather-info'>Humidity:</div>
-								</div>
+								<table class='bordered'>
+							        <tbody>
+							          <tr>
+							            <td>Humidity</td>
+							            <td class="humidity"></td>
+							            <td>Precipipation Prob</td>
+							            <td class="precipProbability">Precipipation Prob</td>
+							          </tr>
+							           <tr>
+							            <td>Cloud Cover</td>
+							            <td class="cloudCover"></td>
+							            <td>Visibility</td>
+							            <td class="visibility"></td>
+							          </tr>
+							        </tbody>
+							      </table>
+            
 							</div>
 						</div>
 						

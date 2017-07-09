@@ -78,9 +78,38 @@ function getWeather(){
 
 function updateTodayWeather(data){
 	console.log("in")
-	var weatherCond = data.currently.icon.toUpperCase();
+	icons = new Skycons({
+	   "monochrome": false,
+	   "colors" : {
+	     "cloud" : "#d8ebfa",
+	     "moon": '#646464',
+	     'fog': '#f4f7f0',
+	     'fogbank': '#809fb4',
+	     'snow': '#6989af',
+	     'leaf': '#3a5f0b',
+	     'rain': '#5f8dbe',
+	     'sun': '#fdb813'
+	   }
+	   });
+	var weatherCond = data.currently.icon;
+
+	//Updating Weather Icon
+	$('.skycons-label').html(weatherCond)
+	icons.set("skycons",weatherCond)
+	icons.play();
+
+	//Updating Temperature
 	var todayTemp = data.currently.apparentTemperature;
 	$('#day-temperature').html(todayTemp+"<sup>&deg;F</sup>")
+
+	//Updating WindSpeed
+	$('.windSpeed').html(data.currently.windSpeed)
+
+	//Updating Addtional Info
+	$(".humidity").html(data.currently.humidity)
+	$(".precipProbability").html(data.currently.precipProbability)
+	$(".cloudCover").html(data.currently.cloudCover)
+	$(".visibility").html(data.currently.visibility)
 
 
 }
@@ -148,19 +177,19 @@ function cloudCover(data,i){
 	var cloud = data.daily.data[i].cloudCover;
 	var cloudImg;
 	if(cloud < .20){
-		cloudImg = "assets/image/nksc.png"
+		cloudImg = "assets/image/Cloud-Cover/nksc.png"
 	}
 	else if(cloud < .40){
-		cloudImg = "assets/image/nfew.png"
+		cloudImg = "assets/image/Cloud-Cover/nfew.png"
 	}
 	else if(cloud < .60){
-		cloudImg = "assets/image/nsct.png"
+		cloudImg = "assets/image/Cloud-Cover/nsct.png"
 	}
 	else if(cloud < .80){
-		cloudImg = "assets/image/nbkn.png"
+		cloudImg = "assets/image/Cloud-Cover/nbkn.png"
 	}
 	else{
-		cloudImg = "assets/image/novc.png"
+		cloudImg = "assets/image/Cloud-Cover/novc.png"
 	}
 	return cloudImg
 }
@@ -170,19 +199,23 @@ function moonPhase(data,i){
 	var moonImg;
 	console.log(moon)
 	if(moon >= 0 && moon <= .1){
-		moonImg = "assets/image/new.png"
-	}else if(moon >.1 && moon <= .25){
-		moonImg = "assets/image/new-crescent.png"
-	}else if(moon >.25 && moon <= .45){
-		moonImg = "assets/image/crescent.png"
+		moonImg = "assets/image/Moon-Phase/new.png"
+	}else if(moon >.1 && moon <= .2){
+		moonImg = "assets/image/Moon-Phase/new-crescent.png"
+	}else if(moon >.2 && moon <= .3){
+		moonImg = "assets/image/Moon-Phase/crescent.png"	
+	}else if(moon >.3 && moon <= .45){
+		moonImg = "assets/image/Moon-Phase/crescent-half.png"
 	}else if(moon > .45 && moon <= .55){
-		moonImg = "assets/image/half.png"
-	}else if(moon > .55 && moon <= .75){
-		moonImg = "assets/image/gibbous.png"
+		moonImg = "assets/image/Moon-Phase/half.png"
+	}else if(moon > .55 && moon <= .65){
+		moonImg = "assets/image/Moon-Phase/half-gibbous.png"
+	}else if(moon > .65 && moon <= .75){
+		moonImg = "assets/image/Moon-Phase/gibbous.png"
 	}else if(moon > .75 && moon <= .85){
-		moonImg = "assets/image/gibbous-full.png"
+		moonImg = "assets/image/Moon-Phase/gibbous-full.png"
 	}else if(moon < 1){
-		moonImg = "assets/image/full.png"
+		moonImg = "assets/image/Moon-Phase/full.png"
 	}
 
 	return moonImg
@@ -193,7 +226,7 @@ function updateClock() {
   $('#clock').html(moment().format('HH:mm'));
 }
 
-setInterval(updateClock, 60000);
+setInterval(updateClock, 1000);
 
 // Initialize collapse button
   $(".button-collapse").sideNav();
