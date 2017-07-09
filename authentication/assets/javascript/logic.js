@@ -75,7 +75,9 @@ $(document).on("click", "#g-signin", function (e) {
   // send the user off on a redirect to Google sign in
   firebase.auth().signInWithRedirect(provider);
   // handle what happens when they get back
-  firebase.auth().getRedirectResult()
+  firebase.auth().getRedirectResult(function(){
+     window.location.reload();
+  })
   // .then(logInOut)
   .catch(handleAuthError);
 });
@@ -133,7 +135,6 @@ $("#login").click(function (e) {
   if (signedIn) {
     $("#logout-modal").modal('open');
   } else{
-    window.location.reload();
     $("#login-modal").modal('open');
   }
 });
