@@ -147,9 +147,6 @@ function getWeekDays(data){
     	// infoCon.append(infoTitle);
 
     	// Weather info
-    	// var sky = $('<p>')
-    	// sky.addClass('forecast sky')
-    	// sky.text(data.daily.data[i].icon)
     	var temp = $('<p>')
     	temp.addClass('forecast temp center')
     	temp.html(data.daily.data[i].apparentTemperatureMin+" - "+data.daily.data[i].apparentTemperatureMax +"<sup>&deg;F</sup>")
@@ -171,6 +168,27 @@ function getWeekDays(data){
     }
 
     $("#day-view").fadeToggle('fast')
+}
+
+// Get news
+
+function getNews(){
+	var queryURL = 'http://api.nature.com/service/blogs/blogs.json?';
+	var eventInput = $('#event-input').val().trim();
+	queryURL += '?' + $.param({
+			'c': 'popularity',
+			'per_page': 20,
+			'tags': eventInput,
+			'api_key': '10338f8f9ac0f403755a1c1abdfa330b'
+		}) 
+
+	$.ajax({
+		url: queryURL,
+		method: 'GET'
+	}).done(function(response){
+		console.log(response)
+	})
+
 }
 
 function cloudCover(data,i){
@@ -245,7 +263,6 @@ $('.event-item').click(function(){
 
   	$('#switch-view').click(function(){
   		if($('#day-view').css('display') === 'none'){
-  			console.log($('#day-view').css('display'))
 			$("#week-view").css("display","none");
 			setTimeout(function(){$("#day-view").fadeToggle('slow'),500})
 			$('#switch-view').text('view_week')
@@ -255,13 +272,19 @@ $('.event-item').click(function(){
 			$('#switch-view').text('view_quilt')
 	}
 	})
+
+
+	 // fade in tab
+	 $('.tab').click(function(){
+	 	$('.initial-indicator').remove()
+	 	var tab = $(this).attr('tab-data');
+	 	$('#'+tab).fadeIn('slow')
+	 })
+
+	 // Search Event
+	 $('#event-search').click(function(){
+	 		getNews()
+	 })
   });
 
- // fade in tab
- $('.tab').click(function(){
- 	$('.initial-indicator').remove()
- 	var tab = $(this).attr('tab-data');
- 	console.log(tab)
- 	$('#'+tab).fadeIn('slow')
- })
 
