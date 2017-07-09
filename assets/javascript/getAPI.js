@@ -173,7 +173,7 @@ function getWeekDays(data){
 // Get news
 
 function getNews(){
-	var queryURL = 'http://api.nature.com/service/blogs/blogs.json';
+	var queryURL = 'https://api.nature.com/service/blogs/blogs.json';
 	var eventInput = $('#event-input').val().trim();
 	queryURL += '?' + $.param({
 			'c': 'popularity',
