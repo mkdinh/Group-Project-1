@@ -173,13 +173,13 @@ function getWeekDays(data){
 // Get news
 
 function getNews(){
-	var queryURL = 'http://api.nature.com/service/blogs/blogs.json?';
+	var queryURL = 'http://api.nature.com/service/blogs/blogs.json';
 	var eventInput = $('#event-input').val().trim();
 	queryURL += '?' + $.param({
 			'c': 'popularity',
 			'per_page': 20,
 			'tags': eventInput,
-			'api_key': '10338f8f9ac0f403755a1c1abdfa330b'
+			// 'api_key': '10338f8f9ac0f403755a1c1abdfa330b'
 		}) 
 
 	$.ajax({
