@@ -247,11 +247,18 @@ nav{
 	.card.week{display:inline-block; width:25%;}
 	.card .card-image img {display:none;}
 	.moonphase{width:100%;}
-
-	#toast-container {
-	  top: 12%;
+	
+	/*day-view*/
+	#toast-container {	
+	  position:fixed;
+	  text-outline: 0;
 	  right: 0;
 	  bottom: auto !important;
 	  left: auto !important;  
 	}
+
+	#day-temperature{font-size:30px;}
+
+	/*event tab*/
+	#event-input{width:80%;}
  }
