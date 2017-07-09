@@ -72,22 +72,23 @@
 
 				<!-- Login Modal -->
 
-				<div id="login-modal" class="login">
+				<div id="login-modal" class="login modal">
 					<h5 class="white-text">Login</h5>
 					<hr>
 					<form class="profile-input">
-						<h7>Email</h7>
+						<h7 class="grey-text text-lighten-1">Email</h7>
 						<input type="email" placeholder="JohnSmith@email.com" class="input-field">
-						<h7>Password</h7>
+						<!--TODO: make placeholder darker, maybe make input fields more opaque-->
+						<h7 class="grey-text text-lighten-1">Password</h7>
 						<input type="password" class="input-field">
 						<input type="submit" class=" login-submit center waves-effect waves-block waves-light ">
 					</form>
 
-					<p class="center">Don't have an account?</p>
-					<!--TODO: style buttons and .auth-icon-->
-					<a id="create-account" class="btn">create new account</a>
-					<p class="center">OR</p>
-					<a id="g-signin" class="btn"><img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" class="auth-icon left">Sign In with Google</a>
+					<p class="center white-text">Don't have an account?</p>
+					<!--TODO: fix waves-effect on buttons-->
+					<a id="create-account" class="btn waves-effect waves-blackcurrant login-btn">create new account</a>
+					<p class="center white-text">OR</p>
+					<a id="g-signin" class="btn waves-effect waves-blackcurrant login-btn"><img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" class="auth-icon left">Sign In with Google</a>
 					<!-- close login Div -->
 				</div>
 
@@ -155,7 +156,7 @@
 
 		<!--Import jQuery before materialize.js-->
 		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-		<script type="text/javascript" src="assets/javascript/materialize.min.js"></script>js
+		<script type="text/javascript" src="assets/javascript/materialize.min.js"></script>
 
 		<!-- Import Firebase js -->
 		<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
