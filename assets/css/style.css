@@ -1,242 +1,249 @@
 
+body{
+	background-color: rgba(25,12,38,1);
+	background-image: url("../image/background2.jpg");
+	font-family: 'Ubuntu', sans-serif;
+}
 
-@media (min-width: 768px) {
+nav{
+	/*background-color: rgba(20,28,58,1);*/
+	background-color: rgba(20,28,58,.7);
+}
 
-	body{
-		background-color: rgba(25,12,38,1);
-		background-image: url("../image/background2.jpg");
-		font-family: 'Ubuntu', sans-serif;
-	}
-	
-	nav{
-		/*background-color: rgba(20,28,58,1);*/
-		background-color: rgba(20,28,58,.7);
-	}
-	
-	#profile-button{
-		position:absolute;
-		bottom:10px;
-		right:10px;
-		color:white;
-	}
+#profile-button{
+	position:absolute;
+	bottom:10px;
+	right:10px;
+	color:white;
+}
 
-	#search-input:active{
-		border-bottom:white;
-	}
+#search-input:active{
+	border-bottom:white;
+}
 
-	.brand-logo{
-		margin-left:10px;
-		font-family: 'Scope One', serif;
-	}
+.brand-logo{
+	margin-left:10px;
+	font-family: 'Scope One', serif;
+}
 
+.divider{background-color:transparent; margin-left:10px;}
 
-	#search{
-		background-color:none;
-		border:none;
-	}
+#search{
+	background-color:none;
+	border:none;
+}
 
-	.btn-floating{
-		background-color:grey;
-	}
+.btn-floating{
+	background-color:grey;
+}
 
-	.container{
-		width:96%;
-	}
-	
-	.row{margin:0;}
+.container{
+	width:96%;
+}
 
-	#week-view{
-		text-align:center;
-		padding:25px 10px;
-		overflow:hidden;
-		width:100%;
-		display:none;
-	}
+.row{margin:0;}
 
-	#day-view{
-		display:none;
-	}
+#week-view{
+	text-align:center;
+	padding:25px 10px;
+	overflow:hidden;
+	width:100%;
+	display:none;
+}
 
-	.card{
-		color:white;
-		width:13%;
-		position:relative;
-		display:inline-block;
-		text-align:center;
-		background-color: rgba(25,12,38,0.9);
-		margin:5px;
-		/*border:1px solid white;*/
-		border-radius:5px 
-	}
+#day-view{
+	display:none;
+}
+
+.card{
+	color:white;
+	width:13%;
+	position:relative;
+	display:inline-block;
+	text-align:center;
+	background-color: rgba(25,12,38,0.9);
+	margin:5px;
+	/*border:1px solid white;*/
+	border-radius:5px 
+}
 
 
-	.card .card-content {
-		padding:0px;
-	}
+.card .card-content {
+	padding:0px;
+}
 
-	.day{margin:10px;}
-	
-	.card-title.activator{
-		font-size:15px;
-		text-align:left;
-	}
-	
-	.forecast{
-		text-align: center;
-		font-size:18px;
-	}
+.day{margin:10px;}
 
-	.cloudImg{margin:10px 0;}
-	
-	.temp{margin:10px auto;}
+.card-title.activator{
+	font-size:15px;
+	text-align:left;
+}
 
-	.moonPhase{
-		margin:20px 0 30px 0;
-		width:100px;
-		text-align: center;
-		background-color:white;
-		border-radius: 49px;
-    	border: 1px solid white;
-	}
+.forecast{
+	text-align: center;
+	font-size:18px;
+}
 
-	.expand-event{
-		position:absolute;
-		bottom:0px;
-		right:5px;
-		color:white;
-	}
+.cloudImg{margin:10px 0;}
 
-	/*Week View css*/
+.temp{margin:10px auto;}
 
-	.tabs{
-		background-color: rgba(255,255,255,1);
-		margin:5px 0 0 0;
-	}
+.moonPhase{
+	margin:20px 0 30px 0;
+	width:100px;
+	text-align: center;
+	background-color:white;
+	border-radius: 49px;
+	border: 1px solid white;
+}
 
-	.tabs .tab a:hover, .tabs .tab a.active{color:maroon;}
+.expand-event{
+	position:absolute;
+	bottom:0px;
+	right:5px;
+	color:white;
+}
 
-	.tabs .tab a{color:#cc7070;}
+/*Week View css*/
 
-	.indicator {
-    	background-color: maroon  !important;;
-	}
+.tabs{
+	background-color: rgba(255,255,255,1);
+	margin:5px 0 0 0;
+}
 
-	.weather-info-container{
-		background-color: rgba(255,255,255,.1);
-		margin:20px 0 0 0;
-	}
-	
-	
-	#today-weather{
-		text-align: left;
-		padding-top:10px;
-		padding-bottom:40px;
-		border-radius: 0;
-	}
+.tabs .tab a:hover, .tabs .tab a.active{color:maroon;}
 
-	#today-events{
-		text-align: left;
-		padding: 20px 15px 5px 15px;
-		border-radius: 0;
-	}
-	.skycons {
-		width:100%;
-		margin:25px auto 5px auto;
-		color:white;
-	}
-	.skycons-label{margin:0;}
+.tabs .tab a{color:#cc7070;}
 
-	#day-temperature{
-		font: bold 40px sans-serif;
-		margin: 15px auto;
-		padding: 0 5px;
-		text-align: center;
-		border-left: 1px solid grey;
-		border-right:1px solid grey;
-		line-height: 120px
-	}
+.indicator {
+	background-color: maroon  !important;;
+}
 
-	#day-wind img{
-		width:60%;
-		margin: 20px auto 5px auto;
-	}
-
-	.windSpeed{margin:0;}
-
-	.weather-info{
-		margin:5px 0;
-	}
-	
-	.additional-info{margin-top:20px;}
-
-	.collection-events{
-		color:black;
-		margin:25px 0;
-	}
-
-	.collection .collection-item{
-		background-color: rgba(255,255,255,1);
-		color:black;
-	}
-	
-	.event-item{
-		color:orange;
-	}
-
-	
-	#toast-container {
-	  top: 12%;
-	  right: 3.5%;
-	  bottom: auto !important;
-	  left: auto !important;  
-	}
-
-	.object-more,.event-more{
-		color:maroon;
-	}
+.weather-info-container{
+	background-color: rgba(255,255,255,.1);
+	margin:20px 0 0 0;
+}
 
 
-	/*Event Page*/
-	#tab-event{padding-top:10px;}
-	#event-input{width:40%; margin:0 10px;}
-	.search-icon{font-size:30px;vertical-align: bottom}
-	/*Login Page*/
-	
-	.modal-login{
-		height:500px;
-		overflow:hidden;
-	}
-	.g-signin2{
-		text-align:center;
-	}
-	.login{
-		text-align:left;
-		width:25%;
-		margin-top:30px;
-	}
+#today-weather{
+	text-align: left;
+	padding-top:10px;
+	padding-bottom:40px;
+	border-radius: 0;
+}
 
-	.profile-input{
-		margin-top:25px;
-		color:grey;
-	}
+#today-events{
+	text-align: left;
+	padding: 20px 15px 5px 15px;
+	border-radius: 0;
+}
+.skycons {
+	width:100%;
+	margin:25px auto 5px auto;
+	color:white;
+}
+.skycons-label{margin:0;}
 
-	#login-modal .input-field {
-		background-color: rgba(255, 255, 255, 0.5);
-	}
+#day-temperature{
+	font: bold 40px sans-serif;
+	margin: 15px auto;
+	padding: 0 5px;
+	text-align: center;
+	border-left: 1px solid grey;
+	border-right:1px solid grey;
+	line-height: 120px
+}
 
-	.login-submit{
-		border:1px solid black;
-		padding:10px;
-		font:bold 25px  'Ubuntu', sans-serif;
-		color:white;
-		background-color: rgba(192,192,192,.3);
-	}
-	
-	.submit-wrapper{
-		margin-top:25px;
-		box-shadow: 0 0 5px black;
-		border:1px solid black;
-	}
+#day-wind img{
+	width:60%;
+	margin: 20px auto 5px auto;
+}
+
+.windSpeed{margin:0;}
+
+.weather-info{
+	margin:5px 0;
+}
+
+.additional-info{margin-top:20px;}
+
+.collection-events{
+	color:black;
+	margin:25px 0;
+}
+
+.collection .collection-item{
+	background-color: rgba(255,255,255,1);
+	color:black;
+}
+
+.event-item{
+	color:orange;
+}
 
 
+#toast-container {
+  top: 12%;
+  right: 3.5%;
+  bottom: auto !important;
+  left: auto !important;  
+}
+
+.object-more,.event-more{
+	color:maroon;
+}
+
+
+/*Event Page*/
+#tab-event{padding-top:10px;}
+#event-input{width:40%; margin:0 10px;}
+.search-icon{font-size:30px;vertical-align: bottom}
+/*Login Page*/
+
+.modal-login{
+	height:500px;
+	overflow:hidden;
+}
+.g-signin2{
+	text-align:center;
+}
+.login{
+	text-align:left;
+	width:25%;
+	margin-top:30px;
+}
+
+.profile-input{
+	margin-top:25px;
+	color:grey;
+}
+
+#login-modal .input-field {
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+.login-submit{
+	border:1px solid black;
+	padding:10px;
+	font:bold 25px  'Ubuntu', sans-serif;
+	color:white;
+	background-color: rgba(192,192,192,.3);
+}
+
+.submit-wrapper{
+	margin-top:25px;
+	box-shadow: 0 0 5px black;
+	border:1px solid black;
+}
+@media (max-width: 768px) {
+	.divider{display:none;}
+	#clock{display:none;}
+	#search-input,.material-icons.nav-search,.material-icons.refresh,#login{display:none;}
+	#switch-view{ position:absolute; top:0px; right:70px; font-size:32px}
+	#profile-button{right:15px; top:17px; z-index:2;}
+	#today-weather-container{width:100%;}
+	#today-events-container{width:100%;}
+	.card.week{display:inline-block; width:25%;}
+	.card .card-image img {display:none;}
+	.moonphase{width:100%;}
  }

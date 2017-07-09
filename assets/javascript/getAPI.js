@@ -120,7 +120,7 @@ function getWeekDays(data){
     for(var i = 0; i < 7; i++){
     	//Create card Container
     	var cardCon = $('<div>');
-    	cardCon.addClass('card');
+    	cardCon.addClass('card week');
 
     	//Create day of week div
     	var currentDay = moment().add(1*i,'days').format('dddd');
@@ -152,8 +152,9 @@ function getWeekDays(data){
     	temp.html(data.daily.data[i].apparentTemperatureMin+" - "+data.daily.data[i].apparentTemperatureMax +"<sup>&deg;F</sup>")
     	var moon = $('<img>')
     	moon.addClass('forecast moonPhase')
-    	moon.attr('src',moonPhase(data,i))
-    	infoCon.append(temp,moon)
+    	moon.attr('src',moonPhase(data,i))	
+    	cardCon.append(temp)
+    	infoCon.append(moon)
 
     	//add modal button
     	modalBtn = $('<a>');
