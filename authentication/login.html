@@ -75,25 +75,75 @@
 				<div id="login-modal" class="login modal">
 					<h5 class="white-text">Login</h5>
 					<hr>
+					<a id="g-signin" class="btn waves-effect waves-blackcurrant login-btn"><img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" class="auth-icon left">Sign In with Google</a>
+					<p class="center white-text">OR</p>
 					<form class="profile-input">
 						<h7 class="grey-text text-lighten-1">Email</h7>
-						<input type="email" placeholder="JohnSmith@email.com" class="input-field">
+						<input id="email" type="email" placeholder="JohnSmith@email.com" class="input-field validate" required>
 						<!--TODO: make placeholder darker, maybe make input fields more opaque-->
 						<h7 class="grey-text text-lighten-1">Password</h7>
-						<input type="password" class="input-field">
-						<input type="submit" class=" login-submit center waves-effect waves-block waves-light ">
+						<input id="password" type="password" class="input-field validate" required>
+						<button id="login-submit" class="login-submit login-btn center waves-effect waves-block waves-light" type="submit">Submit</button>
 					</form>
 
 					<p class="center white-text">Don't have an account?</p>
 					<!--TODO: fix waves-effect on buttons-->
 					<a id="create-account" class="btn waves-effect waves-blackcurrant login-btn">create new account</a>
-					<p class="center white-text">OR</p>
-					<a id="g-signin" class="btn waves-effect waves-blackcurrant login-btn"><img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" class="auth-icon left">Sign In with Google</a>
 					<!-- close login Div -->
 				</div>
 
 				<div id="logout-modal" class="login modal">
 					<a id="signout" class="btn waves-effect waves-blackcurrant login-btn"><i class="material-icons">exit_to_app</i>sign out</a>
+				</div>
+
+				<div id="update-modal" class="login modal">
+					<h6 class="white-text">Thanks! Now, what should we call you?</h6>
+					<form>
+						<div class="input-field">
+							<input id="name" type="text" class="validate" required>
+							<label for="name">Name</label>
+						</div>
+						<h6 class="white-text">Pick a photo to represent you:</h6>
+						<div class="row">
+							<div class="col s4 l2">
+								<label>
+              <input type="radio" name="icon" id="pic1" />
+              <img class="responsive-img circle" src="assets/image/pic1.jpg">
+            </label>
+							</div>
+							<div class="col s4 l2">
+								<label>
+              <input type="radio" name="icon" id="pic2" />
+              <img class="responsive-img circle" src="assets/image/pic2.jpg">
+            </label>
+							</div>
+							<div class="col s4 l2">
+								<label>
+              <input type="radio" name="icon" id="pic3" />
+              <img class="responsive-img circle" src="assets/image/pic3.jpg">
+            </label>
+							</div>
+							<div class="col s4 l2">
+								<label>
+              <input type="radio" name="icon" id="pic4" />
+              <img class="responsive-img circle" src="assets/image/pic4.jpg">
+            </label>
+							</div>
+							<div class="col s4 l2">
+								<label>
+              <input type="radio" name="icon" id="pic5" />
+              <img class="responsive-img circle" src="assets/image/pic5.jpg">
+            </label>
+							</div>
+							<div class="col s4 l2">
+								<label>
+              <input type="radio" name="icon" id="pic6" />
+              <img class="responsive-img circle" src="assets/image/pic6.jpg">
+            </label>
+							</div>
+						</div>
+							<button id="update-submit" class="login-btn center waves-effect waves-block waves-light" type="submit">Submit</button>
+					</form>
 				</div>
 
 				<!-- Modal Structure -->
