@@ -17,7 +17,9 @@ $('.collapsible').collapsible();
 
 $(document).ready(function () {
   // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-  $('.modal').modal();
+  $('.modal').modal({
+    dismissible: false
+  });
 });
 
 var signedIn = false;
@@ -28,10 +30,12 @@ var currentUser = {
   photoURL: ""
 }
 
+// BUG: on login with Google or new account, when the user is returned to the page the following function fails, showing user as logged out. If user reloads page they're shown as logged in.
+
 // handle log in or out
-function logInOut() {
-  var user = firebase.auth().currentUser;
-    console.log("logInOut received:", user); // the object logged here has displayName set correctly
+function logInOut(user) {
+  // var user = firebase.auth().currentUser;
+  console.log("logInOut received:", user); // the object logged here has displayName set correctly
   if (user) {
     // User is signed in
     signedIn = true;
@@ -55,9 +59,13 @@ function logInOut() {
 }
 
 // Sign in with email and password
-$("#profile-input").submit(function (e) {
+$(document).on("click", "#login-submit", function (e) {
   e.preventDefault();
+  var email = $("#email").val().trim();
+  var password = $("#password").val().trim();
+  console.log("form profile-input submitted with vals", email, "and", password);
   firebase.auth().signInWithEmailAndPassword(email, password).catch(handleAuthError);
+  $("#login-modal").modal("close");
 });
 
 // sign in with Google
@@ -70,6 +78,30 @@ $(document).on("click", "#g-signin", function (e) {
   firebase.auth().getRedirectResult()
   // .then(logInOut)
   .catch(handleAuthError);
+});
+
+// create new user
+function createNewUser() {
+  var email = $("#email").val().trim();
+  var password = $("#password").val().trim();
+  if (email === "" || password === "") {
+    Materialize.toast("Please enter your email and password.", 5000);
+  } else {
+    firebase.auth().createUserWithEmailAndPassword(email, password).then(function(){
+      $("#update-modal").modal("open");
+    }).catch(handleAuthError);
+  }
+}
+
+$(document).on("click", "#update-submit", function (e) {
+  e.preventDefault();
+  var displayName = $("#name").val().trim();
+  var photoURL = "assets/image/" + $("input[name=icon]:checked").attr("id") + ".jpg";
+  firebase.auth().currentUser.updateProfile({
+      displayName: displayName,
+      photoURL: photoURL
+    });
+  $("#update-modal").modal("close");
 });
 
 function handleAuthError(error) {
