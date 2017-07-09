@@ -133,6 +133,7 @@ $("#login").click(function (e) {
   if (signedIn) {
     $("#logout-modal").modal('open');
   } else{
+    window.location.reload();
     $("#login-modal").modal('open');
   }
 });

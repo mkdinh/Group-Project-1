@@ -110,6 +110,8 @@ function updateTodayWeather(data){
 	$(".precipProbability").html(data.currently.precipProbability)
 	$(".cloudCover").html(data.currently.cloudCover)
 	$(".visibility").html(data.currently.visibility)
+	$(".moonPhase-data").html(data.daily.data[0].moonPhase)
+	$(".humidity").html(data.currently.humidity)
 
 
 }
