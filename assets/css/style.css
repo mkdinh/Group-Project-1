@@ -63,9 +63,9 @@
 		position:relative;
 		display:inline-block;
 		text-align:center;
-		background-color: rgba(25,12,38,0.8);
+		background-color: rgba(25,12,38,0.9);
 		margin:5px;
-		border:1px solid black;
+		/*border:1px solid white;*/
 		border-radius:10px 
 	}
 
@@ -106,6 +106,13 @@
 		color:white;
 	}
 
+	/*Week View css*/
+
+	.weather-info-container{
+		background-color: rgba(255,255,255,.1);
+		margin:20px 0 0 0;
+	}
+
 	#today-weather{
 		text-align: left;
 		padding-top:20px;
@@ -118,26 +125,36 @@
 		padding: 0 1	0px;
 		border-radius: 0;
 	}
-	#day-weather img{width:125px;}
+	.skycons {
+		width:125%;
+		margin:15px auto 5px auto;
+		color:white;
+	}
+	.skycons-label{margin:0;}
 
 	#day-temperature{
-		font: bold 45px sans-serif;
-		margin: 25px auto;
+		font: bold 40px sans-serif;
+		margin: 15px auto;
+		padding: 0 5px;
 		text-align: center;
 		border-left: 1px solid grey;
 		border-right:1px solid grey;
-		line-height: 100px
+		line-height: 120px
 	}
 
 	#day-wind img{
-		width:125px;
-		margin: 20px auto;
+		width:60%;
+		margin: 20px auto 5px auto;
 	}
+
+	.windSpeed{margin:0;}
 
 	.weather-info{
 		margin:5px 0;
 	}
 	
+	.additional-info{margin-top:20px;}
+
 	.collection-events{
 		color:black;
 		margin:25px 0;
