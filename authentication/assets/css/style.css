@@ -136,7 +136,7 @@
 		text-align:left;
 		width:25%;
 		margin-top:30px;
-		background-color: rgba(250,250,250,.1);
+		background-color: rgba(25,12,38,0.7);
 		padding: 10px;
 	}
 /* AB changes */
@@ -184,6 +184,12 @@
 /* AB changes */
 	.waves-effect.waves-blackcurrant .waves-ripple {
 		background-color: rgba(25, 12, 38, 0.65) !important;
+	}
+
+	.userpic {
+		height: 3rem;
+		vertical-align: middle;
+		margin-right: 10px;
 	}
 
 

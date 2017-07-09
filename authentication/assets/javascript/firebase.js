@@ -36,10 +36,6 @@ firebase.initializeApp(config);
 // 	$('#signUp-modal').modal('open');
 // })
 
-$('#submit-login').click(function(event){
-	
-})
-
 // var first_name;
 // var last_name;
 // var email;

@@ -1,3 +1,15 @@
+// Initialize Firebase
+var config = {
+	apiKey: "AIzaSyDAk_q6CgSSX-dcQzPesIBcwTJ0aBxe_A0",
+	authDomain: "night-by-night.firebaseapp.com",
+	databaseURL: "https://night-by-night.firebaseio.com",
+	projectId: "night-by-night",
+	storageBucket: "night-by-night.appspot.com",
+	messagingSenderId: "996621044302"
+};
+
+firebase.initializeApp(config);
+
 // Initialize collapse button
 $(".button-collapse").sideNav();
 // Initialize collapsible (uncomment the line below if you use the dropdown variation)
@@ -30,8 +42,8 @@ function logInOut() {
     console.log("user.displayName:", user.displayName);
     console.log("currentUser.displayName", currentUser.displayName);
     currentUser.photoURL = user.photoURL;
-    Materialize.toast("Welcome " + currentUser.displayName + "!");
-    $("#login").html(`<img class="img-responsive circle" src=${currentUser.photoURL}>`);
+    Materialize.toast("Welcome " + currentUser.displayName + "!", 5000);
+    $("#login").html(`<img class="img-responsive circle userpic" src=${currentUser.photoURL}>`);
     // var emailVerified = user.emailVerified;
     // var isAnonymous = user.isAnonymous; //?
     // var uid = user.uid;
@@ -39,15 +51,15 @@ function logInOut() {
   } else if (!user) {
     // User is signed out.
     console.log("no user");
+    $("#login").empty();
     $("#login").html('<a class="btn btn-floating pulse"><i class="material-icons">perm_identity</i></a>');
   }
 }
 
-// Sign in w email and password
+// Sign in with email and password
 $("#profile-input").submit(function (e) {
   e.preventDefault();
-  firebase.auth().signInWithEmailAndPassword(email, password)
-    .catch(handleAuthError);
+  firebase.auth().signInWithEmailAndPassword(email, password).catch(handleAuthError);
 });
 
 // sign in with Google
