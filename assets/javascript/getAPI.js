@@ -104,6 +104,7 @@ function getWeekDays(data){
     	var imgCon = $('<div>');
     	imgCon.addClass('card-image activator waves-effect waves-block waves-light');
     	var img = $('<img>');
+    	img.addClass('cloudImg')
     	img.attr('src',cloudCover(data,i))
     	imgCon.append(img);
     	cardCon.append(imgCon);
@@ -122,11 +123,11 @@ function getWeekDays(data){
     	// sky.text(data.daily.data[i].icon)
     	var temp = $('<p>')
     	temp.addClass('forecast temp center')
-    	temp.text(data.daily.data[i].apparentTemperatureMin+" - "+data.daily.data[i].apparentTemperatureMax)
-    	var sunset = $('<p>')
-    	sunset.addClass('forecast sunset')
-    	sunset.text('Sunset: '+ moment(data.daily.data[i].sunsetTime).format('HH:mm'))
-    	infoCon.append(temp,sunset)
+    	temp.html(data.daily.data[i].apparentTemperatureMin+" - "+data.daily.data[i].apparentTemperatureMax +"<sup>&deg;F</sup>")
+    	var moon = $('<img>')
+    	moon.addClass('forecast moonPhase')
+    	moon.attr('src',moonPhase(data,i))
+    	infoCon.append(temp,moon)
 
     	//add modal button
     	modalBtn = $('<a>');
@@ -161,9 +162,32 @@ function cloudCover(data,i){
 	else{
 		cloudImg = "assets/image/novc.png"
 	}
-	console.log(cloudImg)
 	return cloudImg
 }
+
+function moonPhase(data,i){
+	var moon = data.daily.data[i].moonPhase;
+	var moonImg;
+	console.log(moon)
+	if(moon >= 0 && moon <= .1){
+		moonImg = "assets/image/new.png"
+	}else if(moon >.1 && moon <= .25){
+		moonImg = "assets/image/new-crescent.png"
+	}else if(moon >.25 && moon <= .45){
+		moonImg = "assets/image/crescent.png"
+	}else if(moon > .45 && moon <= .55){
+		moonImg = "assets/image/half.png"
+	}else if(moon > .55 && moon <= .75){
+		moonImg = "assets/image/gibbous.png"
+	}else if(moon > .75 && moon <= .85){
+		moonImg = "assets/image/gibbous-full.png"
+	}else if(moon < 1){
+		moonImg = "assets/image/full.png"
+	}
+
+	return moonImg
+}
+
 
 function updateClock() {
   $('#clock').html(moment().format('HH:mm'));
