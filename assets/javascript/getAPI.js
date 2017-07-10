@@ -177,7 +177,7 @@ function getWeekDays(data){
 
 
 function getNews(){
-	var queryURL = 'http://content.guardianapis.com/search';
+	var queryURL = 'https://content.guardianapis.com/search';
 	var newsInput = $('#news-input').val().trim();
 	if(newsInput === ''){
 		var orderMethod = "newest"

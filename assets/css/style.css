@@ -37,6 +37,8 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 	border:none;
 }
 
+#nav-search{margin-left:15px;}
+
 .btn-floating{
 	background-color:grey;
 }
@@ -289,7 +291,7 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 
 .userpic {
     vertical-align: middle;
-    margin: 10px;
+    margin: 0 15px;
     width: 40px;
     height: 40px;
 }
