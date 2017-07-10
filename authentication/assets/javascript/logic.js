@@ -15,11 +15,15 @@ $(".button-collapse").sideNav();
 // Initialize collapsible (uncomment the line below if you use the dropdown variation)
 $('.collapsible').collapsible();
 
+// Initialize Materialize modals
 $(document).ready(function () {
-  // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-  $('.modal').modal({
+  $('.modal').modal();
+  $("#update-modal").modal({
     dismissible: false
   });
+  // firebase.auth()onAuthStateChange fires before document ready;
+  // running logInOut a second time here ensures that the DOM is ready for update
+  logInOut(firebase.auth().currentUser);
 });
 
 var signedIn = false;
@@ -30,13 +34,21 @@ var currentUser = {
   photoURL: ""
 }
 
-// BUG: on login with Google or new account, when the user is returned to the page the following function fails, showing user as logged out. If user reloads page they're shown as logged in.
-
 // handle log in or out
 function logInOut(user) {
   // var user = firebase.auth().currentUser;
-  console.log("logInOut received:", user); // the object logged here has displayName set correctly
-  if (user) {
+  console.log("logInOut received:", user);
+  if (!user) {
+    // User is signed out.
+    signedIn = false;
+    console.log("no user");
+    $("#login").empty();
+    $("#login").html('<a class="btn btn-floating pulse"><i class="material-icons">perm_identity</i></a>');
+  } else if (user && user.displayName === null) {
+    // New user account has just been created, but not yet updated
+    // with displayName and photoURL
+    return;
+  } else {
     // User is signed in
     signedIn = true;
     $("#login-modal").modal('close');
@@ -49,12 +61,6 @@ function logInOut(user) {
     // var isAnonymous = user.isAnonymous; //?
     // var uid = user.uid;
     // var providerData = user.providerData;
-  } else if (!user) {
-    // User is signed out.
-    signedIn = false;
-    console.log("no user");
-    $("#login").empty();
-    $("#login").html('<a class="btn btn-floating pulse"><i class="material-icons">perm_identity</i></a>');
   }
 }
 
@@ -72,16 +78,14 @@ $(document).on("click", "#login-submit", function (e) {
 $(document).on("click", "#g-signin", function (e) { 
   e.preventDefault();
   var provider = new firebase.auth.GoogleAuthProvider();
-  // send the user off on a redirect to Google sign in
-  firebase.auth().signInWithRedirect(provider);
-  // handle what happens when they get back
-  firebase.auth().getRedirectResult()
-  // .then(logInOut)
-  .catch(handleAuthError);
+  firebase.auth().signInWithPopup(provider).then(function(result) {
+    logInOut(result.user);
+  }).catch(handleAuthError);
 });
 
 // create new user
-function createNewUser() {
+$(document).on("click", "#create-account", function (e) {
+  e.preventDefault();
   var email = $("#email").val().trim();
   var password = $("#password").val().trim();
   if (email === "" || password === "") {
@@ -91,16 +95,18 @@ function createNewUser() {
       $("#update-modal").modal("open");
     }).catch(handleAuthError);
   }
-}
+});
 
 $(document).on("click", "#update-submit", function (e) {
   e.preventDefault();
   var displayName = $("#name").val().trim();
-  var photoURL = "assets/image/" + $("input[name=icon]:checked").attr("id") + ".jpg";
+  var photoURL = $("input[name=icon]:checked").attr("data-image");
+  console.log("photoURL holds", photoURL);
   firebase.auth().currentUser.updateProfile({
       displayName: displayName,
       photoURL: photoURL
-    });
+  });
+  logInOut(firebase.auth().currentUser);
   $("#update-modal").modal("close");
 });
 
