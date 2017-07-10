@@ -176,7 +176,7 @@ function getWeekDays(data){
 // Get news
 
 
-function getNews(orderMethod){
+function getNews(){
 	var queryURL = 'http://content.guardianapis.com/search';
 	var newsInput = $('#news-input').val().trim();
 	if(newsInput === ''){
@@ -325,7 +325,6 @@ $('.event-item').click(function(){
 
 	 // Search news
 	 $('#news-search').click(function(){
-
 	 		 getNews();
 	 		$('#news-input').val('');
 	 })
