@@ -1,26 +1,31 @@
-/*function calcPosition(lat, long){
-    var location = {lat: lat, lng: long};
-    var map = new google.maps.Map($("#map"), {
-          zoom: 4,
-          center: location
-        });
-        var marker = new google.maps.Marker({
-          position: location,
-          map: map
-        });*/
-    
-    /*var api_key = "AIzaSyD4ya-QQ9KFOYVNcp-ejxBwaY_NeZ0txBE";
-     var url = "https://maps.googleapis.com/maps/api/js?key=" + api_key +"&callback=initMap";
-    
-    var script = "<script>";
-    script.attr("src", url);
-    script.attr("async");
-    script.attr("defer");
-    
-    $("#map").append(script);*/
-    
+var longitude;
+var latitude;
+var satLong;
+var satLat;
+var distance;
+var satSpeed;
 
 
+//requests permission to get access to users long and lat.
+function getLocation() {
+    if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(showPosition)
+    }else {
+        console.log("Error: Geolocation is not supported by this browser.");
+    }
+    
+}
+
+//gets lat and long losition of user
+function showPosition(position){
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+    
+    //console.log("Latitude: " + latitude + " Longitude: " + longitude);
+    
+}
+
+//gets Astronomical Picture Of the Day
 function getAPOD(){
     var image;
     var apiKey = "FMWfaT1C1igzEgHUsZOK4ZUlCGACf42bmV2i9GYM";
@@ -47,6 +52,7 @@ function getAPOD(){
     
 }
 
+//gets information for asteroids close to earth from todays date through 7 days
 function getAsteroids(){
     var date = new Date();
     var dd = date.getDate();
@@ -106,30 +112,7 @@ function getAsteroids(){
     });
 }
 
-/*function satellites(){
-    var url = "https://api.wheretheiss.at/v1/satellites/25544/";
-    var longitude;
-    var latitude; 
-    //ajax call
-       $.ajax({
-        type:"GET",
-        url: url,
-        async: false,
-        dataType: "json",
-        success: function(data){
-            console.log(data);
-            longitude = data.longitude;
-            latitude = data.latitude;
-         
-            
-            calcPosition(latitude, longitude);
-        },
-        error: function(errorMessage){
-            alert("Error" + errorMessage);
-        }
-    });
-}*/
-
+//getting audio and images based on search terms
 function getAudImgs(){
     var searchTerm = "moon";
     var url = "https://images-api.nasa.gov/search?q=" + searchTerm +"&media_type=image,audio";
@@ -172,4 +155,6 @@ $(document).ready(function(){
     getAPOD();
     getAsteroids();
     getAudImgs();
+    getLocation();
+    
 });
