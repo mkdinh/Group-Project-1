@@ -113,6 +113,7 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 .tabs{
 	background-color: rgba(255,255,255,1);
 	margin:5px 0 0 0;
+	overflow:hidden;
 }
 
 .tabs .tab a:hover, .tabs .tab a.active{color:maroon;}
