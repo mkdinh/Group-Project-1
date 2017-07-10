@@ -60,7 +60,7 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 	display:none;
 }
 
-.modal-weekly-weather{width: 15%;}
+.modal-weekly-weather{width: 20%;}
 
 #day-view{
 	display:none;
