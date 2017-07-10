@@ -197,7 +197,8 @@ nav{
 /*Event Page*/
 #tab-event{padding-top:10px;}
 #event-input{width:40%; margin:0 10px;}
-.search-icon{font-size:30px;vertical-align: bottom}
+.search-icon{font-size:30px;vertical-align: bottom; color:white;}
+
 /*Login Page*/
 
 .modal-login{
@@ -207,16 +208,93 @@ nav{
 .g-signin2{
 	text-align:center;
 }
+
+/* AB changes */
 .login{
 	text-align:left;
 	width:25%;
 	margin-top:30px;
+	background-color: rgba(25,12,38,0.7);
+	border: 1px solid black;
+	padding: 10px;
+}
+/* AB changes */
+.auth-icon {
+  height: 100%;
+	width: 18px;
+	margin: 0 5px;
 }
 
 .profile-input{
 	margin-top:25px;
 	color:grey;
 }
+
+#login-modal .input-field {
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+.login-submit{
+	border:1px solid black;
+	padding:10px;
+	font:bold 25px  'Ubuntu', sans-serif;
+	color:white;
+	background-color: rgba(192,192,192,.5);
+}
+
+.submit-wrapper{
+	margin-top:25px;
+	box-shadow: 0 0 5px black;
+	border:1px solid black;
+}
+
+/* AB changes */
+.login-btn {
+	width: 100%;
+	border:1px solid black;
+	color: white;
+	background-color: rgba(192,192,192,.5);
+}
+.login-btn:hover {
+	background-color: rgba(192,192,192,1);
+	color: black;
+}
+
+/* AB changes */
+.waves-effect.waves-blackcurrant .waves-ripple {
+	background-color: rgba(25, 12, 38, 0.65) !important;
+}
+
+.userpic {
+	height: 3rem;
+	vertical-align: middle;
+	margin-right: 10px;
+}
+
+.toast {
+	display: block;
+}
+
+.toast-btn {
+	margin: 5px 0 !important;
+}
+
+/* To use images as radio buttons */
+label > input{ /* HIDE RADIO */
+	visibility: hidden; /* Makes input not-clickable */
+	position: absolute; /* Remove input from document flow */
+}
+label > input + img{ /* IMAGE STYLES */
+	cursor:pointer;
+}
+label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
+	box-shadow: 0 0 20px 10px #72c0fd;
+}
+
+#update-modal .row {
+	margin: 10px 0;
+}
+
 
 #login-modal .input-field {
 	background-color: rgba(255, 255, 255, 0.5);

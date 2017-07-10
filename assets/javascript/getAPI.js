@@ -176,22 +176,19 @@ function getWeekDays(data){
 // Get news
 
 function getNews(){
-	var queryURL = 'http://api.nature.com/service/blogs/stories.json?blog_tag=astronomy';
+	var queryURL = 'https://newsapi.org/v1/articles';
 	var eventInput = $('#event-input').val().trim();
-	// queryURL += '?' + $.param({
-	// 		'c': 'popularity',
-	// 		'per_page': 20,
-	// 		'tags': eventInput,
-	// 		// 'api_key': '10338f8f9ac0f403755a1c1abdfa330b'
-	// 	}) 
-
+	queryURL += '?' + $.param({
+			'source': 'national-geographic',
+			'api_key': 'fe0089f9d50740b88254bd82db55df94'
+		}) 
+	console.log(queryURL)
 	$.ajax({
 		url: queryURL,
 		method: 'GET'
 	}).done(function(response){
 		console.log(response)
 	})
-
 }
 
 function cloudCover(data,i){
