@@ -75,9 +75,7 @@ $(document).on("click", "#g-signin", function (e) {
   // send the user off on a redirect to Google sign in
   firebase.auth().signInWithRedirect(provider);
   // handle what happens when they get back
-  firebase.auth().getRedirectResult(function(){
-     window.location.reload();
-  })
+  firebase.auth().getRedirectResult()
   // .then(logInOut)
   .catch(handleAuthError);
 });
