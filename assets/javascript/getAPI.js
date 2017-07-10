@@ -180,6 +180,7 @@ function getNews(){
 	var eventInput = $('#event-input').val().trim();
 	queryURL += '?' + $.param({
 			'source': 'national-geographic',
+			"sortBy": "top",
 			'api_key': 'fe0089f9d50740b88254bd82db55df94'
 		}) 
 	console.log(queryURL)
