@@ -1,9 +1,14 @@
 
 body{
+<<<<<<< HEAD
 	background-color: rgba(25,12,38,1);
 	background-image: url("../image/background2.jpg");
 	background-repeat: no-repeat;
     background-attachment: fixed;
+=======
+	background: rgba(25,12,38,1) url(../image/background2.jpg) no-repeat center center fixed;
+	background-size: cover;
+>>>>>>> 06f95408ea0cb2c1b3c45c807bbbc77a53f52e73
 	font-family: 'Ubuntu', sans-serif;
 }
 
@@ -233,9 +238,13 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 	text-align:center;
 }
 
+<<<<<<< HEAD
 /* AB changes */
 .login{	
 	top:0%;
+=======
+.login{
+>>>>>>> 06f95408ea0cb2c1b3c45c807bbbc77a53f52e73
 	text-align:left;
 	width:25%;
 	margin-top:30px;
@@ -243,7 +252,6 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 	border: 1px solid black;
 	padding: 10px;
 }
-/* AB changes */
 .auth-icon {
   height: 100%;
 	width: 18px;
@@ -273,7 +281,6 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 	border:1px solid black;
 }
 
-/* AB changes */
 .login-btn {
 	width: 100%;
 	border:1px solid black;
@@ -285,7 +292,6 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 	color: black;
 }
 
-/* AB changes */
 .waves-effect.waves-blackcurrant .waves-ripple {
 	background-color: rgba(25, 12, 38, 0.65) !important;
 }
@@ -365,5 +371,10 @@ label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
 	#day-temperature{font-size:30px;}
 
 	/*event tab*/
+<<<<<<< HEAD
 	#news-input,#event-input{width:90%;}
  }
+=======
+	#event-input{width:80%;}
+ }
+>>>>>>> 06f95408ea0cb2c1b3c45c807bbbc77a53f52e73
