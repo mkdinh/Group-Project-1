@@ -68,9 +68,7 @@ $(document).on("click", "#login-submit", function (e) {
 $(document).on("click", "#g-signin", function (e) { 
   e.preventDefault();
   var provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithPopup(provider).then(function(result) {
-    logInOut(result.user);
-  }).catch(handleAuthError);
+  firebase.auth().signInWithPopup(provider).catch(handleAuthError);
 });
 
 // create new user
