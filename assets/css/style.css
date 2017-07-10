@@ -2,6 +2,8 @@
 body{
 	background-color: rgba(25,12,38,1);
 	background-image: url("../image/background2.jpg");
+	background-repeat: no-repeat;
+    background-attachment: fixed;
 	font-family: 'Ubuntu', sans-serif;
 }
 
@@ -11,14 +13,17 @@ nav{
 }
 
 #profile-button{
-	position:absolute;
+	position:fixed;
 	bottom:10px;
 	right:10px;
 	color:white;
 }
 
-#search-input:active{
-	border-bottom:white;
+/* label underline focus color */
+
+input#search-input:focus,input#news-input:focus,input#event-input:focus {
+     border-bottom: .5px solid gold;
+     box-shadow: 0 .5px 0 0 gold;
 }
 
 .brand-logo{
@@ -128,7 +133,7 @@ nav{
 #today-weather{
 	text-align: left;
 	padding-top:10px;
-	padding-bottom:40px;
+	padding-bottom:15px;
 	border-radius: 0;
 }
 
@@ -194,23 +199,43 @@ nav{
 }
 
 
-/*Event Page*/
-#tab-event{padding-top:10px;}
-#event-input{width:40%; margin:0 10px;}
+/*news tab*/
+#tab-news{padding-top:10px;}
+
+#news-input{width:40%; margin:0 10px;}
+
 .search-icon{font-size:30px;vertical-align: bottom; color:white;}
+
+#news-display{margin:30px auto 0px auto; font-size:12px;}
+
+.news-title{
+	font-weight: bold;
+    font-size: 15px;
+    margin:0 ;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space:nowrap;
+}
+
+.news-date,.news-byline{line-height:10px;}
+
+.news-trailText{
+	overflow: hidden; 
+	text-overflow: ellipsis;
+	white-space: nowrap}
+
+
+/* event tab*/
 
 /*Login Page*/
 
-.modal-login{
-	height:500px;
-	overflow:hidden;
-}
 .g-signin2{
 	text-align:center;
 }
 
 /* AB changes */
-.login{
+.login{	
+	top:0%;
 	text-align:left;
 	width:25%;
 	margin-top:30px;
@@ -314,6 +339,8 @@ label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
 	box-shadow: 0 0 5px black;
 	border:1px solid black;
 }
+
+
 @media (max-width: 768px) {
 	.container{width:94%;margin:auto;}
 	.brand-logo i.material-icons{display:none;}
@@ -338,5 +365,5 @@ label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
 	#day-temperature{font-size:30px;}
 
 	/*event tab*/
-	#event-input{width:80%;}
+	#news-input,#event-input{width:90%;}
  }

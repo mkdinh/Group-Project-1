@@ -96,14 +96,14 @@
 
 					<!-- day view div -->
 					<div class="row" id="day-view">
-					  <div class="col s2"></div>
-						<div class='col s5' id="today-weather-container">
+					  <div class="col s1"></div>
+						<div class='col s6' id="today-weather-container">
 
 						    <ul class="tabs">
 						        <li class="tab col s3" tab-data="tab-forecast"><a  href="#tab-forecast">Forecast</a></li>
-						        <li class="tab col s3" tab-data="tab-events"><a class='active' href="#tab-events">Events</a></li>
-						        <li class="tab col s3" tab-data="tab-news"><a href="#tab-news">News</a></li>
-						        <li class="tab col s3" tab-data="tab-constellation"><a href="#tab-constellation">Constellation</a></li>
+						        <li class="tab col s3" tab-data="tab-events"><a href="#tab-events">Events</a></li>
+						        <li class="tab col s3" tab-data="tab-news"><a class='active' href="#tab-news">News</a></li>
+						        <li class="tab col s3" tab-data="tab-constellation"><a href="#tab-constellation">Constell</a></li>
 					      	</ul>
 							<div class='col s12 card left' id="today-weather">
 							
@@ -145,17 +145,20 @@
 							 </div>
 
 		  					<div id="tab-events">
-								<div >
-									<input type="text" id="event-input">
-				    				<a href='#/'><i class="material-icons search-icon" id="event-search">search</i></a>
-				    			</div>
-				    			<div id="event-display">
-				    				
-				    			</div>
+							
 							</div>
 
 							<div id='tab-news'>
-								put news here
+								<div >
+									<input type="text" id="news-input">
+				    				<a href='#/'><i class="material-icons search-icon" id="news-search">search</i></a>
+				    			</div>
+
+				    			<div id="news-display">
+				    				<ul class="collection" id='news-list'>
+
+				    				</ul>
+				    			</div>
 							</div>
 
 							<div id='tab-constellation'>

@@ -175,20 +175,55 @@ function getWeekDays(data){
 
 // Get news
 
-function getNews(){
-	var queryURL = 'https://newsapi.org/v1/articles';
-	var eventInput = $('#event-input').val().trim();
+
+function getNews(orderMethod){
+	var queryURL = 'http://content.guardianapis.com/search';
+	var newsInput = $('#news-input').val().trim();
+	if(newsInput === ''){
+		var orderMethod = "newest"
+	}else{ 	 		
+		orderMethod = "relevance"}
+
+	console.log(newsInput)
 	queryURL += '?' + $.param({
-			'source': 'national-geographic',
-			"sortBy": "top",
-			'api_key': 'fe0089f9d50740b88254bd82db55df94'
+			'q': newsInput + '&' + 'astronomy' ,
+			'format': 'json',	
+			"show-fields":'trailText,headline,body,shortUrl,thumbnail,byline,publication',
+			'page-size':5,
+			'section': 'science',
+			'order-by': orderMethod,
+			'show-element': 'image',
+			'api-key': '7cad287c-e8cb-482f-a20a-6e2050f4b850'
 		}) 
-	console.log(queryURL)
 	$.ajax({
 		url: queryURL,
 		method: 'GET'
-	}).done(function(response){
-		console.log(response)
+	}).done(function(data){
+		console.log(data)
+
+		var listCon = $('<ul>')
+		listCon.css('display','none')
+
+		for(i = 0; i < data.response.results.length;i++){
+			var title = data.response.results[i].webTitle;
+			var byline = data.response.results[i].fields.byline;
+			var date = data.response.results[i].webPublicationDate;
+			var trailText = data.response.results[i].fields.trailText;
+			var webURL = data.response.results[i].webUrl;
+
+			var item = $('<li>');
+			item.addClass('collection-item');
+			item.html('<p class="news-title">' + title +  '<p>'
+				+	'<a href="' + webURL + '" target="_blank"><i class="material-icons right small view-news">open_in_new</i></a>'
+				+	'<p class="news-byline">' + byline + '<p>'
+				+	'<p class="news-date">' + date + '<p>'
+				+	'<p class="news-trailText">' + trailText + '<p>'
+				+ '<div><div>'
+				);
+			listCon.append(item);
+		}
+		$('#news-list').html(listCon);
+		$(listCon).fadeToggle('fast')
 	})
 }
 
@@ -244,6 +279,9 @@ function updateClock() {
   $('#clock').html(moment().format('HH:mm'));
 }
 
+// Html page interactions js 
+
+
 setInterval(updateClock, 1000);
 
 // Initialize collapse button
@@ -280,12 +318,24 @@ $('.event-item').click(function(){
 	 	$('.initial-indicator').remove()
 	 	var tab = $(this).attr('tab-data');
 	 	$('#'+tab).fadeIn('slow')
+	 	if($(this).attr('tab-data') === 'tab-news'){
+	 		getNews()
+	 	}
 	 })
 
-	 // Search Event
-	 $('#event-search').click(function(){
-	 		getNews()
+	 // Search news
+	 $('#news-search').click(function(){
+
+	 		 getNews();
+	 		$('#news-input').val('');
 	 })
+
+	 $('#news-input').keyup(function(e){
+	 	if(e.keyCode === 13){
+	 		$('#news-search').click();
+	 	}
+	 })
+
   });
 
 
