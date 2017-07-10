@@ -49,7 +49,7 @@ function reverseGeo(long, lat) {
         error: function(errorMessage){
             alert("Error" + errorMessage);
         }
-    })
+    });
 }
 
 function getWeather(){
@@ -71,7 +71,6 @@ function getWeather(){
                     $("#d"+ i +"skyConditions").html("<br>" + data.daily.data[i].summary);
                     $("#d"+ i +"temperature").html("<br> HI: " + data.daily.data[i].apparentTemperatureMax + "<br>LOW: " + data.daily.data[i].apparentTemperatureMin);
                     $("#d"+ i +"visiblity").html("<br>" +data.daily.data[i].visibility);
-                    
                 }
             },
             error: function(errorMessage){
