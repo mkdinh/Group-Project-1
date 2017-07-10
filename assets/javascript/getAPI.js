@@ -160,9 +160,9 @@ function getWeekDays(data){
 
     	//add modal button
     	modalBtn = $('<a>');
-    	modalBtn.addClass('expand-event')
+    	modalBtn.addClass('expand-event weekly-event')
     	modalBtn.attr('href','#modal1')
-    	modalBtn.html('<i class="material-icons">view_list</i></a>')
+    	modalBtn.html('<i class="material-icons" data-num=' + i + '>view_list</i></a>')
     	infoCon.append(modalBtn);
     	cardCon.append(infoCon);
 
@@ -173,9 +173,58 @@ function getWeekDays(data){
     $("#day-view").fadeToggle('fast')
 }
 
+//get weekly Info
+
+$('#week-view').on('click','.weekly-event',function(){
+	var dayNum = $(this).attr('data-num')
+	// var weatherData = data.daily.data[dayNum]
+	var modal = $('#modal1');
+	var modalContent = $('.modal-content');
+	modalContent.empty()
+	// add weather content
+	// add header
+
+	var head  = '<h4>Predicted Weather<h4><hr>'
+	// head.html('<h4>Predicted Weather<h4>')
+	modalContent.append(head)
+
+	var weather = $('<table>');
+	weather.addClass("striped")
+	weather.css('margin-bottom','20px')
+		// add body
+		conList = $('<tbody>')
+
+		// add weather conditions
+		var row1 = $('<tr>');
+		row1.html('<td> Temperature </td>'
+				+  '<td class="modal-weekly-weather">' + 100 + '</td>'
+				+  '<td> Humidity </td>'
+				+  '<td class="modal-weekly-weather">' + 100 + '</td>'
+				)
+
+		var row2 = $('<tr>');
+		row2.html('<td> Precipitation Probability </td>'
+				+  '<td class="modal-weekly-weather">' + 100 + '</td>'
+				+  '<td> Precipitation Type </td>'
+				+  '<td class="modal-weekly-weather">' + 100 + '</td>'
+				)
+
+		var row3 = $('<tr>');
+		row3.html('<td> Cloud Cover </td>'
+				+  '<td class="modal-weekly-weather">' + 100 + '</td>'
+				+  '<td> Moon Phase </td>'
+				+  '<td class="modal-weekly-weather">' + 100 + '</td>'
+				)		
+
+	conList.append(row1,row2,row3)
+	weather.append(conList)
+	var astroEvent = $('<div>');
+		astroEvent.append('<h4>Astronomy Event</h4><hr>')
+
+	modalContent.append(weather,astroEvent)
+})
+
 // Get news
-
-
 function getNews(){
 	var queryURL = 'https://content.guardianapis.com/search';
 	var newsInput = $('#news-input').val().trim();
