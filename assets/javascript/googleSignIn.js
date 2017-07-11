@@ -40,8 +40,8 @@ function logInOut(user) {
     // User is signed out.
     signedIn = false;
     console.log("no user");
-    $("#login").empty();
-    $("#login").html('<a class="btn btn-floating pulse"><i class="material-icons">perm_identity</i></a>');
+    $(".profile-btn").empty();
+    $(".profile-btn").html('<a class="btn btn-floating pulse"><i class="material-icons">perm_identity</i></a>');
   } else if (user && user.displayName === null) {
     // New user account has just been created, but not yet updated
     // with displayName and photoURL
