@@ -31,7 +31,7 @@
             
             .day{
                 text-align: center;
-                height: 400px;
+                height: 200px;
                 width: 13%;
                 margin-right: 5px;
                 float: left;
@@ -45,11 +45,26 @@
                 margin: auto;
             }
             
+            #lookUP {
+                float: right;
+                border: 1px solid #bbb;
+                background-color: #ddd;
+                padding:0.5em;
+                margin: 0 0 0.5em 0.5em;
+                text-align: center;
+            }
+            #lookUPresults img {
+                width:90%;
+                border:1px solid #bbb;
+            }
+            
         </style>
     </head>
     <body>
-        <div id="ouput">
+        <div id="output">
             <div id="Events">
+                
+                <!-- -------------------------------------------------------- -->
                 <div id="ISS">
                     <h1>ISS Location</h1>
                     <div id="nextPassOver"></div>
@@ -97,11 +112,16 @@
                     }
                     </script>
                 </div>
+                
+                <!-- -------------------------------------------------------- -->
                 <div id="imageAudio">
                     <form id="search">
                         
                     </form>
                 </div>
+                
+                <div id="wwtControl" data-settings="pictures=true"></div>
+                <script src="http://worldwidetelescope.org/embedded-webcontrol.js"></script>
                 
                 <div id="asteroids">
                     <h1>Asteroids</h1>
@@ -114,13 +134,16 @@
                     <div class="day" id="day6"><span></span><p id="content"></p></div>
                 </div>
                 
+                <div id="lookUP">My LookUP Widget</div>
+                <script type="text/javascript" src="http://www.strudel.org.uk/lookUP/widget.js"></script>
                 
-            </div>
-            <div id="APOD">
+                <div id="APOD">
                 <h1>Image of the day</h1>
                 <div id="imageOfTheDay"></div>
                 <div id="info"></div>
             </div>
+            </div>
+            
             
             
             
