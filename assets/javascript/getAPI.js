@@ -247,7 +247,7 @@ function getWeeklyUpdate(){
 						// add weather conditions
 						var row1 = $('<tr>');
 						row1.html('<td> Temperature </td>'
-								+  '<td class="modal-weekly-weather">' + tempMin + " - " + tempMax + '</td>'
+								+  '<td class="modal-weekly-weather">' + tempMin + " - " + tempMax + "<sup>&deg;F</sup>" + '</td>'
 								+  '<td> Humidity </td>'
 								+  '<td class="modal-weekly-weather">' + humidity + '</td>'
 								)
