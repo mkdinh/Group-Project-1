@@ -151,6 +151,45 @@ function getAudImgs(){
     });
 }
 
+function getSatellites(){
+    var cors = "https://cors-anywhere.herokuapp.com/";
+    var authURL = "https://www.space-track.org/ajaxauth/login?identity=jaycen9887@gmail.com&password=GitHubRepositories";
+    
+    //ajax call
+    $.ajax(cors +"https://www.space-track.org/ajaxauth/login",{
+    method:"POST",
+    data: {identity: "jaycen9887@gmail.com", password: "GitHubRepositories"},
+    crossDomain: true,
+    success: function(data){
+        data.setHeader("Access-Control-Allow-Origin", "https://www.space-track.org/");
+        console.log(data);
+    },
+    error: function(errorMessage){
+        alert("Error" + errorMessage);
+    }
+});
+    
+    //CORS prefix
+    var cors = "https://cors-anywhere.herokuapp.com/";
+    var url = "https://www.space-track.org/basicspacedata/query/class/satcat/orderby/SATNAME asc/metadata/false";
+    //ajax call
+    $.ajax("https://www.space-track.org/basicspacedata/query/class/satcat/orderby/SATNAME asc/metadata/false",{
+    method:"GET",
+    xhrFields: { withCredentials: true },
+    crossDomain: true,
+    success: function(data){
+        
+        console.log(data);
+    },
+    error: function(errorMessage){
+        alert("Error" + errorMessage);
+    }
+    });
+            
+    
+}
+
+
 $(document).ready(function(){
     getAPOD();
     getAsteroids();
