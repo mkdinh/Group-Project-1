@@ -282,10 +282,6 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 	padding: 10px;
 }
 
-+#login-modal {
-	max-height: 90%;
- }
- 
 
 .auth-icon {
   height: 100%;
@@ -300,6 +296,7 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 
 #login-modal {
 	max-height: 90%;
+	top: 5%;
 }
 
 #login-modal .input-field {
