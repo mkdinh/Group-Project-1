@@ -34,9 +34,9 @@
 
 				<ul class="right nav-list">
 					<li><input type="text" id="search-input"></li>
-				    <li><i class="material-icons nav-search">search</i></a></li>	
+				    <li><i class="material-icons nav-search">search</i></li>	
 				    <li><a href="index.html" id="refresh"><i class="material-icons refresh">refresh</i></a></li>
-				    <li><i class="material-icons" id="switch-view">view_quilt</i></a></li>
+				    <li><i class="material-icons" id="switch-view">view_quilt</i></li>
 				    <li class="profile-btn hide-on-med-and-down"><a class="btn btn-floating pulse"><i class="material-icons">perm_identity</i></a></li>
 			  	</ul>
 			</div>
@@ -104,7 +104,7 @@
 						        <li class="tab col s3" tab-data="tab-forecast"><a class='active' href="#tab-forecast">Forecast</a></li>
 						        <li class="tab col s3" tab-data="tab-events"><a href="#tab-events">Events</a></li>
 						        <li class="tab col s3" tab-data="tab-news"><a href="#tab-news">News</a></li>
-						        <li class="tab col s3" tab-data="tab-constellation"><a href="#tab-constellation">Constell</a></li>
+						        <li class="tab col s3" tab-data="tab-constellation"><a id="constell" href="#tab-constellation">Constell</a></li>
 					      	</ul>
 							<div class='col s12 card left' id="today-weather">
 							
@@ -163,7 +163,8 @@
 							</div>
 
 							<div id='tab-constellation'>
-								put constellation here
+                                <div style="width: 400px; height: 400px" id="wwtControl" data-settings="pictures=true"></div>
+                                <script src="http://worldwidetelescope.org/embedded-webcontrol.js"></script>
 							</div>
 
 							 <!-- close today-weather-container -->

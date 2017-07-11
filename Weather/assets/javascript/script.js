@@ -162,7 +162,7 @@ function getSatellites(){
     crossDomain: true,
     success: function(data){
         data.setHeader("Access-Control-Allow-Origin", "https://www.space-track.org/");
-        console.log(data);
+        //console.log(data);
     },
     error: function(errorMessage){
         alert("Error" + errorMessage);
@@ -179,7 +179,7 @@ function getSatellites(){
     crossDomain: true,
     success: function(data){
         
-        console.log(data);
+        //console.log(data);
     },
     error: function(errorMessage){
         alert("Error" + errorMessage);
@@ -189,11 +189,101 @@ function getSatellites(){
     
 }
 
+function getSolar(){
+    var coords = [longitude, latitude];
+    var d = new Date();
+    var year = d.getFullYear();
+   
+    var url = "http://api.usno.navy.mil/eclipses/solar?year="+ year;
+    
+     //ajax call
+    $.ajax({
+    type:"GET",
+    url: url,
+    async: false,
+    dataType: "json",
+    success: function(data){
+        //console.log(data);
+        
+        var i = 0;
+        $.each(data.eclipses_in_year, function(){
+            var d = new Date()
+            var day = d.getDate();
+            var month = d.getMonth();
+            var year = d.getFullYear();
+    
+            if(data.eclipses_in_year[i].month >= month && data.eclipses_in_year[i].year >= year){
+                var p = $("<p>");
+                p.text(data.eclipses_in_year[i].event);
+                $("#solar").append(p);
+            }
+            
+            i++;
+        })
+        
+    },
+    error: function(errorMessage){
+        alert("Error" + errorMessage);
+    }
+        });
+}
+
+function getMoonPhases(){
+    var d = new Date();
+    var day = d.getDate();
+    var month = d.getMonth();
+    var year = d.getFullYear();
+    
+    var dateFormat = (month + 1) + "/" + day + "/" + year;
+    
+   
+    var url = "http://api.usno.navy.mil/moon/phase?date="+ dateFormat + "&nump=7";
+    
+     //ajax call
+    $.ajax({
+    type:"GET",
+    url: url,
+    async: false,
+    dataType: "json",
+    success: function(data){
+        console.log(data);
+        for(var i = 0; i < 7; i++){
+            var p = $("<p>");
+            p.text(data.phasedata[i].phase);
+            $("#day" + i).append("Moon Phase:");
+            $("#day" + i).append(p);
+        }
+        /*var i = 0;
+        $.each(data.eclipses_in_year, function(){
+            var d = new Date()
+            var day = d.getDate();
+            var month = d.getMonth();
+            var year = d.getFullYear();
+    
+            if(data.eclipses_in_year[i].month >= month && data.eclipses_in_year[i].year >= year){
+                var p = $("<p>");
+                p.text(data.eclipses_in_year[i].event);
+                $("#solar").append(p);
+                console.log(i);
+            }
+            
+            i++;
+        })*/
+        
+    },
+    error: function(errorMessage){
+        alert("Error" + errorMessage);
+    }
+        }); 
+}
+
 
 $(document).ready(function(){
     getAPOD();
     getAsteroids();
     getAudImgs();
     getLocation();
+    getSolar();
+    getMoonPhases();
     
 });

@@ -91,3 +91,9 @@
 //     $(this).remove();
 //   });
 // });
+
+
+
+$(document).ready(function(){
+    $("#tab-constellation").html('<div id="wwtControl" data-settings="pictures=true"></div><script src="http://worldwidetelescope.org/embedded-webcontrol.js"></script>');
+});
