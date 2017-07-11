@@ -304,6 +304,10 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 	margin: auto;
 }
 
+.profile-btn a {
+	padding: 0;
+}
+
 .toast {
 	display: block;
 }
