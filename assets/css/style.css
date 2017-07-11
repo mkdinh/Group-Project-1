@@ -249,6 +249,12 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 	border: 1px solid black;
 	padding: 10px;
 }
+
++#login-modal {
+	max-height: 90%;
+ }
+ 
+
 .auth-icon {
   height: 100%;
 	width: 18px;
