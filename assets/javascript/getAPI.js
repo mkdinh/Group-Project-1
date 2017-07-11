@@ -131,13 +131,14 @@ function getAPOD(){
         url: url,
         async: false,
         dataType: "json",
-        success: function(data){
-            var img = $("<img>");
-            var p = $("<p>");
-            img.attr("src", data.hdurl); 
-            p.text(data.explanation);
-            $("#imageOfTheDay").append(img);
-            $("#info").append(p);
+        success: function(apodData){
+					console.log(apodData);
+            var img = $("<img class='apod-img'>");
+            var p = $("<p class='truncate tooltipped'>");
+            img.attr("src", apodData.url); 
+            p.text(apodData.explanation);
+						p.attr("data-tooltip", apodData.explanation);
+            $("#imageOfTheDay").append(img, p);
         },
         error: function(errorMessage){
             alert("Error" + errorMessage);
@@ -418,8 +419,14 @@ $('.event-item').click(function(){
  $(document).ready(function(){
     // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
     $('.modal').modal();
-    
+
+		// initialize tooltips
+		$(document).ready(function () {
+			$('.tooltipped').tooltip({ delay: 50 });
+		});
+
      getLocation();
+		 getAPOD();
 
   	$('#switch-view').click(function(){
   		if($('#day-view').css('display') === 'none'){
