@@ -42,6 +42,8 @@ function logInOut(user) {
     console.log("no user");
     $(".profile-btn").empty();
     $(".profile-btn").html('<a class="btn btn-floating pulse"><i class="material-icons">perm_identity</i></a>');
+    $("#user-name").html("Anonymous user");
+    $("#user-email").empty();
   } else if (user && user.displayName === null) {
     // New user account has just been created, but not yet updated
     // with displayName and photoURL
@@ -52,6 +54,8 @@ function logInOut(user) {
     $("#login-modal").modal('close');
     Materialize.toast("Welcome " + user.displayName + "!", 5000);
     $(".profile-btn").html(`<img class="img-responsive circle userpic" src=${user.photoURL}>`);
+    $("#user-name").html(user.displayName);
+    $("#user-email").html(user.email);
   }
 }
 
