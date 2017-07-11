@@ -21,6 +21,20 @@
     </head>
 
     <body>
+
+		<!-- Preloadder -->
+			
+		  <div class="preloader-wrapper big active">
+		    <div class="spinner-layer spinner-blue-only">
+		      <div class="circle-clipper left">
+		        <div class="circle"></div>
+		      </div><div class="gap-patch">
+		        <div class="circle"></div>
+		      </div><div class="circle-clipper right">
+		        <div class="circle"></div>
+		      </div>
+		    </div>
+		  </div>
     	<!-- Profile Button -->
 		<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons show-on-large small" id="profile-button">settings</i></a>
 
@@ -101,10 +115,10 @@
 						<div class='col s6' id="today-weather-container">
 
 						    <ul class="tabs">
-						        <li class="tab col s3" tab-data="tab-forecast"><a class='active' href="#tab-forecast">Forecast</a></li>
-						        <li class="tab col s3" tab-data="tab-events"><a href="#tab-events">Events</a></li>
-						        <li class="tab col s3" tab-data="tab-news"><a href="#tab-news">News</a></li>
-						        <li class="tab col s3" tab-data="tab-constellation"><a href="#tab-constellation">Constell</a></li>
+						        <li class="tab col s3" id='tab-id-forecast' tab-data="tab-forecast"><a class='active' href="#tab-forecast">Forecast</a></li>
+						        <li class="tab col s3" id='tab-id-events' tab-data="tab-events"><a href="#tab-events">Events</a></li>
+						        <li class="tab col s3" id='tab-id-news' tab-data="tab-news"><a href="#tab-news">News</a></li>
+						        <li class="tab col s3" id='tab-id-constellation' tab-data="tab-constellation"><a href="#tab-constellation">Constell</a></li>
 					      	</ul>
 							<div class='col s12 card left' id="today-weather">
 							
@@ -174,8 +188,9 @@
 						
 						<div class='col s3' id="today-events-container">
 							<div class="col s12 card left" id ='today-events'>
-								<h5>Upcoming Event<a href="#/"><i class="material-icons right white-text">view_list</i></a></h5>
-								<hr>								 <ul class="collection collection-events">
+								<h5>Upcoming Event<a href="#/"><i class="material-icons right white-text" id="sidebar-events-btn">view_list</i></a></h5>
+								<hr>
+								 <ul class="collection collection-events">
 
 							      	<li class="collection-item ">
 								      	<div>
@@ -247,7 +262,7 @@
 				</form>
 
 				<p class="center white-text">Don't have an account?</p>
-				<!--TODO: fix waves-effect on buttons-->
+				<!--TODO: fix waves-effect on 	buttons-->
 				<a class="create-account btn waves-effect waves-blackcurrant login-btn">create new account</a>
 				<!-- close login Div -->
 			</div>

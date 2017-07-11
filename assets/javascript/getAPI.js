@@ -68,7 +68,8 @@ function getWeather(){
                console.log(data);
                updateTodayWeather(data)
                getWeekDays(data);
-               getWeeklyUpdate(data); 
+               getWeeklyUpdate(data);
+               $('.preloader-wrapper').fadeOut('fast') 
             },
             error: function(errorMessage){
                 alert("Error" + errorMessage);
@@ -441,7 +442,6 @@ $('.event-item').click(function(){
 	 		$(this).attr('data-state','f')	
 	 	}
 	 })
-
   });
 
 
