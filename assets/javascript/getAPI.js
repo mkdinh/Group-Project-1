@@ -77,7 +77,6 @@ function getWeather(){
 }
 
 function updateTodayWeather(data){
-	console.log("in")
 	icons = new Skycons({
 	   "monochrome": false,
 	   "colors" : {
@@ -100,8 +99,12 @@ function updateTodayWeather(data){
 
 	//Updating Temperature
 	var todayTemp = data.currently.apparentTemperature;
-	$('#day-temperature').html(todayTemp+"<sup>&deg;F</sup>")
-
+	$('#day-temperature').html('<div id="today-current-temp">'+todayTemp.toFixed(1)+"<sup>&deg;F</sup></div>"+ '<a id= "convert-unit" href="#/"><p style="margin:0">&deg;C</p></a>')
+	$('#convert-unit').attr('data-f',todayTemp.toFixed(1))
+	var celcius = (todayTemp -32) * 5 / 9;
+	celcius = celcius.toFixed(1)
+	$('#convert-unit').attr('data-c',celcius)
+	$('#convert-unit').attr('data-state','f')
 	//Updating WindSpeed
 	$('.windSpeed').html(data.currently.windSpeed + " mph")
 
@@ -260,8 +263,6 @@ function getWeeklyUpdate(data){
 
 		modalContent.append(weather,astroEvent)
 		modalContentContainer.append(modalContent)
-		console.log(modalContent)
-
 		}
 
 	$('body').append(modalContentContainer)
@@ -274,9 +275,10 @@ function getNews(){
 	if(newsInput === ''){
 		var orderMethod = "newest"
 	}else{ 	 		
-		orderMethod = "relevance"}
+		orderMethod = "relevance"
+		$('#news-search-method').html('Search By: <b>Relevance</b>')	
+	}
 
-	console.log(newsInput)
 	queryURL += '?' + $.param({
 			'q': newsInput + '&' + 'astronomy' ,
 			'format': 'json',	
@@ -425,6 +427,18 @@ $('.event-item').click(function(){
 	 $('#news-input').keyup(function(e){
 	 	if(e.keyCode === 13){
 	 		$('#news-search').click();
+	 	}
+	 })
+
+	 //convert units f <-> c
+
+	 $('#day-temperature').on('click','#convert-unit',function(){
+	 	if($(this).attr('data-state') === 'f'){
+		 	$('#today-current-temp').html($(this).attr('data-c') + "<sup>&deg;C</sup>")
+		 	$(this).attr('data-state','c')	
+	 	}else if($(this).attr('data-state') === 'c'){
+	 		$('#today-current-temp').html($(this).attr('data-f') + "<sup>&deg;F</sup>")
+	 		$(this).attr('data-state','f')	
 	 	}
 	 })
 
