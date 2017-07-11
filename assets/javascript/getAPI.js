@@ -435,10 +435,14 @@ $('.event-item').click(function(){
 
 	 $('#day-temperature').on('click','#convert-unit',function(){
 	 	if($(this).attr('data-state') === 'f'){
+	 		$('#today-current-temp').css('display','none')
 		 	$('#today-current-temp').html($(this).attr('data-c') + "<sup>&deg;C</sup>")
+		 	$('#today-current-temp').fadeIn('fast')
 		 	$(this).attr('data-state','c')	
 	 	}else if($(this).attr('data-state') === 'c'){
+	 		$('#today-current-temp').css('display','none')
 	 		$('#today-current-temp').html($(this).attr('data-f') + "<sup>&deg;F</sup>")
+	 		$('#today-current-temp').fadeIn('fast')
 	 		$(this).attr('data-state','f')	
 	 	}
 	 })
