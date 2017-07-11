@@ -14,16 +14,6 @@ nav{
 	background-color: rgba(20,28,58,.7);
 }
 
-.preloader-wrapper{
-	position: absolute;
-	top:50%;
-	left:50%;
-}
-
-.spinner-blue-only{
-	border-color:gold;
-}
-
 #profile-button{
 	position:fixed;
 	bottom:10px;
@@ -93,14 +83,7 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 	padding:0px;
 }
 
-.day{font-weight:bold ;
-	font-family: 'Scope One', serif;
-	 padding:5px; 
-	 margin:10px 0; 
-	 width:100%;
-	 background-color: 
-	 rgba(255,255,255,.1);
-}
+.day{padding:5px; margin:10px 0; width:100%;background-color: rgba(255,255,255,.1);}
 
 .card-title.activator{
 	font-size:15px;
@@ -174,7 +157,6 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 .skycons-label{margin:0;}
 
 #day-temperature{
-	position:relative;
 	font: bold 40px sans-serif;
 	margin: 15px auto;
 	padding: 0 5px;
@@ -182,19 +164,6 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 	border-left: 1px solid grey;
 	border-right:1px solid grey;
 	line-height: 120px
-}
-
-
-
-#convert-unit{
-	position: absolute;
-    right: 10px;
-    font-size: 25px;
-    color: grey;
-    bottom: 10px;
-    margin: 0;
-    padding: 0px;
-    line-height: 0px;
 }
 
 #day-wind img{
@@ -212,7 +181,7 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 
 .collection-events{
 	color:black;
-	margin:20px 0;
+	margin:25px 0;
 }
 
 .collection .collection-item{
@@ -243,10 +212,6 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 #news-input{width:40%; margin:0 10px;}
 
 .search-icon{font-size:30px;vertical-align: bottom; color:white;}
-
-#news-search-method{
-	margin:20px 10px 0 10px;
-}
 
 #news-display{margin:30px auto 0px auto; font-size:12px;}
 
@@ -293,6 +258,10 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 .profile-input{
 	margin-top:25px;
 	color:grey;
+}
+
+#login-modal {
+	max-height: 90%;
 }
 
 #login-modal .input-field {
