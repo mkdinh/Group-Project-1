@@ -40,8 +40,10 @@ function logInOut(user) {
     // User is signed out.
     signedIn = false;
     console.log("no user");
-    $("#login").empty();
-    $("#login").html('<a class="btn btn-floating pulse"><i class="material-icons">perm_identity</i></a>');
+    $(".profile-btn").empty();
+    $(".profile-btn").html('<a class="btn btn-floating pulse"><i class="material-icons">perm_identity</i></a>');
+    $("#user-name").html("Anonymous user");
+    $("#user-email").empty();
   } else if (user && user.displayName === null) {
     // New user account has just been created, but not yet updated
     // with displayName and photoURL
@@ -51,7 +53,9 @@ function logInOut(user) {
     signedIn = true;
     $("#login-modal").modal('close');
     Materialize.toast("Welcome " + user.displayName + "!", 5000);
-    $("#login").html(`<img class="img-responsive circle userpic" src=${user.photoURL}>`);
+    $(".profile-btn").html(`<img class="img-responsive circle userpic" src=${user.photoURL}>`);
+    $("#user-name").html(user.displayName);
+    $("#user-email").html(user.email);
   }
 }
 
@@ -125,7 +129,7 @@ function handleAuthError(error) {
 firebase.auth().onAuthStateChanged(logInOut);
 
 // open sign in or sign out modal
-$("#login").click(function (e) {
+$(".profile-btn").click(function (e) {
   e.preventDefault();
   if (signedIn) {
     $("#logout-modal").modal('open');
