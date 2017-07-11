@@ -51,7 +51,7 @@ function logInOut(user) {
     signedIn = true;
     $("#login-modal").modal('close');
     Materialize.toast("Welcome " + user.displayName + "!", 5000);
-    $("#login").html(`<img class="img-responsive circle userpic" src=${user.photoURL}>`);
+    $(".profile-btn").html(`<img class="img-responsive circle userpic" src=${user.photoURL}>`);
   }
 }
 
@@ -125,7 +125,7 @@ function handleAuthError(error) {
 firebase.auth().onAuthStateChanged(logInOut);
 
 // open sign in or sign out modal
-$("#login").click(function (e) {
+$(".profile-btn").click(function (e) {
   e.preventDefault();
   if (signedIn) {
     $("#logout-modal").modal('open');
