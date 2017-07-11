@@ -83,7 +83,14 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 	padding:0px;
 }
 
-.day{padding:5px; margin:10px 0; width:100%;background-color: rgba(255,255,255,.1);}
+.day{font-weight:bold ;
+	font-family: 'Scope One', serif;
+	 padding:5px; 
+	 margin:10px 0; 
+	 width:100%;
+	 background-color: 
+	 rgba(255,255,255,.1);
+}
 
 .card-title.activator{
 	font-size:15px;
