@@ -452,7 +452,7 @@ $('.event-item').click(function(){
 	 		+'<div id="wwtControl"'+
 			+ 'data-settings="crosshairs=false,ecliptic=true,pictures=true,boundaries=true"'
 		    + 'data-aspect-ratio="8:5"'>    
-		    </div>')
+		    + '</div>')
 	 })
   });
 
