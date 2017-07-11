@@ -119,6 +119,33 @@ function updateTodayWeather(data){
 
 
 }
+
+//gets Astronomical Picture Of the Day
+function getAPOD(){
+    var apiKey = "FMWfaT1C1igzEgHUsZOK4ZUlCGACf42bmV2i9GYM";
+    var url = "https://api.nasa.gov/planetary/apod?api_key=" + apiKey;
+    
+    //ajax call
+       $.ajax({
+        type:"GET",
+        url: url,
+        async: false,
+        dataType: "json",
+        success: function(apodData){
+					console.log(apodData);
+            var img = $("<img class='apod-img'>");
+            var p = $("<p class='truncate tooltipped'>");
+            img.attr("src", apodData.url); 
+            p.text(apodData.explanation);
+						p.attr("data-tooltip", apodData.explanation);
+            $("#imageOfTheDay").append(img, p);
+        },
+        error: function(errorMessage){
+            alert("Error" + errorMessage);
+        }
+    });
+}
+
 function getWeekDays(data){
 
     var eventCon = $('#week-view')
@@ -392,8 +419,14 @@ $('.event-item').click(function(){
  $(document).ready(function(){
     // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
     $('.modal').modal();
-    
+
+		// initialize tooltips
+		$(document).ready(function () {
+			$('.tooltipped').tooltip({ delay: 50 });
+		});
+
      getLocation();
+		 getAPOD();
 
   	$('#switch-view').click(function(){
   		if($('#day-view').css('display') === 'none'){
