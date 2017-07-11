@@ -177,12 +177,22 @@ function getWeekDays(data){
 //get weekly Info
 
 $('#week-view').on('click','.weekly-event',function(){
+	// Display appropriate content for selected day
 	var modal = $('#modal1')
-	$('.modal-content').remove();
+	$('#modal1').empty();
 	var dayNum = $(this).attr('data-num')
-	var selectedContent = $('#modal-content-'+dayNum);
+	var selectedContent = $('#week-content-'+dayNum);
 	modal.prepend(selectedContent)
+	addModalfooter()
 })
+
+function addModalfooter(){
+	// add a footer
+	var footer = $("<div>");
+	footer.addClass('modal-footer');
+	footer.append('<a href="#!" class="modal-action modal-close waves-effect btn-flat">Close</a>')
+	$('#modal1').append(footer)	
+}
 
 // weekly weather info modals
 
@@ -192,9 +202,9 @@ function getWeeklyUpdate(){
         //API URL
         var url = cors +"https://api.darksky.net/forecast/ef8d2f0e9af37edb6fa8639b613e662d/"+ latitude +","+ longitude;
 		
-		var ModalContentContainer = $('<div>');
-		ModalContentContainer.addClass('modal-content-container');
-		ModalContentContainer.css('display','none')
+		var modalContentContainer = $('<div>');
+		modalContentContainer.addClass('modal-content-container');
+		modalContentContainer.css('display','none')
         
          //ajax call
            $.ajax({
@@ -208,11 +218,9 @@ function getWeeklyUpdate(){
                		console.log(i)
 					// var modal = $('<div>');
 					// modal.attr('id', 'modal-'i);
-					modalContent = $("<div>")
+					var modalContent = $("<div>")
+					modalContent.attr('id','week-content-'+i)
 					modalContent.addClass('modal-content');
-					var modalContent = $('<div>');
-					modalContent.attr('id','modal-content-'+i)
-	
 					// add weather content
 					// add header
 
@@ -264,12 +272,12 @@ function getWeeklyUpdate(){
 						astroEvent.append('<h4>Astronomy Event</h4><hr>')
 
 					modalContent.append(weather,astroEvent)
-					ModalContentContainer.append(modalContent)
-					console.log(ModalContentContainer)
+					modalContentContainer.append(modalContent)
+					console.log(modalContent)
 
 					}
 
-				$('body').append(ModalContentContainer)
+				$('body').append(modalContentContainer)
             },
             error: function(errorMessage){
                 alert("Error" + errorMessage);
