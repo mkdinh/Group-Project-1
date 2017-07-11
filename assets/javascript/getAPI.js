@@ -58,7 +58,6 @@ function getWeather(){
         //API URL
         var url = cors +"https://api.darksky.net/forecast/ef8d2f0e9af37edb6fa8639b613e662d/"+ latitude +","+ longitude;
 
-
          //ajax call
            $.ajax({
             type:"GET",
@@ -69,6 +68,7 @@ function getWeather(){
                console.log(data);
                updateTodayWeather(data)
                getWeekDays(data);
+               getWeeklyUpdate(data); 
             },
             error: function(errorMessage){
                 alert("Error" + errorMessage);
@@ -196,94 +196,75 @@ function addModalfooter(){
 
 // weekly weather info modals
 
-function getWeeklyUpdate(){
-	//CORS prefix
-        var cors = "https://cors-anywhere.herokuapp.com/";
-        //API URL
-        var url = cors +"https://api.darksky.net/forecast/ef8d2f0e9af37edb6fa8639b613e662d/"+ latitude +","+ longitude;
-		
-		var modalContentContainer = $('<div>');
-		modalContentContainer.addClass('modal-content-container');
-		modalContentContainer.css('display','none')
-        
-         //ajax call
-           $.ajax({
-            type:"GET",
-            url: url,
-            async: true,
-            dataType: "json",
-            success: function(data){
-               console.log(data);
-               for(i = 0; i < data.daily.data.length; i++){
-               		console.log(i)
-					// var modal = $('<div>');
-					// modal.attr('id', 'modal-'i);
-					var modalContent = $("<div>")
-					modalContent.attr('id','week-content-'+i)
-					modalContent.addClass('modal-content');
-					// add weather content
-					// add header
+function getWeeklyUpdate(data){
+	console.log(data)
+	var modalContentContainer = $('<div>');
+	modalContentContainer.addClass('modal-content-container');
+	modalContentContainer.css('display','none')
 
-					var head  = '<h4>Predicted Weather<h4><hr>'
-					// head.html('<h4>Predicted Weather<h4>')
-					modalContent.append(head)
+   for(i = 0; i < data.daily.data.length; i++){
+		// var modal = $('<div>');
+		// modal.attr('id', 'modal-'i);
+		var modalContent = $("<div>")
+		modalContent.attr('id','week-content-'+i)
+		modalContent.addClass('modal-content');
+		// add weather content
+		// add header
 
-					var weather = $('<table>');
-					weather.addClass("striped")
-					weather.css('margin-bottom','20px')
-						// add body
-						conList = $('<tbody>')
+		var head  = '<h4>Predicted Weather<h4><hr>'
+		// head.html('<h4>Predicted Weather<h4>')
+		modalContent.append(head)
 
-						//conditions from API
+		var weather = $('<table>');
+		weather.addClass("striped")
+		weather.css('margin-bottom','20px')
+			// add body
+			conList = $('<tbody>')
 
-						var tempMin = data.daily.data[i].apparentTemperatureMin;
-						var tempMax = data.daily.data[i].apparentTemperatureMax;
-						var humidity = data.daily.data[i].humidity;
-						var precipProbability = data.daily.data[i].precipProbability;
-						var precipType = data.daily.data[i].precipType;
-						var cloudCover = data.daily.data[i].cloudCover;
-						var moonPhase = data.daily.data[i].moonPhase;
+			//conditions from API
 
-						// add weather conditions
-						var row1 = $('<tr>');
-						row1.html('<td> Temperature </td>'
-								+  '<td class="modal-weekly-weather">' + tempMin + " - " + tempMax + "<sup>&deg;F</sup>" + '</td>'
-								+  '<td> Humidity </td>'
-								+  '<td class="modal-weekly-weather">' + humidity + '</td>'
-								)
+			var tempMin = data.daily.data[i].apparentTemperatureMin;
+			var tempMax = data.daily.data[i].apparentTemperatureMax;
+			var humidity = data.daily.data[i].humidity;
+			var precipProbability = data.daily.data[i].precipProbability;
+			var precipType = data.daily.data[i].precipType;
+			var cloudCover = data.daily.data[i].cloudCover;
+			var moonPhase = data.daily.data[i].moonPhase;
 
-						var row2 = $('<tr>');
-						row2.html('<td> Precipitation Probability </td>'
-								+  '<td class="modal-weekly-weather">' + precipProbability + '</td>'
-								+  '<td> Precipitation Type </td>'
-								+  '<td class="modal-weekly-weather">' + precipType + '</td>'
-								)
+			// add weather conditions
+			var row1 = $('<tr>');
+			row1.html('<td> Temperature </td>'
+					+  '<td class="modal-weekly-weather">' + tempMin + " - " + tempMax + "<sup>&deg;F</sup>" + '</td>'
+					+  '<td> Humidity </td>'
+					+  '<td class="modal-weekly-weather">' + humidity + '</td>'
+					)
 
-						var row3 = $('<tr>');
-						row3.html('<td> Cloud Cover </td>'
-								+  '<td class="modal-weekly-weather">' + cloudCover + '</td>'
-								+  '<td> Moon Phase </td>'
-								+  '<td class="modal-weekly-weather">' + moonPhase + '</td>'
-								)		
+			var row2 = $('<tr>');
+			row2.html('<td> Precipitation Probability </td>'
+					+  '<td class="modal-weekly-weather">' + precipProbability + '</td>'
+					+  '<td> Precipitation Type </td>'
+					+  '<td class="modal-weekly-weather">' + precipType + '</td>'
+					)
 
-					conList.append(row1,row2,row3)
-					weather.append(conList)
-					var astroEvent = $('<div>');
-						astroEvent.append('<h4>Astronomy Event</h4><hr>')
+			var row3 = $('<tr>');
+			row3.html('<td> Cloud Cover </td>'
+					+  '<td class="modal-weekly-weather">' + cloudCover + '</td>'
+					+  '<td> Moon Phase </td>'
+					+  '<td class="modal-weekly-weather">' + moonPhase + '</td>'
+					)		
 
-					modalContent.append(weather,astroEvent)
-					modalContentContainer.append(modalContent)
-					console.log(modalContent)
+		conList.append(row1,row2,row3)
+		weather.append(conList)
+		var astroEvent = $('<div>');
+			astroEvent.append('<h4>Astronomy Event</h4><hr>')
 
-					}
+		modalContent.append(weather,astroEvent)
+		modalContentContainer.append(modalContent)
+		console.log(modalContent)
 
-				$('body').append(modalContentContainer)
-            },
-            error: function(errorMessage){
-                alert("Error" + errorMessage);
-            }
-        });
+		}
 
+	$('body').append(modalContentContainer)
 }
 
 // Get news
@@ -417,7 +398,6 @@ $('.event-item').click(function(){
 			setTimeout(function(){$("#day-view").fadeToggle('slow'),500})
 			$('#switch-view').text('view_week')
 		}else{
-			getWeeklyUpdate();
 			$("#day-view").css("display","none");
 			setTimeout(function(){$("#week-view").fadeToggle('slow'),500})
 			$('#switch-view').text('view_quilt')
