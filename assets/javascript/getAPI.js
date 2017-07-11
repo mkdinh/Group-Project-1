@@ -56,7 +56,7 @@ function getWeather(){
         //CORS prefix
         var cors = "https://cors-anywhere.herokuapp.com/";
         //API URL
-         var url = cors +"https://api.darksky.net/forecast/ef8d2f0e9af37edb6fa8639b613e662d/"+ latitude +","+ longitude;
+        var url = cors +"https://api.darksky.net/forecast/ef8d2f0e9af37edb6fa8639b613e662d/"+ latitude +","+ longitude;
 
 
          //ajax call
@@ -160,7 +160,8 @@ function getWeekDays(data){
 
     	//add modal button
     	modalBtn = $('<a>');
-    	modalBtn.addClass('expand-event')
+    	modalBtn.addClass('expand-event weekly-event')
+    	modalBtn.attr('data-num',i)
     	modalBtn.attr('href','#modal1')
     	modalBtn.html('<i class="material-icons">view_list</i></a>')
     	infoCon.append(modalBtn);
@@ -173,22 +174,140 @@ function getWeekDays(data){
     $("#day-view").fadeToggle('fast')
 }
 
-// Get news
+//get weekly Info
 
+$('#week-view').on('click','.weekly-event',function(){
+
+
+	var dayNum = $(this).attr('data-num')
+	console.log(dayNum)
+
+	//CORS prefix
+        var cors = "https://cors-anywhere.herokuapp.com/";
+        //API URL
+        var url = cors +"https://api.darksky.net/forecast/ef8d2f0e9af37edb6fa8639b613e662d/"+ latitude +","+ longitude;
+
+
+         //ajax call
+           $.ajax({
+            type:"GET",
+            url: url,
+            async: true,
+            dataType: "json",
+            success: function(data){
+               console.log(data);
+
+				var modal = $('#modal1');
+				var modalContent = $('.modal-content');
+				modalContent.empty()
+				// add weather content
+				// add header
+
+				var head  = '<h4>Predicted Weather<h4><hr>'
+				// head.html('<h4>Predicted Weather<h4>')
+				modalContent.append(head)
+
+				var weather = $('<table>');
+				weather.addClass("striped")
+				weather.css('margin-bottom','20px')
+					// add body
+					conList = $('<tbody>')
+
+					//conditions from API
+
+					var tempMin = data.daily.data[dayNum].apparentTemperatureMin;
+					var tempMax = data.daily.data[dayNum].apparentTemperatureMax;
+					var humidity = data.daily.data[dayNum].humidity;
+					var precipProbability = data.daily.data[dayNum].precipProbability;
+					var precipType = data.daily.data[dayNum].precipType;
+					var cloudCover = data.daily.data[dayNum].cloudCover;
+					var moonPhase = data.daily.data[dayNum].moonPhase;
+
+					// add weather conditions
+					var row1 = $('<tr>');
+					row1.html('<td> Temperature </td>'
+							+  '<td class="modal-weekly-weather">' + tempMin + " - " + tempMax + '</td>'
+							+  '<td> Humidity </td>'
+							+  '<td class="modal-weekly-weather">' + humidity + '</td>'
+							)
+
+					var row2 = $('<tr>');
+					row2.html('<td> Precipitation Probability </td>'
+							+  '<td class="modal-weekly-weather">' + precipProbability + '</td>'
+							+  '<td> Precipitation Type </td>'
+							+  '<td class="modal-weekly-weather">' + precipType + '</td>'
+							)
+
+					var row3 = $('<tr>');
+					row3.html('<td> Cloud Cover </td>'
+							+  '<td class="modal-weekly-weather">' + cloudCover + '</td>'
+							+  '<td> Moon Phase </td>'
+							+  '<td class="modal-weekly-weather">' + moonPhase + '</td>'
+							)		
+
+				conList.append(row1,row2,row3)
+				weather.append(conList)
+				var astroEvent = $('<div>');
+					astroEvent.append('<h4>Astronomy Event</h4><hr>')
+
+				modalContent.append(weather,astroEvent)
+            },
+            error: function(errorMessage){
+                alert("Error" + errorMessage);
+            }
+        });
+
+})
+
+// Get news
 function getNews(){
-	var queryURL = 'https://newsapi.org/v1/articles';
-	var eventInput = $('#event-input').val().trim();
+	var queryURL = 'https://content.guardianapis.com/search';
+	var newsInput = $('#news-input').val().trim();
+	if(newsInput === ''){
+		var orderMethod = "newest"
+	}else{ 	 		
+		orderMethod = "relevance"}
+
+	console.log(newsInput)
 	queryURL += '?' + $.param({
-			'source': 'national-geographic',
-			"sortBy": "top",
-			'api_key': 'fe0089f9d50740b88254bd82db55df94'
+			'q': newsInput + '&' + 'astronomy' ,
+			'format': 'json',	
+			"show-fields":'trailText,headline,body,shortUrl,thumbnail,byline,publication',
+			'page-size':5,
+			'section': 'science',
+			'order-by': orderMethod,
+			'show-element': 'image',
+			'api-key': '7cad287c-e8cb-482f-a20a-6e2050f4b850'
 		}) 
-	console.log(queryURL)
 	$.ajax({
 		url: queryURL,
 		method: 'GET'
-	}).done(function(response){
-		console.log(response)
+	}).done(function(data){
+		console.log(data)
+
+		var listCon = $('<ul>')
+		listCon.css('display','none')
+
+		for(i = 0; i < data.response.results.length;i++){
+			var title = data.response.results[i].webTitle;
+			var byline = data.response.results[i].fields.byline;
+			var date = data.response.results[i].webPublicationDate;
+			var trailText = data.response.results[i].fields.trailText;
+			var webURL = data.response.results[i].webUrl;
+
+			var item = $('<li>');
+			item.addClass('collection-item');
+			item.html('<p class="news-title">' + title +  '<p>'
+				+	'<a href="' + webURL + '" target="_blank"><i class="material-icons right small view-news">open_in_new</i></a>'
+				+	'<p class="news-byline">' + byline + '<p>'
+				+	'<p class="news-date">' + date + '<p>'
+				+	'<p class="news-trailText">' + trailText + '<p>'
+				+ '<div><div>'
+				);
+			listCon.append(item);
+		}
+		$('#news-list').html(listCon);
+		$(listCon).fadeToggle('fast')
 	})
 }
 
@@ -244,6 +363,9 @@ function updateClock() {
   $('#clock').html(moment().format('HH:mm'));
 }
 
+// Html page interactions js 
+
+
 setInterval(updateClock, 1000);
 
 // Initialize collapse button
@@ -280,12 +402,23 @@ $('.event-item').click(function(){
 	 	$('.initial-indicator').remove()
 	 	var tab = $(this).attr('tab-data');
 	 	$('#'+tab).fadeIn('slow')
+	 	if($(this).attr('tab-data') === 'tab-news'){
+	 		getNews()
+	 	}
 	 })
 
-	 // Search Event
-	 $('#event-search').click(function(){
-	 		getNews()
+	 // Search news
+	 $('#news-search').click(function(){
+	 		 getNews();
+	 		$('#news-input').val('');
 	 })
+
+	 $('#news-input').keyup(function(e){
+	 	if(e.keyCode === 13){
+	 		$('#news-search').click();
+	 	}
+	 })
+
   });
 
 
