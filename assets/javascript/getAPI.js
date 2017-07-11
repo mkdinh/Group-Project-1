@@ -56,7 +56,7 @@ function getWeather(){
         //CORS prefix
         var cors = "https://cors-anywhere.herokuapp.com/";
         //API URL
-         var url = cors +"https://api.darksky.net/forecast/ef8d2f0e9af37edb6fa8639b613e662d/"+ latitude +","+ longitude;
+        var url = cors +"https://api.darksky.net/forecast/ef8d2f0e9af37edb6fa8639b613e662d/"+ latitude +","+ longitude;
 
 
          //ajax call
@@ -161,8 +161,9 @@ function getWeekDays(data){
     	//add modal button
     	modalBtn = $('<a>');
     	modalBtn.addClass('expand-event weekly-event')
+    	modalBtn.attr('data-num',i)
     	modalBtn.attr('href','#modal1')
-    	modalBtn.html('<i class="material-icons" data-num=' + i + '>view_list</i></a>')
+    	modalBtn.html('<i class="material-icons">view_list</i></a>')
     	infoCon.append(modalBtn);
     	cardCon.append(infoCon);
 
@@ -176,52 +177,86 @@ function getWeekDays(data){
 //get weekly Info
 
 $('#week-view').on('click','.weekly-event',function(){
+
+
 	var dayNum = $(this).attr('data-num')
-	// var weatherData = data.daily.data[dayNum]
-	var modal = $('#modal1');
-	var modalContent = $('.modal-content');
-	modalContent.empty()
-	// add weather content
-	// add header
+	console.log(dayNum)
 
-	var head  = '<h4>Predicted Weather<h4><hr>'
-	// head.html('<h4>Predicted Weather<h4>')
-	modalContent.append(head)
+	//CORS prefix
+        var cors = "https://cors-anywhere.herokuapp.com/";
+        //API URL
+        var url = cors +"https://api.darksky.net/forecast/ef8d2f0e9af37edb6fa8639b613e662d/"+ latitude +","+ longitude;
 
-	var weather = $('<table>');
-	weather.addClass("striped")
-	weather.css('margin-bottom','20px')
-		// add body
-		conList = $('<tbody>')
 
-		// add weather conditions
-		var row1 = $('<tr>');
-		row1.html('<td> Temperature </td>'
-				+  '<td class="modal-weekly-weather">' + 100 + '</td>'
-				+  '<td> Humidity </td>'
-				+  '<td class="modal-weekly-weather">' + 100 + '</td>'
-				)
+         //ajax call
+           $.ajax({
+            type:"GET",
+            url: url,
+            async: true,
+            dataType: "json",
+            success: function(data){
+               console.log(data);
 
-		var row2 = $('<tr>');
-		row2.html('<td> Precipitation Probability </td>'
-				+  '<td class="modal-weekly-weather">' + 100 + '</td>'
-				+  '<td> Precipitation Type </td>'
-				+  '<td class="modal-weekly-weather">' + 100 + '</td>'
-				)
+				var modal = $('#modal1');
+				var modalContent = $('.modal-content');
+				modalContent.empty()
+				// add weather content
+				// add header
 
-		var row3 = $('<tr>');
-		row3.html('<td> Cloud Cover </td>'
-				+  '<td class="modal-weekly-weather">' + 100 + '</td>'
-				+  '<td> Moon Phase </td>'
-				+  '<td class="modal-weekly-weather">' + 100 + '</td>'
-				)		
+				var head  = '<h4>Predicted Weather<h4><hr>'
+				// head.html('<h4>Predicted Weather<h4>')
+				modalContent.append(head)
 
-	conList.append(row1,row2,row3)
-	weather.append(conList)
-	var astroEvent = $('<div>');
-		astroEvent.append('<h4>Astronomy Event</h4><hr>')
+				var weather = $('<table>');
+				weather.addClass("striped")
+				weather.css('margin-bottom','20px')
+					// add body
+					conList = $('<tbody>')
 
-	modalContent.append(weather,astroEvent)
+					//conditions from API
+
+					var tempMin = data.daily.data[dayNum].apparentTemperatureMin;
+					var tempMax = data.daily.data[dayNum].apparentTemperatureMax;
+					var humidity = data.daily.data[dayNum].humidity;
+					var precipProbability = data.daily.data[dayNum].precipProbability;
+					var precipType = data.daily.data[dayNum].precipType;
+					var cloudCover = data.daily.data[dayNum].cloudCover;
+					var moonPhase = data.daily.data[dayNum].moonPhase;
+
+					// add weather conditions
+					var row1 = $('<tr>');
+					row1.html('<td> Temperature </td>'
+							+  '<td class="modal-weekly-weather">' + tempMin + " - " + tempMax + '</td>'
+							+  '<td> Humidity </td>'
+							+  '<td class="modal-weekly-weather">' + humidity + '</td>'
+							)
+
+					var row2 = $('<tr>');
+					row2.html('<td> Precipitation Probability </td>'
+							+  '<td class="modal-weekly-weather">' + precipProbability + '</td>'
+							+  '<td> Precipitation Type </td>'
+							+  '<td class="modal-weekly-weather">' + precipType + '</td>'
+							)
+
+					var row3 = $('<tr>');
+					row3.html('<td> Cloud Cover </td>'
+							+  '<td class="modal-weekly-weather">' + cloudCover + '</td>'
+							+  '<td> Moon Phase </td>'
+							+  '<td class="modal-weekly-weather">' + moonPhase + '</td>'
+							)		
+
+				conList.append(row1,row2,row3)
+				weather.append(conList)
+				var astroEvent = $('<div>');
+					astroEvent.append('<h4>Astronomy Event</h4><hr>')
+
+				modalContent.append(weather,astroEvent)
+            },
+            error: function(errorMessage){
+                alert("Error" + errorMessage);
+            }
+        });
+
 })
 
 // Get news
