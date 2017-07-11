@@ -45,6 +45,11 @@
                 margin: auto;
             }
             
+            #constellations{
+                width: 80%;
+                margin: auto;
+            }
+            
             #lookUP {
                 float: right;
                 border: 1px solid #bbb;
@@ -74,7 +79,7 @@
                         var long;
                         var lat;
                       var map;
-                        satellites();
+                        getISS();
                       function initMap() {
                           var uluru = {lat: parseFloat(lat), lng: parseFloat(long)}
                         map = new google.maps.Map(document.getElementById('map'), {
@@ -91,7 +96,7 @@
                           });
                       }
                         
-                        function satellites(){
+                        function getISS(){
                         var url = "https://api.wheretheiss.at/v1/satellites/25544/";
                         //ajax call
                            $.ajax({
@@ -120,9 +125,16 @@
                     </form>
                 </div>
                 
-                <div id="wwtControl" data-settings="pictures=true"></div>
-                <script src="http://worldwidetelescope.org/embedded-webcontrol.js"></script>
+                <div>
+                    <h1>Metor Shower</h1>
+                    <div id="metorShower"></div>
+                </div>
                 
+                <div id="constellations">
+                    <h1>Constellations</h1>
+                    <div id="wwtControl" data-settings="pictures=true"></div>
+                    <script src="http://worldwidetelescope.org/embedded-webcontrol.js"></script>
+                </div>
                 <div id="asteroids">
                     <h1>Asteroids</h1>
                     <div class="day" id="day0"><span></span><p id="content"></p></div>
