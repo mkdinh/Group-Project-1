@@ -82,6 +82,9 @@ function getWeather(){
                // update week-view modal weather 
                getWeeklyUpdate(data);
 
+               // get constellation based on long + lat
+               getConstellation(longitude,latitude)
+
                // fade out preloader after gathered all information
                $('.preloader-wrapper').fadeOut('fast') 
                $(".container").animate({opacity:1},'slow')
@@ -376,6 +379,14 @@ function getNews(){
 	})
 }
 
+function getConstellation(longitude,latitude){
+	var img = $("<img>");
+	img.attr('id','constell-img')
+	var src = 'http://www.fourmilab.ch/cgi-bin/Yoursky?date=0&utc=1998%2F02%2F06+12%3A42%3A40&jd=2450851.02963&lat='+latitude+'%B0&ns=North&lon='+longitude+'%B0&ew=East&moonp=on&deepm=2.5&consto=on&constn=on&limag=5.5&starnm=2.0&starbm=2.5&imgsize=640&dynimg=y&fontscale=1.0&scheme=3&elements='
+	img.attr('src',src)
+	$("#tab-constell").append(img)
+}
+
 // Logics to determine the appropriate image to cloud cover
 function cloudCover(data,i){
 
@@ -523,13 +534,14 @@ $(document).ready(function(){
 
 	 // embded constellation when click on constellation tab
 	 $('#tab-id-constell').click(function(){
-	 	$('#tab-constell').append('<div id="wwtControl"'
-			+ ' data-settings="crosshairs=false,ecliptic=true,pictures=true,boundaries=true"'
-		    + ' data-aspect-ratio="8:5"></div>'
+	 	// $('#tab-constell').append('<div id="wwtControl"'
+			// + ' data-settings="crosshairs=false,ecliptic=true,pictures=true,boundaries=true"'
+		 //    + ' data-aspect-ratio="8:5"></div>'
 
-		    + ' <script src="http://worldwidetelescope.org/embedded-webcontrol.js"></script>'
-		    )
+		 //    + ' <script src="http://worldwidetelescope.org/embedded-webcontrol.js"></script>'
+		 //    )
 	 })
-});
 
+
+});
 

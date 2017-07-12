@@ -240,7 +240,32 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
     padding: 0px;
     line-height: 0px;
  }
+
+#iframe-container{
+	width:550px;
+	height:550px;
+	overflow: hidden;
+	position:relative;
+}
+
+#iframe{
+	position:absolute;
+	left: -54%;
+    top: -12%;
+
+    width: 1366px; height: 768px; border: 1px solid black;
+    -moz-transform: scale(0.85);
+    -moz-transform-origin: 0 0;
+    -o-transform: scale(0.85);
+    -o-transform-origin: 0 0;
+    -webkit-transform: scale(0.85);
+    -webkit-transform-origin: 0 0;
+}
  
+#constell-img{
+	width:100%;
+	border-radius:100%;
+}
 
 #day-wind img{
 	width:53%;
