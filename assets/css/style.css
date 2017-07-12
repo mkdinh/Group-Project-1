@@ -150,6 +150,21 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 	margin:20px 0 0 0;
 }
 
+.score-line {
+	padding: 5px;
+}
+
+.rating {
+	font-weight: bold;
+	color: orchid;
+}
+
+#star-container i {
+	color: gold;
+	font-size: 1rem;
+	vertical-align: text-top;
+
+}
 
 #today-weather{
 	text-align: left;
