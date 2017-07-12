@@ -302,6 +302,7 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
  
 #constell-display{
 	margin:auto;
+	margin-top: 30px;
 	width:75%;
 } 
 
