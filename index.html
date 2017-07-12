@@ -21,6 +21,22 @@
     </head>
 
     <body>
+
+		<!-- Preloadder -->
+			
+		  <div class="preloader-wrapper big active">
+		    <div class="spinner-layer spinner-blue-only">
+		      <div class="circle-clipper left">
+		        <div class="circle"></div>
+		      </div><div class="gap-patch">
+		        <div class="circle"></div>
+		      </div><div class="circle-clipper right">
+		        <div class="circle"></div>
+		      </div>
+		    </div>
+		  </div>
+
+
     	<!-- Profile Button -->
 		<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons show-on-large small" id="profile-button">settings</i></a>
 
@@ -36,7 +52,11 @@
 					<li><input type="text" id="search-input"></li>
 				    <li><i class="material-icons nav-search">search</i></li>	
 				    <li><a href="index.html" id="refresh"><i class="material-icons refresh">refresh</i></a></li>
+<<<<<<< HEAD
 				    <li><i class="material-icons" id="switch-view">view_quilt</i></li>
+=======
+				    <li><i class="material-icons" id="switch-view">view_week</i></a></li>
+>>>>>>> 5d289001d8ac08c5050b9fdefb2f766e6ef5fc30
 				    <li class="profile-btn hide-on-med-and-down"><a class="btn btn-floating pulse"><i class="material-icons">perm_identity</i></a></li>
 			  	</ul>
 			</div>
@@ -101,10 +121,17 @@
 						<div class='col s6' id="today-weather-container">
 
 						    <ul class="tabs">
+<<<<<<< HEAD
 						        <li class="tab col s3" tab-data="tab-forecast"><a class='active' href="#tab-forecast">Forecast</a></li>
 						        <li class="tab col s3" tab-data="tab-events"><a href="#tab-events">Events</a></li>
 						        <li class="tab col s3" tab-data="tab-news"><a href="#tab-news">News</a></li>
 						        <li class="tab col s3" tab-data="tab-constellation"><a id="constell" href="#tab-constellation">Constell</a></li>
+=======
+						        <li class="tab col s3" id='tab-id-forecast' tab-data="tab-forecast"><a  href="#tab-forecast">Forecast</a></li>
+						        <li class="tab col s3" id='tab-id-events' tab-data="tab-events"><a href="#tab-events">Events</a></li>
+						        <li class="tab col s3" id='tab-id-news' tab-data="tab-news"><a href="#tab-news">News</a></li>
+						        <li class="tab col s3" id='tab-id-constellation' tab-data="tab-constellation"><a class='active' href="#tab-constellation">Constell</a></li>
+>>>>>>> 5d289001d8ac08c5050b9fdefb2f766e6ef5fc30
 					      	</ul>
 							<div class='col s12 card left' id="today-weather">
 							
@@ -153,6 +180,7 @@
 								<div >
 									<input type="text" id="news-input">
 				    				<a href='#/'><i class="material-icons search-icon" id="news-search">search</i></a>
+				    				<h6 id='news-search-method'>Search By: <b>Latest</b></h6>
 				    			</div>
 
 				    			<div id="news-display">
@@ -163,8 +191,15 @@
 							</div>
 
 							<div id='tab-constellation'>
+<<<<<<< HEAD
                                 <div style="width: 400px; height: 400px" id="wwtControl" data-settings="pictures=true"></div>
                                 <script src="http://worldwidetelescope.org/embedded-webcontrol.js"></script>
+=======
+								<div id="wwtControl"
+								    data-settings="crosshairs=false,ecliptic=true,pictures=true,boundaries=true"
+								    data-aspect-ratio="8:5" style="width:100%">    
+							    </div>
+>>>>>>> 5d289001d8ac08c5050b9fdefb2f766e6ef5fc30
 							</div>
 
 							 <!-- close today-weather-container -->
@@ -174,8 +209,9 @@
 						
 						<div class='col s3' id="today-events-container">
 							<div class="col s12 card left" id ='today-events'>
-								<h5>Upcoming Event<a href="#/"><i class="material-icons right white-text">view_list</i></a></h5>
-								<hr>								 <ul class="collection collection-events">
+								<h5>Upcoming Event<a href="#/"><i class="material-icons right white-text" id="sidebar-events-btn">view_list</i></a></h5>
+								<hr>
+								 <ul class="collection collection-events">
 
 							      	<li class="collection-item ">
 								      	<div>
@@ -247,7 +283,7 @@
 				</form>
 
 				<p class="center white-text">Don't have an account?</p>
-				<!--TODO: fix waves-effect on buttons-->
+				<!--TODO: fix waves-effect on 	buttons-->
 				<a class="create-account btn waves-effect waves-blackcurrant login-btn">create new account</a>
 				<!-- close login Div -->
 			</div>
@@ -327,6 +363,7 @@
 		<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase-messaging.js"></script>
 
 	    <!-- application logics js -->
+	    <script src="http://worldwidetelescope.org/embedded-webcontrol.js"></script>
 	    <script type='text/javascript' src='assets/javascript/googleSignIn.js'></script>
     	<script type="text/javascript" src="assets/javascript/getAPI.js"></script>
     </body>
