@@ -527,7 +527,7 @@ $(document).ready(function(){
 			+ ' data-settings="crosshairs=false,ecliptic=true,pictures=true,boundaries=true"'
 		    + ' data-aspect-ratio="8:5"></div>'
 
-		    + ' <script src="https://worldwidetelescope.org/embedded-webcontrol.js"></script>'
+		    + ' <script src="http://worldwidetelescope.org/embedded-webcontrol.js"></script>'
 		    )
 	 })
 });
