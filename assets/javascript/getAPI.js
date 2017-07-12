@@ -82,8 +82,8 @@ function getWeather(){
                // update week-view modal weather 
                getWeeklyUpdate(data);
 
-               // get constellation based on long + lat
-               getConstellation(longitude,latitude)
+               // // get constellation based on long + lat
+               // getConstellation(longitude,latitude)
 
                // fade out preloader after gathered all information
                $('.preloader-wrapper').fadeOut('fast') 
@@ -378,13 +378,67 @@ function getNews(){
 	})
 }
 
-function getConstellation(longitude,latitude){
+function getConstellation(p){
 	var img = $("<img>");
 	img.attr('id','constell-img')
-	var src = 'http://www.fourmilab.ch/cgi-bin/Yoursky?date=0&utc=1998%2F02%2F06+12%3A42%3A40&jd=2450851.02963&lat='+latitude+'%B0&ns=North&lon='+longitude+'%B0&ew=East&moonp=on&deepm=2.5&consto=on&constn=on&limag=5.5&starnm=2.0&starbm=2.5&imgsize=640&dynimg=y&fontscale=1.0&scheme=3&elements='
+	var src = 'https://www.fourmilab.ch/cgi-bin/Yoursky?date=0&utc=1998%2F02%2F06+12%3A42%3A40&jd=2450851.02963&lat='+p.lat+'%B0&ns=North&lon='+p.long+'%B0&ew=East&coords='+p.ecEq+'&moonp='+p.moPlan+'&deep='+p.deObj+'&deepm=2.5&consto='+p.outlines+'&constn='+p.names+'&constb='+p.boundaries+'&limag=5.5&starn=on&starnm=2.0&starb=off&starbm=2.5&imgsize='+p.size+'&dynimg=y&fontscale=1.0&scheme='+p.theme+'&elements='
 	img.attr('src',src)
-	$("#tab-constell").append(img)
+	$('#constell-display').html(img)
 }
+
+$('.constell-input').click(function(){
+
+	var size = $('#constell-img-size').val();
+
+	if($('#ecEq').is(':checked')){
+		var ecEq = 'on'
+	}else{
+		var ecEq = 'off'
+	}console.log(ecEq)
+	if($('#moPlan').is(':checked')){
+		var moPlan = 'on'
+	}else{
+		var moPlan = 'off'
+	}
+	if($('#deObj').is(':checked')){
+		var deObj = 'on'
+	}else{
+		var deObj = 'off'
+	}
+	if($('#constell-outlines').is(':checked')){
+		var outlines = 'on'
+	}else{
+		var outlines = 'off'
+	}
+	if($('#constell-names').is(':checked')){
+		var names = 'on'
+	}else{
+		var names = 'off'
+	}
+	if($('#constell-boundaries').is(':checked')){
+		var boundaries = 'on'
+	}else{
+		var boundaries = 'off'
+	}
+
+	var theme = $('#constell-theme-select option:selected').attr('value')
+
+	var p = {
+		long: longitude,
+		lat: latitude,
+		size: size,
+		ecEq: ecEq,
+		moPlan: moPlan,
+		deObj: deObj,
+		outlines: outlines,
+		names: names,
+		boundaries: boundaries,
+		theme:theme
+	}
+
+	console.log(p)
+	getConstellation(p)
+})
 
 // Logics to determine the appropriate image to cloud cover
 function cloudCover(data,i){
@@ -541,6 +595,6 @@ $(document).ready(function(){
 		 //    )
 	 })
 
-
+	 $('select').material_select();
 });
 
