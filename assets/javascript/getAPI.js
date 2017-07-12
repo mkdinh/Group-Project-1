@@ -669,7 +669,6 @@ $(document).ready(function(){
 	 })
 
 	 $('select').material_select();
-<<<<<<< HEAD
 
 	 // slider on constellation UI
 	 $('#constell-img-size').mousemove(function(){
@@ -678,6 +677,3 @@ $(document).ready(function(){
 	})
 });
 
-=======
-});
->>>>>>> f5766dfe737cb14de19b30eed999fb9bc6b5cffa
