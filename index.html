@@ -12,22 +12,48 @@
       <link type="text/css" rel="stylesheet" href="assets/css/style.css">
 
       <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 	
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+
+
+	<meta name="google-signin-scope" content="profile email">
+	<meta name="google-signin-client_id" content="605410716218-mir98nn8e8pod9i5l4up252ntgbj1m2r.apps.googleusercontent.com.apps.googleusercontent.com">
+
     </head>
 
     <body>
+
+		<!-- Preloadder -->
+			
+		  <div class="preloader-wrapper big active">
+		    <div class="spinner-layer spinner-blue-only">
+		      <div class="circle-clipper left">
+		        <div class="circle"></div>
+		      </div><div class="gap-patch">
+		        <div class="circle"></div>
+		      </div><div class="circle-clipper right">
+		        <div class="circle"></div>
+		      </div>
+		    </div>
+		  </div>
+
+
     	<!-- Profile Button -->
 		<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons show-on-large small" id="profile-button">settings</i></a>
 
 		<!-- NavBar -->
 		<nav>
 			<div class="nav-wrapper">
-				<a href="index.html" class="brand-logo"><i class="material-icons">cloud</i>Night By Night</a>
-				<ul class="right hide-on-med-and-down">
+				<a href="index.html" class="brand-logo"><i class="material-icons logo-icon">cloud</i>
+				<span>Night By Night</span><span class=' divider'>|</span>
+				<div class="brand-logo" id="clock"></div>
+				</a>
+
+				<ul class="right nav-list">
 					<li><input type="text" id="search-input"></li>
-				    <li><i class="material-icons">search</i></a></li>	
-				    <li><a href="index.html" id="refresh"><i class="material-icons">refresh</i></a></li>
-				    <li><a href="login.html" class="btn btn-floating pulse" id="login"><i class="material-icons">perm_identity</i></a></li>
+				    <li><i class="material-icons nav-search">search</i></a></li>	
+				    <li><a href="index.html" id="refresh"><i class="material-icons refresh">refresh</i></a></li>
+				    <li><i class="material-icons" id="switch-view">view_week</i></a></li>
+				    <li class="profile-btn hide-on-med-and-down"><a class="btn btn-floating pulse"><i class="material-icons">perm_identity</i></a></li>
 			  	</ul>
 			</div>
 		</nav>
@@ -38,10 +64,11 @@
 		    <li>
 			    <div class="user-view">
 			      <div class="background">
+							<img src="assets\image\background3.jpg">
 			      </div>
-			      <a href="#!user"><img class="circle" src="http://www.pieglobal.com/wp-content/uploads/2015/10/placeholder-user.png" style="margin:auto"></a>
-			      <a href="#!name"><span class="white-text name">John Doe</span></a>
-			      <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+			      <div class="profile-btn center"><a class="btn btn-floating pulse"><i class="material-icons">perm_identity</i></a></div>
+			      <a href="#!name"><span id="user-name" class="white-text">Anonymous user</span></a>
+			      <a href="#!email"><span id="user-email" class="white-text"></span></a>
 			    </div>
 		    </li>
 		    <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
@@ -54,6 +81,8 @@
 		<!-- Main Content -->
 			<!-- popup button-->
 		<div class="container">
+
+
 
 		  <!-- Modal Structure -->
 		  <div id="modal1" class="modal">
@@ -75,82 +104,262 @@
 
 			<!-- First Row div -->
 			<div class="row">
-				<!-- week/day event cards -->
-				<div class="col s12" id="eventContainer"> 
-   
-				</div>
+				<!-- weem view div -->
+				<div class="col s12">
+					<div id="week-view"> 
 
-					<!-- end of action cards -->
+					<!-- week view close-->
+					</div>
 
 					<!-- day view div -->
-					<div class="row">
-						<div class="col s2"></div>
-						<div class='col s5' id="today-weather-container">
+					<div class="row" id="day-view">
+							<!-- embedded constellation js -->
+					  <div class="col s1"></div>
+						<div class='col s6' id="today-weather-container">
+
+						    <ul class="tabs">
+						        <li class="tab col s3" id='tab-id-forecast' tab-data="tab-forecast"><a  href="#tab-forecast">Forecast</a></li>
+						        <li class="tab col s3" id='tab-id-events' tab-data="tab-events"><a href="#tab-events">Events</a></li>
+						        <li class="tab col s3" id='tab-id-news' tab-data="tab-news"><a href="#tab-news">News</a></li>
+						        <li class="tab col s3" id='tab-id-constell' tab-data="tab-constell"><a href="#tab-constell">Constell</a></li>
+					      	</ul>
 							<div class='col s12 card left' id="today-weather">
-								<h5> Forecast </h5>
-								<hr>
-
-								<div class='row'>
-									<div class='col s4' id='day-weather'><img src="assets/image/sample-weather.png"></div>
-									<div class='col s4' id='day-temperature'>40 F</div>
-									<div class='col s4' id='day-wind'><img src="assets/image/sample-wind.png"></div>
-								</div>
-								<hr>
 							
-							<div class='row'>
-								<div class='col s6 weather-info'>Pressure:</div>
-								<div class='col s6 weather-info'>Visibility:</div>
+							<div id="tab-forecast">
+								<div class='row weather-info-container center'>
+									<div class='col s4' id='day-weather'>
+										<canvas class="skycons" id="skycons"></canvas>
+										<p class="skycons-label"></p>
+									</div>
+									<div class='col s4' id='day-temperature'></div>
+									<div class='col s4' id='day-wind'><img src="assets/image/wind.png"><p class="windSpeed"></p></div>
+
+								</div>
+								<div class="additional-info"><h6 class="additional-info"> Additional Info </h6></div>
+								<hr>				
+								<table class='bordered'>
+							        <tbody>
+							          <tr>
+							            <td>Humidity</td>
+							            <td class="humidity"></td>
+							            <td>Precipipation Prob</td>
+							            <td class="precipProbability"></td>
+							          </tr>
+							           <tr>
+							            <td>Cloud Cover</td>
+							            <td class="cloudCover"></td>
+							            <td>Visibility</td>
+							            <td class="visibility"></td>
+							          </tr>
+							          <tr>
+							            <td>Moon Phase</td>
+							            <td class="moonPhase-data"></td>
+							            <td>Humidity</td>
+							            <td class="humidity"></td>
+							          </tr>
+							        </tbody>
+							      </table>  
+							 <!-- close tab-forecast -->
+							 </div>
+
+		  					<div id="tab-events">
+							<p>Current Constellation</p>
+														</div>
+
+							<div id='tab-news'>
+								<div >
+									<input type="text" id="news-input">
+				    				<a href='#/'><i class="material-icons search-icon" id="news-search">search</i></a>
+				    				<h6 id='news-search-method'>Search By: <b>Latest</b></h6>
+				    			</div>
+
+				    			<div id="news-display">
+				    				<ul class="collection" id='news-list'>
+
+				    				</ul>
+				    			</div>
 							</div>
 
-
-							<div class='row'>
-								<div class='col s6 weather-info'>Rainfall:</div>
-								<div class='col s6 weather-info'>Humidity:</div>
+							<div id='tab-constell'>
+							<p>Current Constellation</p>
+	<!-- 							<div style="width:100%">
+									<div id="wwtControl"
+									    data-settings="crosshairs=false,ecliptic=true,pictures=true,boundaries=true"
+									    data-aspect-ratio="8:5">
+									</div>
+							    </div> -->
 							</div>
 
-
-
-							</div>
+							 <!-- close today-weather-container -->
+						  	</div>	
+						<!-- close col s5 div -->
 						</div>
 						
 						<div class='col s3' id="today-events-container">
 							<div class="col s12 card left" id ='today-events'>
-								<h5>Events</h5>
+								<h5>Upcoming Event<a href="#/"><i class="material-icons right white-text" id="sidebar-events-btn">view_list</i></a></h5>
 								<hr>
 								 <ul class="collection collection-events">
-							      <li class="collection-item">Event 1</li>
-							      <li class="collection-item">Event 2</li>
-							      <li class="collection-item">Event 3</li>
-							      <li class="collection-item">Event 4</li>
+
+							      	<li class="collection-item ">
+								      	<div>
+									      	<a href="#/"><i class="material-icons event-item secondary-content left">add</i></a>
+									      	<span class="event-name">Event 1</span>
+									      	<a href="#modal1" class="secondary-content"><i class="material-icons event-more">send</i></a>
+								      	</div>
+							      	</li>
+
+							      	<li class="collection-item">
+								      	<div>
+									      <a href="#/"><i class="material-icons event-item secondary-content left">add</i></a>
+									      	<span class="event-name">Event 2</span>
+									      	<a href="#modal1" class="secondary-content"><i class="material-icons event-more">send</i></a>
+								      	</div>
+							      	</li>
+
+							      	<li class="collection-item">
+								      	<div>
+									      	<a href="#/"><i class="material-icons event-item secondary-content left">add</i></a>
+									      	<span class="event-name">Event 3</span>
+									      	<a href="#modal1" class="secondary-content"><i class="material-icons event-more">send</i></a>
+								      	</div>
+							      	</li>
+
+							      	<li class="collection-item">
+								      	<div>
+									      	<a href="#/"><i class="material-icons event-item secondary-content left">add</i></a>
+									      	<span class="event-name">Event 4</span>
+									      	<a href="#modal1" class="secondary-content"><i class="material-icons event-more">send</i></a>
+								      	</div>
+							      	</li>
 							    </ul>
 
-							    <h6>Brightest Observable</h6>
+							    <h5 style='font-size:20px'>Brightest Observable<a href="#/"><i class="material-icons right white-text">view_list</i></a></h5>
 								<hr>
 
 								 <ul class="collection collection-events">
-							      <li class="collection-item">Object 1</li>
-							      <li class="collection-item">Object 2</li>
-							      <li class="collection-item">Object 3</li>
-							      <li class="collection-item">Object 4</li>
+									<li class="collection-item"><div>Object 1<a href="#modal1" class="secondary-content"><i class="material-icons object-more" >send</i></a></div></li>
+							        <li class="collection-item"><div>Object 2<a href="#modal1" class="secondary-content"><i class="material-icons object-more">send</i></a></div></li>
+							        <li class="collection-item"><div>Object 3<a href="#modal1" class="secondary-content"><i class="material-icons object-more">send</i></a></div></li>
 							    </ul>
 							</div>
 						</div>
 						<div class="col s2"></div>
 					<!-- close day view div -->
+
 					</div>
 				<!-- close col s12 div -->
 				</div>
+
 			<!-- close first row div -->
 			</div>	
+
 		<!-- close container div -->
 		</div>
 
-      	<!--Import jQuery before materialize.js-->
+
+		<!-- Login Modal -->
+
+			<div id="login-modal" class="login modal">
+				<h5 class="white-text">Login</h5>
+				<hr>
+				<a id="g-signin" class="btn waves-effect waves-blackcurrant login-btn"><img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" class="auth-icon left">Sign In with Google</a>
+				<p class="center white-text">OR</p>
+				<form class="profile-input">
+					<h7 class="grey-text text-lighten-1">Email</h7>
+					<input id="email" type="email" placeholder="JohnSmith@email.com" class="input-field validate" required>
+					<!--TODO: make placeholder darker, maybe make input fields more opaque-->
+					<h7 class="grey-text text-lighten-1">Password</h7>
+					<input id="password" type="password" class="input-field validate" required>
+					<button id="login-submit" class="login-submit login-btn center waves-effect waves-block waves-light" type="submit">Submit</button>
+				</form>
+
+				<p class="center white-text">Don't have an account?</p>
+				<!--TODO: fix waves-effect on 	buttons-->
+				<a class="create-account btn waves-effect waves-blackcurrant login-btn">create new account</a>
+				<!-- close login Div -->
+			</div>
+
+			<div id="logout-modal" class="login modal">
+				<a id="signout" class="btn waves-effect waves-blackcurrant login-btn"><i class="material-icons">exit_to_app</i>sign out</a>
+			</div>
+
+			<div id="update-modal" class="login modal">
+				<h6 class="white-text">Thanks! Now, what should we call you?</h6>
+				<form>
+						<div class="input-field">
+							<input id="name" type="text" class="validate" required>
+							<label for="name">Name</label>
+						</div>
+						<h6 class="white-text">Pick a photo to represent you:</h6>
+						<div class="row">
+							<div class="col s4 l2">
+								<label>
+              <input type="radio" name="icon" id="pic1" data-image="assets/image/Profile-Pic/pic1.jpg"/>
+              <img class="responsive-img circle" src="assets/image/Profile-Pic/pic1.jpg">
+            </label>
+							</div>
+							<div class="col s4 l2">
+								<label>
+              <input type="radio" name="icon" id="pic2" data-image="assets/image/Profile-Pic/pic2.jpg"/>
+              <img class="responsive-img circle" src="assets/image/Profile-Pic/pic2.jpg">
+            </label>
+							</div>
+							<div class="col s4 l2">
+								<label>
+              <input type="radio" name="icon" id="pic3" data-image="assets/image/Profile-Pic/pic3.jpg"/>
+              <img class="responsive-img circle" src="assets/image/Profile-Pic/pic3.jpg">
+            </label>
+							</div>
+							<div class="col s4 l2">
+								<label>
+              <input type="radio" name="icon" id="pic4" data-image="assets/image/Profile-Pic/pic4.jpg"/>
+              <img class="responsive-img circle" src="assets/image/Profile-Pic/pic4.jpg">
+            </label>
+							</div>
+							<div class="col s4 l2">
+								<label>
+              <input type="radio" name="icon" id="pic5" data-image="assets/image/Profile-Pic/pic5.jpg"/>
+              <img class="responsive-img circle" src="assets/image/Profile-Pic/pic5.jpg">
+            </label>
+							</div>
+							<div class="col s4 l2">
+								<label>
+              <input type="radio" name="icon" id="pic6" data-image="assets/image/Profile-Pic/pic6.jpg"/>
+              <img class="responsive-img circle" src="assets/image/Profile-Pic/pic6.jpg">
+            </label>
+							</div>
+						</div>
+							<button id="update-submit" class="login-btn center waves-effect waves-block waves-light" type="submit">Submit</button>
+					</form>
+			</div>
+
+
+
+
+      	<!-- Functional js for time and weather icons -->
+      	<script type="text/javascript" src="assets/javascript/skycons.js"></script>
       	<script type="text/javascript" src="assets/javascript/moment.js"></script>
+		
+		<!-- Google Sign In -->
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+      	<!--Import jQuery before materialize.js-->
 	    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	    <script type="text/javascript" src="assets/javascript/materialize.min.js"></script>
-	   	<script type="text/javascript" src="assets/javascript/getAPI.js"></script>
-	    <script type="text/javascript" src="assets/javascript/logic.js"></script>
+		
+		<!-- Import Firebase js -->
+		<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+		<script type="text/javascript" src="assets/javascript/firebase.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase-database.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase-messaging.js"></script>
+
+	    <!-- application logics js -->
+<!-- 	    <script src="http://worldwidetelescope.org/embedded-webcontrol.js"></script> -->
+	    <script type='text/javascript' src='assets/javascript/googleSignIn.js'></script>
+    	<script type="text/javascript" src="assets/javascript/getAPI.js"></script>
     </body>
   </html>
         
