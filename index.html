@@ -181,6 +181,33 @@
 
 			    			<ul class='collection' id='news-list'></ul>
 
+			<!-- First Row div -->
+			<div class="row">
+				<!-- weem view div -->
+				<div class="col s12">
+					<div id="week-view"> 
+					<!-- week view close-->
+					</div>
+					<!-- end of action cards -->
+
+					<!-- day view div -->
+					<div class="row" id="day-view">
+					  <div class="col s1"></div>
+						<div class='col s6' id="today-weather-container">
+
+						    <ul class="tabs">
+						        <li class="tab col s3" id='tab-id-forecast' tab-data="tab-forecast"><a  href="#tab-forecast">Forecast</a></li>
+						        <li class="tab col s3" id='tab-id-events' tab-data="tab-events"><a href="#tab-events">Events</a></li>
+						        <li class="tab col s3" id='tab-id-news' tab-data="tab-news"><a href="#tab-news">News</a></li>
+						        <li class="tab col s3" id='tab-id-constellation' tab-data="tab-constellation"><a class='active' href="#tab-constellation">Constell</a></li>
+					      	</ul>
+							<div class='col s12 card left' id="today-weather">
+							
+							<div id="tab-forecast">
+								<div id="weather-display" class='row weather-info-container center'>
+									<div class='col s4' id='day-weather'>
+										<canvas class="skycons" id="skycons"></canvas>
+										<p class="skycons-label"></p>
 						</div>
 						
 						<!-- Constellation Tab -->
@@ -274,18 +301,6 @@
 								<div class="fine-print">
 									via <a href="https://apod.nasa.gov/apod/astropix.html">Astronomy Picture of the Day</a>
 								</div>
-
-								<!--<h5>Upcoming Event<a href="#/"><i class="material-icons right white-text" id="sidebar-events-btn">view_list</i></a></h5>
-								<hr>
-								 <ul class="collection collection-events">
-							      	<li class="collection-item">
-								      	<div>
-									      	<a href="#/"><i class="material-icons event-item secondary-content left">add</i></a>
-									      	<span class="event-name">Event 4</span>
-									      	<a href="#modal1" class="secondary-content"><i class="material-icons event-more">send</i></a>
-								      	</div>
-							      	</li>
-							    </ul>-->
 
 							    <h5 class="side-bar-sect">Brightest Observable<a href="#/"><i class="material-icons right white-text">view_list</i></a></h5>
 								<hr>
