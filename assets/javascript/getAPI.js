@@ -212,7 +212,7 @@ $('#week-view').on('click','.weekly-event',function(){
 	var modal = $('#modal1')
 	$('#modal1').empty();
 	var dayNum = $(this).attr('data-num')
-	var selectedContent = $('#week-content-'+dayNum);
+	var selectedContent = $('#week-content-'+dayNum).clone();
 	modal.prepend(selectedContent)
 	addModalfooter()
 })
