@@ -189,13 +189,13 @@
 						<!-- 	<div id='iframe-container'>
 								<iframe id="iframe" src="http://www.fourmilab.ch/cgi-bin/Yoursky?z=1&lat=35.7772&ns=North&lon=78.6392&ew=West"></iframe>
 							</div> -->
-							<div id="constell-display"></div>
+							<div id="constell-display" class='center'></div>
 							<div class="row" id="constell-input-container">
 						
 							<!-- Adjust image size -->
 								<form class="constell-row2">
 									<p class="range-field">
-			    					  <input class='constell-input' id='constell-img-size' type="range" id="test5" min="250" max="550" />
+			    					  <input id='constell-img-size' type="range" min="50" max="100" />
 			 					   </p>
 	 					   		</form>
 								<!-- Switch for other objects -->
@@ -203,7 +203,7 @@
 									<p>Ecliptic &amp; Equator</p>
 									<label>
 									Off
-									<input id='ecEq' class='constell-input' type="checkbox">
+									<input id='ecEq' class='constell-input' type="checkbox" checked>
 									<span class="lever"></span>
 									On
 									</label>
@@ -229,15 +229,15 @@
 								<form action="#" class="checkboxes col s6">
 									<p>Constellation</p>
 									<p>
-								      <input class="constell-input" type="checkbox" id="constell-outlines" />
+								      <input class="constell-input" type="checkbox" id="constell-outlines" checked>
 								      <label for="constell-outlines">Outlines</label>
       								</p>
       								<p>
-	      								<input class="constell-input" type="checkbox" id="constell-names" / >
+	      								<input class="constell-input" type="checkbox" id="constell-names">
 	      								<label for="constell-names">Names</label>
       								</p>
       								<p>
-	      								<input class="constell-input" type="checkbox" id="constell-boundaries" />
+	      								<input class="constell-input" type="checkbox" id="constell-boundaries">
 	      								<label for="constell-boundaries">Boundaries</label>
       								</p>
 
@@ -246,12 +246,15 @@
 										<select id='#constell-theme-select' class="constell-input">
 											<option value="0">Colour</option>
 											<option value="1">Black on White</option>
-											<option value="2">White on Black</option>
+											<option value="2" selected="selected">White on Black</option>
 											<option value="3">Infrared</option>
 										</select>
 										<label>Materialize Select</label>
 									</div>
 								</form>
+
+								<button id="constell-submit" class="login-btn center waves-effect waves-block waves-light" type="submit">Submit</button>
+
 							</div>
 						</div>
 					 <!-- close today-weather -->

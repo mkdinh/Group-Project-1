@@ -277,6 +277,11 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
     -webkit-transform-origin: 0 0;
 }*/
  
+#constell-display{
+	margin:auto;
+	width:75%;
+} 
+
 #constell-img{
 	width:100%;
 	border-radius:100%;

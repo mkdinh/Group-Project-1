@@ -378,47 +378,37 @@ function getNews(){
 	})
 }
 
-function getConstellation(p){
-	var img = $("<img>");
-	img.attr('id','constell-img')
-	var src = 'https://www.fourmilab.ch/cgi-bin/Yoursky?date=0&utc=1998%2F02%2F06+12%3A42%3A40&jd=2450851.02963&lat='+p.lat+'%B0&ns=North&lon='+p.long+'%B0&ew=East&coords='+p.ecEq+'&moonp='+p.moPlan+'&deep='+p.deObj+'&deepm=2.5&consto='+p.outlines+'&constn='+p.names+'&constb='+p.boundaries+'&limag=5.5&starn=on&starnm=2.0&starb=off&starbm=2.5&imgsize='+p.size+'&dynimg=y&fontscale=1.0&scheme='+p.theme+'&elements='
-	img.attr('src',src)
-	$('#constell-display').html(img)
-}
-
-$('.constell-input').click(function(){
-
-	var size = $('#constell-img-size').val();
+function getConstellation(){
 
 	if($('#ecEq').is(':checked')){
-		var ecEq = 'on'
+		var ecEq = '&coords=on'
 	}else{
-		var ecEq = 'off'
+		var ecEq = ''
 	}console.log(ecEq)
 	if($('#moPlan').is(':checked')){
-		var moPlan = 'on'
+		var moPlan = '&moonp=on'
 	}else{
-		var moPlan = 'off'
+		var moPlan = ''
 	}
 	if($('#deObj').is(':checked')){
-		var deObj = 'on'
+		var deObj = '&deep=on'
 	}else{
-		var deObj = 'off'
+		var deObj = ''
 	}
 	if($('#constell-outlines').is(':checked')){
-		var outlines = 'on'
+		var outlines = '&consto=on'
 	}else{
-		var outlines = 'off'
+		var outlines = ''
 	}
 	if($('#constell-names').is(':checked')){
-		var names = 'on'
+		var names = '&constn=on'
 	}else{
-		var names = 'off'
+		var names = ''
 	}
 	if($('#constell-boundaries').is(':checked')){
-		var boundaries = 'on'
+		var boundaries = '&constb=on'
 	}else{
-		var boundaries = 'off'
+		var boundaries = ''
 	}
 
 	var theme = $('#constell-theme-select option:selected').attr('value')
@@ -426,7 +416,6 @@ $('.constell-input').click(function(){
 	var p = {
 		long: longitude,
 		lat: latitude,
-		size: size,
 		ecEq: ecEq,
 		moPlan: moPlan,
 		deObj: deObj,
@@ -435,9 +424,17 @@ $('.constell-input').click(function(){
 		boundaries: boundaries,
 		theme:theme
 	}
-
 	console.log(p)
-	getConstellation(p)
+	var img = $("<img>");
+	img.attr('id','constell-img')
+	var src = 'https://www.fourmilab.ch/cgi-bin/Yoursky?date=0&utc=1998%2F02%2F06+12%3A42%3A40&jd=2450851.02963&lat='+p.lat+'%B0&ns=North&lon='+p.long+'%B0&ew=East'+p.ecEq+p.moPlan+p.deObj+'&deepm=2.5'+p.outlines+p.names+p.boundaries+'&limag=5.5&starnm=2.0&starbm=2.5&imgsize=550&dynimg=y&fontscale=1.0&scheme='+p.theme+'&elements='
+	img.attr('src',src)
+	$('#constell-display').html(img)
+	console.log(src)
+}
+
+$('.constell-input').click(function(e){
+	getConstellation()
 })
 
 // Logics to determine the appropriate image to cloud cover
@@ -587,6 +584,7 @@ $(document).ready(function(){
 
 	 // embded constellation when click on constellation tab
 	 $('#tab-id-constell').click(function(){
+	 	getConstellation()
 	 	// $('#tab-constell').append('<div id="wwtControl"'
 			// + ' data-settings="crosshairs=false,ecliptic=true,pictures=true,boundaries=true"'
 		 //    + ' data-aspect-ratio="8:5"></div>'
@@ -596,5 +594,11 @@ $(document).ready(function(){
 	 })
 
 	 $('select').material_select();
+
+	 // slider on constellation UI
+	 $('#constell-img-size').mousemove(function(){
+		var size = $('#constell-img-size').val();
+		$('#constell-display').css('width',size+'%')
+	})
 });
 
