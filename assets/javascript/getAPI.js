@@ -669,7 +669,8 @@ $(document).ready(function(){
 	 })
 
 	 $('select').material_select();
-	 
+
+
 	 // slider on constellation UI
 	 $('#constell-img-size').mousemove(function(){
 		var size = $('#constell-img-size').val();
