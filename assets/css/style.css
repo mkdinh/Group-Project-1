@@ -16,7 +16,6 @@ nav{
 	background-color: rgba(20,28,58,.7);
 }
 
-.container{opacity: 0; margin:auto;}
 
 /*------------------------------------- PRELOADER CSS ------------------------------------------*/
 
@@ -62,7 +61,7 @@ nav{
 
 .container{
 	width:96%;
-	margin:0;
+	margin:auto;
 	opacity:0;
 }
 
