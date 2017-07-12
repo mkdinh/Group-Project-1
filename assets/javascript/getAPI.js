@@ -81,6 +81,7 @@ function getWeather(){
 
                // update week-view modal weather 
                getWeeklyUpdate(data);
+							 rankNights(data);
 
                // // get constellation based on long + lat
                // getConstellation(longitude,latitude)
@@ -185,6 +186,7 @@ function getWeekDays(data){
     	var currentDay = moment().add(1*i,'days').format('dddd');
     	var cardDate = $('<p>');
     	cardDate.addClass('day card-title');
+			cardDate.attr("id", "day" + i);
     	cardDate.text(currentDay);
     	cardCon.append(cardDate);
 
@@ -314,6 +316,79 @@ function getWeeklyUpdate(data){
 		}
 
 	$('body').append(modalContentContainer)
+}
+
+// rank nightly stargazing score
+function rankNights(data) {
+  var days = data.daily.data;
+  for (var i = 0; i < 7; i++) {
+    var today = days[i];
+    // cloud ranking is the inverse of cloud cover--80% cloud cover = 20% ranking
+    var cloudRanking = 1 - today.cloudCover;
+    var moonRanking = 1 - today.moonPhase;
+    var precipRanking;
+    var precipMaxTime = moment.unix(today.precipIntensityMaxTime).format("H");
+    var sunset = moment.unix(today.sunsetTime).format("H");
+    var sunrise = moment.unix(today.sunriseTime).format("H");
+
+    // if there is a precipitation time predicted, and it falls between sunset and sunrise...
+    if ((precipMaxTime > sunset || precipMaxTime < sunrise) && today.precipIntensityMax > 0.1) {
+      precipRanking = 1 - today.precipProbability;
+    } else {
+      precipRanking = 1;
+    }
+    var tempRanking;
+    // : if it's below freezing, goes down progressively
+    if (today.temperatureMin > 20) {
+      tempRanking = 1;
+    } else if (today.temperatureMin / 20 > 0) {
+      tempRanking = today.temperatureMin / 20;
+    } else {
+      tempRanking = 0;
+    }
+    var totalRanking = (cloudRanking * 0.6) + (moonRanking * 0.2) + (precipRanking * 0.15) + (tempRanking * 0.05);
+		console.log("totalRanking for day", i, ": ", totalRanking);
+
+		// display score in week view:
+		var dayRankLine = $("<div>");
+		var rating = $("<span class=rating>"); // happens
+		rating.text(Math.round(totalRanking * 100) + "%"); // happens
+		dayRankLine.html("Score: "); // happens
+		dayRankLine.append(rating); // doesn't happen on 0. (does on others)
+		console.log("on loop iteration", i, "rating is", rating, "and dayRankLine is", dayRankLine);
+		$("#day" + i).after(dayRankLine); // happens (even on 0)
+
+    // display score in day view, for today only:
+		if (i === 0) {
+			var scoreLine = $("<div class='score-line weather-info-container'>");
+			var stars = $("<span id=star-container>");
+			// convert rating to base-5 for stars and round to the nearest half-star:
+			var starNum = Number.parseFloat((Math.round(totalRanking * 10) / 2).toFixed(1));
+			// show as many whole stars as the integer part of that number,
+			// as many half stars as the decimal part, if it exists,
+			// and as many empty stars as 5 - the number - any half star
+			console.log("starNum", starNum);
+			var wholeStars = 0;
+			var halfStar = 0;
+			var emptyStars = 0;
+			while (wholeStars < Math.floor(starNum)) {
+				stars.append('<i class="material-icons">star</i>');
+				wholeStars++;
+			}
+			while (halfStar < Math.ceil(starNum % 1)) {
+				stars.append('<i class="material-icons">star_half</i>');
+				halfStar++;
+			}
+			while (emptyStars < (5 - wholeStars - halfStar)) {
+				stars.append('<i class="material-icons">star_border</i>');
+				emptyStars++;
+			}
+			console.log("wholeStars", wholeStars, "; halfStar", halfStar, "; emptyStars", emptyStars);
+			scoreLine.text("Tonight's stargazing score: ");
+			scoreLine.append(rating.clone(), stars)
+			$("#weather-display").after(scoreLine);
+		}
+  }
 }
 
 // Get news
