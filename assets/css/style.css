@@ -14,6 +14,8 @@ nav{
 	background-color: rgba(20,28,58,.7);
 }
 
+.container{opacity: 0;}
+
 .preloader-wrapper{
  	position: absolute;
  	top:50%;
@@ -68,12 +70,13 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 	overflow:hidden;
 	width:100%;
 	display:none;
+
 }
 
 .modal-weekly-weather{width: 20%;}
 
 #day-view{
-	display:none;
+/*	display:none;*/
 }
 
 .card{
@@ -266,6 +269,10 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 
 /* event tab*/
 
+
+
+/*constellation tab*/
+.constell-embedded{display:none;}
 /*Login Page*/
 
 .g-signin2{

@@ -175,7 +175,8 @@ function getWeekDays(data){
     	eventCon.append(cardCon)
     }
 
-    $("#day-view").fadeToggle('fast')
+    $(".container").animate({opacity:1},'fast')
+
 }
 
 //get weekly Info
@@ -447,12 +448,13 @@ $('.event-item').click(function(){
 	 	}
 	 })
 
-	 $('#tab-id-constellation').click(function(){
-	 	$('tab-constellation').append(
-	 		+'<div id="wwtControl"'+
-			+ 'data-settings="crosshairs=false,ecliptic=true,pictures=true,boundaries=true"'
-		    + 'data-aspect-ratio="8:5"'>    
-		    + '</div>')
+	 // embded constellation when click on constellation tab
+	 $('#tab-id-constell').click(function(){
+	 	$('#tab-constell').append('<div id="wwtControl"'
+			+ ' data-settings="crosshairs=false,ecliptic=true,pictures=true,boundaries=true"'
+		    + ' data-aspect-ratio="8:5"></div>'
+		    + ' <script src="http://worldwidetelescope.org/embedded-webcontrol.js"></script>')
+		 // $('.constell-embedded').css('display','visible')
 	 })
   });
 
