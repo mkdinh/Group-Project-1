@@ -1,4 +1,4 @@
-//Run some jQuery
+    //Run some jQuery
 $(document).ready(function(){
     
     //set up for search hints
@@ -63,6 +63,7 @@ $(document).ready(function(){
         async: false,
         dataType: "json",
         success: function(data){
+            console.log(data)
             for(var i = 0; i <data[1].length; i++){
                 $("#output").append("<li><a href="+ data[3][i] +">"+ data[1][i] + "</a><p>"+ data[2][i] +"</p><li>");
             }

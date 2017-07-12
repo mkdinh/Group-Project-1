@@ -1,5 +1,7 @@
 <!DOCTYPE html>
   <html>
+
+<!-- .......................................    IMPORT CSS  .................................................. -->
     <head>
       <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -15,14 +17,15 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
 
 
-	<meta name="google-signin-scope" content="profile email">
-	<meta name="google-signin-client_id" content="605410716218-mir98nn8e8pod9i5l4up252ntgbj1m2r.apps.googleusercontent.com.apps.googleusercontent.com">
-
+	  <meta name="google-signin-scope" content="profile email">
+	  <meta name="google-signin-client_id" content="605410716218-mir98nn8e8pod9i5l4up252ntgbj1m2r.apps.googleusercontent.com.apps.googleusercontent.com">
     </head>
+
+<!-- Body Start -->
 
     <body>
 
-		<!-- Preloadder -->
+<!-- .......................................   PRELOADER  .................................................. -->
 			
 		  <div class="preloader-wrapper big active">
 		    <div class="spinner-layer spinner-blue-only">
@@ -36,9 +39,11 @@
 		    </div>
 		  </div>
 
-
     	<!-- Profile Button -->
 		<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons show-on-large small" id="profile-button">settings</i></a>
+
+
+<!-- .......................................    NAVBAR .................................................. -->
 
 		<!-- NavBar -->
 		<nav>
@@ -58,7 +63,28 @@
 			</div>
 		</nav>
 		
-		<!-- Side Nav -->
+<!-- .......................................    MODAL DIV .................................................. -->
+
+
+					<!-- Modal Structure -->
+		<div id="modal1" class="modal">
+			<div class="modal-content">
+			  <h4>Astronomy Events</h4>
+			  <ul>
+			  	<li>event 1</li>
+			  	<li>event 2</li>
+			  	<li>event 3</li>
+			  	<li>event 4</li>
+			  	<li>event 5</li>
+			  	<li>event 6</li>
+			  </ul>
+			</div>
+			<div class="modal-footer">
+			  <a href="#!" class="modal-action modal-close waves-effect btn-flat">Close</a>
+			</div>
+		</div>
+
+<!-- .......................................    SIDENAV  .................................................. -->
 
 		<ul id="slide-out" class="side-nav"  style="background-color: rgba(135,136,156,.8)">
 		    <li>
@@ -77,153 +103,113 @@
 		    <li><a class="subheader">Subheader</a></li>
 		    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
 		</ul>
+<!-- .......................................    DAILY / WEEKLY UPDATE .................................................. -->]
 
-		<!-- Main Content -->
-			<!-- popup button-->
-		<div class="container">
+	<div class="container">
+			<!-- week view div -->
+			<div class="row" id="week-view"></div>
+				
+			<div class="row" id='day-view'>
+				<!-- day view div -->
+			 	<div class="col s1"></div>
+				
+			  	<!-- Main Content div -->
+				<div class='col s6' id="main-content">
 
+				    <ul class="tabs row">
+				        <li class="tab col s3" id='tab-id-forecast' tab-data="tab-forecast"><a  href="#tab-forecast">Forecast</a></li>
+				        <li class="tab col s3" id='tab-id-events' tab-data="tab-events"><a href="#tab-events">Events</a></li>
+				        <li class="tab col s3" id='tab-id-news' tab-data="tab-news"><a href="#tab-news">News</a></li>
+				        <li class="tab col s3" id='tab-id-constell' tab-data="tab-constell"><a href="#tab-constell">Constell</a></li>
+			      	</ul>
+				
+					<!-- .........................    MAIN TABS ............................ -->
 
+					<div id="tab-content" class='row'>					
+						<!-- Forecast Tab -->
+						<div id="tab-forecast">
 
-		  <!-- Modal Structure -->
-		  <div id="modal1" class="modal">
-		    <div class="modal-content">
-		      <h4>Astronomy Events</h4>
-		      <ul>
-		      	<li>event 1</li>
-		      	<li>event 2</li>
-		      	<li>event 3</li>
-		      	<li>event 4</li>
-		      	<li>event 5</li>
-		      	<li>event 6</li>
-		      </ul>
-		    </div>
-		    <div class="modal-footer">
-		      <a href="#!" class="modal-action modal-close waves-effect btn-flat">Close</a>
-		    </div>
-		  </div>
-
-			<!-- First Row div -->
-			<div class="row">
-				<!-- weem view div -->
-				<div class="col s12">
-					<div id="week-view"> 
-
-					<!-- week view close-->
-					</div>
-
-					<!-- day view div -->
-					<div class="row" id="day-view">
-					  <div class="col s1"></div>
-						<div class='col s6' id="today-weather-container">
-
-						    <ul class="tabs">
-						        <li class="tab col s3" id='tab-id-forecast' tab-data="tab-forecast"><a  href="#tab-forecast">Forecast</a></li>
-						        <li class="tab col s3" id='tab-id-events' tab-data="tab-events"><a href="#tab-events">Events</a></li>
-						        <li class="tab col s3" id='tab-id-news' tab-data="tab-news"><a href="#tab-news">News</a></li>
-						        <li class="tab col s3" id='tab-id-constell' tab-data="tab-constell"><a href="#tab-constell">Constell</a></li>
-					      	</ul>
-							<div class='col s12 card left' id="today-weather">
-							
-							<div id="tab-forecast">
-								<div class='row weather-info-container center'>
-									<div class='col s4' id='day-weather'>
-										<canvas class="skycons" id="skycons"></canvas>
-										<p class="skycons-label"></p>
-									</div>
-									<div class='col s4' id='day-temperature'></div>
-									<div class='col s4' id='day-wind'><img src="assets/image/wind.png"><p class="windSpeed"></p></div>
-
+							<div class='row weather-info-container center'>
+								<div class='col s4' id='day-weather'>
+									<canvas class="skycons" id="skycons"></canvas>
+									<p class="skycons-label"></p>
 								</div>
-								<div class="additional-info"><h6 class="additional-info"> Additional Info </h6></div>
-								<hr>				
-								<table class='bordered'>
-							        <tbody>
-							          <tr>
-							            <td>Humidity</td>
-							            <td class="humidity"></td>
-							            <td>Precipipation Prob</td>
-							            <td class="precipProbability"></td>
-							          </tr>
-							           <tr>
-							            <td>Cloud Cover</td>
-							            <td class="cloudCover"></td>
-							            <td>Visibility</td>
-							            <td class="visibility"></td>
-							          </tr>
-							          <tr>
-							            <td>Moon Phase</td>
-							            <td class="moonPhase-data"></td>
-							            <td>Humidity</td>
-							            <td class="humidity"></td>
-							          </tr>
-							        </tbody>
-							      </table>  
-							 <!-- close tab-forecast -->
-							 </div>
+								<div class='col s4' id='day-temperature'></div>
+								<div class='col s4' id='day-wind'><img src="assets/image/wind.png"><p class="windSpeed"></p></div>
 
-		  					<div id="tab-events">
-							<p>Current Constellation</p>
-														</div>
-
-							<div id='tab-news'>
-								<div >
-									<input type="text" id="news-input">
-				    				<a href='#/'><i class="material-icons search-icon" id="news-search">search</i></a>
-				    				<h6 id='news-search-method'>Search By: <b>Latest</b></h6>
-				    			</div>
-
-				    			<div id="news-display">
-				    				<ul class="collection" id='news-list'>
-
-				    				</ul>
-				    			</div>
 							</div>
 
-							<div id='tab-constell'>
-							<p>Current Constellation</p>
-	<!-- 							<div style="width:100%">
-									<div id="wwtControl"
-									    data-settings="crosshairs=false,ecliptic=true,pictures=true,boundaries=true"
-									    data-aspect-ratio="8:5">
-									</div>
-							    </div> -->
-							</div>
-
-							 <!-- close today-weather-container -->
-						  	</div>	
-						<!-- close col s5 div -->
+							<div class="additional-info"><h6 class="additional-info"> Additional Info </h6></div>
+							<hr>				
+							<table class='bordered'>
+						        <tbody>
+						          <tr>
+						            <td>Humidity</td>
+						            <td class="humidity"></td>
+						            <td>Precipipation Prob</td>
+						            <td class="precipProbability"></td>
+						          </tr>
+						           <tr>
+						            <td>Cloud Cover</td>
+						            <td class="cloudCover"></td>
+						            <td>Visibility</td>
+						            <td class="visibility"></td>
+						          </tr>
+						          <tr>
+						            <td>Moon Phase</td>
+						            <td class="moonPhase-data"></td>
+						            <td>Humidity</td>
+						            <td class="humidity"></td>
+						          </tr>
+						        </tbody>
+						      </table>  
+						<!-- close tab-forecast -->
 						</div>
 						
+						<!-- Event Tab -->
+	  					<div id="tab-events">
+						
+						</div>
+				
+						<!-- News Tab -->
+						<div id='tab-news'>
+							<div >
+								<input type="text" id="news-input">
+			    				<a href='#/'><i class="material-icons search-icon" id="news-search">search</i></a>
+			    				<h6 id='news-search-method'>Search By: <b>Latest</b></h6>
+			    			</div>
+
+			    			<ul class='collection' id='news-list'></ul>
+
+						</div>
+						
+						<!-- Constellation Tab -->
+						<div id='tab-constell'>
+							<p>Current Constellation</p>
+
+						</div>
+					
+					 <!-- close today-weather -->
+				  	</div>	
+				<!-- close today-weather-container -->
+				</div>
+
+	
+<!-- .......................................   SIDE BAR  .................................................. -->
+
+
 						<div class='col s3' id="today-events-container">
 							<div class="col s12 card left" id ='today-events'>
-								<h5>Upcoming Event<a href="#/"><i class="material-icons right white-text" id="sidebar-events-btn">view_list</i></a></h5>
+								<h5 class="side-bar-sect truncate">Astronomy Picture of the Day</h5>
+								<hr>
+								<div id="imageOfTheDay" class="center"></div>									
+								<div class="fine-print">
+									via <a href="https://apod.nasa.gov/apod/astropix.html">Astronomy Picture of the Day</a>
+								</div>
+
+								<!--<h5>Upcoming Event<a href="#/"><i class="material-icons right white-text" id="sidebar-events-btn">view_list</i></a></h5>
 								<hr>
 								 <ul class="collection collection-events">
-
-							      	<li class="collection-item ">
-								      	<div>
-									      	<a href="#/"><i class="material-icons event-item secondary-content left">add</i></a>
-									      	<span class="event-name">Event 1</span>
-									      	<a href="#modal1" class="secondary-content"><i class="material-icons event-more">send</i></a>
-								      	</div>
-							      	</li>
-
-							      	<li class="collection-item">
-								      	<div>
-									      <a href="#/"><i class="material-icons event-item secondary-content left">add</i></a>
-									      	<span class="event-name">Event 2</span>
-									      	<a href="#modal1" class="secondary-content"><i class="material-icons event-more">send</i></a>
-								      	</div>
-							      	</li>
-
-							      	<li class="collection-item">
-								      	<div>
-									      	<a href="#/"><i class="material-icons event-item secondary-content left">add</i></a>
-									      	<span class="event-name">Event 3</span>
-									      	<a href="#modal1" class="secondary-content"><i class="material-icons event-more">send</i></a>
-								      	</div>
-							      	</li>
-
 							      	<li class="collection-item">
 								      	<div>
 									      	<a href="#/"><i class="material-icons event-item secondary-content left">add</i></a>
@@ -231,9 +217,9 @@
 									      	<a href="#modal1" class="secondary-content"><i class="material-icons event-more">send</i></a>
 								      	</div>
 							      	</li>
-							    </ul>
+							    </ul>-->
 
-							    <h5 style='font-size:20px'>Brightest Observable<a href="#/"><i class="material-icons right white-text">view_list</i></a></h5>
+							    <h5 class="side-bar-sect">Brightest Observable<a href="#/"><i class="material-icons right white-text">view_list</i></a></h5>
 								<hr>
 
 								 <ul class="collection collection-events">
@@ -245,17 +231,13 @@
 						</div>
 						<div class="col s2"></div>
 					<!-- close day view div -->
-
 					</div>
 				<!-- close col s12 div -->
 				</div>
-
-			<!-- close first row div -->
-			</div>	
-
 		<!-- close container div -->
 		</div>
 
+<!-- .......................................   LOGIN MODALS  .................................................. -->
 
 		<!-- Login Modal -->
 
@@ -279,9 +261,13 @@
 				<!-- close login Div -->
 			</div>
 
+			<!-- Logout Modal -->
+
 			<div id="logout-modal" class="login modal">
 				<a id="signout" class="btn waves-effect waves-blackcurrant login-btn"><i class="material-icons">exit_to_app</i>sign out</a>
 			</div>
+
+			<!-- Update Modal -->
 
 			<div id="update-modal" class="login modal">
 				<h6 class="white-text">Thanks! Now, what should we call you?</h6>
@@ -334,6 +320,7 @@
 			</div>
 
 
+<!-- .......................................   IMPORT JAVASCRIPT  .................................................. -->
 
 
       	<!-- Functional js for time and weather icons -->
@@ -356,7 +343,7 @@
 		<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase-messaging.js"></script>
 
 	    <!-- application logics js -->
-<!-- 	    <script src="http://worldwidetelescope.org/embedded-webcontrol.js"></script> -->
+	    <script src="http://worldwidetelescope.org/embedded-webcontrol.js"></script>
 	    <script type='text/javascript' src='assets/javascript/googleSignIn.js'></script>
     	<script type="text/javascript" src="assets/javascript/getAPI.js"></script>
     </body>

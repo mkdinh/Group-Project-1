@@ -7,8 +7,9 @@ var countryCode;
 var days = [];
 
 
-
 //FUNCTIONS
+
+// Gather current location in coordinate
 
 function getLocation() {
     if(navigator.geolocation){
@@ -19,6 +20,8 @@ function getLocation() {
     
 }
 
+// Convert current location to longitude and latitude
+
 function showPosition(position){
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
@@ -28,6 +31,8 @@ function showPosition(position){
     getWeather();
     
 }
+
+// Gather reverse geolocate long + lat to output city name and zip code
 
 function reverseGeo(long, lat) {
     var apiKey = "AIzaSyD4ya-QQ9KFOYVNcp-ejxBwaY_NeZ0txBE";
@@ -52,6 +57,8 @@ function reverseGeo(long, lat) {
     })
 }
 
+// using long + lat, gather weather information
+
 function getWeather(){
         //CORS prefix
         var cors = "https://cors-anywhere.herokuapp.com/";
@@ -66,10 +73,18 @@ function getWeather(){
             dataType: "json",
             success: function(data){
                console.log(data);
+               // update day-view weather
                updateTodayWeather(data)
+
+               // update week-view weather
                getWeekDays(data);
+
+               // update week-view modal weather 
                getWeeklyUpdate(data);
+
+               // fade out preloader after gathered all information
                $('.preloader-wrapper').fadeOut('fast') 
+               $(".container").animate({opacity:1},'slow')
             },
             error: function(errorMessage){
                 alert("Error" + errorMessage);
@@ -77,7 +92,11 @@ function getWeather(){
         });
 }
 
+// update day-view weather
+
 function updateTodayWeather(data){
+
+	// Change skycons css color
 	icons = new Skycons({
 	   "monochrome": false,
 	   "colors" : {
@@ -91,6 +110,8 @@ function updateTodayWeather(data){
 	     'sun': '#fdb813'
 	   }
 	   });
+
+	// Pick appropriate skycon icon from getWeather ajax
 	var weatherCond = data.currently.icon;
 
 	//Updating Weather Icon
@@ -100,7 +121,7 @@ function updateTodayWeather(data){
 
 	//Updating Temperature
 	var todayTemp = data.currently.apparentTemperature;
-	$('#day-temperature').html('<div id="today-current-temp">'+todayTemp.toFixed(1)+"<sup>&deg;F</sup></div>"+ '<a id= "convert-unit" href="#/"><p style="margin:0">&deg;C</p></a>')
+	$('#day-temperature').html('<div id="today-current-temp">'+todayTemp.toFixed(1)+"<sup>&deg;F</sup></div>"+ '<a id="convert-unit" href="#/"><p style="margin:0">&deg;C</p></a>')
 	$('#convert-unit').attr('data-f',todayTemp.toFixed(1))
 	var celcius = (todayTemp -32) * 5 / 9;
 	celcius = celcius.toFixed(1)
@@ -119,9 +140,38 @@ function updateTodayWeather(data){
 
 
 }
+
+//gets Astronomical Picture Of the Day
+function getAPOD(){
+    var apiKey = "FMWfaT1C1igzEgHUsZOK4ZUlCGACf42bmV2i9GYM";
+    var url = "https://api.nasa.gov/planetary/apod?api_key=" + apiKey;
+    
+    //ajax call
+       $.ajax({
+        type:"GET",
+        url: url,
+        async: false,
+        dataType: "json",
+        success: function(apodData){
+					console.log(apodData);
+            var img = $("<img class='apod-img'>");
+            var p = $("<p class='truncate tooltipped'>");
+            img.attr("src", apodData.url); 
+            p.text(apodData.explanation);
+						p.attr("data-tooltip", apodData.explanation);
+            $("#imageOfTheDay").append(img, p);
+        },
+        error: function(errorMessage){
+            alert("Error" + errorMessage);
+        }
+    });
+}
+
+// Get week-view update
 function getWeekDays(data){
 
     var eventCon = $('#week-view')
+
     //get the 5 days
     for(var i = 0; i < 7; i++){
     	//Create card Container
@@ -148,9 +198,6 @@ function getWeekDays(data){
     	var infoCon = $('<div>');
     	infoCon.addClass('card-content center')
     	var infoTitle = $('<p>');
-    	// infoTitle.addClass('card-title activator');
-    	// infoTitle.text("Forecast");
-    	// infoCon.append(infoTitle);
 
     	// Weather info
     	var temp = $('<p>')
@@ -175,8 +222,7 @@ function getWeekDays(data){
     	eventCon.append(cardCon)
     }
 
-    $(".container").animate({opacity:1},'fast')
-
+    // 
 }
 
 //get weekly Info
@@ -272,6 +318,8 @@ function getWeeklyUpdate(data){
 
 // Get news
 function getNews(){
+
+	// Guardian API setup
 	var queryURL = 'https://content.guardianapis.com/search';
 	var newsInput = $('#news-input').val().trim();
 	if(newsInput === ''){
@@ -301,12 +349,15 @@ function getNews(){
 		listCon.css('display','none')
 
 		for(i = 0; i < data.response.results.length;i++){
+
+			// gather desired information
 			var title = data.response.results[i].webTitle;
 			var byline = data.response.results[i].fields.byline;
 			var date = data.response.results[i].webPublicationDate;
 			var trailText = data.response.results[i].fields.trailText;
 			var webURL = data.response.results[i].webUrl;
 
+			// create new list and append the appropriate info
 			var item = $('<li>');
 			item.addClass('collection-item');
 			item.html('<p class="news-title">' + title +  '<p>'
@@ -318,14 +369,22 @@ function getNews(){
 				);
 			listCon.append(item);
 		}
+
+		// append list item to list container
 		$('#news-list').html(listCon);
-		$(listCon).fadeToggle('fast')
+
+		// fade in list container
+		$(listCon).fadeIn('fast')
 	})
 }
 
+// Logics to determine the appropriate image to cloud cover
 function cloudCover(data,i){
+
+	// gather cloud cover information from API 
 	var cloud = data.daily.data[i].cloudCover;
 	var cloudImg;
+
 	if(cloud < .20){
 		cloudImg = "assets/image/Cloud-Cover/nskc.png"
 	}
@@ -341,10 +400,15 @@ function cloudCover(data,i){
 	else{
 		cloudImg = "assets/image/Cloud-Cover/novc.png"
 	}
+
+	// return image path 
 	return cloudImg
 }
 
+// Logics to determine the appropriate image to moon phase
 function moonPhase(data,i){
+
+	// gather cloud cover information from API 
 	var moon = data.daily.data[i].moonPhase;
 	var moonImg;
 	if(moon >= 0 && moon <= .1){
@@ -367,52 +431,60 @@ function moonPhase(data,i){
 		moonImg = "assets/image/Moon-Phase/full.png"
 	}
 
+	// return image path
 	return moonImg
 }
 
+// create a functional clock for UI
 
 function updateClock() {
   $('#clock').html(moment().format('HH:mm'));
 }
 
 // Html page interactions js 
+$(document).ready(function(){
 
+	// update clock every 1 second
+	setInterval(updateClock, 1000);
 
-setInterval(updateClock, 1000);
+	// Initialize collapse button
+	$(".button-collapse").sideNav();
+	// Initialize collapsible
+	$('.collapsible').collapsible();
 
-// Initialize collapse button
-  $(".button-collapse").sideNav();
-  // Initialize collapsible (uncomment the line below if you use the dropdown variation)
-  $('.collapsible').collapsible();
+	// click on .event-item initiate toast js with "event added" as text 
+	$('.event-item').click(function(){
+	Materialize.toast("Event added", 3000) // 3000 is the duration of the toast
+	})
+	// the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+	$('.modal').modal();
 
- // Toast js
-$('.event-item').click(function(){
- Materialize.toast("Event added", 3000) // 4000 is the duration of the toast
-})
+		// initialize tooltips
+		$(document).ready(function () {
+			$('.tooltipped').tooltip({ delay: 50 });
+		});
 
- $(document).ready(function(){
-    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-    $('.modal').modal();
-    
      getLocation();
+		 getAPOD();
 
+	// when click on #switch view...
   	$('#switch-view').click(function(){
+
+  		// if day-view is hidden -> make week-view hidden, day-view visible and change icon to view_week
   		if($('#day-view').css('display') === 'none'){
 			$("#week-view").css("display","none");
 			setTimeout(function(){$("#day-view").fadeToggle('slow'),500})
 			$('#switch-view').text('view_week')
-		}else{
+		}else{ // if day-view is visible -> make day-view hidden, week-view visible, and change icon to view_quilt
 			$("#day-view").css("display","none");
 			setTimeout(function(){$("#week-view").fadeToggle('slow'),500})
 			$('#switch-view').text('view_quilt')
 
-	}
+		}
 	})
 
-
-	 // fade in tab
+	 // fade in tab when clicked
 	 $('.tab').click(function(){
-	 	$('.initial-indicator').remove()
 	 	var tab = $(this).attr('tab-data');
 	 	$('#'+tab).fadeIn('slow')
 	 	if($(this).attr('tab-data') === 'tab-news'){
@@ -420,12 +492,13 @@ $('.event-item').click(function(){
 	 	}
 	 })
 
-	 // Search news
+	 // Search news if click on search icon with input
 	 $('#news-search').click(function(){
 	 		 getNews();
 	 		$('#news-input').val('');
 	 })
 
+	 // click enter when focus on search input === click on search icon
 	 $('#news-input').keyup(function(e){
 	 	if(e.keyCode === 13){
 	 		$('#news-search').click();
@@ -439,11 +512,13 @@ $('.event-item').click(function(){
 	 		$('#today-current-temp').css('display','none')
 		 	$('#today-current-temp').html($(this).attr('data-c') + "<sup>&deg;C</sup>")
 		 	$('#today-current-temp').fadeIn('fast')
+		 	$('#convert-unit').html("&deg;F")
 		 	$(this).attr('data-state','c')	
 	 	}else if($(this).attr('data-state') === 'c'){
 	 		$('#today-current-temp').css('display','none')
 	 		$('#today-current-temp').html($(this).attr('data-f') + "<sup>&deg;F</sup>")
 	 		$('#today-current-temp').fadeIn('fast')
+	 		$('#convert-unit').html("&deg;C")
 	 		$(this).attr('data-state','f')	
 	 	}
 	 })
@@ -453,8 +528,8 @@ $('.event-item').click(function(){
 	 	$('#tab-constell').append('<div id="wwtControl"'
 			+ ' data-settings="crosshairs=false,ecliptic=true,pictures=true,boundaries=true"'
 		    + ' data-aspect-ratio="8:5"></div>'
-		    + ' <script src="http://worldwidetelescope.org/embedded-webcontrol.js"></script>')
-		 // $('.constell-embedded').css('display','visible')
+		    + ' <script src="http://worldwidetelescope.org/embedded-webcontrol.js"></script>'
+		    )
 	 })
   });
 
