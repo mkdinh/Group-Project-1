@@ -180,36 +180,9 @@
 			    			</div>
 
 			    			<ul class='collection' id='news-list'></ul>
-
-			<!-- First Row div -->
-			<div class="row">
-				<!-- weem view div -->
-				<div class="col s12">
-					<div id="week-view"> 
-					<!-- week view close-->
-					</div>
-					<!-- end of action cards -->
-
-					<!-- day view div -->
-					<div class="row" id="day-view">
-					  <div class="col s1"></div>
-						<div class='col s6' id="today-weather-container">
-
-						    <ul class="tabs">
-						        <li class="tab col s3" id='tab-id-forecast' tab-data="tab-forecast"><a  href="#tab-forecast">Forecast</a></li>
-						        <li class="tab col s3" id='tab-id-events' tab-data="tab-events"><a href="#tab-events">Events</a></li>
-						        <li class="tab col s3" id='tab-id-news' tab-data="tab-news"><a href="#tab-news">News</a></li>
-						        <li class="tab col s3" id='tab-id-constellation' tab-data="tab-constellation"><a class='active' href="#tab-constellation">Constell</a></li>
-					      	</ul>
-							<div class='col s12 card left' id="today-weather">
-							
-							<div id="tab-forecast">
-								<div id="weather-display" class='row weather-info-container center'>
-									<div class='col s4' id='day-weather'>
-										<canvas class="skycons" id="skycons"></canvas>
-										<p class="skycons-label"></p>
-						</div>
 						
+						</div>
+
 						<!-- Constellation Tab -->
 						<div class="constell-input" id='tab-constell'>
 							<h5 class="center">Current Overhead Constellation</h5>
@@ -217,6 +190,7 @@
 								<iframe id="iframe" src="http://www.fourmilab.ch/cgi-bin/Yoursky?z=1&lat=35.7772&ns=North&lon=78.6392&ew=West"></iframe>
 							</div> -->
 							<div id="constell-display" class='center'></div>
+
 							<div class="row" id="constell-input-container">
 						
 							<!-- Adjust image size -->
@@ -279,11 +253,9 @@
 										<label>Materialize Select</label>
 									</div>
 								</form>
-
-								<button id="constell-submit" class="login-btn center waves-effect waves-block waves-light" type="submit">Submit</button>
-
-							</div>
+							</div>				
 						</div>
+						
 					 <!-- close today-weather -->
 				  	</div>	
 				<!-- close today-weather-container -->

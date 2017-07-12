@@ -676,4 +676,3 @@ $(document).ready(function(){
 		$('#constell-display').css('width',size+'%')
 	})
 });
-
