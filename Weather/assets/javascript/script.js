@@ -234,7 +234,6 @@ function getAPOD(){
             alert("Error" + errorMessage);
         }
     });
-    
 }
 
 //gets information for asteroids close to earth from todays date through 7 days
