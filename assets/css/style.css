@@ -340,6 +340,10 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 	overflow:hidden;
 }
 
+.modal-display-container::-webkit-scrollbar {
+display: none;
+}
+
 .modal-display-container{
 	overflow:scroll;
 }
