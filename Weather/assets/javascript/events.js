@@ -1010,7 +1010,7 @@ function wiki(search){
         dataType: "json",
         success: function(data){
             
-            }
+            
             
             
             
