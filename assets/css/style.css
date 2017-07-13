@@ -188,6 +188,12 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 	color: orchid;
 }
 
+#star-container{
+	display:inline-block;
+	line-height:100%;
+	margin: 3px 0px 0px 5px;
+}
+
 #star-container i {
 	color: gold;
 	font-size: 1rem;

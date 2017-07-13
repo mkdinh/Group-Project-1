@@ -361,7 +361,7 @@ function rankNights(data) {
     // display score in day view, for today only:
 		if (i === 0) {
 			var scoreLine = $("<div class='score-line weather-info-container'>");
-			var stars = $("<span id=star-container>");
+			var stars = $("<div id=star-container>");
 			// convert rating to base-5 for stars and round to the nearest half-star:
 			var starNum = Number.parseFloat((Math.round(totalRanking * 10) / 2).toFixed(1));
 			// show as many whole stars as the integer part of that number,
