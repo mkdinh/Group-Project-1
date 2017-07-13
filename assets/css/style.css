@@ -305,6 +305,10 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 	width:75%;
 } 
 
+#constell-parameter{
+	padding:0 2%;
+}
+
 #constell-img{
 	width:100%;
 	border-radius:100%;

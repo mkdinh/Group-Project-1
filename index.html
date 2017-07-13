@@ -199,6 +199,8 @@
 			    					  <input id='constell-img-size' type="range" min="50" max="100" />
 			 					   </p>
 	 					   		</form>
+	 					   		
+	 					   		<div class='row' id="constell-parameter">
 								<!-- Switch for other objects -->
 								<form class="switch col s6">
 									<p>Ecliptic &amp; Equator</p>
@@ -243,16 +245,17 @@
       								</p>
 
       								<!-- Select Appropriate Theme -->
-      								<div id="constell-theme" class="input-field">
+      								<div id="constell-theme" class="input-field constell-input">
 										<select id='#constell-theme-select' class="constell-input">
-											<option value="0">Colour</option>
-											<option value="1">Black on White</option>
-											<option value="2" selected="selected">White on Black</option>
-											<option value="3">Infrared</option>
+											<option class='constell-theme-option' value="0">Colour</option>
+											<option class='constell-theme-option' value="1">Black on White</option>
+											<option class='constell-theme-option' value="2" selected="selected">White on Black</option>
+											<option class='constell-theme-option' value="3">Infrared</option>
 										</select>
-										<label>Materialize Select</label>
+										<label>Themes</label>
 									</div>
 								</form>
+								</div>
 							</div>				
 						</div>
 						
