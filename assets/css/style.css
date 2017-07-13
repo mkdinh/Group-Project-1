@@ -562,7 +562,8 @@ label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
  @media (min-width: 600px) and (max-width:992px){
 	#day-temperature{font-size:150%;}
 	nav .brand-logo{left:15%;}
-	#clock,.divider{display:none;}
+	#clock,.divider,.card .card-image img,{display:none;}
+	.card.week{display:inline-block;}
  }
 
 /* @media (min-width: 900px) and (max-width:)
