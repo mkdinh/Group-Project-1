@@ -144,6 +144,7 @@ nav{
 /*------------------------------------- MAIN CONTENT CSS ------------------------------------------*/
 
 
+#main-content{}
 
 .tabs{
 	background-color: rgba(255,255,255,1);
@@ -178,6 +179,7 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 .weather-info-container{
 	background-color: rgba(255,255,255,.1);
 	margin:20px 0 0 0;
+	padding:5px;
 }
 
 .score-line {
@@ -252,7 +254,8 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 .news-trailText{
 	overflow: hidden; 
 	text-overflow: ellipsis;
-	white-space: nowrap}
+	white-space: nowrap
+}
 
 
 /* event tab*/
@@ -341,7 +344,7 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 }
 
 .modal-display-container::-webkit-scrollbar {
-display: none;
+	display: none;
 }
 
 .modal-display-container{
@@ -360,6 +363,8 @@ display: none;
 
 
 /*------------------------------------- SIDE BAR CSS ------------------------------------------*/
+
+#today-events-container{}
 
 .side-bar-sect{font-size:18px;}
 
@@ -391,10 +396,10 @@ display: none;
 	color:orange;
 }
 
-.material-tooltip {
+/*.material-tooltip {
 	max-width: 600px;
 	text-align: justify;
-}
+}*/
 
 #toast-container {
   top: 12%;
@@ -536,15 +541,12 @@ label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
 
 @media (max-width: 600px) {
 	body{font-size:80%;}
-	.brand-logo i.material-icons{display:none;}
-	.divider{display:none;}
-	#clock{display:none;}
-	#search-input,.material-icons.nav-search,.material-icons.refresh,#login{display:none;}
+	.divider,#clock,.brand-logo i.material-icons{display:none;}
+	#search-input,.material-icons.nav-search,.material-icons.refresh,#login,.card .card-image img,img.forecast.moonPhase{display:none;}
 	#switch-view{ position:absolute; top:0px; left:15px; font-size:32px}
 	#profile-button{position: absolute; right:15px; top:17px; z-index:2;}
 	.card.week{display:inline-block; width:100%;}
-	.card .card-image img {display:none;}
-	img.forecast.moonPhase{display:none;}
+
 	
 	/*day-view*/
 	#toast-container {	
@@ -560,9 +562,9 @@ label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
 	#news-input,#event-input{width:80%;}
 
 	/*Constell tab*/
-	#constell-img-size{display:none;}
-	#constell-modal-btn{display:none;}
+	#constell-img-size,#constell-modal-btn{display:none;}
  }
+
  @media (min-width: 600px) and (max-width:992px){
 	#day-temperature{font-size:150%;}
 	nav .brand-logo{left:15%;}
@@ -571,9 +573,6 @@ label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
 	.forecast{font-size:12px;}
 	.card.week{display:inline-block;}
  }
-
-/* @media (min-width: 900px) and (max-width:)
-*/
 
 
 

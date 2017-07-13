@@ -164,6 +164,8 @@ function getAPOD(){
             p.text(apodData.explanation);
 						p.attr("data-tooltip", apodData.explanation);
             $("#imageOfTheDay").append(img, p);
+            // initialize .materialbox
+			$('.materialboxed').materialbox();
         },
         error: function(errorMessage){
             alert("Error" + errorMessage);
@@ -713,8 +715,7 @@ function updateClock() {
 // Html page interactions js 
 $(document).ready(function(){
 
-	// initialize .materialbox
-	$('.materialboxed').materialbox();
+
 
 	// $(window).resize(function(){
 	// 	if ($(window).width() < 480) {
@@ -832,7 +833,6 @@ $(document).ready(function(){
 	$('body').on('change','#constell-modal-theme',function(){
 		getModalConstellation()
 	})
-
 /*-----------------------------------------------------------------------------------------------*/
 
 //object that holds known meteor showers information
