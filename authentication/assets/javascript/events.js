@@ -76,14 +76,14 @@ var meteorShowers = {
         ParentObj: "2P/Encke"
     },
     7: {
-       active: "Oct 4 - Nov 14",
+        active: "Oct 4 - Nov 14",
         yearly: true,
         peakNight: "Oct 21-22",
         name: "Orionids",
         Radiant: "06:20 +15.5",
         ZHR: 25,
         Velocity: 41, //miles/sec
-        ParentObj: "1P/Halley" 
+        ParentObj: "1P/Halley"
     },
     8: {
         active: "Oct 19 - Dec 10",
@@ -127,8 +127,8 @@ var meteorShowers = {
     },
 };
 
-function initMap(){
-    var uluru = {lat: parseFloat(lat), lng: parseFloat(long)};
+function initMap() {
+    var uluru = { lat: parseFloat(lat), lng: parseFloat(long) };
     map = new google.maps.Map(document.getElementById("map"), {
         zoom: 4,
         center: uluru
@@ -140,52 +140,52 @@ function initMap(){
         icon: icon,
         map: map
     });
-    }
-function getISS(){
+}
+function getISS() {
     var url = "https://api.wheretheiss.at/v1/satellites/25544/";
 
     //ajax call
     $.ajax({
-        type:"GET",
+        type: "GET",
         url: url,
         async: false,
         dataType: "json",
-        success: function(data){
-        long = data.longitude;
-        lat = data.latitude;
-    },
-    error: function(errorMessage){
-        alert("Error" + errorMessage);
-    }
+        success: function (data) {
+            long = data.longitude;
+            lat = data.latitude;
+        },
+        error: function (errorMessage) {
+            alert("Error" + errorMessage);
+        }
     });
 }
 
 
 //requests permission to get access to users long and lat.
 function getLocation() {
-    if(navigator.geolocation){
+    if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition)
-    }else {
+    } else {
         console.log("Error: Geolocation is not supported by this browser.");
     }
-    
+
 }
 
 //gets lat and long losition of user
-function showPosition(position){
+function showPosition(position) {
     latitude = position.coords.latitude;
-    longitude = position.coords.longitude;    
+    longitude = position.coords.longitude;
 }
 
 function getMeteorShower() {
     var date = new Date();
     var day = date.getDate();
     var month = date.getMonth();
-    
-    
+
+
     month++;
-    
-    switch(month){
+
+    switch (month) {
         case 1:
             month = "Jan"
             break;
@@ -221,20 +221,21 @@ function getMeteorShower() {
             break;
         case 12:
             month = "Dec"
-            break;    
-                }
+            break;
+    }
     
-    for ( var i = 0; i < 12; i++){
+    // shouldn't the loop limit be i < meteorShowers.length?
+    for (var i = 0; i < 12; i++) {
         var activeSplit = meteorShowers[i].active.split(" ");
         var activeStartMonth = activeSplit[0];
         var activeDay1 = activeSplit[1];
         var activeEndMonth = activeSplit[3];
         var activeDay2 = activeSplit[4];
         var yearly = meteorShowers[i].yearly;
-        
+
         // day view
-        if(month === activeStartMonth && day <= activeDay1 || month === activeEndMonth && day <= activeDay2 ){
-            
+        if (month === activeStartMonth && day <= activeDay1 || month === activeEndMonth && day <= activeDay2) {
+
             var li = $("<li>");
             var headerDiv = $("<div>");
             var bodyDiv = $("<div>");
@@ -242,24 +243,24 @@ function getMeteorShower() {
             var table = $("<table>");
             var thead = $("<thead>");
             var tbody = $("<tbody>");
-            
+
             table.attr("border", 1);
             table.attr("frame", "void");
             table.attr("rules", "all");
-            
+
             bodyDiv.addClass("collapsible-body");
             headerDiv.addClass("collapsible-header");
-            
+
             headerDiv.text(activeStartMonth + " " + activeDay1 + " - " + activeEndMonth + " " + activeDay2);
-            
+
             li.append(headerDiv);
-            
-            
+
+
             var headings = $("<tr>");
             headings.html("<th>Name</th><th>Peak viewing nights</th><th>Velocity</th><th>Parent Object</th>");
-            
+
             thead.append(headings);
-            
+
             var information = $("<tr>");
             information.html("<td style='padding: 0 10px 0 10px'>" + meteorShowers[i].name + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].peakNight + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].Velocity + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].ParentObj + "</td>");
             tbody.append(information);
@@ -270,10 +271,10 @@ function getMeteorShower() {
             li.append(bodyDiv);
             $("#accordion6").append(li);
         }
-        
+
         //month view
-        
-        if(month === activeStartMonth || month === activeEndMonth){
+
+        if (month === activeStartMonth || month === activeEndMonth) {
             var table = $("<table>");
             var li = $("<li>");
             var headerDiv = $("<div>");
@@ -281,28 +282,28 @@ function getMeteorShower() {
             var span = $("<span>");
             var thead = $("<thead>");
             var tbody = $("<tbody>");
-            
+
             table.attr("border", 1);
             table.attr("frame", "void");
             table.attr("rules", "all");
-            
-            
+
+
             bodyDiv.addClass("collapsible-body");
             headerDiv.addClass("collapsible-header");
 
             headerDiv.text(activeStartMonth + " " + activeDay1 + " - " + activeEndMonth + " " + activeDay2);
 
             li.append(headerDiv);
-            
+
             var headings = $("<tr>");
-            
+
             headings.html("<th>Name</th><th>Peak viewing nights</th><th>Velocity</th><th>Parent Object</th>");
-            
+
             thead.append(headings);
-            
+
             var information = $("<tr>");
             information.html("<td style='padding: 0 10px 0 10px'>" + meteorShowers[i].name + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].peakNight + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].Velocity + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].ParentObj + "</td>");
-            
+
             tbody.append(information);
             table.append(thead);
             table.append(tbody);
@@ -311,12 +312,12 @@ function getMeteorShower() {
             li.append(bodyDiv);
             $("#accordion7").append(li);
         }
-        
-        
+
+
         //year view
-        if (yearly === true){
+        if (yearly === true) {
             var table = $("<table>");
-            
+
             var li = $("<li>");
             var headerDiv = $("<div>");
             var bodyDiv = $("<div>");
@@ -330,16 +331,16 @@ function getMeteorShower() {
             headerDiv.text(activeStartMonth + " " + activeDay1 + " - " + activeEndMonth + " " + activeDay2);
 
             li.append(headerDiv);
-            
+
             table.attr("border", 1);
             table.attr("frame", "void");
             table.attr("rules", "all");
-            
+
             var headings = $("<tr>");
             headings.html("<th>Name</th><th>Peak viewing nights</th><th>Velocity</th><th>Parent Object</th>");
-            
+
             thead.append(headings);
-            
+
             var information = $("<tr>");
             information.html("<td style='padding: 0 10px 0 10px'>" + meteorShowers[i].name + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].peakNight + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].Velocity + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].ParentObj + "</td>");
             tbody.append(information);
@@ -348,157 +349,157 @@ function getMeteorShower() {
             span.append(table);
             bodyDiv.append(span);
             li.append(bodyDiv);
-            $("#accordion8").append(li);    
-        } 
+            $("#accordion8").append(li);
+        }
     }
 }
 
 //get a list of solar eclipses
-function getSolar(){
+function getSolar() {
     var coords = [longitude, latitude];
     var d = new Date();
     var year = d.getFullYear();
-   
-    var url = "http://api.usno.navy.mil/eclipses/solar?year="+ year;
-    
-     //ajax call
+
+    var url = "http://api.usno.navy.mil/eclipses/solar?year=" + year;
+
+    //ajax call
     $.ajax({
-    type:"GET",
-    url: url,
-    async: false,
-    dataType: "json",
-    success: function(data){        
-        var i = 0;
-        $.each(data.eclipses_in_year, function(){
-            var d = new Date()
-            var day = d.getDate();
-            var month = d.getMonth();
-            var year = d.getFullYear();
-            var table = $("<table>");
-            var h3 = $("<h3>");
-            var eMonth = data.eclipses_in_year[i].month;
-            switch(eMonth){
-        case 1:
-            eMonth = "January"
-            break;
-        case 2:
-            eMonth = "February"
-            break;
-        case 3:
-            eMonth = "March"
-            break;
-        case 4:
-            eMonth = "April"
-            break;
-        case 5:
-            eMonth = "May"
-            break;
-        case 6:
-            eMonth = "June"
-            break;
-        case 7:
-            eMonth = "July"
-            break;
-        case 8:
-            eMonth = "August"
-            break;
-        case 9:
-            eMonth = "September"
-            break;
-        case 10:
-            eMonth = "October"
-            break;
-        case 11:
-            eMonth = "November"
-            break;
-        case 12:
-            eMonth = "December"
-            break;    
+        type: "GET",
+        url: url,
+        async: false,
+        dataType: "json",
+        success: function (data) {
+            var i = 0;
+            $.each(data.eclipses_in_year, function () {
+                var d = new Date()
+                var day = d.getDate();
+                var month = d.getMonth();
+                var year = d.getFullYear();
+                var table = $("<table>");
+                var h3 = $("<h3>");
+                var eMonth = data.eclipses_in_year[i].month;
+                switch (eMonth) {
+                    case 1:
+                        eMonth = "January"
+                        break;
+                    case 2:
+                        eMonth = "February"
+                        break;
+                    case 3:
+                        eMonth = "March"
+                        break;
+                    case 4:
+                        eMonth = "April"
+                        break;
+                    case 5:
+                        eMonth = "May"
+                        break;
+                    case 6:
+                        eMonth = "June"
+                        break;
+                    case 7:
+                        eMonth = "July"
+                        break;
+                    case 8:
+                        eMonth = "August"
+                        break;
+                    case 9:
+                        eMonth = "September"
+                        break;
+                    case 10:
+                        eMonth = "October"
+                        break;
+                    case 11:
+                        eMonth = "November"
+                        break;
+                    case 12:
+                        eMonth = "December"
+                        break;
                 }
-            
-            table.attr("border", 1);
-            table.attr("frame", "void");
-            table.attr("rules", "all");
-            
-            //set up year view
-            if (data.eclipses_in_year[i].year === year){
-                var li = $("<li>");
-                var headerDiv = $("<div>");
-                var bodyDiv = $("<div>");
-                var span = $("<span>");
-                var thead = $("<thead>");
-                var tbody = $("<tbody>");
 
-                bodyDiv.addClass("collapsible-body");
-                headerDiv.addClass("collapsible-header");
-
-                headerDiv.text(eMonth + " " + data.eclipses_in_year[i].day + ", " + data.eclipses_in_year[i].year);
-
-                li.append(headerDiv);
-                
-                var headings = $("<tr>");
-                var table = $("<table>");
-                
                 table.attr("border", 1);
                 table.attr("frame", "void");
                 table.attr("rules", "all");
-                
-                headings.html("<th>Event</th><th>Link</th>");
-                
-                thead.append(headings);
-                
-                var information = $("<tr>");
-                information.html("<td style='padding: 0 10px 0 10px'>" + data.eclipses_in_year[i].event + "</td><td style='padding: 0 10px 0 10px'>" + "wikilink goes here" + "</td>");
-                
-                tbody.append(information);
-                table.append(thead);
-                table.append(tbody);
-                span.append(table);
-                bodyDiv.append(span);
-                li.append(bodyDiv);
-                
-                 $("#accordion5").append(li);
-            }
-                    
-            //set up month view
-            if(data.eclipses_in_year[i].month === month && data.eclipses_in_year[i].year === year){
-                console.log("Month");
-                var li = $("<li>");
-                var headerDiv = $("<div>");
-                var bodyDiv = $("<div>");
-                var span = $("<span>");
-                var thead = $("<thead>");
-                var tbody = $("<tbody>");
 
-                bodyDiv.addClass("collapsible-body");
-                headerDiv.addClass("collapsible-header");
+                //set up year view
+                if (data.eclipses_in_year[i].year === year) {
+                    var li = $("<li>");
+                    var headerDiv = $("<div>");
+                    var bodyDiv = $("<div>");
+                    var span = $("<span>");
+                    var thead = $("<thead>");
+                    var tbody = $("<tbody>");
 
-                headerDiv.text(data.eclipses_in_year[i].month + " " + data.eclipses_in_year[i].day + ", " + data.eclipses_in_year[i].year);
+                    bodyDiv.addClass("collapsible-body");
+                    headerDiv.addClass("collapsible-header");
 
-                li.append(headerDiv);
-                
-                var headings = $("<tr>");
-                var table = $("<table>");
-                
-                table.attr("border", 1);
-                table.attr("frame", "void");
-                table.attr("rules", "all");
-                
-                headings.html("<th>Event</th><th>Link</th>");
-                
-                thead.append(headings);
-                
-                var information = $("<tr>");
-                information.html("<td style='padding: 0 10px 0 10px'>" + data.eclipses_in_year[i].event + "</td><td style='padding: 0 10px 0 10px'>" + "wikilink goes here" + "</td>");
-                
-                tbody.append(information);
-                table.append(thead);
-                table.append(tbody);
-                span.append(table);
-                bodyDiv.append(span);
-                li.append(bodyDiv);
-                 $("#accordion4").append(li);
-            }/*else {
+                    headerDiv.text(eMonth + " " + data.eclipses_in_year[i].day + ", " + data.eclipses_in_year[i].year);
+
+                    li.append(headerDiv);
+
+                    var headings = $("<tr>");
+                    var table = $("<table>");
+
+                    table.attr("border", 1);
+                    table.attr("frame", "void");
+                    table.attr("rules", "all");
+
+                    headings.html("<th>Event</th><th>Link</th>");
+
+                    thead.append(headings);
+
+                    var information = $("<tr>");
+                    information.html("<td style='padding: 0 10px 0 10px'>" + data.eclipses_in_year[i].event + "</td><td style='padding: 0 10px 0 10px'>" + "wikilink goes here" + "</td>");
+
+                    tbody.append(information);
+                    table.append(thead);
+                    table.append(tbody);
+                    span.append(table);
+                    bodyDiv.append(span);
+                    li.append(bodyDiv);
+
+                    $("#accordion5").append(li);
+                }
+
+                //set up month view
+                if (data.eclipses_in_year[i].month === month && data.eclipses_in_year[i].year === year) {
+                    console.log("Month");
+                    var li = $("<li>");
+                    var headerDiv = $("<div>");
+                    var bodyDiv = $("<div>");
+                    var span = $("<span>");
+                    var thead = $("<thead>");
+                    var tbody = $("<tbody>");
+
+                    bodyDiv.addClass("collapsible-body");
+                    headerDiv.addClass("collapsible-header");
+
+                    headerDiv.text(data.eclipses_in_year[i].month + " " + data.eclipses_in_year[i].day + ", " + data.eclipses_in_year[i].year);
+
+                    li.append(headerDiv);
+
+                    var headings = $("<tr>");
+                    var table = $("<table>");
+
+                    table.attr("border", 1);
+                    table.attr("frame", "void");
+                    table.attr("rules", "all");
+
+                    headings.html("<th>Event</th><th>Link</th>");
+
+                    thead.append(headings);
+
+                    var information = $("<tr>");
+                    information.html("<td style='padding: 0 10px 0 10px'>" + data.eclipses_in_year[i].event + "</td><td style='padding: 0 10px 0 10px'>" + "wikilink goes here" + "</td>");
+
+                    tbody.append(information);
+                    table.append(thead);
+                    table.append(tbody);
+                    span.append(table);
+                    bodyDiv.append(span);
+                    li.append(bodyDiv);
+                    $("#accordion4").append(li);
+                }/*else {
                 var headerDiv = $("<div>");
                 var bodyDiv = $("<div>");
                 var span = $("<span>");
@@ -512,45 +513,45 @@ function getSolar(){
                 
                 $("#accordion4").append(li);
             }*/
-            
-            //set up day view
-            if(data.eclipses_in_year[i].day === day && data.eclipses_in_year[i].month === month && data.eclipses_in_year[i].year === year){
-                var li = $("<li>");
-                var headerDiv = $("<div>");
-                var bodyDiv = $("<div>");
-                var span = $("<span>");
-                var thead = $("<thead>");
-                var tbody = $("<tbody>");
 
-                bodyDiv.addClass("collapsible-body");
-                headerDiv.addClass("collapsible-header");
+                //set up day view
+                if (data.eclipses_in_year[i].day === day && data.eclipses_in_year[i].month === month && data.eclipses_in_year[i].year === year) {
+                    var li = $("<li>");
+                    var headerDiv = $("<div>");
+                    var bodyDiv = $("<div>");
+                    var span = $("<span>");
+                    var thead = $("<thead>");
+                    var tbody = $("<tbody>");
 
-                headerDiv.text(data.eclipses_in_year[i].month + " " + data.eclipses_in_year[i].day + ", " + data.eclipses_in_year[i].year);
+                    bodyDiv.addClass("collapsible-body");
+                    headerDiv.addClass("collapsible-header");
 
-                li.append(headerDiv);
-                
-                var headings = $("<tr>");
-                var table = $("<table>");
-                
-                table.attr("border", 1);
-                table.attr("frame", "void");
-                table.attr("rules", "all");
-                
-                headings.html("<th>Event</th><th>Link</th>");
-                
-                thead.append(headings);
-                
-                var information = $("<tr>");
-                information.html("<td style='padding: 0 10px 0 10px'>" + data.eclipses_in_year[i].event + "</td><td style='padding: 0 10px 0 10px'>" + "wikilink goes here" + "</td>");
-                
-                tbody.append(information);
-                table.append(thead);
-                table.append(tbody);
-                span.append(table);
-                bodyDiv.append(span);
-                li.append(bodyDiv);
-                 $("#accordion3").append(li);
-            }/*else {
+                    headerDiv.text(data.eclipses_in_year[i].month + " " + data.eclipses_in_year[i].day + ", " + data.eclipses_in_year[i].year);
+
+                    li.append(headerDiv);
+
+                    var headings = $("<tr>");
+                    var table = $("<table>");
+
+                    table.attr("border", 1);
+                    table.attr("frame", "void");
+                    table.attr("rules", "all");
+
+                    headings.html("<th>Event</th><th>Link</th>");
+
+                    thead.append(headings);
+
+                    var information = $("<tr>");
+                    information.html("<td style='padding: 0 10px 0 10px'>" + data.eclipses_in_year[i].event + "</td><td style='padding: 0 10px 0 10px'>" + "wikilink goes here" + "</td>");
+
+                    tbody.append(information);
+                    table.append(thead);
+                    table.append(tbody);
+                    span.append(table);
+                    bodyDiv.append(span);
+                    li.append(bodyDiv);
+                    $("#accordion3").append(li);
+                }/*else {
                 var headerDiv = $("<div>");
                 var bodyDiv = $("<div>");
                 var span = $("<span>");
@@ -564,131 +565,131 @@ function getSolar(){
                 
                 $("#accordion3").append(li);
             }*/
-            
-            i++;
-        })
-        
-    },
-    error: function(errorMessage){
-        alert("Error");
-    }
-        });
+
+                i++;
+            })
+
+        },
+        error: function (errorMessage) {
+            alert("Error");
+        }
+    });
 }
 
 
 //gets information for asteroids close to earth from todays date through 7 days
-function getAsteroids(){
+function getAsteroids() {
     var date = new Date();
     var dd = date.getDate();
     var mm = date.getMonth();
     var yyyy = date.getFullYear();
-    var startDate = yyyy +"-"+ (mm + 1) + "-"+ dd; 
-    var endDate = yyyy +"-"+ (mm + 1) + "-"+ (dd + 6);
+    var startDate = yyyy + "-" + (mm + 1) + "-" + dd;
+    var endDate = yyyy + "-" + (mm + 1) + "-" + (dd + 6);
     var apiKey = "FMWfaT1C1igzEgHUsZOK4ZUlCGACf42bmV2i9GYM";
-    var url = "https://api.nasa.gov/neo/rest/v1/feed?start_date="+ startDate + "&end_date="+ endDate +"&api_key="+ apiKey;
-    
+    var url = "https://api.nasa.gov/neo/rest/v1/feed?start_date=" + startDate + "&end_date=" + endDate + "&api_key=" + apiKey;
+
     var dayEvents = [];
     var weekEvents = [];
     var dates = [];
-    
+
     //ajax call
-       $.ajax({
-        type:"GET",
+    $.ajax({
+        type: "GET",
         url: url,
         async: false,
         dataType: "json",
-        success: function(data){
+        success: function (data) {
             var day = 0;
             var nearObject = data.near_earth_objects;
             var keys = Object.keys(nearObject);
-            
+
             keys.sort();
-                    
-            $.each(keys, function(){
+
+            $.each(keys, function () {
                 var date = keys[day];
                 var dateFormat = "YYYY/MM/DD";
                 var convertedDate = moment(date, dateFormat);
                 var newDate = convertedDate.format("MMMM Do YYYY");
-                
+
                 //create an object with information needed about asteroids
                 var currentObj = nearObject[date];
-                for (var i = 0; i < nearObject[date].length; i++){
-                   var info = {
-                       date: newDate,
-                       name: currentObj[i].name,
-                       missEarth: Math.round(currentObj[i].close_approach_data[0].miss_distance.miles).toLocaleString("en-US", {minimumFractionDigits: 0}), 
-                       speed: Math.round(currentObj[i].close_approach_data[0].relative_velocity.miles_per_hour).toLocaleString("en-US", {minimumFractionDigits: 0}), 
-                       diameterMax:Math.round(currentObj[i].estimated_diameter.feet.estimated_diameter_max).toLocaleString("en-US", {minimumFractionDigits: 0}), 
-                       diameterMin:Math.round(currentObj[i].estimated_diameter.feet.estimated_diameter_min).toLocaleString("en-US", {minimumFractionDigits: 0}), 
-                       danger:currentObj[i].is_potentially_hazardous_asteroid,
-                       name: currentObj[i].name
-                   } 
-                   
-                   if(info.date === todaysDate) {
-                       
-                       dayEvents.push(info);
-                   }
-                           
-                   weekEvents.push(info);
-               } 
+                for (var i = 0; i < nearObject[date].length; i++) {
+                    var info = {
+                        date: newDate,
+                        name: currentObj[i].name,
+                        missEarth: Math.round(currentObj[i].close_approach_data[0].miss_distance.miles).toLocaleString("en-US", { minimumFractionDigits: 0 }),
+                        speed: Math.round(currentObj[i].close_approach_data[0].relative_velocity.miles_per_hour).toLocaleString("en-US", { minimumFractionDigits: 0 }),
+                        diameterMax: Math.round(currentObj[i].estimated_diameter.feet.estimated_diameter_max).toLocaleString("en-US", { minimumFractionDigits: 0 }),
+                        diameterMin: Math.round(currentObj[i].estimated_diameter.feet.estimated_diameter_min).toLocaleString("en-US", { minimumFractionDigits: 0 }),
+                        danger: currentObj[i].is_potentially_hazardous_asteroid,
+                        name: currentObj[i].name
+                    }
+
+                    if (info.date === todaysDate) {
+
+                        dayEvents.push(info);
+                    }
+
+                    weekEvents.push(info);
+                }
                 day++;
             });
-           
+
         },
-        error: function(errorMessage){
+        error: function (errorMessage) {
             alert("Error" + errorMessage);
         }
     });
-    
+
     //completes accordion for day view
-    for(var k = 0; k < dayEvents.length; k++){
+    for (var k = 0; k < dayEvents.length; k++) {
         var li = $("<li>");
         var headerDiv = $("<div>");
         var bodyDiv = $("<div>");
         var span = $("<span>");
         var thead = $("<thead>");
         var tbody = $("<tbody>");
-        
+
         bodyDiv.addClass("collapsible-body");
         headerDiv.addClass("collapsible-header");
-        
+
         headerDiv.text(dayEvents[k].name);
-        
+
         li.append(headerDiv);
-        
+
         var headings = $("<tr>");
         var table = $("<table>");
-        
+
         table.attr("border", 1);
         table.attr("frame", "void");
         table.attr("rules", "all");
 
         headings.html("<th>Missing Earth (Miles)</th><th>Speed (MPH)</th><th>Max Diameter(Miles)</th><th>Min diameter (Miles)</th><th>Dangerous</th>");
-        
+
         thead.append(headings);
-        
+
         var information = $("<tr>");
-        information.html("<td>" + dayEvents[k].missEarth + "</td><td>"+ dayEvents[k].speed +"</td><td>"+  dayEvents[k].diameterMax +"</td><td>"+ dayEvents[k].diameterMin +"</td><td>"+ dayEvents[k].danger +"</td>");
-        
-        
+        information.html("<td>" + dayEvents[k].missEarth + "</td><td>" + dayEvents[k].speed + "</td><td>" + dayEvents[k].diameterMax + "</td><td>" + dayEvents[k].diameterMin + "</td><td>" + dayEvents[k].danger + "</td>");
+
+
         table.append(information);
-       
-        
+
+
         tbody.append(information);
         table.append(thead);
         table.append(tbody);
         span.append(table);
         bodyDiv.append(span);
         li.append(bodyDiv);
-        
+
         $("#accordion1").append(li);
-        
+
     }
-    
-    
+
+
     //Sets up accordion for week view
     var key = "";
-    for (var i = 0; i < weekEvents.length; i++){
+    for (var i = 0; i < weekEvents.length; i++) {
         var li = $("<li>");
         var headerDiv = $("<div>");
         var bodyDiv = $("<div>");
@@ -696,44 +697,44 @@ function getAsteroids(){
         var cap = i + 1;
         var thead = $("<thead>");
         var tbody = $("<tbody>");
-        
-        if(cap === weekEvents.length){
+
+        if (cap === weekEvents.length) {
             cap = i;
         }
-        
-        if( weekEvents[i].date !== weekEvents[cap].date){
-            
-            
+
+        if (weekEvents[i].date !== weekEvents[cap].date) {
+
+
             //variables and declarations
             key = weekEvents[i + 1].date;
-            
+
             bodyDiv.addClass("collapsible-body");
             headerDiv.addClass("collapsible-header");
             headerDiv.text(weekEvents[i].date);
-            
+
             li.append(headerDiv);
-            
+
             var headings = $("<tr>");
             var table = $("<table>");
-            
+
             table.attr("border", 1);
             table.attr("frame", "void");
             table.attr("rules", "all");
-            
-            
+
+
             headings.html("<th>Name</th><th>Missing Earth (Miles)</th><th>Speed (MPH)</th><th>Max Diameter(Miles)</th><th>Min diameter (Miles)</th><th>Dangerous</th>");
-            
+
             thead.append(headings);
-            
-            for (var j = 0; j < weekEvents.length; j++){
-                if(weekEvents[j].date === headerDiv.text()){
-                    
+
+            for (var j = 0; j < weekEvents.length; j++) {
+                if (weekEvents[j].date === headerDiv.text()) {
+
                     var information = $("<tr>");
-                    information.html("<td>"+ weekEvents[j].name +"</td><td>" + weekEvents[j].missEarth + "</td><td>"+ weekEvents[j].speed +"</td><td>"+  weekEvents[j].diameterMax +"</td><td>"+ weekEvents[j].diameterMin +"</td><td>"+ weekEvents[j].danger +"</td>");
-                    
+                    information.html("<td>" + weekEvents[j].name + "</td><td>" + weekEvents[j].missEarth + "</td><td>" + weekEvents[j].speed + "</td><td>" + weekEvents[j].diameterMax + "</td><td>" + weekEvents[j].diameterMin + "</td><td>" + weekEvents[j].danger + "</td>");
+
                     table.append(information);
                 }
-                
+
                 tbody.append(information);
                 table.append(thead);
                 table.append(tbody);
@@ -741,13 +742,13 @@ function getAsteroids(){
                 bodyDiv.append(span);
                 li.append(bodyDiv);
                 $("#accordion2").append(li);
-                
-            } 
+
+            }
         }
-    }   
+    }
 }
 
-function getTodaysDate(){
+function getTodaysDate() {
     var date = new Date();
     var day = date.getDate();
     var month = date.getMonth();
@@ -755,8 +756,8 @@ function getTodaysDate(){
     var nDate = year + "/" + (month + 1) + "/" + day;
     var dateFormat = "YYYY/MM/DD";
     var convertedDate = moment(nDate, dateFormat);
-    
-    switch(month){
+
+    switch (month) {
         case 0:
             month = "January";
             break;
@@ -792,241 +793,241 @@ function getTodaysDate(){
             break;
         case 11:
             month = "December";
-            break;    
-        }
-    
+            break;
+    }
+
     todaysDate = convertedDate.format("MMMM Do YYYY");
 }
 
-function getMoonPhases(){
+function getMoonPhases() {
     var d = new Date();
     var day = d.getDate();
     var month = d.getMonth();
     var year = d.getFullYear();
-    
+
     var dateFormat = (month + 1) + "/" + day + "/" + year;
-    
-   
-    var url = "http://api.usno.navy.mil/moon/phase?date="+ dateFormat + "&nump=7";
-    
-     //ajax call
+
+
+    var url = "http://api.usno.navy.mil/moon/phase?date=" + dateFormat + "&nump=7";
+
+    //ajax call
     $.ajax({
-    type:"GET",
-    url: url,
-    async: false,
-    dataType: "json",
-    success: function(data){
-        var i = 0;
-        $.each(data.phasedata, function(){
-            var d = new Date()
-            var day = d.getDate();
-            var month = d.getMonth();
-            month++;
-            var year = d.getFullYear();
-            var moonDate = data.phasedata[i].date.split(" ");
-            var moonDay = moonDate[2];
-            var moonMonth = moonDate[1];
-            var moonYear = moonDate[0];
-            
-            switch(month){
-        case 1:
-            month = "Jan"
-            break;
-        case 2:
-            month = "Feb"
-            break;
-        case 3:
-            month = "Mar"
-            break;
-        case 4:
-            month = "Apr"
-            break;
-        case 5:
-            month = "May"
-            break;
-        case 6:
-            month = "Jun"
-            break;
-        case 7:
-            month = "Jul"
-            break;
-        case 8:
-            month = "Aug"
-            break;
-        case 9:
-            month = "Sep"
-            break;
-        case 10:
-            month = "Oct"
-            break;
-        case 11:
-            moonYearonth = "Nov"
-            break;
-        case 12:
-            month = "Dec"
-            break;    
-                }
-            
-            //day view
-            if(moonMonth === month && moonDay === day && moonYear === year){
-                var li = $("<li>");
-                var headerDiv = $("<div>");
-                var bodyDiv = $("<div>");
-                var span = $("<span>");
-                var thead = $("<thead>");
-                var tbody = $("<tbody>");
-
-                bodyDiv.addClass("collapsible-body");
-                headerDiv.addClass("collapsible-header");
-
-                headerDiv.text(moonMonth + " " + moonDay + ", " + moonYear);
-
-                li.append(headerDiv);
-                
-                var table = $("<table>");
-                
-                table.attr("border", 1);
-                table.attr("frame", "void");
-                table.attr("rules", "all");
-
-                var headings = $("<tr>");
-                headings.html("<th>Phase</th>");
-                
-                thead.append(headings);
-                
-                var information = $("<tr>");
-                information.html("<td style='padding: 0 10px 0 10px'>" + data.phasedata[i].phase + "</td>");
-                
-                tbody.append(information);
-                table.append(thead);
-                table.append(tbody);
-                span.append(table);
-                bodyDiv.append(span);
-                li.append(bodyDiv); 
-                $("#accordion9").append(li);    
-            } 
-                    
-            //week view 
-            if(moonMonth == month && moonDay >= day && moonDay <= (day + 6)){
-                
-                var li = $("<li>");
-                var headerDiv = $("<div>");
-                var bodyDiv = $("<div>");
-                var span = $("<span>");
-                var thead = $("<thead>");
-                var tbody = $("<tbody>");
-
-                bodyDiv.addClass("collapsible-body");
-                headerDiv.addClass("collapsible-header");
-
-                headerDiv.text(moonMonth + " " + moonDay + ", " + moonYear);
-
-                li.append(headerDiv);
-                
-                var table = $("<table>");
-
-                table.attr("border", 1);
-                table.attr("frame", "void");
-                table.attr("rules", "all");
-
-                var headings = $("<tr>");
-                headings.html("<th>Phase</th>");
-                
-                thead.append(headings);
-                
-                var information = $("<tr>");
-                information.html("<td style='padding: 0 10px 0 10px'>" + data.phasedata[i].phase + "</td>");
-                
-                tbody.append(information);
-                table.append(thead);
-                table.append(tbody);
-                span.append(table);
-                bodyDiv.append(span);
-                li.append(bodyDiv);
-                $("#accordion10").append(li);    
-            } 
-               
-            
-            //month view
-            if(moonMonth == month && moonYear == year){
-                
-                var li = $("<li>");
-                var headerDiv = $("<div>");
-                var bodyDiv = $("<div>");
-                var span = $("<span>");
-                var thead = $("<thead>");
-                var tbody = $("<tbody>");
-
-                bodyDiv.addClass("collapsible-body");
-                headerDiv.addClass("collapsible-header");
-
-                headerDiv.text(moonMonth + " " + moonDay + ", " + moonYear);
-
-                li.append(headerDiv);
-                
-                var table = $("<table>");
-                
-
-                table.attr("border", 1);
-                table.attr("frame", "void");
-                table.attr("rules", "all");
-                
-                var headings = $("<tr>");
-                headings.html("<th>Phase</th>");
-                
-                thead.append(headings);
-                
-                var information = $("<tr>");
-                information.html("<td style='padding: 0 10px 0 10px'>" + data.phasedata[i].phase + "</td>");
-                
-                tbody.append(information);
-                table.append(thead);
-                table.append(tbody);
-                span.append(table);
-                bodyDiv.append(span);
-                li.append(bodyDiv);
-                $("#accordion11").append(li);        
-            }
-            
-            
-            i++;
-        })
-        
-    },
-    error: function(errorMessage){
-        alert("Error" + errorMessage);
-    }
-        }); 
-}
-
-function wiki(search){
-    var url = "https://en.wikipedia.org/w/api.php?action=opensearch&search="+ search +"&format=json&callback=?";
-       
-       //ajax call
-       $.ajax({
-        type:"GET",
+        type: "GET",
         url: url,
         async: false,
         dataType: "json",
-        success: function(data){
-            
-            
-            
-            
-            
+        success: function (data) {
+            var i = 0;
+            $.each(data.phasedata, function () {
+                var d = new Date()
+                var day = d.getDate();
+                var month = d.getMonth();
+                month++;
+                var year = d.getFullYear();
+                var moonDate = data.phasedata[i].date.split(" ");
+                var moonDay = moonDate[2];
+                var moonMonth = moonDate[1];
+                var moonYear = moonDate[0];
+
+                switch (month) {
+                    case 1:
+                        month = "Jan"
+                        break;
+                    case 2:
+                        month = "Feb"
+                        break;
+                    case 3:
+                        month = "Mar"
+                        break;
+                    case 4:
+                        month = "Apr"
+                        break;
+                    case 5:
+                        month = "May"
+                        break;
+                    case 6:
+                        month = "Jun"
+                        break;
+                    case 7:
+                        month = "Jul"
+                        break;
+                    case 8:
+                        month = "Aug"
+                        break;
+                    case 9:
+                        month = "Sep"
+                        break;
+                    case 10:
+                        month = "Oct"
+                        break;
+                    case 11:
+                        moonYearonth = "Nov"
+                        break;
+                    case 12:
+                        month = "Dec"
+                        break;
+                }
+
+                //day view
+                if (moonMonth === month && moonDay === day && moonYear === year) {
+                    var li = $("<li>");
+                    var headerDiv = $("<div>");
+                    var bodyDiv = $("<div>");
+                    var span = $("<span>");
+                    var thead = $("<thead>");
+                    var tbody = $("<tbody>");
+
+                    bodyDiv.addClass("collapsible-body");
+                    headerDiv.addClass("collapsible-header");
+
+                    headerDiv.text(moonMonth + " " + moonDay + ", " + moonYear);
+
+                    li.append(headerDiv);
+
+                    var table = $("<table>");
+
+                    table.attr("border", 1);
+                    table.attr("frame", "void");
+                    table.attr("rules", "all");
+
+                    var headings = $("<tr>");
+                    headings.html("<th>Phase</th>");
+
+                    thead.append(headings);
+
+                    var information = $("<tr>");
+                    information.html("<td style='padding: 0 10px 0 10px'>" + data.phasedata[i].phase + "</td>");
+
+                    tbody.append(information);
+                    table.append(thead);
+                    table.append(tbody);
+                    span.append(table);
+                    bodyDiv.append(span);
+                    li.append(bodyDiv);
+                    $("#accordion9").append(li);
+                }
+
+                //week view 
+                if (moonMonth == month && moonDay >= day && moonDay <= (day + 6)) {
+
+                    var li = $("<li>");
+                    var headerDiv = $("<div>");
+                    var bodyDiv = $("<div>");
+                    var span = $("<span>");
+                    var thead = $("<thead>");
+                    var tbody = $("<tbody>");
+
+                    bodyDiv.addClass("collapsible-body");
+                    headerDiv.addClass("collapsible-header");
+
+                    headerDiv.text(moonMonth + " " + moonDay + ", " + moonYear);
+
+                    li.append(headerDiv);
+
+                    var table = $("<table>");
+
+                    table.attr("border", 1);
+                    table.attr("frame", "void");
+                    table.attr("rules", "all");
+
+                    var headings = $("<tr>");
+                    headings.html("<th>Phase</th>");
+
+                    thead.append(headings);
+
+                    var information = $("<tr>");
+                    information.html("<td style='padding: 0 10px 0 10px'>" + data.phasedata[i].phase + "</td>");
+
+                    tbody.append(information);
+                    table.append(thead);
+                    table.append(tbody);
+                    span.append(table);
+                    bodyDiv.append(span);
+                    li.append(bodyDiv);
+                    $("#accordion10").append(li);
+                }
+
+
+                //month view
+                if (moonMonth == month && moonYear == year) {
+
+                    var li = $("<li>");
+                    var headerDiv = $("<div>");
+                    var bodyDiv = $("<div>");
+                    var span = $("<span>");
+                    var thead = $("<thead>");
+                    var tbody = $("<tbody>");
+
+                    bodyDiv.addClass("collapsible-body");
+                    headerDiv.addClass("collapsible-header");
+
+                    headerDiv.text(moonMonth + " " + moonDay + ", " + moonYear);
+
+                    li.append(headerDiv);
+
+                    var table = $("<table>");
+
+
+                    table.attr("border", 1);
+                    table.attr("frame", "void");
+                    table.attr("rules", "all");
+
+                    var headings = $("<tr>");
+                    headings.html("<th>Phase</th>");
+
+                    thead.append(headings);
+
+                    var information = $("<tr>");
+                    information.html("<td style='padding: 0 10px 0 10px'>" + data.phasedata[i].phase + "</td>");
+
+                    tbody.append(information);
+                    table.append(thead);
+                    table.append(tbody);
+                    span.append(table);
+                    bodyDiv.append(span);
+                    li.append(bodyDiv);
+                    $("#accordion11").append(li);
+                }
+
+
+                i++;
+            })
+
         },
-        error: function(errorMessage){
+        error: function (errorMessage) {
             alert("Error" + errorMessage);
         }
     });
 }
 
-$(document).ready(function(){
+function wiki(search) {
+    var url = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + search + "&format=json&callback=?";
+
+    //ajax call
+    $.ajax({
+        type: "GET",
+        url: url,
+        async: false,
+        dataType: "json",
+        success: function (data) {
+
+
+
+
+
+        },
+        error: function (errorMessage) {
+            alert("Error" + errorMessage);
+        }
+    });
+}
+
+$(document).ready(function () {
     getSolar();
     getMeteorShower();
     getMoonPhases();
     getISS();
     getTodaysDate();
     getAsteroids();
-    
+
 });
