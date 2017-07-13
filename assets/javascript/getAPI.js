@@ -185,7 +185,7 @@ function getWeekDays(data){
     	//Create day of week div
     	var currentDay = moment().add(1*i,'days').format('dddd');
     	var cardDate = $('<p>');
-    	cardDate.addClass('day card-title');
+    	cardDate.addClass('day card-title truncate');
 			cardDate.attr("id", "day" + i);
     	cardDate.text(currentDay);
     	cardCon.append(cardDate);
@@ -712,7 +712,7 @@ function updateClock() {
 
 // Html page interactions js 
 $(document).ready(function(){
-	
+
 	// initialize .materialbox
 	$('.materialboxed').materialbox();
 
