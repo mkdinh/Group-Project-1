@@ -94,74 +94,7 @@ function getWeather(){
         });
 }
 
-<<<<<<< HEAD
-function getWeekDays{
-    var date= new Date();
-    var weekday = date.getDay();
-    var fullWeekdaysl
-}
 
-// function getWeekDays() {
-//     var date = new Date();
-//     var weekday = date.getDay();
-//     var fullWeekday;
-    
-//     //gets the 5 days
-//     for(var i = 0; i < 7; i++){
-        
-//         switch(weekday) {
-//             case 0:
-//                 fullWeekday = "Sunday";
-//                 days.push(fullWeekday);
-//                 $("#day"+i).text(fullWeekday);
-//                 console.log(weekday + " " + fullWeekday);
-//                 break;
-//             case 1:
-//                 fullWeekday = "Monday";
-//                 days.push(fullWeekday);
-//                 $("#day"+i).text(fullWeekday);
-//                 console.log(weekday + " " + fullWeekday);
-//                 break;
-//             case 2:
-//                 fullWeekday = "Tuesday";
-//                 days.push(fullWeekday);
-//                 $("#day"+i).text(fullWeekday);
-//                 console.log(weekday + " " + fullWeekday);
-//                 break;
-//             case 3:
-//                 fullWeekday = "Wednesday";
-//                 days.push(fullWeekday);
-//                 $("#day"+i).text(fullWeekday);
-//                 console.log(weekday + " " + fullWeekday);
-//                 break;
-//             case 4:
-//                 fullWeekday = "Thursday";
-//                 days.push(fullWeekday);
-//                 $("#day"+i).text(fullWeekday);
-//                 console.log(weekday + " " + fullWeekday);
-//                 break;
-//             case 5:
-//                 fullWeekday = "Friday";
-//                 days.push(fullWeekday);
-//                 $("#day"+i).text(fullWeekday);
-//                 console.log(weekday + " " + fullWeekday);
-//                 break;
-//             case 6:
-//                 fullWeekday = "Saturday";
-//                 days.push(fullWeekday);
-//                 $("#day"+i).html(fullWeekday);
-//                 console.log(weekday + " " + fullWeekday);
-//                 break;
-
-//         }
-//         weekday++;
-//         if(weekday === 7){
-//             weekday = 0;
-//         }
-//     }
-    
-// }
-=======
  function getWeekDays() {
      var date = new Date();
      var weekday = date.getDay();
@@ -222,7 +155,7 @@ function getWeekDays{
      }
     
  }
->>>>>>> f9ff8d8a058d8ab65332e2177d0e5aa7702c5d2e
+
 
 
 // Initialize collapse button

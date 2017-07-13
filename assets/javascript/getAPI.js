@@ -829,7 +829,7 @@ $(document).ready(function(){
 		getModalConstellation()
 	})
 
-<<<<<<< HEAD
+
 
 
 
@@ -1033,4 +1033,4 @@ function getMeteorShower() {
  //    });
 	
 });
->>>>>>> 62b2430a0eaa3529de22e0c3592cb23ae3c295c2
+
