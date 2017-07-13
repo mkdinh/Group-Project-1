@@ -546,7 +546,7 @@ label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
 	  left: auto !important;  
 	}
 
-	#day-temperature{font-size:30px;}
+	#day-temperature{font-size:200%;}
 
 	/*event tab*/
 	#news-input,#event-input{width:90%;}
