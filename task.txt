@@ -10,4 +10,8 @@
 
 - What's up with "Brightest Objects"?
 
+- add functionality to our navbar search box, or remove
+
 - UI tweaks
+
+- "Credits", including adding attribution to APIs that require it (DarkSky)
