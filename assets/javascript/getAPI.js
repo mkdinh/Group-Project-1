@@ -713,13 +713,13 @@ function updateClock() {
 // Html page interactions js 
 $(document).ready(function(){
 
-	$(window).resize(function(){
-		if ($(window).width() < 480) {
-	    	$('body').css('font-size','80%');
-		} else {
-		    $('body').css('font-size','100%');
-		}
-	})
+	// $(window).resize(function(){
+	// 	if ($(window).width() < 480) {
+	//     	$('body').css('font-size','80%');
+	// 	} else {
+	// 	    $('body').css('font-size','100%');
+	// 	}
+	// })
 
 	// update clock every 1 second
 	setInterval(updateClock, 1000);
