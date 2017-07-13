@@ -526,7 +526,7 @@ label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
 
 /*------------------------------------- MEDIA RESPONSE CSS ------------------------------------------*/
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
 	body{font-size:80%;}
 	.brand-logo i.material-icons{display:none;}
 	.divider{display:none;}
