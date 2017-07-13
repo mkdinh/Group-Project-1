@@ -1,5 +1,0 @@
-- build in error handling for:
-  - failure to get geolocation data
-  - corsanywhere failure
-    - big goal: learn how to make server-side API requests, maybe leveraging Firebase, to be able to ditch corsanywhere
-  - failure of any of the apis
