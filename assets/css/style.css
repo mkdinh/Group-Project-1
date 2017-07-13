@@ -553,16 +553,16 @@ label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
 	#day-wind{padding-top:10%;}
 
 	/*event tab*/
-	#news-input,#event-input{width:90%;}
+	#news-input,#event-input{width:80%;}
 
 	/*Constell tab*/
 	#constell-img-size{display:none;}
 	#constell-modal-btn{display:none;}
  }
 
- @media (min-width: 640px; max-width:1024px) {
+ @media (min-width: 480px) and (max-width:1024px) {
 	#day-weather{padding-top:0%;}
-/*	#day-temperature{font-size:250%;}*/
+	#day-temperature{font-size:250%;}
 	#day-wind{padding-top:0%;}
 
  }
