@@ -533,8 +533,6 @@ label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
 	#search-input,.material-icons.nav-search,.material-icons.refresh,#login{display:none;}
 	#switch-view{ position:absolute; top:0px; left:15px; font-size:32px}
 	#profile-button{position: absolute; right:15px; top:17px; z-index:2;}
-	#today-weather-container{width:100%;}
-	#today-events-container{width:100%;}
 	.card.week{display:inline-block; width:100%;}
 	.card .card-image img {display:none;}
 	img.forecast.moonPhase{display:none;}
@@ -545,11 +543,16 @@ label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
 	  bottom: auto !important;
 	  left: auto !important;  
 	}
-
+	#day-weather{padding-top:10%;}
 	#day-temperature{font-size:200%;}
+	#day-wind{padding-top:10%;}
 
 	/*event tab*/
 	#news-input,#event-input{width:90%;}
+
+	/*Constell tab*/
+	#constell-img-size{display:none;}
+	#constell-modal-btn{display:none;}
  }
 
 
