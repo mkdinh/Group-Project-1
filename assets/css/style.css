@@ -1,3 +1,5 @@
+/*------------------------------------- Element CSS ------------------------------------------*/
+
 body::-webkit-scrollbar {
 display: none;
 }
@@ -13,6 +15,11 @@ nav{
 	/*background-color: rgba(20,28,58,1);*/
 	background-color: rgba(20,28,58,.7);
 }
+
+/*------------------------------------- MATERIALIZE MODAL------------------------------------------*/
+
+
+/*------------------------------------- PRELOADER CSS ------------------------------------------*/
 
 .preloader-wrapper{
  	position: absolute;
@@ -31,12 +38,8 @@ nav{
 	color:white;
 }
 
-/* label underline focus color */
 
-input#search-input:focus,input#news-input:focus,input#event-input:focus {
-     border-bottom: .5px solid gold;
-     box-shadow: 0 .5px 0 0 gold;
-}
+/*------------------------------------- NAVBAR CSS ------------------------------------------*/
 
 .brand-logo{
 	margin-left:10px;
@@ -56,11 +59,20 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 	background-color:grey;
 }
 
+/*------------------------------------- CONTAINER CSS ------------------------------------------*/
+
 .container{
 	width:96%;
+	margin:auto;
+	opacity:0;
 }
 
-.row{margin:0;}
+.container .row{
+	margin-left:0; 
+	margin-right:0;
+}
+
+/*------------------------------------- WEEK-VIEW CSS ------------------------------------------*/
 
 #week-view{
 	text-align:center;
@@ -68,13 +80,10 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 	overflow:hidden;
 	width:100%;
 	display:none;
+
 }
 
 .modal-weekly-weather{width: 20%;}
-
-#day-view{
-	display:none;
-}
 
 .card{
 	color:white;
@@ -129,7 +138,11 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 	color:white;
 }
 
-/*Week View css*/
+/*------------------------------------- DAY-VIEW CSS ------------------------------------------*/
+
+/*------------------------------------- MAIN CONTENT CSS ------------------------------------------*/
+
+
 
 .tabs{
 	background-color: rgba(255,255,255,1);
@@ -145,11 +158,48 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 	background-color: maroon  !important;;
 }
 
+
+#tab-content{
+	margin:10px 0;
+	padding:20px;
+	text-align: left;
+	background-color: rgba(25,12,38,0.9);
+	color:white;
+}
+
+/* label underline focus color */
+
+input#search-input:focus,input#news-input:focus,input#event-input:focus {
+     border-bottom: .5px solid gold;
+     box-shadow: 0 .5px 0 0 gold;
+}
+/*forecast tab*/
 .weather-info-container{
 	background-color: rgba(255,255,255,.1);
 	margin:20px 0 0 0;
 }
 
+.score-line {
+	padding: 5px;
+}
+
+.rating {
+	font-weight: bold;
+	color: orchid;
+}
+
+#star-container{
+	display:inline-block;
+	line-height:100%;
+	margin: 3px 0px 0px 5px;
+}
+
+#star-container i {
+	color: gold;
+	font-size: 1rem;
+	vertical-align: text-top;
+
+}
 
 #today-weather{
 	text-align: left;
@@ -158,20 +208,52 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 	border-radius: 0;
 }
 
-#today-events{
-	text-align: left;
-	padding: 20px 15px 5px 15px;
-	border-radius: 0;
+#day-wind img{
+	width:53%;
+	margin: 20px auto 5px auto;
 }
 
-.apod-img {
-	max-height: 30vh;
-	max-width: 100%;
+.windSpeed{margin:0;}
+
+.weather-info{
+	margin:5px 0;
 }
 
-.fine-print {
-	font-size: .8rem;
+.additional-info{margin-top:20px;}
+
+
+/*news tab*/
+#tab-news{padding-top:10px;}
+
+#news-input{width:40%; margin:0px;}
+
+.search-icon{font-size:30px;vertical-align: bottom; color:white;}
+
+#news-search-method{
+	margin:20px 10px 20px 0px;
 }
+
+
+#news-display{margin:30px auto 0px auto; font-size:12px;}
+
+.news-title{
+	font-weight: bold;
+    font-size: 15px;
+    margin:0 ;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space:nowrap;
+}
+
+.news-date,.news-byline{line-height:10px;}
+
+.news-trailText{
+	overflow: hidden; 
+	text-overflow: ellipsis;
+	white-space: nowrap}
+
+
+/* event tab*/
 
 .skycons {
 	width:100%;
@@ -201,20 +283,90 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
     padding: 0px;
     line-height: 0px;
  }
+
+/*Constellation Tabs*/
+
+#iframe-container{
+	width:550px;
+	height:550px;
+	overflow: hidden;
+	position:relative;
+}
+
+/*#iframe{
+	position:absolute;
+	left: -54%;
+    top: -12%;
+
+    width: 1366px; height: 768px; border: 1px solid black;
+    -moz-transform: scale(0.85);
+    -moz-transform-origin: 0 0;
+    -o-transform: scale(0.85);
+    -o-transform-origin: 0 0;
+    -webkit-transform: scale(0.85);
+    -webkit-transform-origin: 0 0;
+}*/
  
+#constell-display{
+	margin:auto;
+	margin-top: 30px;
+	width:75%;
+} 
 
-#day-wind img{
-	width:53%;
-	margin: 20px auto 5px auto;
+#constell-parameter{
+	padding:0 2%;
 }
 
-.windSpeed{margin:0;}
-
-.weather-info{
-	margin:5px 0;
+#constell-img{
+	width:100%;
+	border-radius:100%;
 }
 
-.additional-info{margin-top:20px;}
+#constell-theme{
+	padding:auto 0px;
+	margin:30px 0 10px 0;
+}
+
+#constell-modal-btn{
+	color:teal
+}
+
+#constell-modal{
+	max-height: 100%;
+	width:90%;
+	height: 90%;
+	overflow:hidden;
+}
+
+#constell-modal-display{
+	width: 60%;
+    margin: 15px auto;
+    vertical-align: middle;
+}
+
+.constell-modal-para{
+	display:block;
+}
+
+
+/*------------------------------------- SIDE BAR CSS ------------------------------------------*/
+
+.side-bar-sect{font-size:18px;}
+
+#today-events{
+	text-align: left;
+	padding: 20px 15px 5px 15px;
+	border-radius: 0;
+}
+
+.apod-img {
+	max-height: 30vh;
+	max-width: 100%;
+}
+
+.fine-print {
+	font-size: .8rem;
+}
 
 .collection-events{
 	color:black;
@@ -243,40 +395,7 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 }
 
 
-/*news tab*/
-#tab-news{padding-top:10px;}
-
-#news-input{width:40%; margin:0 10px;}
-
-.search-icon{font-size:30px;vertical-align: bottom; color:white;}
-
-#news-search-method{
-	margin:20px 10px 0 10px;
-}
-
-
-#news-display{margin:30px auto 0px auto; font-size:12px;}
-
-.news-title{
-	font-weight: bold;
-    font-size: 15px;
-    margin:0 ;
-    overflow: hidden; 
-    text-overflow: ellipsis;
-    white-space:nowrap;
-}
-
-.news-date,.news-byline{line-height:10px;}
-
-.news-trailText{
-	overflow: hidden; 
-	text-overflow: ellipsis;
-	white-space: nowrap}
-
-
-/* event tab*/
-
-/*Login Page*/
+/*------------------------------------- LOGIN CSS ------------------------------------------*/
 
 .g-signin2{
 	text-align:center;
@@ -400,6 +519,7 @@ label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
 	border:1px solid black;
 }
 
+/*------------------------------------- MEDIA RESPONSE CSS ------------------------------------------*/
 
 @media (max-width: 768px) {
 	.container{width:94%;margin:auto;}

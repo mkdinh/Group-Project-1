@@ -1,5 +1,7 @@
 <!DOCTYPE html>
   <html>
+
+<!-- .......................................    IMPORT CSS  .................................................. -->
     <head>
       <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -15,14 +17,15 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
 
 
-	<meta name="google-signin-scope" content="profile email">
-	<meta name="google-signin-client_id" content="605410716218-mir98nn8e8pod9i5l4up252ntgbj1m2r.apps.googleusercontent.com.apps.googleusercontent.com">
-
+	  <meta name="google-signin-scope" content="profile email">
+	  <meta name="google-signin-client_id" content="605410716218-mir98nn8e8pod9i5l4up252ntgbj1m2r.apps.googleusercontent.com.apps.googleusercontent.com">
     </head>
+
+<!-- Body Start -->
 
     <body>
 
-		<!-- Preloadder -->
+<!-- .......................................   PRELOADER  .................................................. -->
 			
 		  <div class="preloader-wrapper big active">
 		    <div class="spinner-layer spinner-blue-only">
@@ -36,9 +39,11 @@
 		    </div>
 		  </div>
 
-
     	<!-- Profile Button -->
 		<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons show-on-large small" id="profile-button">settings</i></a>
+
+
+<!-- .......................................    NAVBAR .................................................. -->
 
 		<!-- NavBar -->
 		<nav>
@@ -50,19 +55,36 @@
 
 				<ul class="right nav-list">
 					<li><input type="text" id="search-input"></li>
-				    <li><i class="material-icons nav-search">search</i></li>	
+				    <li><i class="material-icons nav-search">search</i></a></li>	
 				    <li><a href="index.html" id="refresh"><i class="material-icons refresh">refresh</i></a></li>
-<<<<<<< HEAD
-				    <li><i class="material-icons" id="switch-view">view_quilt</i></li>
-=======
 				    <li><i class="material-icons" id="switch-view">view_week</i></a></li>
->>>>>>> 5d289001d8ac08c5050b9fdefb2f766e6ef5fc30
 				    <li class="profile-btn hide-on-med-and-down"><a class="btn btn-floating pulse"><i class="material-icons">perm_identity</i></a></li>
 			  	</ul>
 			</div>
 		</nav>
 		
-		<!-- Side Nav -->
+<!-- .......................................    MODAL DIV .................................................. -->
+
+
+					<!-- Modal Structure -->
+		<div id="modal1" class="modal">
+			<div class="modal-content">
+			  <h4>Astronomy Events</h4>
+			  <ul>
+			  	<li>event 1</li>
+			  	<li>event 2</li>
+			  	<li>event 3</li>
+			  	<li>event 4</li>
+			  	<li>event 5</li>
+			  	<li>event 6</li>
+			  </ul>
+			</div>
+			<div class="modal-footer">
+			  <a href="#!" class="modal-action modal-close waves-effect btn-flat">Close</a>
+			</div>
+		</div>
+
+<!-- .......................................    SIDENAV  .................................................. -->
 
 		<ul id="slide-out" class="side-nav"  style="background-color: rgba(135,136,156,.8)">
 		    <li>
@@ -81,196 +103,197 @@
 		    <li><a class="subheader">Subheader</a></li>
 		    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
 		</ul>
+<!-- .......................................    DAILY / WEEKLY UPDATE .................................................. -->]
 
-		<!-- Main Content -->
-			<!-- popup button-->
-		<div class="container">
+	<div class="container">
+			<!-- week view div -->
+			<div class="row" id="week-view"></div>
+				
+			<div class="row" id='day-view'>
+				<!-- day view div -->
+			 	<div class="col s1"></div>
+				
+			  	<!-- Main Content div -->
+				<div class='col s7' id="main-content">
 
+				    <ul class="tabs row">
+				        <li class="tab col s3" id='tab-id-forecast' tab-data="tab-forecast"><a  href="#tab-forecast">Forecast</a></li>
+				        <li class="tab col s3" id='tab-id-events' tab-data="tab-events"><a href="#tab-events">Events</a></li>
+				        <li class="tab col s3" id='tab-id-news' tab-data="tab-news"><a href="#tab-news">News</a></li>
+				        <li class="tab col s3" id='tab-id-constell' tab-data="tab-constell"><a href="#tab-constell">Constell</a></li>
+			      	</ul>
+				
+					<!-- .........................    MAIN TABS ............................ -->
 
+					<div id="tab-content" class='row'>					
+						<!-- Forecast Tab -->
+						<div id="tab-forecast">
 
-		  <!-- Modal Structure -->
-		  <div id="modal1" class="modal">
-		    <div class="modal-content">
-		      <h4>Astronomy Events</h4>
-		      <ul>
-		      	<li>event 1</li>
-		      	<li>event 2</li>
-		      	<li>event 3</li>
-		      	<li>event 4</li>
-		      	<li>event 5</li>
-		      	<li>event 6</li>
-		      </ul>
-		    </div>
-		    <div class="modal-footer">
-		      <a href="#!" class="modal-action modal-close waves-effect btn-flat">Close</a>
-		    </div>
-		  </div>
-
-			<!-- First Row div -->
-			<div class="row">
-				<!-- weem view div -->
-				<div class="col s12">
-					<div id="week-view"> 
-					<!-- week view close-->
-					</div>
-					<!-- end of action cards -->
-
-					<!-- day view div -->
-					<div class="row" id="day-view">
-					  <div class="col s1"></div>
-						<div class='col s6' id="today-weather-container">
-
-						    <ul class="tabs">
-<<<<<<< HEAD
-						        <li class="tab col s3" tab-data="tab-forecast"><a class='active' href="#tab-forecast">Forecast</a></li>
-						        <li class="tab col s3" tab-data="tab-events"><a href="#tab-events">Events</a></li>
-						        <li class="tab col s3" tab-data="tab-news"><a href="#tab-news">News</a></li>
-						        <li class="tab col s3" tab-data="tab-constellation"><a id="constell" href="#tab-constellation">Constell</a></li>
-=======
-						        <li class="tab col s3" id='tab-id-forecast' tab-data="tab-forecast"><a  href="#tab-forecast">Forecast</a></li>
-						        <li class="tab col s3" id='tab-id-events' tab-data="tab-events"><a href="#tab-events">Events</a></li>
-						        <li class="tab col s3" id='tab-id-news' tab-data="tab-news"><a href="#tab-news">News</a></li>
-						        <li class="tab col s3" id='tab-id-constellation' tab-data="tab-constellation"><a class='active' href="#tab-constellation">Constell</a></li>
->>>>>>> 5d289001d8ac08c5050b9fdefb2f766e6ef5fc30
-					      	</ul>
-							<div class='col s12 card left' id="today-weather">
-							
-							<div id="tab-forecast">
-								<div class='row weather-info-container center'>
-									<div class='col s4' id='day-weather'>
-										<canvas class="skycons" id="skycons"></canvas>
-										<p class="skycons-label"></p>
-									</div>
-									<div class='col s4' id='day-temperature'></div>
-									<div class='col s4' id='day-wind'><img src="assets/image/wind.png"><p class="windSpeed"></p></div>
-
+							<div id="weather-display" class='row weather-info-container center'>
+								<div class='col s4' id='day-weather'>
+									<canvas class="skycons" id="skycons"></canvas>
+									<p class="skycons-label"></p>
 								</div>
-								<div class="additional-info"><h6 class="additional-info"> Additional Info </h6></div>
-								<hr>				
-								<table class='bordered'>
-							        <tbody>
-							          <tr>
-							            <td>Humidity</td>
-							            <td class="humidity"></td>
-							            <td>Precipipation Prob</td>
-							            <td class="precipProbability"></td>
-							          </tr>
-							           <tr>
-							            <td>Cloud Cover</td>
-							            <td class="cloudCover"></td>
-							            <td>Visibility</td>
-							            <td class="visibility"></td>
-							          </tr>
-							          <tr>
-							            <td>Moon Phase</td>
-							            <td class="moonPhase-data"></td>
-							            <td>Humidity</td>
-							            <td class="humidity"></td>
-							          </tr>
-							        </tbody>
-							      </table>  
-							 <!-- close tab-forecast -->
-							 </div>
+								<div class='col s4' id='day-temperature'></div>
+								<div class='col s4' id='day-wind'><img src="assets/image/wind.png"><p class="windSpeed"></p></div>
 
-		  					<div id="tab-events">
-							
 							</div>
 
-							<div id='tab-news'>
-								<div >
-									<input type="text" id="news-input">
-				    				<a href='#/'><i class="material-icons search-icon" id="news-search">search</i></a>
-				    				<h6 id='news-search-method'>Search By: <b>Latest</b></h6>
-				    			</div>
-
-				    			<div id="news-display">
-				    				<ul class="collection" id='news-list'>
-
-				    				</ul>
-				    			</div>
-							</div>
-
-							<div id='tab-constellation'>
-<<<<<<< HEAD
-                                <div style="width: 400px; height: 400px" id="wwtControl" data-settings="pictures=true"></div>
-                                <script src="http://worldwidetelescope.org/embedded-webcontrol.js"></script>
-=======
-								<div id="wwtControl"
-								    data-settings="crosshairs=false,ecliptic=true,pictures=true,boundaries=true"
-								    data-aspect-ratio="8:5" style="width:100%">    
-							    </div>
->>>>>>> 5d289001d8ac08c5050b9fdefb2f766e6ef5fc30
-							</div>
-
-							 <!-- close today-weather-container -->
-						  	</div>	
-						<!-- close col s5 div -->
+							<div class="additional-info"><h6 class="additional-info"> Additional Info </h6></div>
+							<hr>				
+							<table class='bordered'>
+						        <tbody>
+						          <tr>
+						            <td>Humidity</td>
+						            <td class="humidity"></td>
+						            <td>Precipipation Prob</td>
+						            <td class="precipProbability"></td>
+						          </tr>
+						           <tr>
+						            <td>Cloud Cover</td>
+						            <td class="cloudCover"></td>
+						            <td>Visibility</td>
+						            <td class="visibility"></td>
+						          </tr>
+						          <tr>
+						            <td>Moon Phase</td>
+						            <td class="moonPhase-data"></td>
+						            <td>Humidity</td>
+						            <td class="humidity"></td>
+						          </tr>
+						        </tbody>
+						      </table>  
+						<!-- close tab-forecast -->
 						</div>
 						
-						<div class='col s3' id="today-events-container">
-							<div class="col s12 card left" id ='today-events'>
-								<h5 class="truncate">Astronomy Picture of the Day</h5>
-								<hr>
-								<div id="imageOfTheDay" class="center"></div>									
-								<div class="fine-print">
-									via <a href="https://apod.nasa.gov/apod/astropix.html">Astronomy Picture of the Day</a>
-								</div>
-								<!--<h5>Upcoming Event<a href="#/"><i class="material-icons right white-text" id="sidebar-events-btn">view_list</i></a></h5>
-								<hr>
-								 <ul class="collection collection-events">
+						<!-- Event Tab -->
+	  					<div id="tab-events">
 
-							      	<li class="collection-item ">
-								      	<div>
-									      	<a href="#/"><i class="material-icons event-item secondary-content left">add</i></a>
-									      	<span class="event-name">Event 1</span>
-									      	<a href="#modal1" class="secondary-content"><i class="material-icons event-more">send</i></a>
-								      	</div>
-							      	</li>
-
-							      	<li class="collection-item">
-								      	<div>
-									      <a href="#/"><i class="material-icons event-item secondary-content left">add</i></a>
-									      	<span class="event-name">Event 2</span>
-									      	<a href="#modal1" class="secondary-content"><i class="material-icons event-more">send</i></a>
-								      	</div>
-							      	</li>
-
-							      	<li class="collection-item">
-								      	<div>
-									      	<a href="#/"><i class="material-icons event-item secondary-content left">add</i></a>
-									      	<span class="event-name">Event 3</span>
-									      	<a href="#modal1" class="secondary-content"><i class="material-icons event-more">send</i></a>
-								      	</div>
-							      	</li>
-
-							      	<li class="collection-item">
-								      	<div>
-									      	<a href="#/"><i class="material-icons event-item secondary-content left">add</i></a>
-									      	<span class="event-name">Event 4</span>
-									      	<a href="#modal1" class="secondary-content"><i class="material-icons event-more">send</i></a>
-								      	</div>
-							      	</li>
-							    </ul>-->
-
-							    <h5 style='font-size:20px'>Brightest Observable<a href="#/"><i class="material-icons right white-text">view_list</i></a></h5>
-								<hr>
-
-								 <ul class="collection collection-events">
-									<li class="collection-item"><div>Object 1<a href="#modal1" class="secondary-content"><i class="material-icons object-more" >send</i></a></div></li>
-							        <li class="collection-item"><div>Object 2<a href="#modal1" class="secondary-content"><i class="material-icons object-more">send</i></a></div></li>
-							        <li class="collection-item"><div>Object 3<a href="#modal1" class="secondary-content"><i class="material-icons object-more">send</i></a></div></li>
-							    </ul>
-							</div>
 						</div>
-						<div class="col s2"></div>
-					<!-- close day view div -->
-					</div>
-				<!-- close col s12 div -->
+				
+						<!-- News Tab -->
+						<div id='tab-news'>
+							<div >
+								<input type="text" id="news-input">
+			    				<a href='#/'><i class="material-icons search-icon" id="news-search">search</i></a>
+			    				<h6 id='news-search-method'>Search By: <b>Latest</b></h6>
+			    			</div>
+
+			    			<ul class='collection' id='news-list'></ul>
+						
+						</div>
+
+						<!-- Constellation Tab -->
+						<div class="constell-input" id='tab-constell'>
+							<h5 class="center constell-overhead">Current Overhead Constellation <a href="#constell-modal"><i id="constell-modal-btn" class='material-icons small right'>launch</i></a></h5><hr>
+						<!-- 	<div id='iframe-container'>
+								<iframe id="iframe" src="http://www.fourmilab.ch/cgi-bin/Yoursky?z=1&lat=35.7772&ns=North&lon=78.6392&ew=West"></iframe>
+							</div> -->
+							<div id="constell-display" class='center'></div>
+
+							<div class="row" id="constell-input-container">
+						
+							<!-- Adjust image size -->
+								<form class="constell-row2">
+									<p class="range-field">
+			    					  <input id='constell-img-size' type="range" min="50" max="100" />
+			 					   </p>
+	 					   		</form>
+	 					   		
+	 					   		<div class='row' id="constell-parameter">
+								<!-- Switch for other objects -->
+								<form class="switch col s6">
+									<p>Ecliptic &amp; Equator</p>
+									<label>
+									Off
+									<input id='ecEq' class='constell-input' type="checkbox" checked>
+									<span class="lever"></span>
+									On
+									</label>
+
+									<p>Moon &amp; Planets</p>
+									<label>
+									Off
+									<input id='moPlan' class="constell-input" type="checkbox">
+									<span class="lever"></span>
+									On
+									</label>
+
+									<p>Deep Sky Objects</p>
+									<label>
+									Off
+									<input id='deObj' class="constell-input" type="checkbox">
+									<span class="lever"></span>
+									On
+									</label>
+								</form>
+
+								<!-- Checkbox for constellation display -->
+								<form action="#" class="checkboxes col s6">
+									<p>Constellation</p>
+									<p>
+								      <input class="constell-input" type="checkbox" id="constell-outlines" checked>
+								      <label for="constell-outlines">Outlines</label>
+      								</p>
+      								<p>
+	      								<input class="constell-input" type="checkbox" id="constell-names">
+	      								<label for="constell-names">Names</label>
+      								</p>
+      								<p>
+	      								<input class="constell-input" type="checkbox" id="constell-boundaries">
+	      								<label for="constell-boundaries">Boundaries</label>
+      								</p>
+
+      								<!-- Select Appropriate Theme -->
+      								<div id="constell-theme" class="input-field constell-input">
+										<select id='#constell-theme-select' class="constell-input">
+											<option class='constell-theme-option' value="0">Colour</option>
+											<option class='constell-theme-option' value="1">Black on White</option>
+											<option class='constell-theme-option' value="2" selected="selected">White on Black</option>
+											<option class='constell-theme-option' value="3">Infrared</option>
+										</select>
+										<label>Themes</label>
+									</div>
+								</form>
+								</div>
+							</div>				
+						</div>
+						
+					 <!-- close today-weather -->
+				  	</div>	
+				<!-- close today-weather-container -->
 				</div>
-			<!-- close first row div -->
-			</div>	
-		<!-- close container div -->
-		</div>
+
+	
+<!-- .......................................   SIDE BAR  .................................................. -->
+
+				
+				<div class='col s3' id="today-events-container">
+					<div class="col s12 card left" id ='today-events'>
+						<h5 class="side-bar-sect truncate">Picture of the Day</h5>
+						<hr>
+						<div id="imageOfTheDay" class="center"></div>									
+						<div class="fine-print">
+							via <a href="https://apod.nasa.gov/apod/astropix.html">Astronomy Picture of the Day</a>
+						</div>
+
+					    <h5 class="side-bar-sect">Brightest Observable<a href="#/"><i class="material-icons right white-text">view_list</i></a></h5>
+						<hr>
+
+						 <ul class="collection collection-events">
+							<li class="collection-item"><div>Object 1<a href="#modal1" class="secondary-content"><i class="material-icons object-more" >send</i></a></div></li>
+					        <li class="collection-item"><div>Object 2<a href="#modal1" class="secondary-content"><i class="material-icons object-more">send</i></a></div></li>
+					        <li class="collection-item"><div>Object 3<a href="#modal1" class="secondary-content"><i class="material-icons object-more">send</i></a></div></li>
+					    </ul>
+					</div>
+				</div>
+				<div class="col s2"></div>
+			<!-- close day view div -->
+			</div>
+	<!-- close container div -->
+	</div>
+
+<!-- .......................................   LOGIN MODALS  .................................................. -->
 
 		<!-- Login Modal -->
 
@@ -294,9 +317,13 @@
 				<!-- close login Div -->
 			</div>
 
+			<!-- Logout Modal -->
+
 			<div id="logout-modal" class="login modal">
 				<a id="signout" class="btn waves-effect waves-blackcurrant login-btn"><i class="material-icons">exit_to_app</i>sign out</a>
 			</div>
+
+			<!-- Update Modal -->
 
 			<div id="update-modal" class="login modal">
 				<h6 class="white-text">Thanks! Now, what should we call you?</h6>
@@ -349,6 +376,9 @@
 			</div>
 
 
+<!-- .......................................   IMPORT JAVASCRIPT  .................................................. -->
+
+
       	<!-- Functional js for time and weather icons -->
       	<script type="text/javascript" src="assets/javascript/skycons.js"></script>
       	<script type="text/javascript" src="assets/javascript/moment.js"></script>
@@ -362,14 +392,12 @@
 		
 		<!-- Import Firebase js -->
 		<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
-		<script type="text/javascript" src="assets/javascript/firebase.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase-app.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase-auth.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase-database.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase-messaging.js"></script>
 
 	    <!-- application logics js -->
-	    <script src="http://worldwidetelescope.org/embedded-webcontrol.js"></script>
 	    <script type='text/javascript' src='assets/javascript/googleSignIn.js'></script>
     	<script type="text/javascript" src="assets/javascript/getAPI.js"></script>
     </body>
