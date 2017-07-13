@@ -87,7 +87,7 @@ nav{
 
 .card{
 	color:white;
-	width:13%;
+	width:12%;
 	position:relative;
 	display:inline-block;
 	text-align:center;
@@ -125,6 +125,7 @@ nav{
 .moonPhase{
 	margin:20px 0 30px 0;
 	width:100px;
+	max-width: 90%;
 	text-align: center;
 	background-color:white;
 	border-radius: 49px;
@@ -233,6 +234,7 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 	margin:20px 10px 20px 0px;
 }
 
+.view-news{color:teal;}
 
 #news-display{margin:30px auto 0px auto; font-size:12px;}
 
@@ -338,6 +340,14 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 	overflow:hidden;
 }
 
+.modal-display-container::-webkit-scrollbar {
+display: none;
+}
+
+.modal-display-container{
+	overflow:scroll;
+}
+
 #constell-modal-display{
 	width: 60%;
     margin: 15px auto;
@@ -360,8 +370,7 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 }
 
 .apod-img {
-	max-height: 30vh;
-	max-width: 100%;
+	width: 100%;
 }
 
 .fine-print {
@@ -382,6 +391,10 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 	color:orange;
 }
 
+.material-tooltip {
+	max-width: 600px;
+	text-align: justify;
+}
 
 #toast-container {
   top: 12%;
@@ -521,16 +534,14 @@ label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
 
 /*------------------------------------- MEDIA RESPONSE CSS ------------------------------------------*/
 
-@media (max-width: 768px) {
-	.container{width:94%;margin:auto;}
+@media (max-width: 600px) {
+	body{font-size:80%;}
 	.brand-logo i.material-icons{display:none;}
 	.divider{display:none;}
 	#clock{display:none;}
 	#search-input,.material-icons.nav-search,.material-icons.refresh,#login{display:none;}
 	#switch-view{ position:absolute; top:0px; left:15px; font-size:32px}
-	#profile-button{right:15px; top:17px; z-index:2;}
-	#today-weather-container{width:100%;}
-	#today-events-container{width:100%;}
+	#profile-button{position: absolute; right:15px; top:17px; z-index:2;}
 	.card.week{display:inline-block; width:100%;}
 	.card .card-image img {display:none;}
 	img.forecast.moonPhase{display:none;}
@@ -541,11 +552,28 @@ label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
 	  bottom: auto !important;
 	  left: auto !important;  
 	}
-
-	#day-temperature{font-size:30px;}
+	#day-weather{margin:5% 0;}
+	#day-temperature{font-size:200%;}
+	#day-wind{margin: 5% 0};
 
 	/*event tab*/
-	#news-input,#event-input{width:90%;}
+	#news-input,#event-input{width:80%;}
+
+	/*Constell tab*/
+	#constell-img-size{display:none;}
+	#constell-modal-btn{display:none;}
  }
+ @media (min-width: 600px) and (max-width:992px){
+	#day-temperature{font-size:150%;}
+	nav .brand-logo{left:15%;}
+	#clock,.divider{display:none;}
+	.card .card-title{font-size:13px;}
+	.forecast{font-size:12px;}
+	.card.week{display:inline-block;}
+ }
+
+/* @media (min-width: 900px) and (max-width:)
+*/
+
 
 

@@ -135,12 +135,12 @@ function updateTodayWeather(data){
 	$('.windSpeed').html(data.currently.windSpeed + " mph")
 
 	//Updating Addtional Info
-	$(".humidity").html(data.currently.humidity)
-	$(".precipProbability").html(data.currently.precipProbability)
-	$(".cloudCover").html(data.currently.cloudCover)
-	$(".visibility").html(data.currently.visibility)
-	$(".moonPhase-data").html(data.daily.data[0].moonPhase)
-	$(".humidity").html(data.currently.humidity)
+	$(".humidity").html((data.currently.humidity*100).toFixed(1)+'%')
+	$(".precipProbability").html((data.currently.precipProbability*100).toFixed(1)+'%')
+	$(".cloudCover").html((data.currently.cloudCover*100).toFixed(1)+'%')
+	$(".visibility").html(data.currently.visibility+" mi")
+	$(".moonPhase-data").html((data.daily.data[0].moonPhase*100).toFixed(1)+'%')
+	$(".humidity").html((data.currently.humidity*100).toFixed(1)+'%')
 
 
 }
@@ -158,7 +158,7 @@ function getAPOD(){
         dataType: "json",
         success: function(apodData){
 					console.log(apodData);
-            var img = $("<img class='apod-img'>");
+            var img = $("<img class='apod-img materialboxed'>");
             var p = $("<p class='truncate tooltipped'>");
             img.attr("src", apodData.url); 
             p.text(apodData.explanation);
@@ -185,7 +185,7 @@ function getWeekDays(data){
     	//Create day of week div
     	var currentDay = moment().add(1*i,'days').format('dddd');
     	var cardDate = $('<p>');
-    	cardDate.addClass('day card-title');
+    	cardDate.addClass('day card-title truncate');
 			cardDate.attr("id", "day" + i);
     	cardDate.text(currentDay);
     	cardCon.append(cardDate);
@@ -276,13 +276,13 @@ function getWeeklyUpdate(data){
 
 			//conditions from API
 
-			var tempMin = data.daily.data[i].apparentTemperatureMin;
-			var tempMax = data.daily.data[i].apparentTemperatureMax;
-			var humidity = data.daily.data[i].humidity;
-			var precipProbability = data.daily.data[i].precipProbability;
+			var tempMin = (data.daily.data[i].apparentTemperatureMin).toFixed(1);
+			var tempMax = (data.daily.data[i].apparentTemperatureMax).toFixed(1);
+			var humidity = (data.daily.data[i].humidity*100).toFixed(1)+'%';
+			var precipProbability = (data.daily.data[i].precipProbability*100).toFixed(1)+'%';
 			var precipType = data.daily.data[i].precipType;
-			var cloudCover = data.daily.data[i].cloudCover;
-			var moonPhase = data.daily.data[i].moonPhase;
+			var cloudCover = (data.daily.data[i].cloudCover*100).toFixed(1)+'%';
+			var moonPhase = (data.daily.data[i].moonPhase*100).toFixed(1)+'%';
 
 			// add weather conditions
 			var row1 = $('<tr>');
@@ -572,7 +572,7 @@ function createConstellModal(){
 		modal.append(row)
 
 		var constellDisplay = $('<div>');
-		constellDisplay.addClass("col s9 ");
+		constellDisplay.addClass("col s9 modal-display-container");
 		row.append(constellDisplay);
 
 		var constellPara = $('<div>');
@@ -713,6 +713,17 @@ function updateClock() {
 // Html page interactions js 
 $(document).ready(function(){
 
+	// initialize .materialbox
+	$('.materialboxed').materialbox();
+
+	// $(window).resize(function(){
+	// 	if ($(window).width() < 480) {
+	//     	$('body').css('font-size','80%');
+	// 	} else {
+	// 	    $('body').css('font-size','100%');
+	// 	}
+	// })
+
 	// update clock every 1 second
 	setInterval(updateClock, 1000);
 
@@ -796,13 +807,6 @@ $(document).ready(function(){
 	 $('#tab-id-constell').click(function(){
 	 	getConstellation();
 	 	createConstellModal();
-
-	 	// $('#tab-constell').append('<div id="wwtControl"'
-			// + ' data-settings="crosshairs=false,ecliptic=true,pictures=true,boundaries=true"'
-		 //    + ' data-aspect-ratio="8:5"></div>'
-
-		 //    + ' <script src="http://worldwidetelescope.org/embedded-webcontrol.js"></script>'
-		 //    )
 	 })
 
 	 $('select').material_select();
@@ -828,10 +832,6 @@ $(document).ready(function(){
 	$('body').on('change','#constell-modal-theme',function(){
 		getModalConstellation()
 	})
-
-
-
-
 
 /*-----------------------------------------------------------------------------------------------*/
 
@@ -1020,17 +1020,9 @@ function getMeteorShower() {
             }
             
         }
-    }
-    
+    }  
     
 }
 
-
-=======
-	// $('body').on('click','#constell-modal-display',function(){
- //    	console.log('hey')
- //        $('#constell-img').animate({ 'width': '200%' }, 400);
- //    });
-	
 });
 

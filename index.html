@@ -58,7 +58,7 @@
 				    <li><i class="material-icons nav-search">search</i></a></li>	
 				    <li><a href="index.html" id="refresh"><i class="material-icons refresh">refresh</i></a></li>
 				    <li><i class="material-icons" id="switch-view">view_week</i></a></li>
-				    <li class="profile-btn hide-on-med-and-down"><a class="btn btn-floating pulse"><i class="material-icons">perm_identity</i></a></li>
+				    <li class="profile-btn hide-on-small-and-down"><a class="btn btn-floating pulse"><i class="material-icons">perm_identity</i></a></li>
 			  	</ul>
 			</div>
 		</nav>
@@ -103,7 +103,7 @@
 		    <li><a class="subheader">Subheader</a></li>
 		    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
 		</ul>
-<!-- .......................................    DAILY / WEEKLY UPDATE .................................................. -->]
+<!-- .......................................    DAILY / WEEKLY UPDATE .................................................. -->
 
 	<div class="container">
 			<!-- week view div -->
@@ -111,16 +111,15 @@
 				
 			<div class="row" id='day-view'>
 				<!-- day view div -->
-			 	<div class="col s1"></div>
-				
+			
 			  	<!-- Main Content div -->
-				<div class='col s7' id="main-content">
+				<div class='col s12 m7 offset-m1' id="main-content">
 
 				    <ul class="tabs row">
 				        <li class="tab col s3" id='tab-id-forecast' tab-data="tab-forecast"><a  href="#tab-forecast">Forecast</a></li>
 				        <li class="tab col s3" id='tab-id-events' tab-data="tab-events"><a href="#tab-events">Events</a></li>
 				        <li class="tab col s3" id='tab-id-news' tab-data="tab-news"><a href="#tab-news">News</a></li>
-				        <li class="tab col s3" id='tab-id-constell' tab-data="tab-constell"><a href="#tab-constell">Constell</a></li>
+				        <li class="tab col s3" id='tab-id-constell' tab-data="tab-constell"><a href="#tab-constell">Constellation</a></li>
 			      	</ul>
 				
 					<!-- .........................    MAIN TABS ............................ -->
@@ -136,9 +135,8 @@
 								</div>
 								<div class='col s4' id='day-temperature'></div>
 								<div class='col s4' id='day-wind'><img src="assets/image/wind.png"><p class="windSpeed"></p></div>
-
 							</div>
-
+							
 							<div class="additional-info"><h6 class="additional-info"> Additional Info </h6></div>
 							<hr>				
 							<table class='bordered'>
@@ -163,6 +161,8 @@
 						          </tr>
 						        </tbody>
 						      </table>  
+
+						      <p class='center' style="margin-right:10px; font-size:10px;">Powered by <a href="https://darksky.net/dev/">Dark Sky</a> | <a href="http://darkskyapp.github.io/skycons/">Skycons</a> | <a href="https://developers.google.com/maps/">Google Map</a>  </p>	
 						<!-- close tab-forecast -->
 						</div>
 						
@@ -177,10 +177,11 @@
 								<input type="text" id="news-input">
 			    				<a href='#/'><i class="material-icons search-icon" id="news-search">search</i></a>
 			    				<h6 id='news-search-method'>Search By: <b>Latest</b></h6>
+
 			    			</div>
 
 			    			<ul class='collection' id='news-list'></ul>
-						
+							<p class="right" style="margin-right:10px; font-size:10px;">Powered by <a href="http://open-platform.theguardian.com/">The Guardian</a></p>
 						</div>
 
 						<!-- Constellation Tab -->
@@ -256,11 +257,14 @@
 									</div>
 								</form>
 								</div>
-							</div>				
+							</div>
+							<p class="right" style="margin-right:10px; font-size:10px;">Powered by <a href="https://www.fourmilab.ch/yoursky/">Your Sky</a></p>				
 						</div>
-						
+					
 					 <!-- close today-weather -->
 				  	</div>	
+
+					
 				<!-- close today-weather-container -->
 				</div>
 
@@ -268,7 +272,7 @@
 <!-- .......................................   SIDE BAR  .................................................. -->
 
 				
-				<div class='col s3' id="today-events-container">
+				<div class='col m3 s12' id="today-events-container">
 					<div class="col s12 card left" id ='today-events'>
 						<h5 class="side-bar-sect truncate">Picture of the Day</h5>
 						<hr>
@@ -287,7 +291,7 @@
 					    </ul>
 					</div>
 				</div>
-				<div class="col s2"></div>
+				<div class="col m1"></div>
 			<!-- close day view div -->
 			</div>
 	<!-- close container div -->
@@ -385,6 +389,8 @@
 		
 		<!-- Google Sign In -->
 		<script src="https://apis.google.com/js/platform.js" async defer></script>
+		<!-- Google Cal -->
+		<script async defer src="https://apis.google.com/js/api.js"></script>
 
       	<!--Import jQuery before materialize.js-->
 	    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
