@@ -125,22 +125,22 @@ function updateTodayWeather(data){
 
 	//Updating Temperature
 	var todayTemp = data.currently.apparentTemperature;
-	$('#day-temperature').html('<div id="today-current-temp">'+todayTemp.toFixed(1)+"<sup>&deg;F</sup></div>"+ '<a id="convert-unit" href="#/"><p style="margin:0">&deg;C</p></a>')
-	$('#convert-unit').attr('data-f',todayTemp.toFixed(1))
+	$('#day-temperature').html('<div id="today-current-temp">'+todayTemp.toFixed(0)+"<sup>&deg;F</sup></div>"+ '<a id="convert-unit" href="#/"><p style="margin:0">&deg;C</p></a>')
+	$('#convert-unit').attr('data-f',todayTemp.toFixed(0))
 	var celcius = (todayTemp -32) * 5 / 9;
-	celcius = celcius.toFixed(1)
+	celcius = celcius.toFixed(0)
 	$('#convert-unit').attr('data-c',celcius)
 	$('#convert-unit').attr('data-state','f')
 	//Updating WindSpeed
 	$('.windSpeed').html(data.currently.windSpeed + " mph")
 
 	//Updating Addtional Info
-	$(".humidity").html((data.currently.humidity*100).toFixed(1)+'%')
-	$(".precipProbability").html((data.currently.precipProbability*100).toFixed(1)+'%')
-	$(".cloudCover").html((data.currently.cloudCover*100).toFixed(1)+'%')
+	$(".humidity").html((data.currently.humidity*100).toFixed(0)+'%')
+	$(".precipProbability").html((data.currently.precipProbability*100).toFixed(0)+'%')
+	$(".cloudCover").html((data.currently.cloudCover*100).toFixed(0)+'%')
 	$(".visibility").html(data.currently.visibility+" mi")
-	$(".moonPhase-data").html((data.daily.data[0].moonPhase*100).toFixed(1)+'%')
-	$(".humidity").html((data.currently.humidity*100).toFixed(1)+'%')
+	$(".moonPhase-data").html((data.daily.data[0].moonPhase*100).toFixed(0)+'%')
+	$(".humidity").html((data.currently.humidity*100).toFixed(0)+'%')
 
 
 }
@@ -164,6 +164,8 @@ function getAPOD(){
             p.text(apodData.explanation);
 						p.attr("data-tooltip", apodData.explanation);
             $("#imageOfTheDay").append(img, p);
+            // initialize .materialbox
+			$('.materialboxed').materialbox();
         },
         error: function(errorMessage){
             alert("Error" + errorMessage);
@@ -207,7 +209,7 @@ function getWeekDays(data){
     	// Weather info
     	var temp = $('<p>')
     	temp.addClass('forecast temp center')
-    	temp.html(data.daily.data[i].apparentTemperatureMin+" - "+data.daily.data[i].apparentTemperatureMax +"<sup>&deg;F</sup>")
+    	temp.html(data.daily.data[i].apparentTemperatureMin.toFixed(0)+" - "+data.daily.data[i].apparentTemperatureMax.toFixed(0) +"<sup>&deg;F</sup>")
     	var moon = $('<img>')
     	moon.addClass('forecast moonPhase')
     	moon.attr('src',moonPhase(data,i))	
@@ -276,13 +278,13 @@ function getWeeklyUpdate(data){
 
 			//conditions from API
 
-			var tempMin = (data.daily.data[i].apparentTemperatureMin).toFixed(1);
-			var tempMax = (data.daily.data[i].apparentTemperatureMax).toFixed(1);
-			var humidity = (data.daily.data[i].humidity*100).toFixed(1)+'%';
-			var precipProbability = (data.daily.data[i].precipProbability*100).toFixed(1)+'%';
+			var tempMin = (data.daily.data[i].apparentTemperatureMin).toFixed(0);
+			var tempMax = (data.daily.data[i].apparentTemperatureMax).toFixed(0);
+			var humidity = (data.daily.data[i].humidity*100).toFixed(0)+'%';
+			var precipProbability = (data.daily.data[i].precipProbability*100).toFixed(0)+'%';
 			var precipType = data.daily.data[i].precipType;
-			var cloudCover = (data.daily.data[i].cloudCover*100).toFixed(1)+'%';
-			var moonPhase = (data.daily.data[i].moonPhase*100).toFixed(1)+'%';
+			var cloudCover = (data.daily.data[i].cloudCover*100).toFixed(0)+'%';
+			var moonPhase = (data.daily.data[i].moonPhase*100).toFixed(0)+'%';
 
 			// add weather conditions
 			var row1 = $('<tr>');
@@ -363,7 +365,7 @@ function rankNights(data) {
 			var scoreLine = $("<div class='score-line weather-info-container'>");
 			var stars = $("<div id=star-container>");
 			// convert rating to base-5 for stars and round to the nearest half-star:
-			var starNum = Number.parseFloat((Math.round(totalRanking * 10) / 2).toFixed(1));
+			var starNum = Number.parseFloat((Math.round(totalRanking * 10) / 2).toFixed(0));
 			// show as many whole stars as the integer part of that number,
 			// as many half stars as the decimal part, if it exists,
 			// and as many empty stars as 5 - the number - any half star
@@ -713,8 +715,7 @@ function updateClock() {
 // Html page interactions js 
 $(document).ready(function(){
 
-	// initialize .materialbox
-	$('.materialboxed').materialbox();
+
 
 	// $(window).resize(function(){
 	// 	if ($(window).width() < 480) {
@@ -832,7 +833,6 @@ $(document).ready(function(){
 	$('body').on('change','#constell-modal-theme',function(){
 		getModalConstellation()
 	})
-
 /*-----------------------------------------------------------------------------------------------*/
 
 //object that holds known meteor showers information

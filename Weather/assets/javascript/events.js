@@ -1032,10 +1032,10 @@ function wiki(search, location){
         success: function(data){
             var a = $("<a>");
             a.text(data[3][0]);
-            
             a.attr("href", data[3][0]);
             a.attr("target", "_blank");
             location.append(a);
+
         },
         error: function(errorMessage){
             alert("Error" + errorMessage);
