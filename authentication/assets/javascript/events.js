@@ -224,14 +224,29 @@ function getMeteorShower() {
             break;
     }
     
-    // shouldn't the loop limit be i < meteorShowers.length?
-    for (var i = 0; i < 12; i++) {
+    // AB changes ->
+    for (var i = 0; i < meteorShowers.length; i++) {
         var activeSplit = meteorShowers[i].active.split(" ");
         var activeStartMonth = activeSplit[0];
         var activeDay1 = activeSplit[1];
         var activeEndMonth = activeSplit[3];
         var activeDay2 = activeSplit[4];
         var yearly = meteorShowers[i].yearly;
+
+        // for Google Calendar
+        var peakSplit = meteorShowers[i].peakNight.split("-");
+        var peakStart = moment(peakSplit[0], "MMM D").format("YYYY-MM-DD");
+        // get month from beginning of string and 
+        var peakEnd = moment(peakSplit[0].split(" ")[0] + peakSplit[1], "MMMD").format("YYYY-MM-DD");
+        var summary = meteorShowers[i].name;
+        var description = summary + " meteor shower (from Night by Night)";
+        var calObj = JSON.stringify({
+            summary: summary,
+            description: description,
+            start: peakStart,
+            end: peakEnd
+        });
+        // AB changes <-
 
         // day view
         if (month === activeStartMonth && day <= activeDay1 || month === activeEndMonth && day <= activeDay2) {
@@ -257,12 +272,14 @@ function getMeteorShower() {
 
 
             var headings = $("<tr>");
-            headings.html("<th>Name</th><th>Peak viewing nights</th><th>Velocity</th><th>Parent Object</th>");
+            // AB changes ->
+            headings.html("<th>Name</th><th>Peak viewing nights</th><th>Velocity</th><th>Parent Object</th><th>Add to Google Calendar</th>");
 
             thead.append(headings);
 
             var information = $("<tr>");
-            information.html("<td style='padding: 0 10px 0 10px'>" + meteorShowers[i].name + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].peakNight + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].Velocity + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].ParentObj + "</td>");
+            information.html("<td style='padding: 0 10px 0 10px'>" + meteorShowers[i].name + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].peakNight + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].Velocity + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].ParentObj + "</td><td><a class='waves-effect waves-light btn cal-btn' data-cal='{" + calObj + "}'><i class='material-icons left'>date_range</i></a></td>");
+            // AB changes <-
             tbody.append(information);
             table.append(thead);
             table.append(tbody);
