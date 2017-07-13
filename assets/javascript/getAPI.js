@@ -207,7 +207,7 @@ function getWeekDays(data){
     	// Weather info
     	var temp = $('<p>')
     	temp.addClass('forecast temp center')
-    	temp.html(data.daily.data[i].apparentTemperatureMin+" - "+data.daily.data[i].apparentTemperatureMax +"<sup>&deg;F</sup>")
+    	temp.html(data.daily.data[i].apparentTemperatureMin.toFixed(0)+" - "+data.daily.data[i].apparentTemperatureMax.toFixed(0) +"<sup>&deg;F</sup>")
     	var moon = $('<img>')
     	moon.addClass('forecast moonPhase')
     	moon.attr('src',moonPhase(data,i))	
