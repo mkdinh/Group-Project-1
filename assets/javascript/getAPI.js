@@ -796,13 +796,6 @@ $(document).ready(function(){
 	 $('#tab-id-constell').click(function(){
 	 	getConstellation();
 	 	createConstellModal();
-
-	 	// $('#tab-constell').append('<div id="wwtControl"'
-			// + ' data-settings="crosshairs=false,ecliptic=true,pictures=true,boundaries=true"'
-		 //    + ' data-aspect-ratio="8:5"></div>'
-
-		 //    + ' <script src="http://worldwidetelescope.org/embedded-webcontrol.js"></script>'
-		 //    )
 	 })
 
 	 $('select').material_select();
@@ -1017,8 +1010,7 @@ function getMeteorShower() {
             }
             
         }
-    }
-    
+    }  
     
 }
 

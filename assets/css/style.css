@@ -233,6 +233,7 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 	margin:20px 10px 20px 0px;
 }
 
+.view-news{color:teal;}
 
 #news-display{margin:30px auto 0px auto; font-size:12px;}
 
