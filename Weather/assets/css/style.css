@@ -1,115 +1,431 @@
+body::-webkit-scrollbar {
+display: none;
+}
 
+body{
 
-@media (min-width: 768px) {
+	background: rgba(25,12,38,1) url(../image/background2.jpg) no-repeat center center fixed;
+	background-size: cover;
+	font-family: 'Ubuntu', sans-serif;
+}
 
-	body{
-		background-color: rgba(25,12,38,1);
-		background-image: url("../image/background2.jpg");
-		font-family: 'Ubuntu', sans-serif;
-	}
-	
-	nav{
-		/*background-color: rgba(20,28,58,1);*/
-		background-color: rgba(20,28,58,.7);
-	}
-	
-	#profile-button{
-		position:absolute;
-		bottom:10px;
-		right:10px;
-		color:white;
-	}
+nav{
+	/*background-color: rgba(20,28,58,1);*/
+	background-color: rgba(20,28,58,.7);
+}
 
-	#search-input:active{
-		border-bottom:white;
-	}
-
-	.brand-logo{
-		margin-left:10px;
-		font-family: 'Scope One', serif;
-	}
-
-
-	#search{
-		background-color:none:;
-		border:none;
-	}
-
-	.btn-floating{
-		background-color:grey;
-	}
-
-	.container{
-		width:98%;
-	}
-	
-	.row{margin:0;}
-
-	#eventContainer{
-		text-align:center;
-		padding:50px 10px;
-		overflow:hidden;
-		width:100%;
-	}
-
-
-	.card{
-		color:white;
-		width:13%;
-		position:relative;
-		display:inline-block;
-		text-align:center;
-		background-color: rgba(25,12,38,0.7);
-		margin:5px;
-		border:1px solid black;
-		border-radius:10px 
-	}
-	
-	.day{margin:10px;}
-	
-	.card-title.activator{
-		font-size:15px;
-		text-align:left;
-	}
-	
-	.forecast{
-		text-align: left
-	}
-
-	.expand-event{
-		position:absolute;
-		bottom:0px;
-		right:5px;
-		color:white;
-	}
-
-	/*Login Page*/
-	
-	.modal-login{
-		height:500px;
-		overflow:hidden;
-	}
-
-	.login{
-		text-align:left;
-		width:25%;
-		margin-top:30px;
-	}
-
-	.profile-input{
-		margin-top:25px;
-		color:grey;
-	}
-
-	.login-submit{
-		border:1px solid black;
-		padding:10px;
-		font:bold 25px  'Ubuntu', sans-serif;
-		color:white;
-		background-color: rgba(192,192,192,.3);
-	}
-	
-	.submit-login{
-		margin:25px;
-	}
+.preloader-wrapper{
+ 	position: absolute;
+ 	top:50%;
+ 	left:50%;
  }
+ 
+ .spinner-blue-only{
+ 	border-color:gold;
+ }
+
+#profile-button{
+	position:fixed;
+	bottom:10px;
+	right:10px;
+	color:white;
+}
+
+/* label underline focus color */
+
+input#search-input:focus,input#news-input:focus,input#event-input:focus {
+     border-bottom: .5px solid gold;
+     box-shadow: 0 .5px 0 0 gold;
+}
+
+.brand-logo{
+	margin-left:10px;
+	font-family: 'Scope One', serif;
+}
+
+.divider{background-color:transparent; margin-left:10px;}
+
+#search{
+	background-color:none;
+	border:none;
+}
+
+#nav-search{margin-left:15px;}
+
+.btn-floating{
+	background-color:grey;
+}
+
+.container{
+	width:96%;
+}
+
+.row{margin:0;}
+
+#week-view{
+	text-align:center;
+	padding:25px 10px;
+	overflow:hidden;
+	width:100%;
+	display:none;
+}
+
+.modal-weekly-weather{width: 20%;}
+
+#day-view{
+	display:none;
+}
+
+.card{
+	color:white;
+	width:13%;
+	position:relative;
+	display:inline-block;
+	text-align:center;
+	background-color: rgba(25,12,38,0.9);
+	margin:5px;
+	/*border:1px solid white;*/
+	border-radius:5px 
+}
+
+
+.card .card-content {
+	padding:0px;
+}
+
+.day{padding:5px; 
+	margin:10px 0; 
+	width:100%;
+	background-color: rgba(255,255,255,.1);
+}
+
+.card-title.activator{
+	font-size:15px;
+	text-align:left;
+}
+
+.forecast{
+	text-align: center;
+	font-size:18px;
+}
+
+.cloudImg{margin:10px 0;}
+
+.temp{margin:10px auto;}
+
+.moonPhase{
+	margin:20px 0 30px 0;
+	width:100px;
+	text-align: center;
+	background-color:white;
+	border-radius: 49px;
+	border: 1px solid white;
+}
+
+.expand-event{
+	position:absolute;
+	bottom:0px;
+	right:5px;
+	color:white;
+}
+
+/*Week View css*/
+
+.tabs{
+	background-color: rgba(255,255,255,1);
+	margin:5px 0 0 0;
+	overflow:hidden;
+}
+
+.tabs .tab a:hover, .tabs .tab a.active{color:maroon;}
+
+.tabs .tab a{color:#cc7070;}
+
+.indicator {
+	background-color: maroon  !important;;
+}
+
+.weather-info-container{
+	background-color: rgba(255,255,255,.1);
+	margin:20px 0 0 0;
+}
+
+
+#today-weather{
+	text-align: left;
+	padding-top:10px;
+	padding-bottom:15px;
+	border-radius: 0;
+}
+
+#today-events{
+	text-align: left;
+	padding: 20px 15px 5px 15px;
+	border-radius: 0;
+}
+
+.apod-img {
+	max-height: 30vh;
+	max-width: 100%;
+}
+
+.fine-print {
+	font-size: .8rem;
+}
+
+.skycons {
+	width:100%;
+	margin:25px auto 5px auto;
+	color:white;
+}
+.skycons-label{margin:0;}
+
+#day-temperature{
+	position:relative;
+	font: bold 40px sans-serif;
+	margin: 15px auto;
+	padding: 0 5px;
+	text-align: center;
+	border-left: 1px solid grey;
+	border-right:1px solid grey;
+	line-height: 120px
+}
+
+#convert-unit{
+ 	position: absolute;
+	right: 10px;
+    font-size: 25px;
+    color: grey;
+    bottom: 10px;
+    margin: 0;
+    padding: 0px;
+    line-height: 0px;
+ }
+ 
+
+#day-wind img{
+	width:53%;
+	margin: 20px auto 5px auto;
+}
+
+.windSpeed{margin:0;}
+
+.weather-info{
+	margin:5px 0;
+}
+
+.additional-info{margin-top:20px;}
+
+.collection-events{
+	color:black;
+	margin:20px 0;
+}
+
+.collection .collection-item{
+	background-color: rgba(255,255,255,1);
+	color:black;
+}
+
+.event-item{
+	color:orange;
+}
+
+
+#toast-container {
+  top: 12%;
+  right: 3.5%;
+  bottom: auto !important;
+  left: auto !important;  
+}
+
+.object-more,.event-more{
+	color:maroon;
+}
+
+
+/*news tab*/
+#tab-news{padding-top:10px;}
+
+#news-input{width:40%; margin:0 10px;}
+
+.search-icon{font-size:30px;vertical-align: bottom; color:white;}
+
+#news-search-method{
+	margin:20px 10px 0 10px;
+}
+
+
+#news-display{margin:30px auto 0px auto; font-size:12px;}
+
+.news-title{
+	font-weight: bold;
+    font-size: 15px;
+    margin:0 ;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space:nowrap;
+}
+
+.news-date,.news-byline{line-height:10px;}
+
+.news-trailText{
+	overflow: hidden; 
+	text-overflow: ellipsis;
+	white-space: nowrap}
+
+
+/* event tab*/
+
+/*Login Page*/
+
+.g-signin2{
+	text-align:center;
+}
+
+/* AB changes */
+.login{	
+	text-align:left;
+	width:25%;
+	margin-top:30px;
+	background-color: rgba(25,12,38,1);
+	border: 1px solid black;
+	padding: 10px;
+}
+
+
+.auth-icon {
+  height: 100%;
+	width: 18px;
+	margin: 0 5px;
+}
+
+.profile-input{
+	margin-top:25px;
+	color:grey;
+}
+
+#login-modal {
+	max-height: 90%;
+	top: 5%;
+}
+
+#login-modal .input-field {
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+.login-submit{
+	border:1px solid black;
+	padding:10px;
+	font:bold 25px  'Ubuntu', sans-serif;
+	color:white;
+	background-color: rgba(192,192,192,.5);
+}
+
+.submit-wrapper{
+	margin-top:25px;
+	box-shadow: 0 0 5px black;
+	border:1px solid black;
+}
+
+.login-btn {
+	width: 100%;
+	border:1px solid black;
+	color: white;
+	background-color: rgba(192,192,192,.5);
+}
+.login-btn:hover {
+	background-color: rgba(192,192,192,1);
+	color: black;
+}
+
+.waves-effect.waves-blackcurrant .waves-ripple {
+	background-color: rgba(25, 12, 38, 0.65) !important;
+}
+
+.userpic {
+    vertical-align: middle;
+    margin: 0 15px;
+    width: 40px;
+    height: 40px;
+}
+
+.profile-btn {
+	margin: auto;
+}
+
+.profile-btn a {
+	padding: 0;
+}
+
+.toast {
+	display: block;
+}
+
+.toast-btn {
+	margin: 5px 0 !important;
+}
+
+/* To use images as radio buttons */
+label > input{ /* HIDE RADIO */
+	visibility: hidden; /* Makes input not-clickable */
+	position: absolute; /* Remove input from document flow */
+}
+label > input + img{ /* IMAGE STYLES */
+	cursor:pointer;
+}
+label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
+	box-shadow: 0 0 20px 10px #72c0fd;
+}
+
+#update-modal .row {
+	margin: 10px 0;
+}
+
+
+#login-modal .input-field {
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+.login-submit{
+	border:1px solid black;
+	padding:10px;
+	font:bold 25px  'Ubuntu', sans-serif;
+	color:white;
+	background-color: rgba(192,192,192,.3);
+}
+
+.submit-wrapper{
+	margin-top:25px;
+	box-shadow: 0 0 5px black;
+	border:1px solid black;
+}
+
+
+@media (max-width: 768px) {
+	.container{width:94%;margin:auto;}
+	.brand-logo i.material-icons{display:none;}
+	.divider{display:none;}
+	#clock{display:none;}
+	#search-input,.material-icons.nav-search,.material-icons.refresh,#login{display:none;}
+	#switch-view{ position:absolute; top:0px; left:15px; font-size:32px}
+	#profile-button{right:15px; top:17px; z-index:2;}
+	#today-weather-container{width:100%;}
+	#today-events-container{width:100%;}
+	.card.week{display:inline-block; width:100%;}
+	.card .card-image img {display:none;}
+	img.forecast.moonPhase{display:none;}
+	
+	/*day-view*/
+	#toast-container {	
+	  right: 0;
+	  bottom: auto !important;
+	  left: auto !important;  
+	}
+
+	#day-temperature{font-size:30px;}
+
+	/*event tab*/
+	#news-input,#event-input{width:90%;}
+ }
+
+
