@@ -572,7 +572,7 @@ function createConstellModal(){
 		modal.append(row)
 
 		var constellDisplay = $('<div>');
-		constellDisplay.addClass("col s9 ");
+		constellDisplay.addClass("col s9 modal-display-container");
 		row.append(constellDisplay);
 
 		var constellPara = $('<div>');
@@ -829,9 +829,5 @@ $(document).ready(function(){
 		getModalConstellation()
 	})
 
-	// $('body').on('click','#constell-modal-display',function(){
- //    	console.log('hey')
- //        $('#constell-img').animate({ 'width': '200%' }, 400);
- //    });
 	
 });

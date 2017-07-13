@@ -338,6 +338,10 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 	overflow:hidden;
 }
 
+.modal-display-container{
+	overflow:scroll;
+}
+
 #constell-modal-display{
 	width: 60%;
     margin: 15px auto;
