@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery UI Accordion - Default functionality</title>
+    
+    <!-- Import jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    
+    <!-- Import Materialize Javascript -->
+    <script type="text/javascript" src="assets/javascript/materialize.min.js"></script>
+    
+    <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css"  media="screen,projection"/>
+    
+    <script>
+        $('.collapsible').collapsible({
+    accordion: false, // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+    onOpen: function(el) { alert('Open'); }, // Callback for Collapsible open
+    onClose: function(el) { alert('Closed'); } // Callback for Collapsible close
+  });
+        
+        $(document).ready(function(){
+    $('ul.tabs').tabs();
+  }); 
+    </script>
+      <style>
+        /*th {
+            text-align: center;
+        }
+        td{
+            text-align: center;
+        }*/
+        tabs{
+            height: 100%;
+        }
+        accordion{
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+ <ul class="collapsible" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header">Asteroids</div>
+      <div class="collapsible-body">
+          <span>
+              <div class="row">
+                <div class="col s12">
+                  <ul class="tabs">
+                    <li class="tab col s3"><a class="active" href="#tab1">Day</a></li>
+                    <li class="tab col s3"><a  href="#tab2">Week</a></li> 
+                  </ul>
+                </div>
+                <div id="tab1" class="col s12">
+                    <ul class="collapsible" data-collapsible="accordion" id="accordion1">
+                        
+                    </ul>
+                  </div>
+                <div id="tab2" class="col s12">
+                  <ul class="collapsible" data-collapsible="accordion" id="accordion2">
+                        
+                    </ul>
+                  
+                  </div>
+                
+              </div>
+          </span>
+        </div>
+    </li>
+    <li>
+      <div class="collapsible-header">Eclipse</div>
+      <div class="collapsible-body">
+          <span>
+              <div class="row">
+                <div class="col s12">
+                  <ul class="tabs">
+                    <li class="tab col s3"><a class="active" href="#tab3">Day</a></li>
+                    <li class="tab col s3"><a  href="#tab4">Month</a></li> 
+                    <li class="tab col s3"><a  href="#tab5">Year</a></li>   
+                  </ul>
+                </div>
+                <div id="tab3" class="col s12">
+                    <ul class="collapsible" data-collapsible="accordion" id="accordion3">
+                        
+                    </ul>
+                  </div>
+                <div id="tab4" class="col s12">
+                  <ul class="collapsible" data-collapsible="accordion" id="accordion4">
+                        
+                    </ul>
+                  
+                  </div>
+                <div id="tab5" class="col s12">
+                  <ul class="collapsible" data-collapsible="accordion" id="accordion5">
+                        
+                    </ul>
+                  
+                  </div>  
+                
+              </div>
+          </span>
+    </div>
+    </li>
+    <li>
+      <div class="collapsible-header">International Space Station</div>
+      <div class="collapsible-body">
+          <span>
+              <div id="ISS">
+                  <div id="map"></div>
+            </div>
+          </span>
+        </div>
+    </li>
+     <li>
+      <div class="collapsible-header">Meteor Showers</div>
+      <div class="collapsible-body">
+          <span>
+              <div class="row">
+                <div class="col s12">
+                  <ul class="tabs">
+                    <li class="tab col s3"><a class="active" href="#tab6">Day</a></li>
+                    <li class="tab col s3"><a  href="#tab7">Month</a></li> 
+                    <li class="tab col s3"><a  href="#tab8">Year</a></li>   
+                  </ul>
+                </div>
+                <div id="tab6" class="col s12">
+                    <ul class="collapsible" data-collapsible="accordion" id="accordion6">
+                        
+                    </ul>
+                  </div>
+                <div id="tab7" class="col s12">
+                  <ul class="collapsible" data-collapsible="accordion" id="accordion7">
+                        
+                    </ul>
+                  
+                  </div>
+                <div id="tab8" class="col s12">
+                  <ul class="collapsible" data-collapsible="accordion" id="accordion8">
+                        
+                    </ul>
+                  
+                  </div>  
+                
+              </div>
+          </span>
+         </div>
+    </li>
+     <li>
+      <div class="collapsible-header">Moon Phases</div>
+      <div class="collapsible-body">
+          <span>
+              <div class="row">
+                <div class="col s12">
+                  <ul class="tabs">
+                    <li class="tab col s3"><a class="active" href="#tab9">Day</a></li>
+                    <li class="tab col s3"><a  href="#tab10">Week</a></li> 
+                    <li class="tab col s3"><a  href="#tab11">Month</a></li>   
+                  </ul>
+                </div>
+                <div id="tab9" class="col s12">
+                    <ul class="collapsible" data-collapsible="accordion" id="accordion9">
+                        
+                    </ul>
+                  </div>
+                <div id="tab10" class="col s12">
+                  <ul class="collapsible" data-collapsible="accordion" id="accordion10">
+                        
+                    </ul>
+                  
+                  </div>
+                <div id="tab11" class="col s12">
+                  <ul class="collapsible" data-collapsible="accordion" id="accordion11">
+                        
+                    </ul>
+                  
+                  </div>  
+                
+              </div>
+          </span>
+    </div>
+    </li>
+  </ul>
+
+ <script src="https://cdn.jsdelivr.net/momentjs/2.18.1/moment.min.js"></script>
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4ya-QQ9KFOYVNcp-ejxBwaY_NeZ0txBE&callback=initMap"
+    async defer></script>
+    
+	    
+	    
+<script src="assets/javascript/events.js"></script>    
+</body>
+</html>
