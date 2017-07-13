@@ -11,3 +11,5 @@
 - What's up with "Brightest Objects"?
 
 - UI tweaks
+
+- "Credits", including adding attribution to APIs that require it (DarkSky)
