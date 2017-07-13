@@ -829,7 +829,6 @@ $(document).ready(function(){
 		getModalConstellation()
 	})
 
-<<<<<<< HEAD
 
 
 
@@ -1026,11 +1025,3 @@ function getMeteorShower() {
 }
 
 
-=======
-	// $('body').on('click','#constell-modal-display',function(){
- //    	console.log('hey')
- //        $('#constell-img').animate({ 'width': '200%' }, 400);
- //    });
-	
-});
->>>>>>> 62b2430a0eaa3529de22e0c3592cb23ae3c295c2
