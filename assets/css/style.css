@@ -87,7 +87,7 @@ nav{
 
 .card{
 	color:white;
-	width:13%;
+	width:12%;
 	position:relative;
 	display:inline-block;
 	text-align:center;
@@ -125,6 +125,7 @@ nav{
 .moonPhase{
 	margin:20px 0 30px 0;
 	width:100px;
+	max-width: 90%;
 	text-align: center;
 	background-color:white;
 	border-radius: 49px;
