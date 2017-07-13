@@ -387,6 +387,10 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 	color:orange;
 }
 
+.material-tooltip {
+	max-width: 600px;
+	text-align: justify;
+}
 
 #toast-container {
   top: 12%;
