@@ -1,0 +1,13 @@
+- build in error handling for:
+  - failure to get geolocation data
+  - corsanywhere failure
+    - big goal: learn how to make server-side API requests, maybe leveraging Firebase, to be able to ditch corsanywhere
+  - failure of any of the apis
+
+- implement Events
+  - connect them to Google Calendar
+  - display "subscribed" events in sidebar, or sidebar link to a modal
+
+- What's up with "Brightest Objects"?
+
+- UI tweaks
