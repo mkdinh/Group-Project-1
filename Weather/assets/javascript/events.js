@@ -174,10 +174,7 @@ function getLocation() {
 //gets lat and long losition of user
 function showPosition(position){
     latitude = position.coords.latitude;
-    longitude = position.coords.longitude;
-    
-    //console.log("Latitude: " + latitude + " Longitude: " + longitude);
-    
+    longitude = position.coords.longitude;    
 }
 
 function getMeteorShower() {
@@ -243,7 +240,8 @@ function getMeteorShower() {
             var bodyDiv = $("<div>");
             var span = $("<span>");
             var table = $("<table>");
-            
+            var thead = $("<thead>");
+            var tbody = $("<tbody>");
             
             table.attr("border", 1);
             table.attr("frame", "void");
@@ -259,10 +257,14 @@ function getMeteorShower() {
             
             var headings = $("<tr>");
             headings.html("<th>Name</th><th>Peak viewing nights</th><th>Velocity</th><th>Parent Object</th>");
+            
+            thead.append(headings);
+            
             var information = $("<tr>");
             information.html("<td style='padding: 0 10px 0 10px'>" + meteorShowers[i].name + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].peakNight + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].Velocity + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].ParentObj + "</td>");
-            table.append(headings);
-            table.append(information);
+            tbody.append(information);
+            table.append(thead);
+            table.append(tbody);
             span.append(table);
             bodyDiv.append(span);
             li.append(bodyDiv);
@@ -277,6 +279,8 @@ function getMeteorShower() {
             var headerDiv = $("<div>");
             var bodyDiv = $("<div>");
             var span = $("<span>");
+            var thead = $("<thead>");
+            var tbody = $("<tbody>");
             
             table.attr("border", 1);
             table.attr("frame", "void");
@@ -294,12 +298,14 @@ function getMeteorShower() {
             
             headings.html("<th>Name</th><th>Peak viewing nights</th><th>Velocity</th><th>Parent Object</th>");
             
+            thead.append(headings);
+            
             var information = $("<tr>");
             information.html("<td style='padding: 0 10px 0 10px'>" + meteorShowers[i].name + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].peakNight + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].Velocity + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].ParentObj + "</td>");
             
-            table.append(headings);
-            table.append(information);
-           
+            tbody.append(information);
+            table.append(thead);
+            table.append(tbody);
             span.append(table);
             bodyDiv.append(span);
             li.append(bodyDiv);
@@ -315,6 +321,8 @@ function getMeteorShower() {
             var headerDiv = $("<div>");
             var bodyDiv = $("<div>");
             var span = $("<span>");
+            var thead = $("<thead>");
+            var tbody = $("<tbody>");
 
             bodyDiv.addClass("collapsible-body");
             headerDiv.addClass("collapsible-header");
@@ -329,33 +337,20 @@ function getMeteorShower() {
             
             var headings = $("<tr>");
             headings.html("<th>Name</th><th>Peak viewing nights</th><th>Velocity</th><th>Parent Object</th>");
+            
+            thead.append(headings);
+            
             var information = $("<tr>");
             information.html("<td style='padding: 0 10px 0 10px'>" + meteorShowers[i].name + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].peakNight + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].Velocity + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].ParentObj + "</td>");
-            table.append(headings);
-            table.append(information);
-            
-             span.append(table);
+            tbody.append(information);
+            table.append(thead);
+            table.append(tbody);
+            span.append(table);
             bodyDiv.append(span);
             li.append(bodyDiv);
             $("#accordion8").append(li);    
-        }
-        
-        
-        
-        var peakSplit = meteorShowers[i].peakNight.split(" ");
-        var peakMonth = peakSplit[0];
-        var peakDays = peakSplit[1].split("-");
-        var peakDay1 = peakDays[0];
-        var peakDay2 = peakDays[1];
-        if(peakMonth === month){
-            if(day >= peakDay1 && day <= peakDay2){
-               //console.log("Peak Days"); 
-            }
-            
-        }
+        } 
     }
-    
-    
 }
 
 //get a list of solar eclipses
@@ -372,9 +367,7 @@ function getSolar(){
     url: url,
     async: false,
     dataType: "json",
-    success: function(data){
-        //console.log(data);
-        
+    success: function(data){        
         var i = 0;
         $.each(data.eclipses_in_year, function(){
             var d = new Date()
@@ -433,6 +426,8 @@ function getSolar(){
                 var headerDiv = $("<div>");
                 var bodyDiv = $("<div>");
                 var span = $("<span>");
+                var thead = $("<thead>");
+                var tbody = $("<tbody>");
 
                 bodyDiv.addClass("collapsible-body");
                 headerDiv.addClass("collapsible-header");
@@ -450,21 +445,21 @@ function getSolar(){
                 
                 headings.html("<th>Event</th><th>Link</th>");
                 
-                table.append(headings);
+                thead.append(headings);
                 
                 var information = $("<tr>");
                 information.html("<td style='padding: 0 10px 0 10px'>" + data.eclipses_in_year[i].event + "</td><td style='padding: 0 10px 0 10px'>" + "wikilink goes here" + "</td>");
                 
-                table.append(information);
+                tbody.append(information);
+                table.append(thead);
+                table.append(tbody);
                 span.append(table);
                 bodyDiv.append(span);
                 li.append(bodyDiv);
                 
                  $("#accordion5").append(li);
             }
-            
-            console.log(data.eclipses_in_year[i].month + " " + data.eclipses_in_year[i].year + " " + month + " " + year);
-            
+                    
             //set up month view
             if(data.eclipses_in_year[i].month === month && data.eclipses_in_year[i].year === year){
                 console.log("Month");
@@ -472,6 +467,8 @@ function getSolar(){
                 var headerDiv = $("<div>");
                 var bodyDiv = $("<div>");
                 var span = $("<span>");
+                var thead = $("<thead>");
+                var tbody = $("<tbody>");
 
                 bodyDiv.addClass("collapsible-body");
                 headerDiv.addClass("collapsible-header");
@@ -489,17 +486,19 @@ function getSolar(){
                 
                 headings.html("<th>Event</th><th>Link</th>");
                 
-                table.append(headings);
+                thead.append(headings);
                 
                 var information = $("<tr>");
                 information.html("<td style='padding: 0 10px 0 10px'>" + data.eclipses_in_year[i].event + "</td><td style='padding: 0 10px 0 10px'>" + "wikilink goes here" + "</td>");
                 
-                table.append(information);
+                tbody.append(information);
+                table.append(thead);
+                table.append(tbody);
                 span.append(table);
                 bodyDiv.append(span);
                 li.append(bodyDiv);
                  $("#accordion4").append(li);
-            }else {
+            }/*else {
                 var headerDiv = $("<div>");
                 var bodyDiv = $("<div>");
                 var span = $("<span>");
@@ -512,7 +511,7 @@ function getSolar(){
                 li.append(headerDiv);
                 
                 $("#accordion4").append(li);
-            }
+            }*/
             
             //set up day view
             if(data.eclipses_in_year[i].day === day && data.eclipses_in_year[i].month === month && data.eclipses_in_year[i].year === year){
@@ -520,6 +519,8 @@ function getSolar(){
                 var headerDiv = $("<div>");
                 var bodyDiv = $("<div>");
                 var span = $("<span>");
+                var thead = $("<thead>");
+                var tbody = $("<tbody>");
 
                 bodyDiv.addClass("collapsible-body");
                 headerDiv.addClass("collapsible-header");
@@ -537,17 +538,19 @@ function getSolar(){
                 
                 headings.html("<th>Event</th><th>Link</th>");
                 
-                table.append(headings);
+                thead.append(headings);
                 
                 var information = $("<tr>");
                 information.html("<td style='padding: 0 10px 0 10px'>" + data.eclipses_in_year[i].event + "</td><td style='padding: 0 10px 0 10px'>" + "wikilink goes here" + "</td>");
                 
-                table.append(information);
+                tbody.append(information);
+                table.append(thead);
+                table.append(tbody);
                 span.append(table);
                 bodyDiv.append(span);
                 li.append(bodyDiv);
                  $("#accordion3").append(li);
-            }else {
+            }/*else {
                 var headerDiv = $("<div>");
                 var bodyDiv = $("<div>");
                 var span = $("<span>");
@@ -560,7 +563,7 @@ function getSolar(){
                 li.append(headerDiv);
                 
                 $("#accordion3").append(li);
-            }
+            }*/
             
             i++;
         })
@@ -643,6 +646,8 @@ function getAsteroids(){
         var headerDiv = $("<div>");
         var bodyDiv = $("<div>");
         var span = $("<span>");
+        var thead = $("<thead>");
+        var tbody = $("<tbody>");
         
         bodyDiv.addClass("collapsible-body");
         headerDiv.addClass("collapsible-header");
@@ -651,16 +656,16 @@ function getAsteroids(){
         
         li.append(headerDiv);
         
-        var heading = $("<tr>");
+        var headings = $("<tr>");
         var table = $("<table>");
         
         table.attr("border", 1);
         table.attr("frame", "void");
         table.attr("rules", "all");
 
-        heading.html("<th>Missing Earth (Miles)</th><th>Speed (MPH)</th><th>Max Diameter(Miles)</th><th>Min diameter (Miles)</th><th>Dangerous</th>");
+        headings.html("<th>Missing Earth (Miles)</th><th>Speed (MPH)</th><th>Max Diameter(Miles)</th><th>Min diameter (Miles)</th><th>Dangerous</th>");
         
-        table.append(heading);
+        thead.append(headings);
         
         var information = $("<tr>");
         information.html("<td>" + dayEvents[k].missEarth + "</td><td>"+ dayEvents[k].speed +"</td><td>"+  dayEvents[k].diameterMax +"</td><td>"+ dayEvents[k].diameterMin +"</td><td>"+ dayEvents[k].danger +"</td>");
@@ -669,6 +674,9 @@ function getAsteroids(){
         table.append(information);
        
         
+        tbody.append(information);
+        table.append(thead);
+        table.append(tbody);
         span.append(table);
         bodyDiv.append(span);
         li.append(bodyDiv);
@@ -686,6 +694,8 @@ function getAsteroids(){
         var bodyDiv = $("<div>");
         var span = $("<span>");
         var cap = i + 1;
+        var thead = $("<thead>");
+        var tbody = $("<tbody>");
         
         if(cap === weekEvents.length){
             cap = i;
@@ -703,7 +713,7 @@ function getAsteroids(){
             
             li.append(headerDiv);
             
-            var heading = $("<tr>");
+            var headings = $("<tr>");
             var table = $("<table>");
             
             table.attr("border", 1);
@@ -711,9 +721,9 @@ function getAsteroids(){
             table.attr("rules", "all");
             
             
-            heading.html("<th>Name</th><th>Missing Earth (Miles)</th><th>Speed (MPH)</th><th>Max Diameter(Miles)</th><th>Min diameter (Miles)</th><th>Dangerous</th>");
+            headings.html("<th>Name</th><th>Missing Earth (Miles)</th><th>Speed (MPH)</th><th>Max Diameter(Miles)</th><th>Min diameter (Miles)</th><th>Dangerous</th>");
             
-            table.append(heading);
+            thead.append(headings);
             
             for (var j = 0; j < weekEvents.length; j++){
                 if(weekEvents[j].date === headerDiv.text()){
@@ -724,6 +734,9 @@ function getAsteroids(){
                     table.append(information);
                 }
                 
+                tbody.append(information);
+                table.append(thead);
+                table.append(tbody);
                 span.append(table);
                 bodyDiv.append(span);
                 li.append(bodyDiv);
@@ -803,7 +816,6 @@ function getMoonPhases(){
     async: false,
     dataType: "json",
     success: function(data){
-        console.log(data);
         var i = 0;
         $.each(data.phasedata, function(){
             var d = new Date()
@@ -861,6 +873,8 @@ function getMoonPhases(){
                 var headerDiv = $("<div>");
                 var bodyDiv = $("<div>");
                 var span = $("<span>");
+                var thead = $("<thead>");
+                var tbody = $("<tbody>");
 
                 bodyDiv.addClass("collapsible-body");
                 headerDiv.addClass("collapsible-header");
@@ -877,11 +891,15 @@ function getMoonPhases(){
 
                 var headings = $("<tr>");
                 headings.html("<th>Phase</th>");
+                
+                thead.append(headings);
+                
                 var information = $("<tr>");
                 information.html("<td style='padding: 0 10px 0 10px'>" + data.phasedata[i].phase + "</td>");
                 
-                table.append(headings);
-                table.append(information);
+                tbody.append(information);
+                table.append(thead);
+                table.append(tbody);
                 span.append(table);
                 bodyDiv.append(span);
                 li.append(bodyDiv); 
@@ -895,6 +913,8 @@ function getMoonPhases(){
                 var headerDiv = $("<div>");
                 var bodyDiv = $("<div>");
                 var span = $("<span>");
+                var thead = $("<thead>");
+                var tbody = $("<tbody>");
 
                 bodyDiv.addClass("collapsible-body");
                 headerDiv.addClass("collapsible-header");
@@ -911,11 +931,15 @@ function getMoonPhases(){
 
                 var headings = $("<tr>");
                 headings.html("<th>Phase</th>");
+                
+                thead.append(headings);
+                
                 var information = $("<tr>");
                 information.html("<td style='padding: 0 10px 0 10px'>" + data.phasedata[i].phase + "</td>");
                 
-                table.append(headings);
-                table.append(information);
+                tbody.append(information);
+                table.append(thead);
+                table.append(tbody);
                 span.append(table);
                 bodyDiv.append(span);
                 li.append(bodyDiv);
@@ -930,6 +954,8 @@ function getMoonPhases(){
                 var headerDiv = $("<div>");
                 var bodyDiv = $("<div>");
                 var span = $("<span>");
+                var thead = $("<thead>");
+                var tbody = $("<tbody>");
 
                 bodyDiv.addClass("collapsible-body");
                 headerDiv.addClass("collapsible-header");
@@ -947,11 +973,15 @@ function getMoonPhases(){
                 
                 var headings = $("<tr>");
                 headings.html("<th>Phase</th>");
+                
+                thead.append(headings);
+                
                 var information = $("<tr>");
                 information.html("<td style='padding: 0 10px 0 10px'>" + data.phasedata[i].phase + "</td>");
                 
-                table.append(headings);
-                table.append(information);
+                tbody.append(information);
+                table.append(thead);
+                table.append(tbody);
                 span.append(table);
                 bodyDiv.append(span);
                 li.append(bodyDiv);
@@ -979,13 +1009,10 @@ function wiki(search){
         async: false,
         dataType: "json",
         success: function(data){
-            console.log(data)
-            for(var i = 0; i <data[1].length; i++){
-                $("#output").append("<li><a href="+ data[3][i] +">"+ data[1][i] + "</a><p>"+ data[2][i] +"</p><li>");
+            
             }
             
-            //removes empty li tags 
-            $("#output li:empty").remove();
+            
             
         },
         error: function(errorMessage){
@@ -999,7 +1026,7 @@ $(document).ready(function(){
     getMeteorShower();
     getMoonPhases();
     getISS();
-   getTodaysDate();
+    getTodaysDate();
     getAsteroids();
     
 });
