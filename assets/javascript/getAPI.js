@@ -506,9 +506,146 @@ function getConstellation(){
 	$('#constell-display').html(img)
 }
 
-$('.constell-input').click(function(e){
-	getConstellation()
-})
+
+function getModalConstellation(){
+
+	if($('#modal-ecEq').is(':checked')){
+		var ecEq = '&coords=on'
+	}else{
+		var ecEq = ''
+	}console.log(ecEq)
+	if($('#modal-moPlan').is(':checked')){
+		var moPlan = '&moonp=on'
+	}else{
+		var moPlan = ''
+	}
+	if($('#modal-deObj').is(':checked')){
+		var deObj = '&deep=on'
+	}else{
+		var deObj = ''
+	}
+	if($('#constell-modal-outlines').is(':checked')){
+		var outlines = '&consto=on'
+	}else{
+		var outlines = ''
+	}
+	if($('#constell-modal-names').is(':checked')){
+		var names = '&constn=on'
+	}else{
+		var names = ''
+	}
+	if($('#constell-modal-boundaries').is(':checked')){
+		var boundaries = '&constb=on'
+	}else{
+		var boundaries = ''
+	}
+
+	var theme = $('#constell-modal-theme').find(':selected').attr('value')
+	console.log(theme)
+	var p = {
+		long: longitude,
+		lat: latitude,
+		ecEq: ecEq,
+		moPlan: moPlan,
+		deObj: deObj,
+		outlines: outlines,
+		names: names,
+		boundaries: boundaries,
+		theme: theme
+	}
+	var img = $("<img>");
+	img.attr('id','constell-img')
+	var src = 'https://www.fourmilab.ch/cgi-bin/Yoursky?date=0&utc=1998%2F02%2F06+12%3A42%3A40&jd=2450851.02963&lat='+p.lat+'%B0&ns=North&lon='+p.long+'%B0&ew=East'+p.ecEq+p.moPlan+p.deObj+'&deepm=2.5'+p.outlines+p.names+p.boundaries+'&limag=5.5&starnm=2.0&starbm=2.5&imgsize=550&dynimg=y&fontscale=1.0&scheme='+p.theme+'&elements='
+	img.attr('src',src)
+	$('#constell-modal-display').html(img)
+}
+
+// Get Modal Constellation Map
+
+function createConstellModal(){
+		var modal = $('<div>');
+		modal.attr('id','constell-modal')
+		modal.addClass('modal');
+
+		var row = $('<div>');
+		row.addClass("row");
+		modal.append(row)
+
+		var constellDisplay = $('<div>');
+		constellDisplay.addClass("col s9 ");
+		row.append(constellDisplay);
+
+		var constellPara = $('<div>');
+		constellPara.addClass('col s3');
+		row.append(constellPara);
+
+		constellDisplay.html('<div id="constell-modal-display" class="center"></div>')
+
+		constellPara.append('<form class="switch">'
+									+'<p>Ecliptic &amp; Equator</p>'
+									+'<label>'
+									+'Off'
+									+'<input id="modal-ecEq" class="constell-modal-input" type="checkbox" checked>'
+									+'<span class="lever"></span>'
+									+'On'
+									+'</label>'
+
+									+'<p>Moon &amp; Planets</p>'
+									+'<label>'
+									+'Off'
+									+'<input id="modal-moPlan" class="constell-modal-input" type="checkbox">'
+									+'<span class="lever"></span>'
+									+'On'
+									+'</label>'
+
+									+'<p>Deep Sky Objects</p>'
+									+'<label>'
+									+'Off'
+									+'<input id="modal-deObj" class="constell-modal-input" type="checkbox">'
+									+'<span class="lever"></span>'
+									+'On'
+									+'</label>'
+								+'</form>'
+
+								+'<form action="#" class="checkboxes">'
+									+'<p>Constellation</p>'
+									+'<p>'
+								      +'<input class="constell-modal-input" type="checkbox" id="constell-modal-outlines" checked>'
+								      +'<label for="constell-modal-outlines">Outlines</label>'
+      								+'</p>'
+      								+'<p>'
+	      								+'<input class="constell-modal-input" type="checkbox" id="constell-modal-names">'
+	      								+'<label for="constell-modal-names">Names</label>'
+      								+'</p>'
+      								+'<p>'
+	      								+'<input class="constell-modal-input" type="checkbox" id="constell-modal-boundaries">'
+	      								+'<label for="constell-modal-boundaries">Boundaries</label>'
+      								+'</p>'
+
+      								+'<div id="constell-modal-theme" class="input-field constell-modal-input">'
+										+'<select id="constell-modal-theme-select" class="constell-modal-input">'
+											+'<option class="constell-modal-theme-option" value="0">Colour</option>'
+											+'<option class="constell-modal-theme-option" value="1">Black on White</option>'
+											+'<option class="constell-modal-theme-option" value="2" selected="selected">White on Black</option>'
+											+'<option class="constell-modal-theme-option" value="3">Infrared</option>'
+										+'</select>'
+										+'<label>Themes</label>'
+									+'</div>'
+								+'</form>')
+
+		var footer = $("<div>");
+		footer.addClass('modal-footer');
+		footer.append('<a href="#!" class=" modal-action modal-close waves-effect btn-flat constell-modal-close">Close</a>')
+		constellPara.append(footer)	
+		$('#constell-modal-btn').attr('href','#constell-modal')
+
+		$('body').prepend(modal)
+		modal.modal()
+
+		$('select').material_select();
+		getModalConstellation();
+	}
+
 
 // Logics to determine the appropriate image to cloud cover
 function cloudCover(data,i){
@@ -657,7 +794,9 @@ $(document).ready(function(){
 
 	 // embded constellation when click on constellation tab
 	 $('#tab-id-constell').click(function(){
-	 	getConstellation()
+	 	getConstellation();
+	 	createConstellModal();
+
 	 	// $('#tab-constell').append('<div id="wwtControl"'
 			// + ' data-settings="crosshairs=false,ecliptic=true,pictures=true,boundaries=true"'
 		 //    + ' data-aspect-ratio="8:5"></div>'
@@ -668,6 +807,13 @@ $(document).ready(function(){
 
 	 $('select').material_select();
 
+	 $('.constell-input').click(function(e){
+		getConstellation()
+	})
+
+	 $('body').on('click','.constell-modal-input', function(e){
+		getModalConstellation()
+	})
 
 	 // slider on constellation UI
 	 $('#constell-img-size').mousemove(function(){
@@ -675,8 +821,17 @@ $(document).ready(function(){
 		$('#constell-display').css('width',size+'%')
 	})
 
-
 	$('#constell-theme').on('change',function(){
 		getConstellation()
 	})
+
+	$('body').on('change','#constell-modal-theme',function(){
+		getModalConstellation()
+	})
+
+	// $('body').on('click','#constell-modal-display',function(){
+ //    	console.log('hey')
+ //        $('#constell-img').animate({ 'width': '200%' }, 400);
+ //    });
+	
 });
