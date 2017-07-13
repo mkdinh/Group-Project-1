@@ -366,7 +366,7 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 
 .apod-img {
 	max-height: 30vh;
-	max-width: 100%;
+	width: 100%;
 }
 
 .fine-print {
