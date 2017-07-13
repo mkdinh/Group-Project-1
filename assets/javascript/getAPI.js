@@ -822,7 +822,6 @@ $(document).ready(function(){
 		getModalConstellation()
 	})
 
-
 /*-----------------------------------------------------------------------------------------------*/
 
 //object that holds known meteor showers information
