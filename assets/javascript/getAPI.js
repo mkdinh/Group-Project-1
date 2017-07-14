@@ -1013,12 +1013,12 @@ function getMeteorShower() {
 
 			var headings = $("<tr>");
 
-			headings.html("<th>Name</th><th>Peak viewing nights</th><th>Velocity</th><th>Parent Object</th><th>Wikipedia</th>");
+			headings.html("<th>Name</th><th>Peak viewing nights</th><th>Velocity</th><th>Parent Object</th><th>Wikipedia</th><th>Add to Google Calendar</th>");
 
 			thead.append(headings);
 
 			var information = $("<tr>");
-			information.html("<td style='padding: 0 10px 0 10px'>" + meteorShowers[i].name + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].peakNight + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].Velocity + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].ParentObj + "</td><td style='padding: 0 10px 0 10px' id='monthMeteorWiki" + i + "'></td>");
+			information.html("<td style='padding: 0 10px 0 10px'>" + meteorShowers[i].name + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].peakNight + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].Velocity + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].ParentObj + "</td><td style='padding: 0 10px 0 10px' id='monthMeteorWiki" + i + "'></td><td><a class='waves-effect waves-light btn cal-btn' data-cal='{" + calObj + "}'><i class='material-icons left'>date_range</i></a></td>");
 
 			tbody.append(information);
 			table.append(thead);
@@ -1055,12 +1055,12 @@ function getMeteorShower() {
 			table.attr("rules", "all");
 
 			var headings = $("<tr>");
-			headings.html("<th>Name</th><th>Peak viewing nights</th><th>Velocity</th><th>Parent Object</th><th>Wikipedia</th>");
+			headings.html("<th>Name</th><th>Peak viewing nights</th><th>Velocity</th><th>Parent Object</th><th>Wikipedia</th><th>Add to Google Calendar</th>");
 
 			thead.append(headings);
 
 			var information = $("<tr>");
-			information.html("<td style='padding: 0 10px 0 10px'>" + meteorShowers[i].name + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].peakNight + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].Velocity + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].ParentObj + "</td><td style='padding: 0 10px 0 10px' id='yearMeteorWiki" + i + "'></td>");
+			information.html("<td style='padding: 0 10px 0 10px'>" + meteorShowers[i].name + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].peakNight + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].Velocity + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].ParentObj + "</td><td style='padding: 0 10px 0 10px' id='yearMeteorWiki" + i + "'></td><td><a class='waves-effect waves-light btn cal-btn' data-cal='{" + calObj + "}'><i class='material-icons left'>date_range</i></a></td>");
 			tbody.append(information);
 			table.append(thead);
 			table.append(tbody);
@@ -1315,6 +1315,7 @@ function getAsteroids() {
 	var dayEvents = [];
 	var weekEvents = [];
 	var dates = [];
+	var calObj = {};
 
 	//ajax call
 	$.ajax({
@@ -1338,6 +1339,13 @@ function getAsteroids() {
 				//create an object with information needed about asteroids
 				var currentObj = nearObject[date];
 				for (var i = 0; i < nearObject[date].length; i++) {
+
+					calObj.name = currentObj[i].name;
+					calObj.description = "Near Earth object " + currentObj[i].name + " passes" + calDescriptionTag;
+					calObj.start = moment(newDate, "MMMM Do YYYY").format("YYYY-MM-DD");
+					calObj.end = calObj.start;
+					calObj = JSON.stringify(calObj);
+
 					var info = {
 						date: newDate,
 						name: currentObj[i].name,
@@ -1346,7 +1354,7 @@ function getAsteroids() {
 						diameterMax: Math.round(currentObj[i].estimated_diameter.feet.estimated_diameter_max).toLocaleString("en-US", { minimumFractionDigits: 0 }),
 						diameterMin: Math.round(currentObj[i].estimated_diameter.feet.estimated_diameter_min).toLocaleString("en-US", { minimumFractionDigits: 0 }),
 						danger: currentObj[i].is_potentially_hazardous_asteroid,
-						name: currentObj[i].name
+						calObj: calObj
 					}
 
 					if (info.date === todaysDate) {
@@ -1388,12 +1396,12 @@ function getAsteroids() {
 		table.attr("frame", "void");
 		table.attr("rules", "all");
 
-		headings.html("<th>Missing Earth (Miles)</th><th>Speed (MPH)</th><th>Max Diameter(Miles)</th><th>Min diameter (Miles)</th><th>Dangerous</th>");
+		headings.html("<th>Missing Earth (Miles)</th><th>Speed (MPH)</th><th>Max Diameter(Miles)</th><th>Min diameter (Miles)</th><th>Dangerous</th><th>Add to Google Calendar</th>");
 
 		thead.append(headings);
 
 		var information = $("<tr>");
-		information.html("<td>" + dayEvents[k].missEarth + "</td><td>" + dayEvents[k].speed + "</td><td>" + dayEvents[k].diameterMax + "</td><td>" + dayEvents[k].diameterMin + "</td><td>" + dayEvents[k].danger + "</td>");
+		information.html("<td>" + dayEvents[k].missEarth + "</td><td>" + dayEvents[k].speed + "</td><td>" + dayEvents[k].diameterMax + "</td><td>" + dayEvents[k].diameterMin + "</td><td>" + dayEvents[k].danger + "</td><td><a class='waves-effect waves-light btn cal-btn' data-cal='{" + dayEvents[k].calObj + "}'><i class='material-icons left'>date_range</i></a></td>");
 
 
 		table.append(information);
