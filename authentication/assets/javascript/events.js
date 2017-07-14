@@ -702,7 +702,7 @@ function getAsteroids() {
 
         thead.append(headings);
 
-        var information = $("<tr>");blar
+        var information = $("<tr>");
         information.html("<td>" + dayEvents[k].missEarth + "</td><td>" + dayEvents[k].speed + "</td><td>" + dayEvents[k].diameterMax + "</td><td>" + dayEvents[k].diameterMin + "</td><td>" + dayEvents[k].danger + "</td><td><a class='waves-effect waves-light btn cal-btn' data-cal='{" + calObj + "}'><i class='material-icons left'>date_range</i></a></td>");
         // AB changes <-
 
