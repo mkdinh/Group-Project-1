@@ -1769,7 +1769,6 @@ $(document).ready(function () {
 
 	// initialize tooltips
 	$('.tooltipped').tooltip({ delay: 50 });
-	console.log("tooltips initialized");
 
 	getLocation();
 	getAPOD();
