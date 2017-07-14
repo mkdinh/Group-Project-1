@@ -32,7 +32,7 @@ function getLocation() {
 function showPosition(position) {
 	latitude = position.coords.latitude;
 	longitude = position.coords.longitude;
-
+    setInterval(whenISS, 1000);
 	console.log("Latitude: " + latitude + " Longitude: " + longitude);
 
 	getWeather();
@@ -880,6 +880,44 @@ function getISS() {
 			console.log("Error" + errorMessage);
 		}
 	});
+}
+
+function whenISS(){
+    
+    $.getJSON('http://api.open-notify.org/iss-pass.json?lat=' + latitude + '&lon='+ longitude +'&alt=20&n=5&callback=?', function(data) {
+        
+        var response = data.response[0];
+        var satDate = new Date(response["risetime"]*1000);            
+            
+        getTimeRemaining(satDate);
+        
+        
+        $("#countHours").text(timeRemain.hours);
+        $("#countMinutes").text(timeRemain.minutes);
+        $("#countSeconds").text(timeRemain.seconds);
+    });
+}
+
+
+
+function getTimeRemaining(endtime){
+    var t = Date.parse(endtime) - Date.parse(new Date());
+    
+    var seconds = Math.floor((t/1000) % 60);
+    var minutes = Math.floor((t/1000/60) % 60);
+    var hours = Math.floor((t/(1000*60*60)) % 24);
+    var days = Math.floor(t/(1000*60*60*24));
+    
+    timeRemain = {
+        "total": t,
+        "days": days,
+        "hours": hours,
+        "minutes": minutes,
+        "seconds": seconds
+    };
+    
+    return timeRemain;
+    
 }
 
 function getMeteorShower() {
