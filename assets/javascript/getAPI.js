@@ -1143,6 +1143,7 @@ function getSolar() {
 
 				//set up year view
 				if (data.eclipses_in_year[i].year === year) {
+					console.log("year view meets if statement");
 					var li = $("<li>");
 					var headerDiv = $("<div>");
 					var bodyDiv = $("<div>");
@@ -1153,12 +1154,12 @@ function getSolar() {
 					// for Google Calendar
 					var calObj = JSON.stringify({
 						summary: data.eclipses_in_year[i].event,
-						description: data.eclipses_in_year[i].event,
+						description: data.eclipses_in_year[i].event + calDescriptionTag,
 						start: {
-							date: data.eclipses_in_year.year + "-" + moment(data.eclipses_in_year.month, "M").format("MM") + "-" + moment(data.eclipses_in_year.day, "D").format("DD")
+							date: data.eclipses_in_year[i].year + "-" + moment(data.eclipses_in_year[i].month, "M").format("MM") + "-" + moment(data.eclipses_in_year[i].day, "D").format("DD")
 						},
 						end: {
-							date: data.eclipses_in_year.year + "-" + moment(data.eclipses_in_year.month, "M").format("MM") + "-" + moment(data.eclipses_in_year.day, "D").format("DD")
+							date: data.eclipses_in_year[i].year + "-" + moment(data.eclipses_in_year[i].month, "M").format("MM") + "-" + moment(data.eclipses_in_year[i].day, "D").format("DD")
 						}
 					});
 
@@ -1192,6 +1193,7 @@ function getSolar() {
 					span.append(table);
 					bodyDiv.append(span);
 					li.append(bodyDiv);
+					console.log(li);
 
 					$("#accordion5").append(li);
 					wiki(data.eclipses_in_year[i].event, ($("#daySolarWiki" + i)));
@@ -1658,7 +1660,7 @@ function getMoonPhases() {
 					li.append(bodyDiv);
 					$("#accordion9").append(li);
 
-					wiki(data.eclipses_in_year[i].event, ($("#dayMoonWiki" + i)));
+					wiki(data.phasedata[i].phase, ($("#dayMoonWiki" + i)));
 				}
 
 				//week view 
@@ -1700,7 +1702,7 @@ function getMoonPhases() {
 					li.append(bodyDiv);
 					$("#accordion10").append(li);
 
-					wiki(data.eclipses_in_year[i].event, ($("#weekMoonWiki" + i)));
+					wiki(data.phasedata[i].phase, ($("#weekMoonWiki" + i)));
 				}
 
 
@@ -1744,7 +1746,7 @@ function getMoonPhases() {
 					li.append(bodyDiv);
 					$("#accordion11").append(li);
 
-					wiki(data.eclipses_in_year[i].event, ($("#monthMoonWiki" + i)));
+					wiki(data.phasedata[i].phase, ($("#monthMoonWiki" + i)));
 				}
 
 
@@ -1790,9 +1792,9 @@ function wiki(search, location) {
 // Html page interactions js 
 $(document).ready(function () {
 	console.log("document.ready function run");
-	//getSolar();
+	getSolar();
 	getMeteorShower();
-	//getMoonPhases();
+	getMoonPhases();
 	getISS();
 	getTodaysDate();
 	getAsteroids();
