@@ -49,13 +49,12 @@ function initClient() {
     for best results include country, e.g. "US"
 */
 
-function postToCal(summary, description, start, end, location) {
+function postToCal(summary, description, start, end) {
   var event = {
     'summary': summary,
     'description': description,
     'start': start,
-    'end': end,
-    'location': location
+    'end': end
   }
   var request = gapi.client.calendar.events.insert({
     'calendarId': 'primary',
