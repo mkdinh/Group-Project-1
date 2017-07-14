@@ -16,7 +16,7 @@ var SCOPES = "https://www.googleapis.com/auth/calendar";
 /**
  *  On load, called to load the auth2 library and API client library.
  */
-var handleClientLoad = function() {
+var handleClientLoad = function () {
   gapi.load('client:auth2', initClient);
 }
 
@@ -32,6 +32,8 @@ function initClient() {
   });
 }
 
+// in case it didn't load on page load...
+$("#tab-id-events").click(handleClientLoad);
 
 /*
   Formatting for these parameters:
@@ -62,13 +64,36 @@ function postToCal(summary, description, start, end) {
     'calendarId': 'primary',
     'resource': event
   });
-  
-  gapi.auth2.getAuthInstance().signIn().then(function(){
-    request.execute(function(event) {
+
+  gapi.auth2.getAuthInstance().signIn().then(function () {
+    request.execute(function (event) {
       console.log("Response:", event);
-      Materialize.toast("Event created: <a>" + event.htmlLink + "</a>", 5000);
+      var $toastContent = $("<a href='" + event.htmlLink + "'Event</a> created");
+      Materialize.toast($toastContent, 5000);
+      var li = $("<li class='collection-item'>");
+      var div = $("<div>");
+      div.html(moment(event.start.date, "YYYY-MM-DD").format("M/D/YY") + "<br><a href='" + event.htmlLink + "' target='_blank'>" + event.summary + "</a>");
+      var a = $("<a class='secondary-content cal-del' data-delID='" + event.id + "'><i class='material-icons red-text'>delete_forever</i></a>");
+      div.append(a);
+      li.append(div);
+      $("#cal-collection").append(li);
     });
-  }).catch(function(errorMessage){
+  }).catch(function (errorMessage) {
     console.log("Google calendar error:", errorMessage);
   });
 }
+
+$("body").on("click", ".cal-del", function (e) {
+  e.preventDefault();
+  var parentLi = $(this).parent().parent();
+  var url = "https://www.googleapis.com/calendar/v3/calendars/primary/events/" + $(this).attr("data-delID");
+  $.ajax({
+    type: "DELETE",
+    url: url,
+    success: function () {
+      Materialize.toast("Event deleted", 5000);
+      parentLi.remove();
+    }
+  });
+
+});
