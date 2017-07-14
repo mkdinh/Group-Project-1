@@ -1,10 +1,4 @@
 /*
-  IMPORTANT: include this script at the bottom of the main HTML page
-  to load Google API:
-    <script async defer src="https://apis.google.com/js/api.js"></script>
-*/
-
-/*
   See https://developers.google.com/google-apps/calendar/v3/reference/events/insert#examples
   for examples of request formatting
 */
