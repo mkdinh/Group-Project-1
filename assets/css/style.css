@@ -585,7 +585,7 @@ label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
 
  @media (min-width: 600px) and (max-width:992px){
  	.container{width:100%;}
-	#day-temperature{font-size:150%;}
+	#day-temperature{font-size:250%;}
 	#main-content{margin:0;}
 	nav .brand-logo{left:15%;}
 	#nav-profile-button{display:none;}
