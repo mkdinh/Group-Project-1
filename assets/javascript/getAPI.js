@@ -283,13 +283,13 @@ function getWeeklyUpdate(data) {
 
 		//conditions from API
 
-		var tempMin = data.daily.data[i].apparentTemperatureMin;
-		var tempMax = data.daily.data[i].apparentTemperatureMax;
-		var humidity = data.daily.data[i].humidity;
-		var precipProbability = data.daily.data[i].precipProbability;
+		var tempMin = data.daily.data[i].apparentTemperatureMin.toFixed(0);
+		var tempMax = data.daily.data[i].apparentTemperatureMax.toFixed(0);
+		var humidity = data.daily.data[i].humidity.toFixed(0) * 100 + "%";
+		var precipProbability = data.daily.data[i].precipProbability.toFixed(0) * 100 + "%";
 		var precipType = data.daily.data[i].precipType;
-		var cloudCover = data.daily.data[i].cloudCover;
-		var moonPhase = data.daily.data[i].moonPhase;
+		var cloudCover = data.daily.data[i].cloudCover.toFixed(0) * 100 + "%";
+		var moonPhase = data.daily.data[i].moonPhase.toFixed(0) * 100 + "%";
 
 		// add weather conditions
 		var row1 = $('<tr>');
