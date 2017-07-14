@@ -4,6 +4,7 @@ var longitude;
 var long;
 var lat;
 var map;
+var l ;
 var meteorShowers = {
     0: {
         active: "Jan 1 - Jan 10",
@@ -256,12 +257,13 @@ function getMeteorShower() {
             
             
             var headings = $("<tr>");
-            headings.html("<th>Name</th><th>Peak viewing nights</th><th>Velocity</th><th>Parent Object</th>");
+            headings.html("<th>Name</th><th>Peak viewing nights</th><th>Velocity</th><th>Parent Object</th><th>Wikipedia</th>");
             
             thead.append(headings);
             
             var information = $("<tr>");
-            information.html("<td style='padding: 0 10px 0 10px'>" + meteorShowers[i].name + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].peakNight + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].Velocity + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].ParentObj + "</td>");
+            information.html("<td style='padding: 0 10px 0 10px'>" + meteorShowers[i].name + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].peakNight + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].Velocity + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].ParentObj + "</td><td style='padding: 0 10px 0 10px' id='dayMeteorWiki" + i + "'></td>");
+            
             tbody.append(information);
             table.append(thead);
             table.append(tbody);
@@ -269,6 +271,10 @@ function getMeteorShower() {
             bodyDiv.append(span);
             li.append(bodyDiv);
             $("#accordion6").append(li);
+            
+            wiki(meteorShowers[i].name, ($("#dayMeteorWiki" + i)));
+        
+            /*$("meteorWiki" + i).attr("href", $("meteorWiki" + i).text());*/
         }
         
         //month view
@@ -296,12 +302,12 @@ function getMeteorShower() {
             
             var headings = $("<tr>");
             
-            headings.html("<th>Name</th><th>Peak viewing nights</th><th>Velocity</th><th>Parent Object</th>");
+            headings.html("<th>Name</th><th>Peak viewing nights</th><th>Velocity</th><th>Parent Object</th><th>Wikipedia</th>");
             
             thead.append(headings);
             
             var information = $("<tr>");
-            information.html("<td style='padding: 0 10px 0 10px'>" + meteorShowers[i].name + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].peakNight + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].Velocity + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].ParentObj + "</td>");
+            information.html("<td style='padding: 0 10px 0 10px'>" + meteorShowers[i].name + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].peakNight + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].Velocity + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].ParentObj + "</td><td style='padding: 0 10px 0 10px' id='monthMeteorWiki" + i + "'></td>");
             
             tbody.append(information);
             table.append(thead);
@@ -310,6 +316,8 @@ function getMeteorShower() {
             bodyDiv.append(span);
             li.append(bodyDiv);
             $("#accordion7").append(li);
+            
+            wiki(meteorShowers[i].name, ($("#monthMeteorWiki" + i)));
         }
         
         
@@ -336,19 +344,21 @@ function getMeteorShower() {
             table.attr("rules", "all");
             
             var headings = $("<tr>");
-            headings.html("<th>Name</th><th>Peak viewing nights</th><th>Velocity</th><th>Parent Object</th>");
+            headings.html("<th>Name</th><th>Peak viewing nights</th><th>Velocity</th><th>Parent Object</th><th>Wikipedia</th>");
             
             thead.append(headings);
             
             var information = $("<tr>");
-            information.html("<td style='padding: 0 10px 0 10px'>" + meteorShowers[i].name + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].peakNight + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].Velocity + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].ParentObj + "</td>");
+            information.html("<td style='padding: 0 10px 0 10px'>" + meteorShowers[i].name + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].peakNight + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].Velocity + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].ParentObj + "</td><td style='padding: 0 10px 0 10px' id='yearMeteorWiki" + i + "'></td>");
             tbody.append(information);
             table.append(thead);
             table.append(tbody);
             span.append(table);
             bodyDiv.append(span);
             li.append(bodyDiv);
-            $("#accordion8").append(li);    
+            $("#accordion8").append(li); 
+            
+            wiki(meteorShowers[i].name, ($("#yearMeteorWiki" + i)));
         } 
     }
 }
@@ -367,7 +377,8 @@ function getSolar(){
     url: url,
     async: false,
     dataType: "json",
-    success: function(data){        
+    success: function(data){
+        console.log(data);
         var i = 0;
         $.each(data.eclipses_in_year, function(){
             var d = new Date()
@@ -416,10 +427,6 @@ function getSolar(){
             break;    
                 }
             
-            table.attr("border", 1);
-            table.attr("frame", "void");
-            table.attr("rules", "all");
-            
             //set up year view
             if (data.eclipses_in_year[i].year === year){
                 var li = $("<li>");
@@ -428,7 +435,10 @@ function getSolar(){
                 var span = $("<span>");
                 var thead = $("<thead>");
                 var tbody = $("<tbody>");
-
+                
+                wiki(data.eclipses_in_year[i].event, ($("#wiki" + i)));
+                
+                
                 bodyDiv.addClass("collapsible-body");
                 headerDiv.addClass("collapsible-header");
 
@@ -443,12 +453,12 @@ function getSolar(){
                 table.attr("frame", "void");
                 table.attr("rules", "all");
                 
-                headings.html("<th>Event</th><th>Link</th>");
+                headings.html("<th>Event</th><th>Wikipedia</th>");
                 
                 thead.append(headings);
                 
                 var information = $("<tr>");
-                information.html("<td style='padding: 0 10px 0 10px'>" + data.eclipses_in_year[i].event + "</td><td style='padding: 0 10px 0 10px'>" + "wikilink goes here" + "</td>");
+                information.html("<td style='padding: 0 10px 0 10px'>" + data.eclipses_in_year[i].event + "</td><td style='padding: 0 10px 0 10px' id='daySolarWiki" + i + "'></td>");
                 
                 tbody.append(information);
                 table.append(thead);
@@ -458,11 +468,12 @@ function getSolar(){
                 li.append(bodyDiv);
                 
                  $("#accordion5").append(li);
+                wiki(data.eclipses_in_year[i].event, ($("#daySolarWiki" + i)));
             }
                     
             //set up month view
             if(data.eclipses_in_year[i].month === month && data.eclipses_in_year[i].year === year){
-                console.log("Month");
+                //console.log("Month");
                 var li = $("<li>");
                 var headerDiv = $("<div>");
                 var bodyDiv = $("<div>");
@@ -489,7 +500,7 @@ function getSolar(){
                 thead.append(headings);
                 
                 var information = $("<tr>");
-                information.html("<td style='padding: 0 10px 0 10px'>" + data.eclipses_in_year[i].event + "</td><td style='padding: 0 10px 0 10px'>" + "wikilink goes here" + "</td>");
+                information.html("<td style='padding: 0 10px 0 10px'>" + data.eclipses_in_year[i].event + "</td><td style='padding: 0 10px 0 10px' id='monthSolarWiki" + i + "'></td>");
                 
                 tbody.append(information);
                 table.append(thead);
@@ -498,6 +509,7 @@ function getSolar(){
                 bodyDiv.append(span);
                 li.append(bodyDiv);
                  $("#accordion4").append(li);
+                wiki(data.eclipses_in_year[i].event, ($("#monthSolarWiki" + i)));
             }/*else {
                 var headerDiv = $("<div>");
                 var bodyDiv = $("<div>");
@@ -536,12 +548,12 @@ function getSolar(){
                 table.attr("frame", "void");
                 table.attr("rules", "all");
                 
-                headings.html("<th>Event</th><th>Link</th>");
+                headings.html("<th>Event</th><th>Wikipedia</th>");
                 
                 thead.append(headings);
                 
                 var information = $("<tr>");
-                information.html("<td style='padding: 0 10px 0 10px'>" + data.eclipses_in_year[i].event + "</td><td style='padding: 0 10px 0 10px'>" + "wikilink goes here" + "</td>");
+                information.html("<td style='padding: 0 10px 0 10px'>" + data.eclipses_in_year[i].event + "</td><td style='padding: 0 10px 0 10px' id='yearSolarWiki" + i + "'></td>");
                 
                 tbody.append(information);
                 table.append(thead);
@@ -550,6 +562,8 @@ function getSolar(){
                 bodyDiv.append(span);
                 li.append(bodyDiv);
                  $("#accordion3").append(li);
+                
+                wiki(data.eclipses_in_year[i].event, ($("#yearSolarWiki" + i)));
             }/*else {
                 var headerDiv = $("<div>");
                 var bodyDiv = $("<div>");
@@ -890,12 +904,12 @@ function getMoonPhases(){
                 table.attr("rules", "all");
 
                 var headings = $("<tr>");
-                headings.html("<th>Phase</th>");
+                headings.html("<th>Phase</th><th>Wikipedia</th>");
                 
                 thead.append(headings);
                 
                 var information = $("<tr>");
-                information.html("<td style='padding: 0 10px 0 10px'>" + data.phasedata[i].phase + "</td>");
+                information.html("<td style='padding: 0 10px 0 10px'" + data.phasedata[i].phase + "</td><td style='padding: 0 10px 0 10px' id'dayMoonWiki" + i + "'></td>");
                 
                 tbody.append(information);
                 table.append(thead);
@@ -903,7 +917,9 @@ function getMoonPhases(){
                 span.append(table);
                 bodyDiv.append(span);
                 li.append(bodyDiv); 
-                $("#accordion9").append(li);    
+                $("#accordion9").append(li); 
+                
+                wiki(data.eclipses_in_year[i].event, ($("#dayMoonWiki" + i)));
             } 
                     
             //week view 
@@ -930,12 +946,12 @@ function getMoonPhases(){
                 table.attr("rules", "all");
 
                 var headings = $("<tr>");
-                headings.html("<th>Phase</th>");
+                headings.html("<th>Phase</th><th>Wikipedia</th>");
                 
                 thead.append(headings);
                 
                 var information = $("<tr>");
-                information.html("<td style='padding: 0 10px 0 10px'>" + data.phasedata[i].phase + "</td>");
+                information.html("<td style='padding: 0 10px 0 10px'>" + data.phasedata[i].phase + "</td><td style='padding: 0 10px 0 10px' id'weekMoonWiki" + i + "'></td>");
                 
                 tbody.append(information);
                 table.append(thead);
@@ -943,7 +959,9 @@ function getMoonPhases(){
                 span.append(table);
                 bodyDiv.append(span);
                 li.append(bodyDiv);
-                $("#accordion10").append(li);    
+                $("#accordion10").append(li); 
+                
+                wiki(data.eclipses_in_year[i].event, ($("#weekMoonWiki" + i)));
             } 
                
             
@@ -972,12 +990,12 @@ function getMoonPhases(){
                 table.attr("rules", "all");
                 
                 var headings = $("<tr>");
-                headings.html("<th>Phase</th>");
+                headings.html("<th>Phase</th><th>Wikipedia</th>");
                 
                 thead.append(headings);
                 
                 var information = $("<tr>");
-                information.html("<td style='padding: 0 10px 0 10px'>" + data.phasedata[i].phase + "</td>");
+                information.html("<td style='padding: 0 10px 0 10px'>" + data.phasedata[i].phase + "</td><td style='padding: 0 10px 0 10px' id'monthMoonWiki" + i + "'></td>");
                 
                 tbody.append(information);
                 table.append(thead);
@@ -985,7 +1003,9 @@ function getMoonPhases(){
                 span.append(table);
                 bodyDiv.append(span);
                 li.append(bodyDiv);
-                $("#accordion11").append(li);        
+                $("#accordion11").append(li);
+                
+                wiki(data.eclipses_in_year[i].event, ($("#monthMoonWiki" + i)));
             }
             
             
@@ -999,8 +1019,9 @@ function getMoonPhases(){
         }); 
 }
 
-function wiki(search){
+function wiki(search, location){
     var url = "https://en.wikipedia.org/w/api.php?action=opensearch&search="+ search +"&format=json&callback=?";
+    
        
        //ajax call
        $.ajax({
@@ -1009,11 +1030,12 @@ function wiki(search){
         async: false,
         dataType: "json",
         success: function(data){
-            
-            
-            
-            
-            
+            var a = $("<a>");
+            a.text(data[3][0]);
+            a.attr("href", data[3][0]);
+            a.attr("target", "_blank");
+            location.append(a);
+
         },
         error: function(errorMessage){
             alert("Error" + errorMessage);
