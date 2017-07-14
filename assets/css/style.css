@@ -590,6 +590,7 @@ label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
 	.card.week{display:inline-block;}
 	#today-events-container{width:40%;}
 	#constell-img-size{display:none;}
+	#login-modal,#logout-modal{width:50%;}
  }
 
 
