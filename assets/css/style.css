@@ -308,6 +308,9 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
     height: 400px;
     
 }
+
+}    
+
 .cal-btn {
 	padding: 0 10px;
 }
