@@ -301,6 +301,13 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
     color: black;
 }
 
+#map{
+    margin: 0;
+    padding: 0;
+    height: 400px;
+    
+}
+
 /*Constellation Tabs*/
 
 #iframe-container{

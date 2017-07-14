@@ -841,7 +841,7 @@ var meteorShowers = {
 function initMap(){
     var uluru = {lat: parseFloat(lat), lng: parseFloat(long)};
     map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 4,
+        zoom: 8,
         center: uluru
     });
     var icon = "assets/image.satellite.png";
@@ -852,6 +852,14 @@ function initMap(){
         map: map
     });
     }
+
+/*google.maps.event.addDomListener(window, 'load', initMap);*/
+
+$("#spaceStation").on("shown.bs.collapse", function(e){
+    
+       google.maps.event.trigger(map, "resize");
+});
+
 function getISS(){
     var url = "https://api.wheretheiss.at/v1/satellites/25544/";
 
@@ -1602,7 +1610,7 @@ function getMoonPhases(){
                 thead.append(headings);
                 
                 var information = $("<tr>");
-                information.html("<td style='padding: 0 10px 0 10px'" + data.phasedata[i].phase + "</td><td style='padding: 0 10px 0 10px' id'dayMoonWiki" + i + "'></td>");
+                information.html("<td style='padding: 0 10px 0 10px'" + data.phasedata[i].phase + "</td><td style='padding: 0 10px 0 10px' id = 'dayMoonWiki" + i + "'></td>");
                 
                 tbody.append(information);
                 table.append(thead);
@@ -1612,7 +1620,7 @@ function getMoonPhases(){
                 li.append(bodyDiv); 
                 $("#accordion9").append(li); 
                 
-                wiki(data.eclipses_in_year[i].event, ($("#dayMoonWiki" + i)));
+                wiki(data.phasedata[i].phase, ($("#dayMoonWiki" + i)));
             } 
                     
             //week view 
@@ -1644,7 +1652,7 @@ function getMoonPhases(){
                 thead.append(headings);
                 
                 var information = $("<tr>");
-                information.html("<td style='padding: 0 10px 0 10px'>" + data.phasedata[i].phase + "</td><td style='padding: 0 10px 0 10px' id'weekMoonWiki" + i + "'></td>");
+                information.html("<td style='padding: 0 10px 0 10px'>" + data.phasedata[i].phase + "</td><td style='padding: 0 10px 0 10px' id = 'weekMoonWiki" + i + "'></td>");
                 
                 tbody.append(information);
                 table.append(thead);
@@ -1654,7 +1662,7 @@ function getMoonPhases(){
                 li.append(bodyDiv);
                 $("#accordion10").append(li); 
                 
-                wiki(data.eclipses_in_year[i].event, ($("#weekMoonWiki" + i)));
+                wiki(data.phasedata[i].phase, ($("#weekMoonWiki" + i)));
             } 
                
             
@@ -1688,7 +1696,7 @@ function getMoonPhases(){
                 thead.append(headings);
                 
                 var information = $("<tr>");
-                information.html("<td style='padding: 0 10px 0 10px'>" + data.phasedata[i].phase + "</td><td style='padding: 0 10px 0 10px' id'monthMoonWiki" + i + "'></td>");
+                information.html("<td style='padding: 0 10px 0 10px'>" + data.phasedata[i].phase + "</td><td style='padding: 0 10px 0 10px' id = 'monthMoonWiki" + i + "'></td>");
                 
                 tbody.append(information);
                 table.append(thead);
@@ -1698,7 +1706,9 @@ function getMoonPhases(){
                 li.append(bodyDiv);
                 $("#accordion11").append(li);
                 
-                wiki(data.eclipses_in_year[i].event, ($("#monthMoonWiki" + i)));
+                wiki(data.phasedata[i].phase + "moon phase", ($("#monthMoonWiki" + i)));
+                
+                console.log(data.phasedata[i].phase);
             }
             
             
@@ -1724,7 +1734,7 @@ function wiki(search, location){
         dataType: "json",
         success: function(data){
             var a = $("<a>");
-            a.text(data[3][0]);
+            a.text("More Information");
             a.attr("href", data[3][0]);
             a.attr("target", "_blank");
             location.append(a);
@@ -1744,9 +1754,9 @@ function wiki(search, location){
 // Html page interactions js 
 $(document).ready(function(){
     
-    //getSolar();
+    getSolar();
     getMeteorShower();
-    //getMoonPhases();
+    getMoonPhases();
     getISS();
     getTodaysDate();
     getAsteroids();
