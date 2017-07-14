@@ -1344,7 +1344,7 @@ function getAsteroids() {
 				console.log(currentObj, "on", date);
 				for (var i = 0; i < nearObject[date].length; i++) {
 
-					calObj.name = currentObj[i].name;
+					calObj.summary = currentObj[i].name;
 					calObj.description = "Near Earth object " + currentObj[i].name + " passes" + calDescriptionTag;
 					calObj.start = {
 						date: date
@@ -1352,7 +1352,6 @@ function getAsteroids() {
 					calObj.end = {
 						date: date
 					}
-					console.log("calObj for ", currentObj[i].name, calObj);
 					var calObjStr = JSON.stringify(calObj);
 
 					var info = {
