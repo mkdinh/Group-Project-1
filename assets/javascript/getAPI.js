@@ -857,6 +857,12 @@ function initMap() {
 		map: map
 	});
 }
+
+$("#spaceStation").on("shown.bs.collapse", function(e){
+    
+       google.maps.event.trigger(map, "resize");
+});
+
 function getISS() {
 	var url = "https://api.wheretheiss.at/v1/satellites/25544/";
 
@@ -1792,7 +1798,7 @@ $(document).ready(function () {
 	console.log("document.ready function run");
 	getSolar();
 	getMeteorShower();
-	getMoonPhases();
+	//getMoonPhases();
 	getISS();
 	getTodaysDate();
 	getAsteroids();
