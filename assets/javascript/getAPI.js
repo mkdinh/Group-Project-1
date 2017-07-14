@@ -1904,7 +1904,7 @@ $(document).ready(function () {
 });
 
 // "add to calendar" click handler
-$(".cal-btn").click(function (e) { 
+$("body").on("click", ".cal-btn", function (e) { 
     e.preventDefault();
     var args = JSON.parse($(this).attr("data-cal"));
     postToCal(args.summary, args.description, args.start, args.end);
