@@ -844,8 +844,138 @@ $(document).ready(function(){
 	$('#constell-theme').on('change',function(){
 		getConstellation()
 	})
+    
+    //function calls 
+    //getSolar();
+    getMeteorShower();
+    //getMoonPhases();
+    getISS();
+    getTodaysDate();
+    getAsteroids();
 
-/*-----------------------------------------------------------------------------------------------*/
+
+	// $(window).resize(function(){
+	// 	if ($(window).width() < 480) {
+	//     	$('body').css('font-size','80%');
+	// 	} else {
+	// 	    $('body').css('font-size','100%');
+	// 	}
+	// })
+
+	// update clock every 1 second
+	setInterval(updateClock, 1000);
+
+	// Initialize collapse button
+	$(".button-collapse").sideNav();
+	// Initialize collapsible
+	$('.collapsible').collapsible();
+
+	// click on .event-item initiate toast js with "event added" as text 
+	$('.event-item').click(function(){
+	Materialize.toast("Event added", 3000) // 3000 is the duration of the toast
+	})
+	// the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+	$('.modal').modal();
+
+		// initialize tooltips
+		$(document).ready(function () {
+			$('.tooltipped').tooltip({ delay: 50 });
+		});
+
+     getLocation();
+		 getAPOD();
+
+	// when click on #switch view...
+  	$('#switch-view').click(function(){
+
+  		// if day-view is hidden -> make week-view hidden, day-view visible and change icon to view_week
+  		if($('#day-view').css('display') === 'none'){
+			$("#week-view").css("display","none");
+			setTimeout(function(){$("#day-view").fadeToggle('slow'),500})
+			$('#switch-view').text('view_week')
+		}else{ // if day-view is visible -> make day-view hidden, week-view visible, and change icon to view_quilt
+			$("#day-view").css("display","none");
+			setTimeout(function(){$("#week-view").fadeToggle('slow'),500})
+			$('#switch-view').text('view_quilt')
+
+		}
+	})
+
+	 // fade in tab when clicked
+	 $('.tab').click(function(){
+	 	var tab = $(this).attr('tab-data');
+	 	$('#'+tab).fadeIn('slow')
+	 	if($(this).attr('tab-data') === 'tab-news'){
+	 		getNews()
+	 	}
+	 })
+
+	 // Search news if click on search icon with input
+	 $('#news-search').click(function(){
+	 		 getNews();
+	 		$('#news-input').val('');
+	 })
+
+	 // click enter when focus on search input === click on search icon
+	 $('#news-input').keyup(function(e){
+	 	if(e.keyCode === 13){
+	 		$('#news-search').click();
+	 	}
+	 })
+
+	 //convert units f <-> c
+
+	 $('#day-temperature').on('click','#convert-unit',function(){
+	 	if($(this).attr('data-state') === 'f'){
+	 		$('#today-current-temp').css('display','none')
+		 	$('#today-current-temp').html($(this).attr('data-c') + "<sup>&deg;C</sup>")
+		 	$('#today-current-temp').fadeIn('fast')
+		 	$('#convert-unit').html("&deg;F")
+		 	$(this).attr('data-state','c')	
+	 	}else if($(this).attr('data-state') === 'c'){
+	 		$('#today-current-temp').css('display','none')
+	 		$('#today-current-temp').html($(this).attr('data-f') + "<sup>&deg;F</sup>")
+	 		$('#today-current-temp').fadeIn('fast')
+	 		$('#convert-unit').html("&deg;C")
+	 		$(this).attr('data-state','f')	
+	 	}
+	 })
+
+	 // embded constellation when click on constellation tab
+	 $('#tab-id-constell').click(function(){
+	 	getConstellation();
+	 	createConstellModal();
+	 })
+
+	 $('select').material_select();
+
+	 $('.constell-input').click(function(e){
+		getConstellation()
+	})
+
+	 $('body').on('click','.constell-modal-input', function(e){
+		getModalConstellation()
+	})
+
+	 // slider on constellation UI
+	 $('#constell-img-size').mousemove(function(){
+		var size = $('#constell-img-size').val();
+		$('#constell-display').css('width',size+'%')
+	})
+
+	$('#constell-theme').on('change',function(){
+		getConstellation()
+	})
+
+	$('body').on('change','#constell-modal-theme',function(){
+		getModalConstellation()
+	})
+
+
+});
+
+
+
 
 var long;
 var lat;
@@ -1871,141 +2001,6 @@ function wiki(search, location){
     });
 }
 
-
-/*-----------------------------------------------------------------------------------------------*/
-
-// Html page interactions js 
-$(document).ready(function(){
-    //function calls 
-    //getSolar();
-    getMeteorShower();
-    //getMoonPhases();
-    getISS();
-    getTodaysDate();
-    getAsteroids();
-
-
-	// $(window).resize(function(){
-	// 	if ($(window).width() < 480) {
-	//     	$('body').css('font-size','80%');
-	// 	} else {
-	// 	    $('body').css('font-size','100%');
-	// 	}
-	// })
-
-	// update clock every 1 second
-	setInterval(updateClock, 1000);
-
-	// Initialize collapse button
-	$(".button-collapse").sideNav();
-	// Initialize collapsible
-	$('.collapsible').collapsible();
-
-	// click on .event-item initiate toast js with "event added" as text 
-	$('.event-item').click(function(){
-	Materialize.toast("Event added", 3000) // 3000 is the duration of the toast
-	})
-	// the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-	$('.modal').modal();
-
-		// initialize tooltips
-		$(document).ready(function () {
-			$('.tooltipped').tooltip({ delay: 50 });
-		});
-
-     getLocation();
-		 getAPOD();
-
-	// when click on #switch view...
-  	$('#switch-view').click(function(){
-
-  		// if day-view is hidden -> make week-view hidden, day-view visible and change icon to view_week
-  		if($('#day-view').css('display') === 'none'){
-			$("#week-view").css("display","none");
-			setTimeout(function(){$("#day-view").fadeToggle('slow'),500})
-			$('#switch-view').text('view_week')
-		}else{ // if day-view is visible -> make day-view hidden, week-view visible, and change icon to view_quilt
-			$("#day-view").css("display","none");
-			setTimeout(function(){$("#week-view").fadeToggle('slow'),500})
-			$('#switch-view').text('view_quilt')
-
-		}
-	})
-
-	 // fade in tab when clicked
-	 $('.tab').click(function(){
-	 	var tab = $(this).attr('tab-data');
-	 	$('#'+tab).fadeIn('slow')
-	 	if($(this).attr('tab-data') === 'tab-news'){
-	 		getNews()
-	 	}
-	 })
-
-	 // Search news if click on search icon with input
-	 $('#news-search').click(function(){
-	 		 getNews();
-	 		$('#news-input').val('');
-	 })
-
-	 // click enter when focus on search input === click on search icon
-	 $('#news-input').keyup(function(e){
-	 	if(e.keyCode === 13){
-	 		$('#news-search').click();
-	 	}
-	 })
-
-	 //convert units f <-> c
-
-	 $('#day-temperature').on('click','#convert-unit',function(){
-	 	if($(this).attr('data-state') === 'f'){
-	 		$('#today-current-temp').css('display','none')
-		 	$('#today-current-temp').html($(this).attr('data-c') + "<sup>&deg;C</sup>")
-		 	$('#today-current-temp').fadeIn('fast')
-		 	$('#convert-unit').html("&deg;F")
-		 	$(this).attr('data-state','c')	
-	 	}else if($(this).attr('data-state') === 'c'){
-	 		$('#today-current-temp').css('display','none')
-	 		$('#today-current-temp').html($(this).attr('data-f') + "<sup>&deg;F</sup>")
-	 		$('#today-current-temp').fadeIn('fast')
-	 		$('#convert-unit').html("&deg;C")
-	 		$(this).attr('data-state','f')	
-	 	}
-	 })
-
-	 // embded constellation when click on constellation tab
-	 $('#tab-id-constell').click(function(){
-	 	getConstellation();
-	 	createConstellModal();
-	 })
-
-	 $('select').material_select();
-
-	 $('.constell-input').click(function(e){
-		getConstellation()
-	})
-
-	 $('body').on('click','.constell-modal-input', function(e){
-		getModalConstellation()
-	})
-
-	 // slider on constellation UI
-	 $('#constell-img-size').mousemove(function(){
-		var size = $('#constell-img-size').val();
-		$('#constell-display').css('width',size+'%')
-	})
-
-	$('#constell-theme').on('change',function(){
-		getConstellation()
-	})
-
-	$('body').on('change','#constell-modal-theme',function(){
-		getModalConstellation()
-	})
-
-
-
-
-});
 
 
 
