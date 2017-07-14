@@ -283,8 +283,8 @@ function getWeeklyUpdate(data) {
 
 		//conditions from API
 
-		var tempMin = data.daily.data[i].apparentTemperatureMin.toFixed(0);
-		var tempMax = data.daily.data[i].apparentTemperatureMax.toFixed(0);
+		var tempMin = data.daily.data[i].apparentTemperatureMin.toFixed(0) + "%";
+		var tempMax = data.daily.data[i].apparentTemperatureMax.toFixed(0) + "%";
 		var humidity = data.daily.data[i].humidity.toFixed(0) * 100 + "%";
 		var precipProbability = data.daily.data[i].precipProbability.toFixed(0) * 100 + "%";
 		var precipType = data.daily.data[i].precipType;
