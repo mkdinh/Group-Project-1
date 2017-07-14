@@ -81,40 +81,17 @@ function postToCal(summary, description, start, end) {
   });
 }
 
+$("body").on("click", ".cal-del", function (e) {
+  e.preventDefault();
+  var parentLi = $(this).parent().parent();
+  var url = "https://www.googleapis.com/calendar/v3/calendars/primary/events/" + $(this).attr("data-delID");
+  $.ajax({
+    type: "DELETE",
+    url: url,
+    success: function () {
+      Materialize.toast("Event deleted", 5000);
+      parentLi.remove();
+    }
+  });
 
-
-/*
-Example return:
-{
- "kind": "calendar#event",
- "etag": "\"3000107242993000\"",
- "id": "906gng6gmt1ooslqgs4biskdlg",
- "status": "confirmed",
- "htmlLink": "https://www.google.com/calendar/event?eid=OTA2Z25nNmdtdDFvb3NscWdzNGJpc2tkbGcgYm9ubmVydmlvbGluQG0",
- "created": "2017-07-14T17:33:41.000Z",
- "updated": "2017-07-14T17:33:41.539Z",
- "summary": "test",
- "creator": {
-  "email": "bonnerviolin@gmail.com",
-  "displayName": "Andy Bonner",
-  "self": true
- },
- "organizer": {
-  "email": "bonnerviolin@gmail.com",
-  "displayName": "Andy Bonner",
-  "self": true
- },
- "start": {
-  "date": "2017-07-14"
- },
- "end": {
-  "date": "2017-07-14"
- },
- "iCalUID": "906gng6gmt1ooslqgs4biskdlg@google.com",
- "sequence": 0,
- "reminders": {
-  "useDefault": false
- }
-}
-
-*/
+});
