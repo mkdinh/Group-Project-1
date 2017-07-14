@@ -125,10 +125,10 @@ function updateTodayWeather(data){
 
 	//Updating Temperature
 	var todayTemp = data.currently.apparentTemperature;
-	$('#day-temperature').html('<div id="today-current-temp">'+todayTemp.toFixed(1)+"<sup>&deg;F</sup></div>"+ '<a id="convert-unit" href="#/"><p style="margin:0">&deg;C</p></a>')
-	$('#convert-unit').attr('data-f',todayTemp.toFixed(1))
+	$('#day-temperature').html('<div id="today-current-temp">'+todayTemp.toFixed(0)+"<sup>&deg;F</sup></div>"+ '<a id="convert-unit" href="#/"><p style="margin:0">&deg;C</p></a>')
+	$('#convert-unit').attr('data-f',todayTemp.toFixed(0))
 	var celcius = (todayTemp -32) * 5 / 9;
-	celcius = celcius.toFixed(1)
+	celcius = celcius.toFixed(0)
 	$('#convert-unit').attr('data-c',celcius)
 	$('#convert-unit').attr('data-state','f')
 	//Updating WindSpeed
@@ -207,7 +207,7 @@ function getWeekDays(data){
     	// Weather info
     	var temp = $('<p>')
     	temp.addClass('forecast temp center')
-    	temp.html(data.daily.data[i].apparentTemperatureMin+" - "+data.daily.data[i].apparentTemperatureMax +"<sup>&deg;F</sup>")
+    	temp.html(data.daily.data[i].apparentTemperatureMin.toFixed(0)+" - "+data.daily.data[i].apparentTemperatureMax.toFixed(0) +"<sup>&deg;F</sup>")
     	var moon = $('<img>')
     	moon.addClass('forecast moonPhase')
     	moon.attr('src',moonPhase(data,i))	
@@ -363,7 +363,7 @@ function rankNights(data) {
 			var scoreLine = $("<div class='score-line weather-info-container'>");
 			var stars = $("<div id=star-container>");
 			// convert rating to base-5 for stars and round to the nearest half-star:
-			var starNum = Number.parseFloat((Math.round(totalRanking * 10) / 2).toFixed(1));
+			var starNum = Number.parseFloat((Math.round(totalRanking * 10) / 2).toFixed(0));
 			// show as many whole stars as the integer part of that number,
 			// as many half stars as the decimal part, if it exists,
 			// and as many empty stars as 5 - the number - any half star
