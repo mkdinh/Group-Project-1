@@ -138,13 +138,11 @@ function updateTodayWeather(data) {
 	$('.windSpeed').html(data.currently.windSpeed + " mph")
 
 	//Updating Addtional Info
-	$(".humidity").html(data.currently.humidity)
-	$(".precipProbability").html(data.currently.precipProbability)
-	$(".cloudCover").html(data.currently.cloudCover)
-	$(".visibility").html(data.currently.visibility)
-	$(".moonPhase-data").html(data.daily.data[0].moonPhase)
-	$(".humidity").html(data.currently.humidity)
-
+	$(".humidity").html(data.currently.humidity.toFixed(0) * 100 + "%");
+	$(".precipProbability").html(data.currently.precipProbability.toFixed(0) * 100 + "%");
+	$(".cloudCover").html(data.currently.cloudCover.toFixed(0) * 100 + "%");
+	$(".visibility").html(data.currently.visibility.toFixed(0) + " mi");
+	$(".moonPhase-data").html(data.daily.data[0].moonPhase.toFixed(0) * 100 + "%");
 
 }
 
