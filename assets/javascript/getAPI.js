@@ -946,7 +946,6 @@ function getMeteorShower() {
 			start: peakStart,
 			end: peakEnd
 		});
-		console.log("calObj on pass", i, calObj);
 
 		// day view
 		if (month === activeStartMonth && day <= activeDay1 || month === activeEndMonth && day <= activeDay2) {
