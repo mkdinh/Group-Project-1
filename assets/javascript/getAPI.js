@@ -158,7 +158,7 @@ function getAPOD(){
         dataType: "json",
         success: function(apodData){
 					console.log(apodData);
-            var img = $("<img class='apod-img'>");
+            var img = $("<img class='apod-img materialboxed'>");
             var p = $("<p class='truncate tooltipped'>");
             img.attr("src", apodData.url); 
             p.text(apodData.explanation);
@@ -1759,6 +1759,9 @@ $(document).ready(function(){
 	$(".button-collapse").sideNav();
 	// Initialize collapsible
 	$('.collapsible').collapsible();
+
+	// initialize .materialbox
+ 	$('.materialboxed').materialbox();
 
 	// click on .event-item initiate toast js with "event added" as text 
 	$('.event-item').click(function(){
