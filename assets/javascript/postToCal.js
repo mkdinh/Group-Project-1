@@ -1,10 +1,4 @@
 /*
-  IMPORTANT: include this script at the bottom of the main HTML page
-  to load Google API:
-    <script async defer src="https://apis.google.com/js/api.js"></script>
-*/
-
-/*
   See https://developers.google.com/google-apps/calendar/v3/reference/events/insert#examples
   for examples of request formatting
 */
@@ -22,9 +16,9 @@ var SCOPES = "https://www.googleapis.com/auth/calendar";
 /**
  *  On load, called to load the auth2 library and API client library.
  */
-$(window).ready(function () {
+var handleClientLoad = function() {
   gapi.load('client:auth2', initClient);
-});
+}
 
 /**
  *  Initializes the API client library and sets up sign-in state
@@ -44,7 +38,9 @@ function initClient() {
     (see googleCalDemo.html for examples, and also for function for formatting dates)
   summary: string (this will be the event "title")
   description: string
-  start: an object containing key 'dateTime' 
+  start: an object. 
+    For all-day events, it contains key 'date' with value formatted yyyy-mm-dd. 
+    For time-specific events, it contains key 'dateTime' 
     with value formatted yyyy-mm-ddThh:mm:ss{time zone, format eg -05:00}
     e.g.:
       'start': {
@@ -55,13 +51,12 @@ function initClient() {
     for best results include country, e.g. "US"
 */
 
-function postToCal(summary, description, start, end, location) {
+function postToCal(summary, description, start, end) {
   var event = {
     'summary': summary,
     'description': description,
     'start': start,
-    'end': end,
-    'location': location
+    'end': end
   }
   var request = gapi.client.calendar.events.insert({
     'calendarId': 'primary',
@@ -70,7 +65,10 @@ function postToCal(summary, description, start, end, location) {
   
   gapi.auth2.getAuthInstance().signIn().then(function(){
     request.execute(function(event) {
-      $("#output").append("Event created: <a>" + event.htmlLink + "</a>");
+      console.log("Response:", event);
+      Materialize.toast("Event created: <a>" + event.htmlLink + "</a>", 5000);
     });
+  }).catch(function(errorMessage){
+    console.log("Google calendar error:", errorMessage);
   });
 }
