@@ -63,7 +63,10 @@ function postToCal(summary, description, start, end) {
   
   gapi.auth2.getAuthInstance().signIn().then(function(){
     request.execute(function(event) {
-      $("#output").append("Event created: <a>" + event.htmlLink + "</a>");
+      console.log("Response:", event);
+      Materialize.toast("Event created: <a>" + event.htmlLink + "</a>", 5000);
+    }).catch(function(errorMessage){
+      console.log("Google calendar error:", errorMessage);
     });
   });
 }
