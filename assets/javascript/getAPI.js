@@ -140,11 +140,11 @@ function updateTodayWeather(data) {
 	$('.windSpeed').html(data.currently.windSpeed + " mph")
 
 	//Updating Addtional Info
-	$(".humidity").html(data.currently.humidity.toFixed(0) * 100 + "%");
-	$(".precipProbability").html(data.currently.precipProbability.toFixed(0) * 100 + "%");
-	$(".cloudCover").html(data.currently.cloudCover.toFixed(0) * 100 + "%");
+	$(".humidity").html((data.currently.humidity * 100).toFixed(0) + "%");
+	$(".precipProbability").html((data.currently.precipProbability * 100).toFixed(0) + "%");
+	$(".cloudCover").html((data.currently.cloudCover * 100).toFixed(0) + "%");
 	$(".visibility").html(data.currently.visibility.toFixed(0) + " mi");
-	$(".moonPhase-data").html(data.daily.data[0].moonPhase.toFixed(0) * 100 + "%");
+	$(".moonPhase-data").html((data.daily.data[0].moonPhase * 100).toFixed(0) + "%");
 
 }
 
@@ -285,11 +285,11 @@ function getWeeklyUpdate(data) {
 
 		var tempMin = data.daily.data[i].apparentTemperatureMin.toFixed(0);
 		var tempMax = data.daily.data[i].apparentTemperatureMax.toFixed(0);
-		var humidity = data.daily.data[i].humidity.toFixed(0) * 100 + "%";
-		var precipProbability = data.daily.data[i].precipProbability.toFixed(0) * 100 + "%";
+		var humidity = (data.daily.data[i].humidity * 100).toFixed(0) + "%";
+		var precipProbability = (data.daily.data[i].precipProbability * 100).toFixed(0) + "%";
 		var precipType = data.daily.data[i].precipType;
-		var cloudCover = data.daily.data[i].cloudCover.toFixed(0) * 100 + "%";
-		var moonPhase = data.daily.data[i].moonPhase.toFixed(0) * 100 + "%";
+		var cloudCover = (data.daily.data[i].cloudCover * 100).toFixed(0) + "%";
+		var moonPhase = (data.daily.data[i].moonPhase * 100).toFixed(0) + "%";
 
 		// add weather conditions
 		var row1 = $('<tr>');
