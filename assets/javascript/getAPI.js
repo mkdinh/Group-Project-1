@@ -55,7 +55,7 @@ function reverseGeo(long, lat) {
 			console.log(cityName + ", " + countryCode);
 		},
 		error: function (errorMessage) {
-			alert("Error" + errorMessage);
+			console.log("Error" + errorMessage);
 		}
 	})
 }
@@ -94,7 +94,7 @@ function getWeather() {
 			$(".container").animate({ opacity: 1 }, 'slow')
 		},
 		error: function (errorMessage) {
-			alert("Error" + errorMessage);
+			console.log("Error" + errorMessage);
 		}
 	});
 }
@@ -169,7 +169,7 @@ function getAPOD() {
 			$("#imageOfTheDay").append(img, p);
 		},
 		error: function (errorMessage) {
-			alert("Error" + errorMessage);
+			console.log("Error" + errorMessage);
 		}
 	});
 }
@@ -865,7 +865,7 @@ function getISS() {
 			lat = data.latitude;
 		},
 		error: function (errorMessage) {
-			alert("Error" + errorMessage);
+			console.log("Error" + errorMessage);
 		}
 	});
 }
@@ -1276,7 +1276,7 @@ function getSolar() {
 
 		},
 		error: function (errorMessage) {
-			alert("Error");
+			console.log("Error", errorMessage);
 		}
 	});
 }
@@ -1342,7 +1342,7 @@ function getAsteroids() {
 
 		},
 		error: function (errorMessage) {
-			alert("Error" + errorMessage);
+			console.log("Error" + errorMessage);
 		}
 	});
 
@@ -1706,7 +1706,7 @@ function getMoonPhases() {
 
 		},
 		error: function (errorMessage) {
-			alert("Error" + errorMessage);
+			console.log("Error" + errorMessage);
 		}
 	});
 }
@@ -1730,7 +1730,7 @@ function wiki(search, location) {
 
 		},
 		error: function (errorMessage) {
-			alert("Error" + errorMessage);
+			console.log("Error" + errorMessage);
 		}
 	});
 }
