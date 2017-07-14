@@ -1418,7 +1418,7 @@ function getAsteroids() {
 		table.attr("frame", "void");
 		table.attr("rules", "all");
 
-		headings.html("<th>Missing Earth (Miles)</th><th>Speed (MPH)</th><th>Max Diameter(Miles)</th><th>Min diameter (Miles)</th><th>Dangerous</th><th>Add to Google Calendar</th>");
+		headings.html("<th>Missing Earth (Miles)</th><th>Speed (MPH)</th><th>Max Diameter (Miles)</th><th>Min Diameter (Miles)</th><th>Dangerous</th><th>Add to Google Calendar</th>");
 
 		thead.append(headings);
 
@@ -1476,7 +1476,7 @@ function getAsteroids() {
 			table.attr("rules", "all");
 
 
-			headings.html("<th>Name</th><th>Missing Earth (Miles)</th><th>Speed (MPH)</th><th>Max Diameter(Miles)</th><th>Min diameter (Miles)</th><th>Dangerous</th><th>Add to Google Calendar</th>");
+			headings.html("<th>Name</th><th>Missing Earth (Miles)</th><th>Speed (MPH)</th><th>Max Diameter (Miles)</th><th>Min Diameter (Miles)</th><th>Dangerous</th><th>Add to Google Calendar</th>");
 
 			thead.append(headings);
 
