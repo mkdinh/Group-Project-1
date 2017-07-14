@@ -32,6 +32,8 @@ function initClient() {
   });
 }
 
+// in case it didn't load on page load...
+$("#tab-id-events").click(handleClientLoad);
 
 /*
   Formatting for these parameters:
