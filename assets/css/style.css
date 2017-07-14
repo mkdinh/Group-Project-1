@@ -552,7 +552,8 @@ label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
 	#login-modal,#logout-modal{width:80%;}
 	.preloader-wrapper.big{height:25px;width:25px; left:45%;}
 	.divider,#clock,.brand-logo i.material-icons,#switch-view{display:none;}
-	.brand-logo{margin:0;}
+	.brand-logo{margin:0; font-size:80%;}
+	nav .brand-logo{font-size:250%;}
 
 	#search-input,.material-icons.nav-search,.material-icons.refresh,#login,.card .card-image img,img.forecast.moonPhase{display:none;}
 	#switch-view{float:left;}
