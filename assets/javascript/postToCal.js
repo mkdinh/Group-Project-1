@@ -66,7 +66,7 @@ function postToCal(summary, description, start, end) {
   gapi.auth2.getAuthInstance().signIn().then(function () {
     request.execute(function (event) {
       console.log("Response:", event);
-      var $toastContent = $("Event created: <a>" + event.htmlLink + "</a>");
+      var $toastContent = $("<a href='" + event.htmlLink + "'Event</a> created");
       Materialize.toast($toastContent, 5000);
       var li = $("<li class='collection-item'>");
       var div = $("<div>");
