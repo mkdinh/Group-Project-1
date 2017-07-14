@@ -541,6 +541,7 @@ label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
 
 @media (max-width: 600px) {
 	body{font-size:80%;}
+	.preloader-wrapper.big{height:25px;width:25px; left:45%;}
 	.divider,#clock,.brand-logo i.material-icons{display:none;}
 	#search-input,.material-icons.nav-search,.material-icons.refresh,#login,.card .card-image img,img.forecast.moonPhase{display:none;}
 	#switch-view{ position:absolute; top:0px; left:15px; font-size:32px}
