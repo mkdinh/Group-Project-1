@@ -843,7 +843,7 @@ var meteorShowers = {
 	},
 };
 
-<<<<<<< HEAD
+
 function initMap(){
     var uluru = {lat: parseFloat(lat), lng: parseFloat(long)};
     map = new google.maps.Map(document.getElementById("map"), {
