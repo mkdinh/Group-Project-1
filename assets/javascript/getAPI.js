@@ -1907,5 +1907,6 @@ $(document).ready(function () {
 $("body").on("click", ".cal-btn", function (e) { 
     e.preventDefault();
     var args = JSON.parse($(this).attr("data-cal"));
+		console.log("click was passed:",args);
     postToCal(args.summary, args.description, args.start, args.end);
 });

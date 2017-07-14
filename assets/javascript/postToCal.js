@@ -38,7 +38,9 @@ function initClient() {
     (see googleCalDemo.html for examples, and also for function for formatting dates)
   summary: string (this will be the event "title")
   description: string
-  start: an object containing key 'dateTime' 
+  start: an object. 
+    For all-day events, it contains key 'date' with value formatted yyyy-mm-dd. 
+    For time-specific events, it contains key 'dateTime' 
     with value formatted yyyy-mm-ddThh:mm:ss{time zone, format eg -05:00}
     e.g.:
       'start': {
