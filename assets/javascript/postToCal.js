@@ -67,8 +67,8 @@ function postToCal(summary, description, start, end) {
     request.execute(function(event) {
       console.log("Response:", event);
       Materialize.toast("Event created: <a>" + event.htmlLink + "</a>", 5000);
-    }).catch(function(errorMessage){
-      console.log("Google calendar error:", errorMessage);
     });
+  }).catch(function(errorMessage){
+    console.log("Google calendar error:", errorMessage);
   });
 }

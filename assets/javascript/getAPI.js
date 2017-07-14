@@ -1150,6 +1150,18 @@ function getSolar() {
 					var thead = $("<thead>");
 					var tbody = $("<tbody>");
 
+					// for Google Calendar
+					var calObj = JSON.stringify({
+						summary: data.eclipses_in_year[i].event,
+						description: data.eclipses_in_year[i].event,
+						start: {
+							date: data.eclipses_in_year.year + "-" + moment(data.eclipses_in_year.month, "M").format("MM") + "-" + moment(data.eclipses_in_year.day, "D").format("DD")
+						},
+						end: {
+							date: data.eclipses_in_year.year + "-" + moment(data.eclipses_in_year.month, "M").format("MM") + "-" + moment(data.eclipses_in_year.day, "D").format("DD")
+						}
+					});
+
 					wiki(data.eclipses_in_year[i].event, ($("#wiki" + i)));
 
 
@@ -1167,12 +1179,12 @@ function getSolar() {
 					table.attr("frame", "void");
 					table.attr("rules", "all");
 
-					headings.html("<th>Event</th><th>Wikipedia</th>");
+					headings.html("<th>Event</th><th>Wikipedia</th><th>Add to Google Calendar</th>");
 
 					thead.append(headings);
 
 					var information = $("<tr>");
-					information.html("<td style='padding: 0 10px 0 10px'>" + data.eclipses_in_year[i].event + "</td><td style='padding: 0 10px 0 10px' id='daySolarWiki" + i + "'></td>");
+					information.html("<td style='padding: 0 10px 0 10px'>" + data.eclipses_in_year[i].event + "</td><td style='padding: 0 10px 0 10px' id='daySolarWiki" + i + "'></td><td><a class='waves-effect waves-light btn cal-btn' data-cal='" + calObj + "'><i class='material-icons left'>date_range</i></a></td>");
 
 					tbody.append(information);
 					table.append(thead);
@@ -1209,12 +1221,12 @@ function getSolar() {
 					table.attr("frame", "void");
 					table.attr("rules", "all");
 
-					headings.html("<th>Event</th><th>Link</th>");
+					headings.html("<th>Event</th><th>Wikipedia</th><th>Add to Google Calendar");
 
 					thead.append(headings);
 
 					var information = $("<tr>");
-					information.html("<td style='padding: 0 10px 0 10px'>" + data.eclipses_in_year[i].event + "</td><td style='padding: 0 10px 0 10px' id='monthSolarWiki" + i + "'></td>");
+					information.html("<td style='padding: 0 10px 0 10px'>" + data.eclipses_in_year[i].event + "</td><td style='padding: 0 10px 0 10px' id='monthSolarWiki" + i + "'></td><td><a class='waves-effect waves-light btn cal-btn' data-cal='" + calObj + "'><i class='material-icons left'>date_range</i></a></td>");
 
 					tbody.append(information);
 					table.append(thead);
@@ -1262,12 +1274,12 @@ function getSolar() {
 					table.attr("frame", "void");
 					table.attr("rules", "all");
 
-					headings.html("<th>Event</th><th>Wikipedia</th>");
+					headings.html("<th>Event</th><th>Wikipedia</th><th>Add to Google Calendar</th>");
 
 					thead.append(headings);
 
 					var information = $("<tr>");
-					information.html("<td style='padding: 0 10px 0 10px'>" + data.eclipses_in_year[i].event + "</td><td style='padding: 0 10px 0 10px' id='yearSolarWiki" + i + "'></td>");
+					information.html("<td style='padding: 0 10px 0 10px'>" + data.eclipses_in_year[i].event + "</td><td style='padding: 0 10px 0 10px' id='yearSolarWiki" + i + "'></td><td><a class='waves-effect waves-light btn cal-btn' data-cal='" + calObj + "'><i class='material-icons left'>date_range</i></a></td>");
 
 					tbody.append(information);
 					table.append(thead);
