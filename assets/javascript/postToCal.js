@@ -16,7 +16,7 @@ var SCOPES = "https://www.googleapis.com/auth/calendar";
 /**
  *  On load, called to load the auth2 library and API client library.
  */
-var handleClientLoad = function() {
+var handleClientLoad = function () {
   gapi.load('client:auth2', initClient);
 }
 
@@ -62,13 +62,59 @@ function postToCal(summary, description, start, end) {
     'calendarId': 'primary',
     'resource': event
   });
-  
-  gapi.auth2.getAuthInstance().signIn().then(function(){
-    request.execute(function(event) {
+
+  gapi.auth2.getAuthInstance().signIn().then(function () {
+    request.execute(function (event) {
       console.log("Response:", event);
-      Materialize.toast("Event created: <a>" + event.htmlLink + "</a>", 5000);
+      var $toastContent = $("Event created: <a>" + event.htmlLink + "</a>");
+      Materialize.toast($toastContent, 5000);
+      var li = $("<li class='collection-item'>");
+      var div = $("<div>");
+      div.html(moment(event.start.date, "YYYY-MM-DD").format("M/D/YY") + "<br><a href='" + event.htmlLink + "' target='_blank'>" + event.summary + "</a>");
+      var a = $("<a class='secondary-content cal-del' data-delID='" + event.id + "'><i class='material-icons red-text'>delete_forever</i></a>");
+      div.append(a);
+      li.append(div);
+      $("#cal-collection").append(li);
     });
-  }).catch(function(errorMessage){
+  }).catch(function (errorMessage) {
     console.log("Google calendar error:", errorMessage);
   });
 }
+
+
+
+/*
+Example return:
+{
+ "kind": "calendar#event",
+ "etag": "\"3000107242993000\"",
+ "id": "906gng6gmt1ooslqgs4biskdlg",
+ "status": "confirmed",
+ "htmlLink": "https://www.google.com/calendar/event?eid=OTA2Z25nNmdtdDFvb3NscWdzNGJpc2tkbGcgYm9ubmVydmlvbGluQG0",
+ "created": "2017-07-14T17:33:41.000Z",
+ "updated": "2017-07-14T17:33:41.539Z",
+ "summary": "test",
+ "creator": {
+  "email": "bonnerviolin@gmail.com",
+  "displayName": "Andy Bonner",
+  "self": true
+ },
+ "organizer": {
+  "email": "bonnerviolin@gmail.com",
+  "displayName": "Andy Bonner",
+  "self": true
+ },
+ "start": {
+  "date": "2017-07-14"
+ },
+ "end": {
+  "date": "2017-07-14"
+ },
+ "iCalUID": "906gng6gmt1ooslqgs4biskdlg@google.com",
+ "sequence": 0,
+ "reminders": {
+  "useDefault": false
+ }
+}
+
+*/
