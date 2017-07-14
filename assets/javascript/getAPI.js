@@ -931,9 +931,13 @@ function getMeteorShower() {
 
 		// for Google Calendar
 		var peakSplit = meteorShowers[i].peakNight.split("-");
-		var peakStart = moment(peakSplit[0], "MMM D").format("YYYY-MM-DD");
+		var peakStart = {
+			date: moment(peakSplit[0], "MMM D").format("YYYY-MM-DD")
+		}
 		// get month from beginning of string and 
-		var peakEnd = moment(peakSplit[0].split(" ")[0] + peakSplit[1], "MMMD").format("YYYY-MM-DD");
+		var peakEnd = {
+			date: moment(peakSplit[0].split(" ")[0] + peakSplit[1], "MMMD").format("YYYY-MM-DD")
+		}
 		var summary = meteorShowers[i].name;
 		var description = summary + " meteor shower" + calDescriptionTag;
 		var calObj = JSON.stringify({
@@ -1342,8 +1346,12 @@ function getAsteroids() {
 
 					calObj.name = currentObj[i].name;
 					calObj.description = "Near Earth object " + currentObj[i].name + " passes" + calDescriptionTag;
-					calObj.start = moment(newDate, "MMMM Do YYYY").format("YYYY-MM-DD");
-					calObj.end = calObj.start;
+					calObj.start = {
+						date: moment(newDate, "MMMM Do YYYY").format("YYYY-MM-DD")
+					}
+					calObj.end = {
+						date: moment(newDate, "MMMM Do YYYY").format("YYYY-MM-DD")
+					}
 					calObj = JSON.stringify(calObj);
 
 					var info = {
