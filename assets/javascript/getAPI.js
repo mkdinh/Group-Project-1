@@ -165,6 +165,10 @@ function getAPOD() {
 			p.text(apodData.explanation);
 			p.attr("data-tooltip", apodData.explanation);
 			$("#imageOfTheDay").append(img, p);
+			// reinitialize .materialbox
+			$('.materialboxed').materialbox();
+			// reinitialize tooltips
+			$('.tooltipped').tooltip({ delay: 50 });
 		},
 		error: function (errorMessage) {
 			console.log("Error" + errorMessage);
