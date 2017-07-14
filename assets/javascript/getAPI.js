@@ -350,7 +350,6 @@ function rankNights(data) {
 			tempRanking = 0;
 		}
 		var totalRanking = (cloudRanking * 0.6) + (moonRanking * 0.2) + (precipRanking * 0.15) + (tempRanking * 0.05);
-		console.log("totalRanking for day", i, ": ", totalRanking);
 
 		// display score in week view:
 		var dayRankLine = $("<div>");
@@ -358,7 +357,6 @@ function rankNights(data) {
 		rating.text(Math.round(totalRanking * 100) + "%"); // happens
 		dayRankLine.html("Score: "); // happens
 		dayRankLine.append(rating); // doesn't happen on 0. (does on others)
-		console.log("on loop iteration", i, "rating is", rating, "and dayRankLine is", dayRankLine);
 		$("#day" + i).after(dayRankLine); // happens (even on 0)
 
 		// display score in day view, for today only:
@@ -370,7 +368,6 @@ function rankNights(data) {
 			// show as many whole stars as the integer part of that number,
 			// as many half stars as the decimal part, if it exists,
 			// and as many empty stars as 5 - the number - any half star
-			console.log("starNum", starNum);
 			var wholeStars = 0;
 			var halfStar = 0;
 			var emptyStars = 0;
@@ -386,7 +383,6 @@ function rankNights(data) {
 				stars.append('<i class="material-icons">star_border</i>');
 				emptyStars++;
 			}
-			console.log("wholeStars", wholeStars, "; halfStar", halfStar, "; emptyStars", emptyStars);
 			scoreLine.text("Tonight's stargazing score: ");
 			scoreLine.append(rating.clone(), stars)
 			$("#weather-display").after(scoreLine);
