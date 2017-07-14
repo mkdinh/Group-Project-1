@@ -59,6 +59,14 @@ nav{
 	background-color:grey;
 }
 
+#nav-profile-btn{display:none}
+
+#res-switch-view-container{line-height:0;}
+
+#res-switch-view{
+	margin-left:25px;
+	display:none;
+}
 /*------------------------------------- CONTAINER CSS ------------------------------------------*/
 
 .container{
@@ -545,13 +553,19 @@ label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
 
 @media (max-width: 600px) {
 	body{font-size:80%;}
-	.divider,#clock,.brand-logo i.material-icons{display:none;}
-	#search-input,.material-icons.nav-search,.material-icons.refresh,#login,.card .card-image img,img.forecast.moonPhase{display:none;}
-	#switch-view{ position:absolute; top:0px; left:15px; font-size:32px}
-	#profile-button{position: absolute; right:15px; top:17px; z-index:2;}
-	.card.week{display:inline-block; width:100%;}
+	#login-modal,#logout-modal{width:80%;}
+	.preloader-wrapper.big{height:25px;width:25px; left:45%;}
+	.divider,#clock,.brand-logo i.material-icons,#switch-view{display:none;}
+	.brand-logo{margin:0; font-size:80%;}
+	nav .brand-logo{font-size:250%;}
 
-	
+	#search-input,.material-icons.nav-search,.material-icons.refresh,#login,.card .card-image img,img.forecast.moonPhase{display:none;}
+	#switch-view{float:left;}
+	#profile-button{display:none;}
+	.card.week{display:inline-block; width:100%; margin: 5px auto;}
+
+	#nav-profile-button{display: inline; margin:0;padding:0;}
+	#res-switch-view{display:inline;}
 	/*day-view*/
 	#toast-container {	
 	  right: 0;
@@ -570,12 +584,18 @@ label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
  }
 
  @media (min-width: 600px) and (max-width:992px){
+ 	.container{width:100%;}
 	#day-temperature{font-size:150%;}
+	#main-content{margin:0;}
 	nav .brand-logo{left:15%;}
+	#nav-profile-button{display:none;}
 	#clock,.divider{display:none;}
 	.card .card-title{font-size:13px;}
 	.forecast{font-size:12px;}
 	.card.week{display:inline-block;}
+	#today-events-container{width:40%;}
+	#constell-img-size{display:none;}
+	#login-modal,#logout-modal{width:50%;}
  }
 
 

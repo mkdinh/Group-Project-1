@@ -127,6 +127,8 @@ var meteorShowers = {
     },
 };
 
+var calDescriptionTag = " (from Night by Night)";
+
 function initMap() {
     var uluru = { lat: parseFloat(lat), lng: parseFloat(long) };
     map = new google.maps.Map(document.getElementById("map"), {
@@ -239,7 +241,7 @@ function getMeteorShower() {
         // get month from beginning of string and 
         var peakEnd = moment(peakSplit[0].split(" ")[0] + peakSplit[1], "MMMD").format("YYYY-MM-DD");
         var summary = meteorShowers[i].name;
-        var description = summary + " meteor shower (from Night by Night)";
+        var description = summary + " meteor shower" + calDescriptionTag;
         var calObj = JSON.stringify({
             summary: summary,
             description: description,
@@ -276,6 +278,7 @@ function getMeteorShower() {
             headings.html("<th>Name</th><th>Peak viewing nights</th><th>Velocity</th><th>Parent Object</th><th>Add to Google Calendar</th>");
 
             thead.append(headings);
+            console.log(headings);
 
             var information = $("<tr>");
             information.html("<td style='padding: 0 10px 0 10px'>" + meteorShowers[i].name + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].peakNight + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].Velocity + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].ParentObj + "</td><td><a class='waves-effect waves-light btn cal-btn' data-cal='{" + calObj + "}'><i class='material-icons left'>date_range</i></a></td>");
@@ -588,7 +591,7 @@ function getSolar() {
 
         },
         error: function (errorMessage) {
-            alert("Error");
+            console.log("Error:", errorMessage);
         }
     });
 }
@@ -608,6 +611,9 @@ function getAsteroids() {
     var dayEvents = [];
     var weekEvents = [];
     var dates = [];
+    // AB changes ->
+    var calObj = {};
+    // AB changes <-
 
     //ajax call
     $.ajax({
@@ -639,8 +645,19 @@ function getAsteroids() {
                         diameterMax: Math.round(currentObj[i].estimated_diameter.feet.estimated_diameter_max).toLocaleString("en-US", { minimumFractionDigits: 0 }),
                         diameterMin: Math.round(currentObj[i].estimated_diameter.feet.estimated_diameter_min).toLocaleString("en-US", { minimumFractionDigits: 0 }),
                         danger: currentObj[i].is_potentially_hazardous_asteroid,
-                        name: currentObj[i].name
+                        // AB changes ->
+                        name: currentObj[i].name, //remove "," if deleting next line
+                        // calObj: calObj ?
+                        // AB changes <-
                     }
+
+                    // AB changes ->
+                    calObj.name = currentObj[i].name;
+                    calObj.description = "Near Earth object " + currentObj[i].name + " passes" + calDescriptionTag;
+                    calObj.start = moment(newDate, "MMMM Do YYYY").format("YYYY-MM-DD");
+                    calObj.end = calObj.start;
+                    calObj = JSON.stringify(calObj);
+                    // AB changes <-
 
                     if (info.date === todaysDate) {
 
@@ -680,13 +697,14 @@ function getAsteroids() {
         table.attr("border", 1);
         table.attr("frame", "void");
         table.attr("rules", "all");
-
-        headings.html("<th>Missing Earth (Miles)</th><th>Speed (MPH)</th><th>Max Diameter(Miles)</th><th>Min diameter (Miles)</th><th>Dangerous</th>");
+        // AB changes ->
+        headings.html("<th>Missing Earth (Miles)</th><th>Speed (MPH)</th><th>Max Diameter(Miles)</th><th>Min diameter (Miles)</th><th>Dangerous</th><th>Add to Google Calendar</th>");
 
         thead.append(headings);
 
-        var information = $("<tr>");
-        information.html("<td>" + dayEvents[k].missEarth + "</td><td>" + dayEvents[k].speed + "</td><td>" + dayEvents[k].diameterMax + "</td><td>" + dayEvents[k].diameterMin + "</td><td>" + dayEvents[k].danger + "</td>");
+        var information = $("<tr>");blar
+        information.html("<td>" + dayEvents[k].missEarth + "</td><td>" + dayEvents[k].speed + "</td><td>" + dayEvents[k].diameterMax + "</td><td>" + dayEvents[k].diameterMin + "</td><td>" + dayEvents[k].danger + "</td><td><a class='waves-effect waves-light btn cal-btn' data-cal='{" + calObj + "}'><i class='material-icons left'>date_range</i></a></td>");
+        // AB changes <-
 
 
         table.append(information);
@@ -1039,6 +1057,14 @@ function wiki(search) {
     });
 }
 
+// AB changes ->
+$(".cal-btn").click(function (e) { 
+    e.preventDefault();
+    var args = JSON.parse($(this).attr("data-cal"));
+    postToCal(args.summary, args.description, args.start, args.end);
+});
+// AB changes <-
+
 $(document).ready(function () {
     getSolar();
     getMeteorShower();
@@ -1046,5 +1072,4 @@ $(document).ready(function () {
     getISS();
     getTodaysDate();
     getAsteroids();
-
 });
