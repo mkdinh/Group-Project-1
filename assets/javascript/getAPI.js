@@ -1742,7 +1742,7 @@ function wiki(search, location) {
 		dataType: "json",
 		success: function (data) {
 			var a = $("<a>");
-			a.text(data[3][0]);
+			a.text("More information");
 			a.attr("href", data[3][0]);
 			a.attr("target", "_blank");
 			location.append(a);
