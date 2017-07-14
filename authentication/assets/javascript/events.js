@@ -1040,6 +1040,14 @@ function wiki(search) {
     });
 }
 
+// AB changes ->
+$(".cal-btn").click(function (e) { 
+    e.preventDefault();
+    var args = JSON.parse($(this).attr("data-cal"));
+    postToCal(args.summary, args.description, args.start, args.end);
+});
+// AB changes <-
+
 $(document).ready(function () {
     getSolar();
     getMeteorShower();
@@ -1047,5 +1055,4 @@ $(document).ready(function () {
     getISS();
     getTodaysDate();
     getAsteroids();
-
 });
