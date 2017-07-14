@@ -1024,7 +1024,6 @@ function getMeteorShower() {
 }
 
 
-=======
 	// $('body').on('click','#constell-modal-display',function(){
  //    	console.log('hey')
  //        $('#constell-img').animate({ 'width': '200%' }, 400);
