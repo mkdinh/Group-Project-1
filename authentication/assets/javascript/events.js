@@ -276,6 +276,7 @@ function getMeteorShower() {
             headings.html("<th>Name</th><th>Peak viewing nights</th><th>Velocity</th><th>Parent Object</th><th>Add to Google Calendar</th>");
 
             thead.append(headings);
+            console.log(headings);
 
             var information = $("<tr>");
             information.html("<td style='padding: 0 10px 0 10px'>" + meteorShowers[i].name + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].peakNight + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].Velocity + "</td><td style='padding: 0 10px 0 10px'>" + meteorShowers[i].ParentObj + "</td><td><a class='waves-effect waves-light btn cal-btn' data-cal='{" + calObj + "}'><i class='material-icons left'>date_range</i></a></td>");
@@ -588,7 +589,7 @@ function getSolar() {
 
         },
         error: function (errorMessage) {
-            alert("Error");
+            console.log("Error:", errorMessage);
         }
     });
 }
