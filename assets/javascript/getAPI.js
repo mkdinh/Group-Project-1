@@ -11,6 +11,8 @@ var days = [];
 
 var calDescriptionTag = " (from Night by Night)";
 
+var database = firebase.database();
+
 
 //FUNCTIONS
 
@@ -1092,223 +1094,226 @@ function getSolar() {
 		async: false,
 		dataType: "json",
 		success: function (data) {
-			console.log(data);
-			var i = 0;
-			$.each(data.eclipses_in_year, function () {
-				var d = new Date()
-				var day = d.getDate();
-				var month = d.getMonth();
-				var year = d.getFullYear();
-				var table = $("<table>");
-				var h3 = $("<h3>");
-				var eMonth = data.eclipses_in_year[i].month;
-				switch (eMonth) {
-					case 1:
-						eMonth = "January"
-						break;
-					case 2:
-						eMonth = "February"
-						break;
-					case 3:
-						eMonth = "March"
-						break;
-					case 4:
-						eMonth = "April"
-						break;
-					case 5:
-						eMonth = "May"
-						break;
-					case 6:
-						eMonth = "June"
-						break;
-					case 7:
-						eMonth = "July"
-						break;
-					case 8:
-						eMonth = "August"
-						break;
-					case 9:
-						eMonth = "September"
-						break;
-					case 10:
-						eMonth = "October"
-						break;
-					case 11:
-						eMonth = "November"
-						break;
-					case 12:
-						eMonth = "December"
-						break;
-				}
+			database.ref().set({
+				eclipseData: data
+			});
+			// console.log(data);
+			// var i = 0;
+			// $.each(data.eclipses_in_year, function () {
+			// 	var d = new Date()
+			// 	var day = d.getDate();
+			// 	var month = d.getMonth();
+			// 	var year = d.getFullYear();
+			// 	var table = $("<table>");
+			// 	var h3 = $("<h3>");
+			// 	var eMonth = data.eclipses_in_year[i].month;
+			// 	switch (eMonth) {
+			// 		case 1:
+			// 			eMonth = "January"
+			// 			break;
+			// 		case 2:
+			// 			eMonth = "February"
+			// 			break;
+			// 		case 3:
+			// 			eMonth = "March"
+			// 			break;
+			// 		case 4:
+			// 			eMonth = "April"
+			// 			break;
+			// 		case 5:
+			// 			eMonth = "May"
+			// 			break;
+			// 		case 6:
+			// 			eMonth = "June"
+			// 			break;
+			// 		case 7:
+			// 			eMonth = "July"
+			// 			break;
+			// 		case 8:
+			// 			eMonth = "August"
+			// 			break;
+			// 		case 9:
+			// 			eMonth = "September"
+			// 			break;
+			// 		case 10:
+			// 			eMonth = "October"
+			// 			break;
+			// 		case 11:
+			// 			eMonth = "November"
+			// 			break;
+			// 		case 12:
+			// 			eMonth = "December"
+			// 			break;
+			// 	}
 
-				//set up year view
-				if (data.eclipses_in_year[i].year === year) {
-					console.log("year view meets if statement");
-					var li = $("<li>");
-					var headerDiv = $("<div>");
-					var bodyDiv = $("<div>");
-					var span = $("<span>");
-					var thead = $("<thead>");
-					var tbody = $("<tbody>");
+			// 	//set up year view
+			// 	if (data.eclipses_in_year[i].year === year) {
+			// 		console.log("year view meets if statement");
+			// 		var li = $("<li>");
+			// 		var headerDiv = $("<div>");
+			// 		var bodyDiv = $("<div>");
+			// 		var span = $("<span>");
+			// 		var thead = $("<thead>");
+			// 		var tbody = $("<tbody>");
 
-					// for Google Calendar
-					var calObj = JSON.stringify({
-						summary: data.eclipses_in_year[i].event,
-						description: data.eclipses_in_year[i].event + calDescriptionTag,
-						start: {
-							date: data.eclipses_in_year[i].year + "-" + moment(data.eclipses_in_year[i].month, "M").format("MM") + "-" + moment(data.eclipses_in_year[i].day, "D").format("DD")
-						},
-						end: {
-							date: data.eclipses_in_year[i].year + "-" + moment(data.eclipses_in_year[i].month, "M").format("MM") + "-" + moment(data.eclipses_in_year[i].day, "D").format("DD")
-						}
-					});
+			// 		// for Google Calendar
+			// 		var calObj = JSON.stringify({
+			// 			summary: data.eclipses_in_year[i].event,
+			// 			description: data.eclipses_in_year[i].event + calDescriptionTag,
+			// 			start: {
+			// 				date: data.eclipses_in_year[i].year + "-" + moment(data.eclipses_in_year[i].month, "M").format("MM") + "-" + moment(data.eclipses_in_year[i].day, "D").format("DD")
+			// 			},
+			// 			end: {
+			// 				date: data.eclipses_in_year[i].year + "-" + moment(data.eclipses_in_year[i].month, "M").format("MM") + "-" + moment(data.eclipses_in_year[i].day, "D").format("DD")
+			// 			}
+			// 		});
 
-					wiki(data.eclipses_in_year[i].event, ($("#wiki" + i)));
+			// 		wiki(data.eclipses_in_year[i].event, ($("#wiki" + i)));
 
 
-					bodyDiv.addClass("collapsible-body");
-					headerDiv.addClass("collapsible-header");
+			// 		bodyDiv.addClass("collapsible-body");
+			// 		headerDiv.addClass("collapsible-header");
 
-					headerDiv.text(eMonth + " " + data.eclipses_in_year[i].day + ", " + data.eclipses_in_year[i].year);
+			// 		headerDiv.text(eMonth + " " + data.eclipses_in_year[i].day + ", " + data.eclipses_in_year[i].year);
 
-					li.append(headerDiv);
+			// 		li.append(headerDiv);
 
-					var headings = $("<tr>");
-					var table = $("<table>");
+			// 		var headings = $("<tr>");
+			// 		var table = $("<table>");
 
-					table.attr("border", 1);
-					table.attr("frame", "void");
-					table.attr("rules", "all");
+			// 		table.attr("border", 1);
+			// 		table.attr("frame", "void");
+			// 		table.attr("rules", "all");
 
-					headings.html("<th>Event</th><th>Wikipedia</th><th>Add to Google Calendar</th>");
+			// 		headings.html("<th>Event</th><th>Wikipedia</th><th>Add to Google Calendar</th>");
 
-					thead.append(headings);
+			// 		thead.append(headings);
 
-					var information = $("<tr>");
-					information.html("<td style='padding: 0 10px 0 10px'>" + data.eclipses_in_year[i].event + "</td><td style='padding: 0 10px 0 10px' id='daySolarWiki" + i + "'></td><td><a class='waves-effect waves-light btn cal-btn' data-cal='" + calObj + "'><i class='material-icons left'>date_range</i></a></td>");
+			// 		var information = $("<tr>");
+			// 		information.html("<td style='padding: 0 10px 0 10px'>" + data.eclipses_in_year[i].event + "</td><td style='padding: 0 10px 0 10px' id='daySolarWiki" + i + "'></td><td><a class='waves-effect waves-light btn cal-btn' data-cal='" + calObj + "'><i class='material-icons left'>date_range</i></a></td>");
 
-					tbody.append(information);
-					table.append(thead);
-					table.append(tbody);
-					span.append(table);
-					bodyDiv.append(span);
-					li.append(bodyDiv);
-					console.log(li);
+			// 		tbody.append(information);
+			// 		table.append(thead);
+			// 		table.append(tbody);
+			// 		span.append(table);
+			// 		bodyDiv.append(span);
+			// 		li.append(bodyDiv);
+			// 		console.log(li);
 
-					$("#accordion5").append(li);
-					wiki(data.eclipses_in_year[i].event, ($("#daySolarWiki" + i)));
-				}
+			// 		$("#accordion5").append(li);
+			// 		wiki(data.eclipses_in_year[i].event, ($("#daySolarWiki" + i)));
+			// 	}
 
-				//set up month view
-				if (data.eclipses_in_year[i].month === month && data.eclipses_in_year[i].year === year) {
-					//console.log("Month");
-					var li = $("<li>");
-					var headerDiv = $("<div>");
-					var bodyDiv = $("<div>");
-					var span = $("<span>");
-					var thead = $("<thead>");
-					var tbody = $("<tbody>");
+			// 	//set up month view
+			// 	if (data.eclipses_in_year[i].month === month && data.eclipses_in_year[i].year === year) {
+			// 		//console.log("Month");
+			// 		var li = $("<li>");
+			// 		var headerDiv = $("<div>");
+			// 		var bodyDiv = $("<div>");
+			// 		var span = $("<span>");
+			// 		var thead = $("<thead>");
+			// 		var tbody = $("<tbody>");
 
-					bodyDiv.addClass("collapsible-body");
-					headerDiv.addClass("collapsible-header");
+			// 		bodyDiv.addClass("collapsible-body");
+			// 		headerDiv.addClass("collapsible-header");
 
-					headerDiv.text(data.eclipses_in_year[i].month + " " + data.eclipses_in_year[i].day + ", " + data.eclipses_in_year[i].year);
+			// 		headerDiv.text(data.eclipses_in_year[i].month + " " + data.eclipses_in_year[i].day + ", " + data.eclipses_in_year[i].year);
 
-					li.append(headerDiv);
+			// 		li.append(headerDiv);
 
-					var headings = $("<tr>");
-					var table = $("<table>");
+			// 		var headings = $("<tr>");
+			// 		var table = $("<table>");
 
-					table.attr("border", 1);
-					table.attr("frame", "void");
-					table.attr("rules", "all");
+			// 		table.attr("border", 1);
+			// 		table.attr("frame", "void");
+			// 		table.attr("rules", "all");
 
-					headings.html("<th>Event</th><th>Wikipedia</th><th>Add to Google Calendar");
+			// 		headings.html("<th>Event</th><th>Wikipedia</th><th>Add to Google Calendar");
 
-					thead.append(headings);
+			// 		thead.append(headings);
 
-					var information = $("<tr>");
-					information.html("<td style='padding: 0 10px 0 10px'>" + data.eclipses_in_year[i].event + "</td><td style='padding: 0 10px 0 10px' id='monthSolarWiki" + i + "'></td><td><a class='waves-effect waves-light btn cal-btn' data-cal='" + calObj + "'><i class='material-icons left'>date_range</i></a></td>");
+			// 		var information = $("<tr>");
+			// 		information.html("<td style='padding: 0 10px 0 10px'>" + data.eclipses_in_year[i].event + "</td><td style='padding: 0 10px 0 10px' id='monthSolarWiki" + i + "'></td><td><a class='waves-effect waves-light btn cal-btn' data-cal='" + calObj + "'><i class='material-icons left'>date_range</i></a></td>");
 
-					tbody.append(information);
-					table.append(thead);
-					table.append(tbody);
-					span.append(table);
-					bodyDiv.append(span);
-					li.append(bodyDiv);
-					$("#accordion4").append(li);
-					wiki(data.eclipses_in_year[i].event, ($("#monthSolarWiki" + i)));
-				}/*else {
-                var headerDiv = $("<div>");
-                var bodyDiv = $("<div>");
-                var span = $("<span>");
+			// 		tbody.append(information);
+			// 		table.append(thead);
+			// 		table.append(tbody);
+			// 		span.append(table);
+			// 		bodyDiv.append(span);
+			// 		li.append(bodyDiv);
+			// 		$("#accordion4").append(li);
+			// 		wiki(data.eclipses_in_year[i].event, ($("#monthSolarWiki" + i)));
+			// 	}/*else {
+      //           var headerDiv = $("<div>");
+      //           var bodyDiv = $("<div>");
+      //           var span = $("<span>");
                 
-                bodyDiv.addClass("collapsible-body");
-                headerDiv.addClass("collapsible-header");
+      //           bodyDiv.addClass("collapsible-body");
+      //           headerDiv.addClass("collapsible-header");
 
-                headerDiv.text("No eclipse today, switch to year view to see upcoming eclipse information");
+      //           headerDiv.text("No eclipse today, switch to year view to see upcoming eclipse information");
 
-                li.append(headerDiv);
+      //           li.append(headerDiv);
                 
-                $("#accordion4").append(li);
-            }*/
+      //           $("#accordion4").append(li);
+      //       }*/
 
-				//set up day view
-				if (data.eclipses_in_year[i].day === day && data.eclipses_in_year[i].month === month && data.eclipses_in_year[i].year === year) {
-					var li = $("<li>");
-					var headerDiv = $("<div>");
-					var bodyDiv = $("<div>");
-					var span = $("<span>");
-					var thead = $("<thead>");
-					var tbody = $("<tbody>");
+			// 	//set up day view
+			// 	if (data.eclipses_in_year[i].day === day && data.eclipses_in_year[i].month === month && data.eclipses_in_year[i].year === year) {
+			// 		var li = $("<li>");
+			// 		var headerDiv = $("<div>");
+			// 		var bodyDiv = $("<div>");
+			// 		var span = $("<span>");
+			// 		var thead = $("<thead>");
+			// 		var tbody = $("<tbody>");
 
-					bodyDiv.addClass("collapsible-body");
-					headerDiv.addClass("collapsible-header");
+			// 		bodyDiv.addClass("collapsible-body");
+			// 		headerDiv.addClass("collapsible-header");
 
-					headerDiv.text(data.eclipses_in_year[i].month + " " + data.eclipses_in_year[i].day + ", " + data.eclipses_in_year[i].year);
+			// 		headerDiv.text(data.eclipses_in_year[i].month + " " + data.eclipses_in_year[i].day + ", " + data.eclipses_in_year[i].year);
 
-					li.append(headerDiv);
+			// 		li.append(headerDiv);
 
-					var headings = $("<tr>");
-					var table = $("<table>");
+			// 		var headings = $("<tr>");
+			// 		var table = $("<table>");
 
-					table.attr("border", 1);
-					table.attr("frame", "void");
-					table.attr("rules", "all");
+			// 		table.attr("border", 1);
+			// 		table.attr("frame", "void");
+			// 		table.attr("rules", "all");
 
-					headings.html("<th>Event</th><th>Wikipedia</th><th>Add to Google Calendar</th>");
+			// 		headings.html("<th>Event</th><th>Wikipedia</th><th>Add to Google Calendar</th>");
 
-					thead.append(headings);
+			// 		thead.append(headings);
 
-					var information = $("<tr>");
-					information.html("<td style='padding: 0 10px 0 10px'>" + data.eclipses_in_year[i].event + "</td><td style='padding: 0 10px 0 10px' id='yearSolarWiki" + i + "'></td><td><a class='waves-effect waves-light btn cal-btn' data-cal='" + calObj + "'><i class='material-icons left'>date_range</i></a></td>");
+			// 		var information = $("<tr>");
+			// 		information.html("<td style='padding: 0 10px 0 10px'>" + data.eclipses_in_year[i].event + "</td><td style='padding: 0 10px 0 10px' id='yearSolarWiki" + i + "'></td><td><a class='waves-effect waves-light btn cal-btn' data-cal='" + calObj + "'><i class='material-icons left'>date_range</i></a></td>");
 
-					tbody.append(information);
-					table.append(thead);
-					table.append(tbody);
-					span.append(table);
-					bodyDiv.append(span);
-					li.append(bodyDiv);
-					$("#accordion3").append(li);
+			// 		tbody.append(information);
+			// 		table.append(thead);
+			// 		table.append(tbody);
+			// 		span.append(table);
+			// 		bodyDiv.append(span);
+			// 		li.append(bodyDiv);
+			// 		$("#accordion3").append(li);
 
-					wiki(data.eclipses_in_year[i].event, ($("#yearSolarWiki" + i)));
-				}/*else {
-                var headerDiv = $("<div>");
-                var bodyDiv = $("<div>");
-                var span = $("<span>");
+			// 		wiki(data.eclipses_in_year[i].event, ($("#yearSolarWiki" + i)));
+			// 	}/*else {
+      //           var headerDiv = $("<div>");
+      //           var bodyDiv = $("<div>");
+      //           var span = $("<span>");
                 
-                bodyDiv.addClass("collapsible-body");
-                headerDiv.addClass("collapsible-header");
+      //           bodyDiv.addClass("collapsible-body");
+      //           headerDiv.addClass("collapsible-header");
 
-                headerDiv.text("No eclipse today, switch to year view to see upcoming eclipse information");
+      //           headerDiv.text("No eclipse today, switch to year view to see upcoming eclipse information");
 
-                li.append(headerDiv);
+      //           li.append(headerDiv);
                 
-                $("#accordion3").append(li);
-            }*/
+      //           $("#accordion3").append(li);
+      //       }*/
 
-				i++;
-			})
+			// 	i++;
+			// })
 
 		},
 		error: function (errorMessage) {
