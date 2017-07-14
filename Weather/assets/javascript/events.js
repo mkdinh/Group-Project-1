@@ -4,7 +4,6 @@ var longitude;
 var long;
 var lat;
 var map;
-var l ;
 var meteorShowers = {
     0: {
         active: "Jan 1 - Jan 10",
