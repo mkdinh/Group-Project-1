@@ -843,47 +843,6 @@ var meteorShowers = {
 	},
 };
 
-
-function initMap(){
-    var uluru = {lat: parseFloat(lat), lng: parseFloat(long)};
-    map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 8,
-        center: uluru
-    });
-    var icon = "assets/image.satellite.png";
-
-    var marker = new google.maps.Marker({
-        postition: uluru,
-        icon: icon,
-        map: map
-    });
-    }
-
-/*google.maps.event.addDomListener(window, 'load', initMap);*/
-
-$("#spaceStation").on("shown.bs.collapse", function(e){
-    
-       google.maps.event.trigger(map, "resize");
-});
-
-function getISS(){
-    var url = "https://api.wheretheiss.at/v1/satellites/25544/";
-
-    //ajax call
-    $.ajax({
-        type:"GET",
-        url: url,
-        async: false,
-        dataType: "json",
-        success: function(data){
-        long = data.longitude;
-        lat = data.latitude;
-    },
-    error: function(errorMessage){
-        alert("Error" + errorMessage);
-    }
-    });
-
 function initMap() {
 	var uluru = { lat: parseFloat(lat), lng: parseFloat(long) };
 	map = new google.maps.Map(document.getElementById("map"), {
@@ -897,7 +856,6 @@ function initMap() {
 		icon: icon,
 		map: map
 	});
-
 }
 function getISS() {
 	var url = "https://api.wheretheiss.at/v1/satellites/25544/";
@@ -1289,9 +1247,7 @@ function getSolar() {
                 
                 bodyDiv.addClass("collapsible-body");
                 headerDiv.addClass("collapsible-header");
-
                 headerDiv.text("No eclipse today, switch to year view to see upcoming eclipse information");
-
                 li.append(headerDiv);
                 
                 $("#accordion4").append(li);
@@ -1343,9 +1299,7 @@ function getSolar() {
                 
                 bodyDiv.addClass("collapsible-body");
                 headerDiv.addClass("collapsible-header");
-
                 headerDiv.text("No eclipse today, switch to year view to see upcoming eclipse information");
-
                 li.append(headerDiv);
                 
                 $("#accordion3").append(li);
@@ -1608,36 +1562,6 @@ function getMoonPhases() {
 
 	var url = "http://api.usno.navy.mil/moon/phase?date=" + dateFormat + "&nump=7";
 
-<<<<<<< HEAD
-                var headings = $("<tr>");
-                headings.html("<th>Phase</th><th>Wikipedia</th>");
-                
-                thead.append(headings);
-                
-                var information = $("<tr>");
-                information.html("<td style='padding: 0 10px 0 10px'" + data.phasedata[i].phase + "</td><td style='padding: 0 10px 0 10px' id = 'dayMoonWiki" + i + "'></td>");
-                
-                tbody.append(information);
-                table.append(thead);
-                table.append(tbody);
-                span.append(table);
-                bodyDiv.append(span);
-                li.append(bodyDiv); 
-                $("#accordion9").append(li); 
-                
-                wiki(data.phasedata[i].phase, ($("#dayMoonWiki" + i)));
-            } 
-                    
-            //week view 
-            if(moonMonth == month && moonDay >= day && moonDay <= (day + 6)){
-                
-                var li = $("<li>");
-                var headerDiv = $("<div>");
-                var bodyDiv = $("<div>");
-                var span = $("<span>");
-                var thead = $("<thead>");
-                var tbody = $("<tbody>");
-
 	//ajax call
 	$.ajax({
 		type: "GET",
@@ -1768,7 +1692,6 @@ function getMoonPhases() {
 					var information = $("<tr>");
 					information.html("<td style='padding: 0 10px 0 10px'>" + data.phasedata[i].phase + "</td><td style='padding: 0 10px 0 10px' id'weekMoonWiki" + i + "'></td>");
 
-
 					tbody.append(information);
 					table.append(thead);
 					table.append(tbody);
@@ -1784,37 +1707,6 @@ function getMoonPhases() {
 				//month view
 				if (moonMonth == month && moonYear == year) {
 
-
-                var headings = $("<tr>");
-                headings.html("<th>Phase</th><th>Wikipedia</th>");
-                
-                thead.append(headings);
-                
-                var information = $("<tr>");
-                information.html("<td style='padding: 0 10px 0 10px'>" + data.phasedata[i].phase + "</td><td style='padding: 0 10px 0 10px' id = 'weekMoonWiki" + i + "'></td>");
-                
-                tbody.append(information);
-                table.append(thead);
-                table.append(tbody);
-                span.append(table);
-                bodyDiv.append(span);
-                li.append(bodyDiv);
-                $("#accordion10").append(li); 
-                
-                wiki(data.phasedata[i].phase, ($("#weekMoonWiki" + i)));
-            } 
-               
-            
-            //month view
-            if(moonMonth == month && moonYear == year){
-                
-                var li = $("<li>");
-                var headerDiv = $("<div>");
-                var bodyDiv = $("<div>");
-                var span = $("<span>");
-                var thead = $("<thead>");
-                var tbody = $("<tbody>");
-
 					var li = $("<li>");
 					var headerDiv = $("<div>");
 					var bodyDiv = $("<div>");
@@ -1822,73 +1714,12 @@ function getMoonPhases() {
 					var thead = $("<thead>");
 					var tbody = $("<tbody>");
 
-
 					bodyDiv.addClass("collapsible-body");
 					headerDiv.addClass("collapsible-header");
 
 					headerDiv.text(moonMonth + " " + moonDay + ", " + moonYear);
 
 					li.append(headerDiv);
-
-
-                table.attr("border", 1);
-                table.attr("frame", "void");
-                table.attr("rules", "all");
-                
-                var headings = $("<tr>");
-                headings.html("<th>Phase</th><th>Wikipedia</th>");
-                
-                thead.append(headings);
-                
-                var information = $("<tr>");
-                information.html("<td style='padding: 0 10px 0 10px'>" + data.phasedata[i].phase + "</td><td style='padding: 0 10px 0 10px' id = 'monthMoonWiki" + i + "'></td>");
-                
-                tbody.append(information);
-                table.append(thead);
-                table.append(tbody);
-                span.append(table);
-                bodyDiv.append(span);
-                li.append(bodyDiv);
-                $("#accordion11").append(li);
-                
-                wiki(data.phasedata[i].phase + "moon phase", ($("#monthMoonWiki" + i)));
-                
-                console.log(data.phasedata[i].phase);
-            }
-            
-            
-            i++;
-        })
-        
-    },
-    error: function(errorMessage){
-        alert("Error" + errorMessage);
-    }
-        }); 
-}
-
-function wiki(search, location){
-    var url = "https://en.wikipedia.org/w/api.php?action=opensearch&search="+ search +"&format=json&callback=?";
-    
-       
-       //ajax call
-       $.ajax({
-        type:"GET",
-        url: url,
-        async: false,
-        dataType: "json",
-        success: function(data){
-            var a = $("<a>");
-            a.text("More Information");
-            a.attr("href", data[3][0]);
-            a.attr("target", "_blank");
-            location.append(a);
-
-        },
-        error: function(errorMessage){
-            alert("Error" + errorMessage);
-        }
-    });
 
 					var table = $("<table>");
 
@@ -1949,7 +1780,6 @@ function wiki(search, location) {
 			console.log("Error" + errorMessage);
 		}
 	});
-
 }
 
 
@@ -1958,17 +1788,6 @@ function wiki(search, location) {
 
 
 // Html page interactions js 
-
-$(document).ready(function(){
-    
-    getSolar();
-    getMeteorShower();
-    getMoonPhases();
-    getISS();
-    getTodaysDate();
-    getAsteroids();
-    
-
 $(document).ready(function () {
 	console.log("document.ready function run");
 	getSolar();
@@ -1977,7 +1796,6 @@ $(document).ready(function () {
 	getISS();
 	getTodaysDate();
 	getAsteroids();
-
 
 
 	// update clock every 1 second

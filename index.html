@@ -254,18 +254,6 @@
 
                                           </div><!-- END ECLIPSE TABS-->
                                       </span>
-
-                                </div>
-                                </li> 
-                                
-                                <!--  END ECLIPSE TAB -->
-                                
-                                <li>
-                                  <div class="collapsible-header" id="spaceStation">International Space Station</div>
-                                  <div class="collapsible-body">
-                                      <span>
-                                            <div id="map"></div>
-
 								</div>
 							</li>
 
@@ -590,7 +578,6 @@
 
 	<!-- Google Cal -->
 	<script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()">
-
 	</script>
 
 	<!--Import jQuery before materialize.js-->
@@ -604,7 +591,6 @@
 			//onOpen: function(el) { alert('Open'); }, // Callback for Collapsible open
 			//onClose: function(el) { alert('Closed'); } // Callback for Collapsible close
 		});
-
 		$(document).ready(function () {
 			$('ul.tabs').tabs();
 		});
@@ -624,53 +610,4 @@
 	<script type="text/javascript" src="assets/javascript/getAPI.js"></script>
 </body>
 
-
-<!-- .......................................   IMPORT JAVASCRIPT  .................................................. -->
-
-
-      	<!-- Functional js for time and weather icons -->
-      	<script type="text/javascript" src="assets/javascript/skycons.js"></script>
-      	<script type="text/javascript" src="assets/javascript/moment.js"></script>
-		
-		<!-- Google Sign In -->
-		<script src="https://apis.google.com/js/platform.js" async defer></script>
-
-				<!-- Google Cal -->
-		<script async defer src="https://apis.google.com/js/api.js"></script>
-
-        <!--Import jQuery before materialize.js-->
-	    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-	    <script type="text/javascript" src="assets/javascript/materialize.min.js"></script>
-        
-        <!-- Google Maps-->
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4ya-QQ9KFOYVNcp-ejxBwaY_NeZ0txBE&callback=initMap" async defer></script>
-        
-        <!-- Script for Materialize Accordions and Tabs within Events tab -->
-        <script>
-            $('.collapsible').collapsible({
-                accordion: false, // A setting that changes the collapsible behavior to expandable instead of the default accordion style
-                //onOpen: function(el) { alert('Open'); }, // Callback for Collapsible open
-                //onClose: function(el) { alert('Closed'); } // Callback for Collapsible close
-            });
-
-            $(document).ready(function(){
-                $('ul.tabs').tabs();
-            }); 
-        </script>
-      	
-		
-		<!-- Import Firebase js -->
-		<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase-app.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase-auth.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase-database.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase-messaging.js"></script>
-
-	    <!-- application logics js -->
-	    <script type='text/javascript' src='assets/javascript/googleSignIn.js'></script>
-    	<script type="text/javascript" src="assets/javascript/getAPI.js"></script>
-    </body>
-  </html>
-        
 </html>
-
