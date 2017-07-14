@@ -362,7 +362,7 @@ function rankNights(data) {
 			var scoreLine = $("<div class='score-line weather-info-container'>");
 			var stars = $("<div id=star-container>");
 			// convert rating to base-5 for stars and round to the nearest half-star:
-			var starNum = Number.parseFloat((Math.round(totalRanking * 10) / 2).toFixed(0));
+			var starNum = Number.parseFloat((Math.round(totalRanking * 10) / 2).toFixed(1));
 			// show as many whole stars as the integer part of that number,
 			// as many half stars as the decimal part, if it exists,
 			// and as many empty stars as 5 - the number - any half star
