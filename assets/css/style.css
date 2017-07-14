@@ -301,6 +301,14 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
     color: black;
 }
 
+.cal-btn {
+	padding: 0 10px;
+}
+
+.cal-btn i {
+	margin: 0;
+}
+
 /*Constellation Tabs*/
 
 #iframe-container{
