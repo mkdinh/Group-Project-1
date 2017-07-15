@@ -883,10 +883,15 @@ function initMap() {
 	var icon = "/assets/image/satellite.png";
 
 	var marker = new google.maps.Marker({
-		postition: uluru,
+		position: uluru,
 		icon: icon,
 		map: map
 	});
+}
+
+function setupMap() {
+	getISS();
+	initMap();
 }
 
 $("#spaceStation").on("shown.bs.collapse", function(e){
@@ -1853,11 +1858,12 @@ $(document).ready(function () {
 	console.log("document.ready function run");
 	getSolar();
 	getMeteorShower();
-    whenISS();
+    	whenISS();
 	getISS();
 	getTodaysDate();
 	getAsteroids();
-    
+    	
+	setInterval(setupMap, 5000);
 
 
 	// update clock every 1 second
