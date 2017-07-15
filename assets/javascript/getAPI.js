@@ -13,6 +13,8 @@ var calDescriptionTag = " (from Night by Night)";
 
 var database = firebase.database();
 
+var milTime = true;
+
 
 //FUNCTIONS
 
@@ -743,8 +745,18 @@ function moonPhase(data, i) {
 // create a functional clock for UI
 
 function updateClock() {
-	$('#clock').html(moment().format('HH:mm'));
+	if(milTime) {
+		$('#clock').html(moment().format('HH:mm'));
+	} else {
+		$('#clock').html(moment().format('h:mm'));
+	}
 }
+
+$("#clock").click(function (e) { 
+	e.preventDefault();
+	milTime = !milTime;
+	updateClock();
+});
 
 
 /*-----------------------------------------------------------------------------------------------*/
