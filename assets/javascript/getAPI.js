@@ -848,19 +848,16 @@ function initMap() {
 		zoom: 4,
 		center: uluru
 	});
-	var icon = "/assets/image/satellite.png";
+    
+	var satIcon = "assets/image/satellite.png";
 
 	var marker = new google.maps.Marker({
-		postition: uluru,
-		icon: icon,
-		map: map
+		position: uluru,
+		icon: satIcon,
+		map: map,
 	});
+    marker.setMap(map);
 }
-
-$("#spaceStation").on("shown.bs.collapse", function(e){
-    
-       google.maps.event.trigger(map, "resize");
-});
 
 function getISS() {
 	var url = "https://api.wheretheiss.at/v1/satellites/25544/";
@@ -877,8 +874,13 @@ function getISS() {
 		},
 		error: function (errorMessage) {
 			console.log("Error" + errorMessage);
-		}
+        }
 	});
+}
+
+function setupMap(){
+    getISS();
+    initMap();
 }
 
 function whenISS(){
@@ -1826,7 +1828,8 @@ $(document).ready(function () {
 	getTodaysDate();
 	getAsteroids();
     
-
+    setInterval(setupMap, 5000);
+    
 
 	// update clock every 1 second
 	setInterval(updateClock, 1000);
