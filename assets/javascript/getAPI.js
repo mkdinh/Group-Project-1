@@ -1058,7 +1058,7 @@ function getMeteorShower() {
 			var headerDiv = $("<div>");
 			var bodyDiv = $("<div>");
 			var span = $("<span>");
-			var table = $("<table>");
+			var table = $("<table class='responsive-table'>");
 			var thead = $("<thead>");
 			var tbody = $("<tbody>");
             
@@ -1094,7 +1094,7 @@ function getMeteorShower() {
 		//month view
 
 		if (month === activeStartMonth || month === activeEndMonth) {
-			var table = $("<table>");
+			var table = $("<table class='responsive-table'>");
 			var li = $("<li>");
 			var headerDiv = $("<div>");
 			var bodyDiv = $("<div>");
@@ -1131,7 +1131,7 @@ function getMeteorShower() {
         
 		//year view
 		if (yearly === true) {
-			var table = $("<table>");
+			var table = $("<table class='responsive-table'>");
 
 			var li = $("<li>");
 			var headerDiv = $("<div>");
@@ -1265,7 +1265,7 @@ function getSolar(){
             li.append(headerDiv);
 
             var headings = $("<tr>");
-            var table = $("<table>");
+            var table = $("<table class='responsive-table'>");
 
             table.attr("border", 1);
             table.attr("frame", "void");
@@ -1306,7 +1306,7 @@ function getSolar(){
             li.append(headerDiv);
 
             var headings = $("<tr>");
-            var table = $("<table>");
+            var table = $("<table class='responsive-table'>");
 
             headings.html("<th>Event</th><th>Link</th>");
 
@@ -1354,7 +1354,7 @@ function getSolar(){
             li.append(headerDiv);
 
             var headings = $("<tr>");
-            var table = $("<table>");
+            var table = $("<table class='responsive-table'>");
 
             table.attr("border", 1);
             table.attr("frame", "void");
@@ -1485,7 +1485,7 @@ function getAsteroids() {
 		li.append(headerDiv);
 
 		var headings = $("<tr>");
-		var table = $("<table>");
+		var table = $("<table class='responsive-table'>");
 
 		table.attr("border", 1);
 		table.attr("frame", "void");
@@ -1547,7 +1547,7 @@ function getAsteroids() {
 			li.append(headerDiv);
 
 			var headings = $("<tr>");
-			var table = $("<table>");
+			var table = $("<table class='responsive-table'>");
 
 			table.attr("border", 1);
 			table.attr("frame", "void");
@@ -1716,7 +1716,7 @@ function getMoonPhases() {
 
 					li.append(headerDiv);
 
-					var table = $("<table>");
+					var table = $("<table class='responsive-table'>");
 
 					table.attr("border", 1);
 					table.attr("frame", "void");
@@ -1758,7 +1758,7 @@ function getMoonPhases() {
 
 					li.append(headerDiv);
 
-					var table = $("<table>");
+					var table = $("<table class='responsive-table'>");
 
 					table.attr("border", 1);
 					table.attr("frame", "void");
@@ -1801,7 +1801,7 @@ function getMoonPhases() {
 
 					li.append(headerDiv);
 
-					var table = $("<table>");
+					var table = $("<table class='responsive-table'>");
 
 
 					table.attr("border", 1);
