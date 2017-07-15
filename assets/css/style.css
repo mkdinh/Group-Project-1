@@ -312,6 +312,32 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
     color: black;
 }
 
+#asteroidEvents li{
+    margin-bottom: 5px;
+    
+}
+
+#asteroidEvents li:nth-child(even){
+    background: #CCC;
+}
+
+#eclipseEvents li{
+    margin-bottom: 5px;
+}
+
+#eclipseEvents li:nth-child(even){
+    background: #CCC;
+}
+
+#meteorShowerEventsli{
+    margin-bottom: 5px; 
+}
+
+#meteorShowerEvents li:nth-child(even){
+    background: #CCC;
+}
+
+
 
 #map{
     margin: 0;
