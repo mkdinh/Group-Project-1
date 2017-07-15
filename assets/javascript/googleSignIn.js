@@ -47,6 +47,9 @@ function logInOut(user) {
     $(".profile-btn").html('<a class="btn btn-floating pulse"><i class="material-icons">perm_identity</i></a>');
     $("#user-name").html("Anonymous user");
     $("#user-email").empty();
+    $("#cal-collection").empty();
+    var placeholder = $("<li id='cal-placeholder' class='collection-item'>Nothing added yet!</li>");
+    $("#cal-collection").append(placeholder);
   } else if (user && user.displayName === null) {
     // New user account has just been created, but not yet updated
     // with displayName and photoURL
