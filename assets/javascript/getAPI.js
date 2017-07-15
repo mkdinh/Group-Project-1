@@ -521,7 +521,7 @@ function getConstellation() {
 	var src = 'https://www.fourmilab.ch/cgi-bin/Yoursky?date=0&utc=1998%2F02%2F06+12%3A42%3A40&jd=2450851.02963&lat=' + p.lat + '%B0&ns=North&lon=' + p.long + '%B0&ew=East' + p.ecEq + p.moPlan + p.deObj + '&deepm=2.5' + p.outlines + p.names + p.boundaries + '&limag=5.5&starnm=2.0&starbm=2.5&imgsize=550&dynimg=y&fontscale=1.0&scheme=' + p.theme + '&elements='
 	img.attr('src', src)
 	$('.constell-display').html(img)
-	$('.src-container').html(src)
+	$('.src-container').html('<a href="'+src"></a>")
 }
 
 
