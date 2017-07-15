@@ -76,7 +76,7 @@ function postToCal(summary, description, start, end) {
       var a = $("<a href='" + event.htmlLink + "' target='_blank' class='secondary-content cal-link'><i class='material-icons'>event</i></a>");
       div.append(a);
       li.append(div);
-      buildLi(li);
+      database.push(li.html());
     });
   }).catch(function (errorMessage) {
     console.log("Google calendar error:", errorMessage);
