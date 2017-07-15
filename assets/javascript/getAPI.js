@@ -2013,3 +2013,12 @@ $("body").on("click", ".cal-btn", function (e) {
 		console.log("click was passed:",args);
     postToCal(args.summary, args.description, args.start, args.end);
 });
+
+$(".main-tab").click(function (e) { 
+	e.preventDefault();
+	if ($(this).attr("id") === "tab-id-events") {
+		$("#main-content").addClass("m12");
+	} else {
+		$("#main-content").removeClass("m12");
+	}
+});
