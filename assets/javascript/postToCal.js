@@ -68,15 +68,16 @@ function postToCal(summary, description, start, end) {
   gapi.auth2.getAuthInstance().signIn().then(function () {
     request.execute(function (event) {
       console.log("Response:", event);
-      var $toastContent = $("<a href='" + event.htmlLink + "'Event</a> created");
-      Materialize.toast($toastContent, 5000); // not happening
+      Materialize.toast("Event created!", 5000);
+      var holderDiv = $("<div>");
       var li = $("<li class='collection-item'>");
       var div = $("<div class='truncate'>");
       div.html(moment(event.start.date, "YYYY-MM-DD").format("M/D/YY") + ": " + event.summary);
       var a = $("<a href='" + event.htmlLink + "' target='_blank' class='secondary-content cal-link'><i class='material-icons'>event</i></a>");
       div.append(a);
       li.append(div);
-      buildLi(li);
+      holderDiv.append(li);
+      database.push(holderDiv.html());
     });
   }).catch(function (errorMessage) {
     console.log("Google calendar error:", errorMessage);
@@ -88,9 +89,9 @@ function buildLi(li) {
   $("#cal-collection").append(li);
 }
 
-database.on("child_added", function(snapshot){
-  buildLi(snapshot.val());
-});
+// database.on("child_added", function(snapshot){
+//   buildLi(snapshot.val());
+// });
 
 // $("body").on("click", ".cal-del", function (e) {
 //   e.preventDefault();
