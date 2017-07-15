@@ -459,6 +459,17 @@ function getNews() {
 
 function getConstellation() {
 
+	var getLongitude;
+	var getLatitude
+	if($('#longitude').val().trim() !== ""){
+		getLongitude = $('#longitude').val().trim()
+		console.log(getLongitude)
+	}else{getLongitude = longitude}
+
+	if($('#latitude').val().trim() !== ""){
+		getLatitude = $('#latitude').val().trim()
+	}else{getLatitude = latitude}
+	console.log(getLongitude,getLatitude)
 	if ($('#ecEq').is(':checked')) {
 		var ecEq = '&coords=on'
 	} else {
@@ -493,8 +504,8 @@ function getConstellation() {
 	var theme = $('#constell-theme').find(':selected').attr('value')
 
 	var p = {
-		long: longitude,
-		lat: latitude,
+		long: getLongitude,
+		lat: getLatitude,
 		ecEq: ecEq,
 		moPlan: moPlan,
 		deObj: deObj,
@@ -507,11 +518,24 @@ function getConstellation() {
 	img.attr('id', 'constell-img')
 	var src = 'https://www.fourmilab.ch/cgi-bin/Yoursky?date=0&utc=1998%2F02%2F06+12%3A42%3A40&jd=2450851.02963&lat=' + p.lat + '%B0&ns=North&lon=' + p.long + '%B0&ew=East' + p.ecEq + p.moPlan + p.deObj + '&deepm=2.5' + p.outlines + p.names + p.boundaries + '&limag=5.5&starnm=2.0&starbm=2.5&imgsize=550&dynimg=y&fontscale=1.0&scheme=' + p.theme + '&elements='
 	img.attr('src', src)
-	$('#constell-display').html(img)
+	$('.constell-display').html(img)
+	$('.src-container').html(src)
 }
 
 
 function getModalConstellation() {
+
+	var getLongitude;
+	var getLatitude
+	if($('#modal-longitude').val().trim() !== ""){
+		getLongitude = $('#modal-longitude').val().trim()
+		console.log(getLongitude)
+	}else{getLongitude = longitude}
+
+	if($('#modal-latitude').val().trim() !== ""){
+		getLatitude = $('#modal-latitude').val().trim()
+	}else{getLatitude = latitude}
+	console.log(getLongitude,getLatitude)
 
 	if ($('#modal-ecEq').is(':checked')) {
 		var ecEq = '&coords=on'
@@ -547,8 +571,8 @@ function getModalConstellation() {
 	var theme = $('#constell-modal-theme').find(':selected').attr('value')
 	console.log(theme)
 	var p = {
-		long: longitude,
-		lat: latitude,
+		long: getLongitude,
+		lat: getLatitude,
 		ecEq: ecEq,
 		moPlan: moPlan,
 		deObj: deObj,
@@ -557,11 +581,12 @@ function getModalConstellation() {
 		boundaries: boundaries,
 		theme: theme
 	}
+	console.log(p)
 	var img = $("<img>");
 	img.attr('id', 'constell-img')
 	var src = 'https://www.fourmilab.ch/cgi-bin/Yoursky?date=0&utc=1998%2F02%2F06+12%3A42%3A40&jd=2450851.02963&lat=' + p.lat + '%B0&ns=North&lon=' + p.long + '%B0&ew=East' + p.ecEq + p.moPlan + p.deObj + '&deepm=2.5' + p.outlines + p.names + p.boundaries + '&limag=5.5&starnm=2.0&starbm=2.5&imgsize=550&dynimg=y&fontscale=1.0&scheme=' + p.theme + '&elements='
 	img.attr('src', src)
-	$('#constell-modal-display').html(img)
+	$('.constell-display').html(img)
 }
 
 // Get Modal Constellation Map
@@ -581,11 +606,17 @@ function createConstellModal() {
 
 	var constellPara = $('<div>');
 	constellPara.addClass('col s3');
+	constellPara.attr('id','modal-sidebar')
 	row.append(constellPara);
 
-	constellDisplay.html('<div id="constell-modal-display" class="center"></div>')
+	constellDisplay.html('<div id="constell-modal-display" class="center constell-display"></div><div class="src-container"></div>')
 
-	constellPara.append('<form class="switch">'
+	constellPara.append('<div>'
+		+'<form class="switch">'
+		+'<label for="longitude">Longitude</label>'
+  		+'<input placeholder="Current Location" id="modal-longitude" type="number">'
+ 		+'<label for="latitude">Latitude</label>'
+  		+'<input placeholder="Current Location" id="modal-latitude" type="number">'
 		+ '<p>Ecliptic &amp; Equator</p>'
 		+ '<label>'
 		+ 'Off'
@@ -635,12 +666,13 @@ function createConstellModal() {
 		+ '</select>'
 		+ '<label>Themes</label>'
 		+ '</div>'
-		+ '</form>')
+		+ '</form>'
+		+'</div>')
 
 	var footer = $("<div>");
 	footer.addClass('modal-footer');
 	footer.append('<a href="#!" class=" modal-action modal-close waves-effect btn-flat constell-modal-close">Close</a>')
-	constellPara.append(footer)
+	modal.append(footer)
 	$('#constell-modal-btn').attr('href', '#constell-modal')
 
 	$('body').prepend(modal)
@@ -1896,7 +1928,7 @@ $(document).ready(function () {
 	})
 
 	// embded constellation when click on constellation tab
-	$('#tab-id-constell').click(function () {
+	$(window).on('load',function () {
 		getConstellation();
 		createConstellModal();
 
@@ -1921,7 +1953,7 @@ $(document).ready(function () {
 	// slider on constellation UI
 	$('#constell-img-size').mousemove(function () {
 		var size = $('#constell-img-size').val();
-		$('#constell-display').css('width', size + '%')
+		$('.constell-display').css('width', size + '%')
 	})
 
 	$('#constell-theme').on('change', function () {

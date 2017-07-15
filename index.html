@@ -379,9 +379,10 @@
 						<!-- 	<div id='iframe-container'>
 								<iframe id="iframe" src="http://www.fourmilab.ch/cgi-bin/Yoursky?z=1&lat=35.7772&ns=North&lon=78.6392&ew=West"></iframe>
 							</div> -->
-						<div id="constell-display" class='center'></div>
+						<div class='center constell-display'></div>
 
 						<div class="row" id="constell-input-container">
+						<div class='src-container'></div>
 
 							<!-- Adjust image size -->
 							<form class="constell-row2">
@@ -393,7 +394,13 @@
 							<div class='row' id="constell-parameter">
 								<!-- Switch for other objects -->
 								<form class="switch col s6">
+								
+								 <label for="longitude">Longitude</label>
+		          	          		<input placeholder="Current Location" id="longitude" type="number">
+         						
+
 									<p>Ecliptic &amp; Equator</p>
+
 									<label>
 									Off
 									<input id='ecEq' class='constell-input' type="checkbox" checked>
@@ -420,6 +427,10 @@
 
 								<!-- Checkbox for constellation display -->
 								<form action="#" class="checkboxes col s6">
+
+         							<label for="latitude">Latitude</label>
+		          	          		<input placeholder="Current Location" id="latitude" type="number">
+
 									<p>Constellation</p>
 									<p>
 										<input class="constell-input" type="checkbox" id="constell-outlines" checked>
