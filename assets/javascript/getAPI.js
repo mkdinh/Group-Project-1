@@ -880,13 +880,15 @@ function initMap() {
 		zoom: 4,
 		center: uluru
 	});
-	var icon = "/assets/image/satellite.png";
+	var icon = "assets/image/satellite.png";
 
 	var marker = new google.maps.Marker({
 		position: uluru,
 		icon: icon,
 		map: map
 	});
+	
+	marker.setMap(map);
 }
 
 function setupMap() {
