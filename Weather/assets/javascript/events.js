@@ -1,9 +1,12 @@
 var todaysDate;
-var latitude;
-var longitude;
+var latitude = 0;
+var longitude = 0;
 var long;
 var lat;
 var map;
+
+var timeRemain;
+
 var meteorShowers = {
     0: {
         active: "Jan 1 - Jan 10",
@@ -152,7 +155,7 @@ function getISS(){
         dataType: "json",
         success: function(data){
         long = data.longitude;
-        lat = data.latitude;
+        lat = data.latitude;   
     },
     error: function(errorMessage){
         alert("Error" + errorMessage);
@@ -160,11 +163,49 @@ function getISS(){
     });
 }
 
+function whenISS(){
+    
+    $.getJSON('http://api.open-notify.org/iss-pass.json?lat=' + latitude + '&lon='+ longitude +'&alt=20&n=5&callback=?', function(data) {
+        
+        var response = data.response[0];
+        var satDate = new Date(response["risetime"]*1000);            
+            
+        getTimeRemaining(satDate);
+        
+        
+        $("#countHours").text(timeRemain.hours);
+        $("#countMinutes").text(timeRemain.minutes);
+        $("#countSeconds").text(timeRemain.seconds);
+    });
+}
+
+
+
+function getTimeRemaining(endtime){
+    var t = Date.parse(endtime) - Date.parse(new Date());
+    
+    var seconds = Math.floor((t/1000) % 60);
+    var minutes = Math.floor((t/1000/60) % 60);
+    var hours = Math.floor((t/(1000*60*60)) % 24);
+    var days = Math.floor(t/(1000*60*60*24));
+    
+    timeRemain = {
+        "total": t,
+        "days": days,
+        "hours": hours,
+        "minutes": minutes,
+        "seconds": seconds
+    };
+    
+    return timeRemain;
+    
+}
+
 
 //requests permission to get access to users long and lat.
 function getLocation() {
     if(navigator.geolocation){
-        navigator.geolocation.getCurrentPosition(showPosition)
+        navigator.geolocation.getCurrentPosition(showPosition);
     }else {
         console.log("Error: Geolocation is not supported by this browser.");
     }
@@ -174,7 +215,8 @@ function getLocation() {
 //gets lat and long losition of user
 function showPosition(position){
     latitude = position.coords.latitude;
-    longitude = position.coords.longitude;    
+    longitude = position.coords.longitude;
+    setInterval(whenISS, 1000);
 }
 
 function getMeteorShower() {
@@ -1042,12 +1084,20 @@ function wiki(search, location){
     });
 }
 
+
+
+
+
 $(document).ready(function(){
-    getSolar();
+    getLocation();
+    
+    
+    //getSolar();
     getMeteorShower();
-    getMoonPhases();
+    //getMoonPhases();
     getISS();
     getTodaysDate();
     getAsteroids();
+    
     
 });
