@@ -76,14 +76,33 @@
 	<!-- Modal Structure -->
 	<div id="modal1" class="modal">
 		<div class="modal-content">
-			<h4>Astronomy Events</h4>
-			<ul>
-				<li>event 1</li>
-				<li>event 2</li>
-				<li>event 3</li>
-				<li>event 4</li>
-				<li>event 5</li>
-				<li>event 6</li>
+			<h4>Asteroid Events</h4>
+			<ul id="asteroidEvents">
+				
+			</ul>
+		</div>
+		<div class="modal-footer">
+			<a href="#!" class="modal-action modal-close waves-effect btn-flat">Close</a>
+		</div>
+	</div>
+    
+    <div id="modal2" class="modal">
+		<div class="modal-content">
+			<h4>Solar Eclipse Events</h4>
+			<ul id="eclipseEvents">
+				
+			</ul>
+		</div>
+		<div class="modal-footer">
+			<a href="#!" class="modal-action modal-close waves-effect btn-flat">Close</a>
+		</div>
+	</div>
+    
+    <div id="modal3" class="modal">
+		<div class="modal-content">
+			<h4>Meteor Shower Events</h4>
+			<ul id="meteorShowerEvents">
+				
 			</ul>
 		</div>
 		<div class="modal-footer">
@@ -481,18 +500,18 @@
 						via <a href="https://apod.nasa.gov/apod/astropix.html">Astronomy Picture of the Day</a>
 					</div>
 
-					<h5 class="side-bar-sect">Brightest Observable<a href="#/"><i class="material-icons right white-text">view_list</i></a></h5>
+					<h5 class="side-bar-sect">Upcoming Events<a href="#/"><i class="material-icons right white-text">view_list</i></a></h5>
 					<hr>
 
 					<ul class="collection collection-events">
 						<li class="collection-item">
-							<div>Object 1<a href="#modal1" class="secondary-content"><i class="material-icons object-more" >send</i></a></div>
+							<div>Asteroid Events<a href="#modal1" class="secondary-content"><i class="material-icons object-more" >send</i></a></div>
 						</li>
 						<li class="collection-item">
-							<div>Object 2<a href="#modal1" class="secondary-content"><i class="material-icons object-more">send</i></a></div>
+							<div>Eclipse Events<a href="#modal2" class="secondary-content"><i class="material-icons object-more">send</i></a></div>
 						</li>
 						<li class="collection-item">
-							<div>Object 3<a href="#modal1" class="secondary-content"><i class="material-icons object-more">send</i></a></div>
+							<div>Meteor Shower Events<a href="#modal3" class="secondary-content"><i class="material-icons object-more">send</i></a></div>
 						</li>
 					</ul>
 				</div>

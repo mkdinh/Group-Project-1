@@ -933,8 +933,6 @@ function whenISS(){
    
 }
 
-
-
 function getTimeRemaining(endtime){
     var t = Date.parse(endtime) - Date.parse(new Date());
     
@@ -1027,6 +1025,12 @@ function getMeteorShower() {
 			start: peakStart,
 			end: peakEnd
 		});
+        
+        //add events to modal
+        var liEvents = $("<li>");
+        liEvents.text("- A " + meteorShowers[i].name + " meteor shower starts on " + activeStartMonth + " " + activeDay1 + " and ends on " + activeEndMonth + " " + activeDay2 + ". The best viewing days are on " + meteorShowers[i].peakNight);
+        $("#meteorShowerEvents").append(liEvents);
+        
 
 		// day view
 		if (month === activeStartMonth && day <= activeDay1 || month === activeEndMonth && day <= activeDay2) {
@@ -1038,11 +1042,7 @@ function getMeteorShower() {
 			var table = $("<table>");
 			var thead = $("<thead>");
 			var tbody = $("<tbody>");
-
-			table.attr("border", 1);
-			table.attr("frame", "void");
-			table.attr("rules", "all");
-
+            
 			bodyDiv.addClass("collapsible-body");
 			headerDiv.addClass("collapsible-header");
 
@@ -1082,12 +1082,7 @@ function getMeteorShower() {
 			var span = $("<span>");
 			var thead = $("<thead>");
 			var tbody = $("<tbody>");
-
-			table.attr("border", 1);
-			table.attr("frame", "void");
-			table.attr("rules", "all");
-
-
+            
 			bodyDiv.addClass("collapsible-body");
 			headerDiv.addClass("collapsible-header");
 
@@ -1114,8 +1109,7 @@ function getMeteorShower() {
 
 			wiki(meteorShowers[i].name, ($("#monthMeteorWiki" + i)));
 		}
-
-
+        
 		//year view
 		if (yearly === true) {
 			var table = $("<table>");
@@ -1169,6 +1163,7 @@ function getSolar(){
         0: {
             date:"February 26, 2017",
             month:"February",
+            monthNum: 1,
             day: 26,
             year: 2017,
             type:"Annular Eclipse"
@@ -1176,11 +1171,21 @@ function getSolar(){
         1: {
             date:"August 21, 2017",
             month:"August",
+            monthNum: 7,
             day: 21,
             year: 2017,
             type:"Total Eclipse"
         }
     };
+    
+    for (var j = 0; j <= 1; j++){
+        if(eclipse[j].monthNum >= month){
+                //add events to modal
+                var liEvents = $("<li>");
+                liEvents.text("- A " + eclipse[j].type + " eclipse on " + eclipse[j].date);
+                $("#eclipseEvents").append(liEvents);
+            }
+    }
     
     switch(month){
         case 0:
@@ -1229,7 +1234,7 @@ function getSolar(){
             var span = $("<span>");
             var thead = $("<thead>");
             var tbody = $("<tbody>");
-
+            
             wiki(eclipse[i].type, ($("#wiki" + i)));
 
 
@@ -1272,8 +1277,8 @@ function getSolar(){
             var bodyDiv = $("<div>");
             var span = $("<span>");
             var thead = $("<thead>");
-            var tbody = $("<tbody>");
-
+            var tbody = $("<tbody>");            
+            
             bodyDiv.addClass("collapsible-body");
             headerDiv.addClass("collapsible-header");
 
@@ -1320,6 +1325,7 @@ function getSolar(){
             var span = $("<span>");
             var thead = $("<thead>");
             var tbody = $("<tbody>");
+            
 
             bodyDiv.addClass("collapsible-body");
             headerDiv.addClass("collapsible-header");
@@ -1423,7 +1429,8 @@ function getAsteroids() {
 						diameterMax: Math.round(currentObj[i].estimated_diameter.feet.estimated_diameter_max).toLocaleString("en-US", { minimumFractionDigits: 0 }),
 						diameterMin: Math.round(currentObj[i].estimated_diameter.feet.estimated_diameter_min).toLocaleString("en-US", { minimumFractionDigits: 0 }),
 						danger: currentObj[i].is_potentially_hazardous_asteroid,
-						calObj: calObjStr
+						calObj: calObjStr,
+                        info: Math.round(currentObj[i].close_approach_data[0].miss_distance.miles).toLocaleString("en-US", { minimumFractionDigits: 0 })
 					}
 
 					if (info.date === todaysDate) {
@@ -1498,6 +1505,11 @@ function getAsteroids() {
 		var cap = i + 1;
 		var thead = $("<thead>");
 		var tbody = $("<tbody>");
+        
+        //add events to modal
+        var liEvents = $("<li>");
+        liEvents.text("- An asteroid named " + weekEvents[i].name + " is passing by earth on " + weekEvents[i].date + " missing Earth by " + weekEvents[i].missEarth + " miles");
+        $("#asteroidEvents").append(liEvents);
 
 		if (cap === weekEvents.length) {
 			cap = i;
@@ -1845,6 +1857,7 @@ $(document).ready(function () {
 	getISS();
 	getTodaysDate();
 	getAsteroids();
+    
 
 
 	// update clock every 1 second
