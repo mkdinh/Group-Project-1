@@ -2033,7 +2033,9 @@ $(".main-tab").click(function (e) {
 	e.preventDefault();
 	if ($(this).attr("id") === "tab-id-events") {
 		$("#main-content").addClass("m12");
+		$("#today-events-container").addClass("m12");
 	} else {
 		$("#main-content").removeClass("m12");
+		$("#today-events-container").removeClass("m12");
 	}
 });
