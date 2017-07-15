@@ -10,6 +10,9 @@ var config = {
 
 firebase.initializeApp(config);
 
+// shortcut to Firebase database entry for current user
+var database;
+
 // Initialize collapse button
 $(".button-collapse").sideNav();
 // Initialize collapsible (uncomment the line below if you use the dropdown variation)
@@ -51,6 +54,7 @@ function logInOut(user) {
   } else {
     // User is signed in
     signedIn = true;
+    database = firebase.database().ref(user.uid);
     $("#login-modal").modal('close');
     Materialize.toast("Welcome " + user.displayName + "!", 5000);
     $(".profile-btn").html(`<img class="img-responsive circle userpic" src=${user.photoURL}>`);

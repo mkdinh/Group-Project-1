@@ -69,31 +69,40 @@ function postToCal(summary, description, start, end) {
     request.execute(function (event) {
       console.log("Response:", event);
       var $toastContent = $("<a href='" + event.htmlLink + "'Event</a> created");
-      Materialize.toast($toastContent, 5000);
+      Materialize.toast($toastContent, 5000); // not happening
       var li = $("<li class='collection-item'>");
-      var div = $("<div>");
-      div.html(moment(event.start.date, "YYYY-MM-DD").format("M/D/YY") + "<br><a href='" + event.htmlLink + "' target='_blank'>" + event.summary + "</a>");
-      var a = $("<a class='secondary-content cal-del' data-delID='" + event.id + "'><i class='material-icons red-text'>delete_forever</i></a>");
+      var div = $("<div class='truncate'>");
+      div.html(moment(event.start.date, "YYYY-MM-DD").format("M/D/YY") + ": " + event.summary);
+      var a = $("<a href='" + event.htmlLink + "' target='_blank' class='secondary-content cal-link'><i class='material-icons'>event</i></a>");
       div.append(a);
       li.append(div);
-      $("#cal-collection").append(li);
+      buildLi(li);
     });
   }).catch(function (errorMessage) {
     console.log("Google calendar error:", errorMessage);
   });
 }
 
-$("body").on("click", ".cal-del", function (e) {
-  e.preventDefault();
-  var parentLi = $(this).parent().parent();
-  var url = "https://www.googleapis.com/calendar/v3/calendars/primary/events/" + $(this).attr("data-delID");
-  $.ajax({
-    type: "DELETE",
-    url: url,
-    success: function () {
-      Materialize.toast("Event deleted", 5000);
-      parentLi.remove();
-    }
-  });
+function buildLi(li) {
+  $("#cal-placeholder").remove();
+  $("#cal-collection").append(li);
+}
 
+database.on("child_added", function(snapshot){
+  buildLi(snapshot.val());
 });
+
+// $("body").on("click", ".cal-del", function (e) {
+//   e.preventDefault();
+//   var parentLi = $(this).parent().parent();
+//   var url = "https://www.googleapis.com/calendar/v3/calendars/primary/events/" + $(this).attr("data-delID");
+//   $.ajax({
+//     type: "DELETE",
+//     url: url,
+//     success: function () {
+//       Materialize.toast("Event deleted", 5000);
+//       parentLi.remove();
+//     }
+//   });
+
+// });
