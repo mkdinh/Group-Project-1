@@ -70,6 +70,7 @@ function postToCal(summary, description, start, end) {
       console.log("Response:", event);
       var $toastContent = $("<a href='" + event.htmlLink + "'Event</a> created");
       Materialize.toast($toastContent, 5000); // not happening
+      $("#cal-placeholder").remove();
       var li = $("<li class='collection-item'>");
       var div = $("<div>");
       div.html(moment(event.start.date, "YYYY-MM-DD").format("M/D/YY") + "<br><a href='" + event.htmlLink + "' target='_blank'>" + event.summary + "</a>");
