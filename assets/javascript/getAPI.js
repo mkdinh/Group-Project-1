@@ -321,7 +321,7 @@ function getWeeklyUpdate(data) {
 		var astroEvent = $('<div>');
 		astroEvent.append('<h4>Astronomy Event</h4><hr>')
 
-		modalContent.append(weather, astroEvent)
+		modalContent.append(weather)
 		modalContentContainer.append(modalContent)
 	}
 
