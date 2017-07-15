@@ -2031,11 +2031,13 @@ $("body").on("click", ".cal-btn", function (e) {
 
 $(".main-tab").click(function (e) { 
 	e.preventDefault();
-	if ($(this).attr("id") === "tab-id-events") {
+	if ($(this).attr("id") === "tab-id-events" && $(window).width() <= 992) {
 		$("#main-content").addClass("m12");
 		$("#today-events-container").addClass("m12");
+		$("#today-events-container").css("width", "100%");
 	} else {
-		$("#main-content").removeClass("m12");
+		$("#main-content").removeClass("m12 l7 offset-l1");
 		$("#today-events-container").removeClass("m12");
+		$("#today-events-container").css("width", "");
 	}
 });
