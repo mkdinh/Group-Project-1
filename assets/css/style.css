@@ -660,7 +660,7 @@ label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
  	.container{width:100%;}
 	#day-temperature{font-size:250%;}
 	#main-content{margin:0;}
-	nav .brand-logo{left:15%;}
+	nav .brand-logo{left:20%;}
 	#nav-profile-button{display:none;}
 	#clock,.divider{display:none;}
 	.card .card-title{font-size:13px;}
