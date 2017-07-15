@@ -32,7 +32,6 @@ function getLocation() {
 function showPosition(position) {
 	latitude = position.coords.latitude;
 	longitude = position.coords.longitude;
-    setInterval(whenISS, 1000);
 	console.log("Latitude: " + latitude + " Longitude: " + longitude);
 
 	getWeather();
@@ -849,7 +848,7 @@ function initMap() {
 		zoom: 4,
 		center: uluru
 	});
-	var icon = "assets/image.satellite.png";
+	var icon = "/assets/image/satellite.png";
 
 	var marker = new google.maps.Marker({
 		postition: uluru,
@@ -883,19 +882,23 @@ function getISS() {
 }
 
 function whenISS(){
+    var li = $("<li>");
+    var headerDiv = $("<div>");
+    var bodyDiv = $("<div>");
+    var span = $("<span>");
     
-    $.getJSON('http://api.open-notify.org/iss-pass.json?lat=' + latitude + '&lon='+ longitude +'&alt=20&n=5&callback=?', function(data) {
-        
-        var response = data.response[0];
-        var satDate = new Date(response["risetime"]*1000);            
-            
-        getTimeRemaining(satDate);
-        
-        
-        $("#countHours").text(timeRemain.hours);
-        $("#countMinutes").text(timeRemain.minutes);
-        $("#countSeconds").text(timeRemain.seconds);
-    });
+    headerDiv.addClass("collapsible-header");
+    headerDiv.text("Upcoming: Next time ISS will be overhead");
+    
+    li.append(headerDiv);
+    
+    bodyDiv.addClass("collapsible-body");
+    
+    span.html("<div style='display:inline-block; border: 1px solid #CCC; border-radius: 6px; -webkit-border-radius: 6px; -o-border-radius: 6px; position: relative; overflow: hidden; width: 310px; height: 450px;'> <iframe src='https://spotthestation.nasa.gov/widget/widget.cfm?country=United_States&region=North_Carolina&city=Chapel_Hill' width='310' height='450' frameborder='0' ></iframe></div>");
+    bodyDiv.append(span);
+    li.append(bodyDiv);
+    $("#accordion9").append(li);
+   
 }
 
 
@@ -1124,242 +1127,212 @@ function getMeteorShower() {
 }
 
 //get a list of solar eclipses
-function getSolar() {
-	var coords = [longitude, latitude];
-	var d = new Date();
-	var year = d.getFullYear();
+function getSolar(){
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth();
+    var day = date.getDate();
 
-	var url = "http://api.usno.navy.mil/eclipses/solar?year=" + year;
+    var eclipse = {
+        0: {
+            date:"February 26, 2017",
+            month:"February",
+            day: 26,
+            year: 2017,
+            type:"Annular Eclipse"
+        },
+        1: {
+            date:"August 21, 2017",
+            month:"August",
+            day: 21,
+            year: 2017,
+            type:"Total Eclipse"
+        }
+    };
+    
+    switch(month){
+        case 0:
+            month = "January";
+            break;
+        case 1:
+            month = "February";
+            break;
+        case 2:
+            month = "March";
+            break;
+        case 3:
+            month = "April";
+            break;
+        case 4:
+            month = "May";
+            break;
+        case 5:
+            month = "June";
+            break;
+        case 6:
+            month = "July";
+            break;
+        case 7:
+            month = "August";
+            break;
+        case 8:
+            month = "September";
+            break;
+        case 9:
+            month = "October";
+            break;
+        case 10:
+            month = "November";
+            break;
+        case 11:
+            month = "December";
+            break;    
+        }
+    for (var i = 0; i < 2; i++){
+        //set up year view
+        if (eclipse[i].year === year){
+            var li = $("<li>");
+            var headerDiv = $("<div>");
+            var bodyDiv = $("<div>");
+            var span = $("<span>");
+            var thead = $("<thead>");
+            var tbody = $("<tbody>");
 
-	//ajax call
-	$.ajax({
-		type: "GET",
-		url: url,
-		async: false,
-		dataType: "json",
-		success: function (data) {
-			console.log(data);
-			var i = 0;
-			$.each(data.eclipses_in_year, function () {
-				var d = new Date()
-				var day = d.getDate();
-				var month = d.getMonth();
-				var year = d.getFullYear();
-				var table = $("<table>");
-				var h3 = $("<h3>");
-				var eMonth = data.eclipses_in_year[i].month;
-				switch (eMonth) {
-					case 1:
-						eMonth = "January"
-						break;
-					case 2:
-						eMonth = "February"
-						break;
-					case 3:
-						eMonth = "March"
-						break;
-					case 4:
-						eMonth = "April"
-						break;
-					case 5:
-						eMonth = "May"
-						break;
-					case 6:
-						eMonth = "June"
-						break;
-					case 7:
-						eMonth = "July"
-						break;
-					case 8:
-						eMonth = "August"
-						break;
-					case 9:
-						eMonth = "September"
-						break;
-					case 10:
-						eMonth = "October"
-						break;
-					case 11:
-						eMonth = "November"
-						break;
-					case 12:
-						eMonth = "December"
-						break;
-				}
-
-				//set up year view
-				if (data.eclipses_in_year[i].year === year) {
-					console.log("year view meets if statement");
-					var li = $("<li>");
-					var headerDiv = $("<div>");
-					var bodyDiv = $("<div>");
-					var span = $("<span>");
-					var thead = $("<thead>");
-					var tbody = $("<tbody>");
-
-					// for Google Calendar
-					var calObj = JSON.stringify({
-						summary: data.eclipses_in_year[i].event,
-						description: data.eclipses_in_year[i].event + calDescriptionTag,
-						start: {
-							date: data.eclipses_in_year[i].year + "-" + moment(data.eclipses_in_year[i].month, "M").format("MM") + "-" + moment(data.eclipses_in_year[i].day, "D").format("DD")
-						},
-						end: {
-							date: data.eclipses_in_year[i].year + "-" + moment(data.eclipses_in_year[i].month, "M").format("MM") + "-" + moment(data.eclipses_in_year[i].day, "D").format("DD")
-						}
-					});
-
-					wiki(data.eclipses_in_year[i].event, ($("#wiki" + i)));
+            wiki(eclipse[i].type, ($("#wiki" + i)));
 
 
-					bodyDiv.addClass("collapsible-body");
-					headerDiv.addClass("collapsible-header");
+            bodyDiv.addClass("collapsible-body");
+            headerDiv.addClass("collapsible-header");
 
-					headerDiv.text(eMonth + " " + data.eclipses_in_year[i].day + ", " + data.eclipses_in_year[i].year);
+            headerDiv.text(eclipse[i].date);
 
-					li.append(headerDiv);
+            li.append(headerDiv);
 
-					var headings = $("<tr>");
-					var table = $("<table>");
+            var headings = $("<tr>");
+            var table = $("<table>");
 
-					table.attr("border", 1);
-					table.attr("frame", "void");
-					table.attr("rules", "all");
+            table.attr("border", 1);
+            table.attr("frame", "void");
+            table.attr("rules", "all");
 
-					headings.html("<th>Event</th><th>Wikipedia</th><th>Add to Google Calendar</th>");
+            headings.html("<th>Event</th><th>Wikipedia</th>");
 
-					thead.append(headings);
+            thead.append(headings);
 
-					var information = $("<tr>");
-					information.html("<td style='padding: 0 10px 0 10px'>" + data.eclipses_in_year[i].event + "</td><td style='padding: 0 10px 0 10px' id='daySolarWiki" + i + "'></td><td><a class='waves-effect waves-light btn cal-btn' data-cal='" + calObj + "'><i class='material-icons left'>date_range</i></a></td>");
+            var information = $("<tr>");
+            information.html("<td style='padding: 0 10px 0 10px'>" + eclipse[i].type + "</td><td style='padding: 0 10px 0 10px' id='daySolarWiki" + i + "'></td>");
 
-					tbody.append(information);
-					table.append(thead);
-					table.append(tbody);
-					span.append(table);
-					bodyDiv.append(span);
-					li.append(bodyDiv);
-					console.log(li);
+            tbody.append(information);
+            table.append(thead);
+            table.append(tbody);
+            span.append(table);
+            bodyDiv.append(span);
+            li.append(bodyDiv);
 
-					$("#accordion5").append(li);
-					wiki(data.eclipses_in_year[i].event, ($("#daySolarWiki" + i)));
-				}
+            $("#accordion5").append(li);
+            wiki(eclipse[i].type, ($("#daySolarWiki" + i)));
+        } 
+        
+        //set up month view
+        if(eclipse[i].month === month && eclipse[i].year === year){
+            var li = $("<li>");
+            var headerDiv = $("<div>");
+            var bodyDiv = $("<div>");
+            var span = $("<span>");
+            var thead = $("<thead>");
+            var tbody = $("<tbody>");
 
-				//set up month view
-				if (data.eclipses_in_year[i].month === month && data.eclipses_in_year[i].year === year) {
-					//console.log("Month");
-					var li = $("<li>");
-					var headerDiv = $("<div>");
-					var bodyDiv = $("<div>");
-					var span = $("<span>");
-					var thead = $("<thead>");
-					var tbody = $("<tbody>");
+            bodyDiv.addClass("collapsible-body");
+            headerDiv.addClass("collapsible-header");
 
-					bodyDiv.addClass("collapsible-body");
-					headerDiv.addClass("collapsible-header");
+            headerDiv.text(eclipse[i].date);
 
-					headerDiv.text(data.eclipses_in_year[i].month + " " + data.eclipses_in_year[i].day + ", " + data.eclipses_in_year[i].year);
+            li.append(headerDiv);
 
-					li.append(headerDiv);
+            var headings = $("<tr>");
+            var table = $("<table>");
 
-					var headings = $("<tr>");
-					var table = $("<table>");
+            headings.html("<th>Event</th><th>Link</th>");
 
-					table.attr("border", 1);
-					table.attr("frame", "void");
-					table.attr("rules", "all");
+            thead.append(headings);
 
-					headings.html("<th>Event</th><th>Wikipedia</th><th>Add to Google Calendar");
+            var information = $("<tr>");
+            information.html("<td style='padding: 0 10px 0 10px'>" + eclipse[i].type + "</td><td style='padding: 0 10px 0 10px' id='monthSolarWiki" + i + "'></td>");
 
-					thead.append(headings);
+            tbody.append(information);
+            table.append(thead);
+            table.append(tbody);
+            span.append(table);
+            bodyDiv.append(span);
+            li.append(bodyDiv);
+            $("#accordion4").append(li);
+            wiki(data.eclipses_in_year[i].event, ($("#monthSolarWiki" + i)));
+        }else {
+            var li = $("<li>");
+            var headerDiv = $("<div>");
+            bodyDiv.addClass("collapsible-body");
+            headerDiv.addClass("collapsible-header");
 
-					var information = $("<tr>");
-					information.html("<td style='padding: 0 10px 0 10px'>" + data.eclipses_in_year[i].event + "</td><td style='padding: 0 10px 0 10px' id='monthSolarWiki" + i + "'></td><td><a class='waves-effect waves-light btn cal-btn' data-cal='" + calObj + "'><i class='material-icons left'>date_range</i></a></td>");
+            headerDiv.text("No Eclipse this month.");
+            
+            li.append(headerDiv);
+            $("#accordion4").html(li);
+        }
+        
+        //set up day view
+        if(eclipse[i].day === day && eclipse[i].month === month && eclipse[i].year === year){
+            console.log(day);
+            var li = $("<li>");
+            var headerDiv = $("<div>");
+            var bodyDiv = $("<div>");
+            var span = $("<span>");
+            var thead = $("<thead>");
+            var tbody = $("<tbody>");
 
-					tbody.append(information);
-					table.append(thead);
-					table.append(tbody);
-					span.append(table);
-					bodyDiv.append(span);
-					li.append(bodyDiv);
-					$("#accordion4").append(li);
-					wiki(data.eclipses_in_year[i].event, ($("#monthSolarWiki" + i)));
-				}/*else {
-                var headerDiv = $("<div>");
-                var bodyDiv = $("<div>");
-                var span = $("<span>");
-                
-                bodyDiv.addClass("collapsible-body");
-                headerDiv.addClass("collapsible-header");
-                headerDiv.text("No eclipse today, switch to year view to see upcoming eclipse information");
-                li.append(headerDiv);
-                
-                $("#accordion4").append(li);
-            }*/
+            bodyDiv.addClass("collapsible-body");
+            headerDiv.addClass("collapsible-header");
 
-				//set up day view
-				if (data.eclipses_in_year[i].day === day && data.eclipses_in_year[i].month === month && data.eclipses_in_year[i].year === year) {
-					var li = $("<li>");
-					var headerDiv = $("<div>");
-					var bodyDiv = $("<div>");
-					var span = $("<span>");
-					var thead = $("<thead>");
-					var tbody = $("<tbody>");
+            headerDiv.text(eclipse[i].date);
 
-					bodyDiv.addClass("collapsible-body");
-					headerDiv.addClass("collapsible-header");
+            li.append(headerDiv);
 
-					headerDiv.text(data.eclipses_in_year[i].month + " " + data.eclipses_in_year[i].day + ", " + data.eclipses_in_year[i].year);
+            var headings = $("<tr>");
+            var table = $("<table>");
 
-					li.append(headerDiv);
+            table.attr("border", 1);
+            table.attr("frame", "void");
+            table.attr("rules", "all");
 
-					var headings = $("<tr>");
-					var table = $("<table>");
+            headings.html("<th>Event</th><th>Wikipedia</th>");
 
-					table.attr("border", 1);
-					table.attr("frame", "void");
-					table.attr("rules", "all");
+            thead.append(headings);
 
-					headings.html("<th>Event</th><th>Wikipedia</th><th>Add to Google Calendar</th>");
+            var information = $("<tr>");
+            information.html("<td style='padding: 0 10px 0 10px'>" + eclipse[i].type + "</td><td style='padding: 0 10px 0 10px' id='yearSolarWiki" + i + "'></td>");
 
-					thead.append(headings);
+            tbody.append(information);
+            table.append(thead);
+            table.append(tbody);
+            span.append(table);
+            bodyDiv.append(span);
+            li.append(bodyDiv);
+            $("#accordion3").append(li);
 
-					var information = $("<tr>");
-					information.html("<td style='padding: 0 10px 0 10px'>" + data.eclipses_in_year[i].event + "</td><td style='padding: 0 10px 0 10px' id='yearSolarWiki" + i + "'></td><td><a class='waves-effect waves-light btn cal-btn' data-cal='" + calObj + "'><i class='material-icons left'>date_range</i></a></td>");
+            wiki(eclipse[i].type, ($("#yearSolarWiki" + i)));
+        }else {
+            var li = $("<li>");
+            var headerDiv = $("<div>");
+            bodyDiv.addClass("collapsible-body");
+            headerDiv.addClass("collapsible-header");
 
-					tbody.append(information);
-					table.append(thead);
-					table.append(tbody);
-					span.append(table);
-					bodyDiv.append(span);
-					li.append(bodyDiv);
-					$("#accordion3").append(li);
-
-					wiki(data.eclipses_in_year[i].event, ($("#yearSolarWiki" + i)));
-				}/*else {
-                var headerDiv = $("<div>");
-                var bodyDiv = $("<div>");
-                var span = $("<span>");
-                
-                bodyDiv.addClass("collapsible-body");
-                headerDiv.addClass("collapsible-header");
-                headerDiv.text("No eclipse today, switch to year view to see upcoming eclipse information");
-                li.append(headerDiv);
-                
-                $("#accordion3").append(li);
-            }*/
-
-				i++;
-			})
-
-		},
-		error: function (errorMessage) {
-			console.log("Error", errorMessage);
-		}
-	});
-}
-
-
+            headerDiv.text("No Eclipse Today.");
+            
+            li.append(headerDiv);
+            $("#accordion3").html(li);
+        }
+    }
+};
+    
 //gets information for asteroids close to earth from todays date through 7 days
 function getAsteroids() {
 	var date = new Date();
@@ -1836,7 +1809,7 @@ $(document).ready(function () {
 	console.log("document.ready function run");
 	getSolar();
 	getMeteorShower();
-	//getMoonPhases();
+    whenISS();
 	getISS();
 	getTodaysDate();
 	getAsteroids();
