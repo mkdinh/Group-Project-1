@@ -378,11 +378,19 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
     -webkit-transform-origin: 0 0;
 }*/
  
-#constell-display{
+.constell-display{
 	margin:auto;
 	margin-top: 30px;
 	width:75%;
-} 
+}
+
+.src-container{
+	width:100%;
+	overflow: scroll;
+	white-space: nowrap; 
+	margin-top:20px;
+	background-color: rgba(255,255,255,.1);
+}
 
 #constell-parameter{
 	padding:0 2%;
@@ -391,6 +399,9 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 #constell-img{
 	width:100%;
 	border-radius:100%;
+}
+
+#longtitude,#latitude{
 }
 
 #constell-theme{
@@ -406,20 +417,23 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 	max-height: 100%;
 	width:90%;
 	height: 90%;
-	overflow:hidden;
+
 }
 
 .modal-display-container::-webkit-scrollbar {
 	display: none;
+	overflow:hidden;
 }
 
+#modal-sidebar{}
+
 .modal-display-container{
-	overflow:scroll;
+	overflow:hidden;
 }
 
 #constell-modal-display{
-	width: 60%;
-    margin: 15px auto;
+	width: 60% !important;
+    margin: 15px auto !important;
     vertical-align: middle;
 }
 
@@ -636,6 +650,10 @@ label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
 	/*Constell tab*/
 	#constell-img-size,#constell-modal-btn{display:none;}
  }
+
+
+
+
 
  @media (min-width: 600px) and (max-width:992px){
  	.container{width:100%;}

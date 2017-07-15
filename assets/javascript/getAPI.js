@@ -13,6 +13,8 @@ var calDescriptionTag = " (from Night by Night)";
 
 var database = firebase.database();
 
+var milTime = true;
+
 
 //FUNCTIONS
 
@@ -459,6 +461,17 @@ function getNews() {
 
 function getConstellation() {
 
+	var getLongitude;
+	var getLatitude
+	if($('#longitude').val().trim() !== ""){
+		getLongitude = $('#longitude').val().trim()
+		console.log(getLongitude)
+	}else{getLongitude = longitude}
+
+	if($('#latitude').val().trim() !== ""){
+		getLatitude = $('#latitude').val().trim()
+	}else{getLatitude = latitude}
+	console.log(getLongitude,getLatitude)
 	if ($('#ecEq').is(':checked')) {
 		var ecEq = '&coords=on'
 	} else {
@@ -493,8 +506,8 @@ function getConstellation() {
 	var theme = $('#constell-theme').find(':selected').attr('value')
 
 	var p = {
-		long: longitude,
-		lat: latitude,
+		long: getLongitude,
+		lat: getLatitude,
 		ecEq: ecEq,
 		moPlan: moPlan,
 		deObj: deObj,
@@ -507,11 +520,24 @@ function getConstellation() {
 	img.attr('id', 'constell-img')
 	var src = 'https://www.fourmilab.ch/cgi-bin/Yoursky?date=0&utc=1998%2F02%2F06+12%3A42%3A40&jd=2450851.02963&lat=' + p.lat + '%B0&ns=North&lon=' + p.long + '%B0&ew=East' + p.ecEq + p.moPlan + p.deObj + '&deepm=2.5' + p.outlines + p.names + p.boundaries + '&limag=5.5&starnm=2.0&starbm=2.5&imgsize=550&dynimg=y&fontscale=1.0&scheme=' + p.theme + '&elements='
 	img.attr('src', src)
-	$('#constell-display').html(img)
+	$('.constell-display').html(img)
+	$('.src-container').html(src)
 }
 
 
 function getModalConstellation() {
+
+	var getLongitude;
+	var getLatitude
+	if($('#modal-longitude').val().trim() !== ""){
+		getLongitude = $('#modal-longitude').val().trim()
+		console.log(getLongitude)
+	}else{getLongitude = longitude}
+
+	if($('#modal-latitude').val().trim() !== ""){
+		getLatitude = $('#modal-latitude').val().trim()
+	}else{getLatitude = latitude}
+	console.log(getLongitude,getLatitude)
 
 	if ($('#modal-ecEq').is(':checked')) {
 		var ecEq = '&coords=on'
@@ -547,8 +573,8 @@ function getModalConstellation() {
 	var theme = $('#constell-modal-theme').find(':selected').attr('value')
 	console.log(theme)
 	var p = {
-		long: longitude,
-		lat: latitude,
+		long: getLongitude,
+		lat: getLatitude,
 		ecEq: ecEq,
 		moPlan: moPlan,
 		deObj: deObj,
@@ -557,11 +583,12 @@ function getModalConstellation() {
 		boundaries: boundaries,
 		theme: theme
 	}
+	console.log(p)
 	var img = $("<img>");
 	img.attr('id', 'constell-img')
 	var src = 'https://www.fourmilab.ch/cgi-bin/Yoursky?date=0&utc=1998%2F02%2F06+12%3A42%3A40&jd=2450851.02963&lat=' + p.lat + '%B0&ns=North&lon=' + p.long + '%B0&ew=East' + p.ecEq + p.moPlan + p.deObj + '&deepm=2.5' + p.outlines + p.names + p.boundaries + '&limag=5.5&starnm=2.0&starbm=2.5&imgsize=550&dynimg=y&fontscale=1.0&scheme=' + p.theme + '&elements='
 	img.attr('src', src)
-	$('#constell-modal-display').html(img)
+	$('.constell-display').html(img)
 }
 
 // Get Modal Constellation Map
@@ -581,11 +608,17 @@ function createConstellModal() {
 
 	var constellPara = $('<div>');
 	constellPara.addClass('col s3');
+	constellPara.attr('id','modal-sidebar')
 	row.append(constellPara);
 
-	constellDisplay.html('<div id="constell-modal-display" class="center"></div>')
+	constellDisplay.html('<div id="constell-modal-display" class="center constell-display"></div><div class="src-container"></div>')
 
-	constellPara.append('<form class="switch">'
+	constellPara.append('<div>'
+		+'<form class="switch">'
+		+'<label for="longitude">Longitude</label>'
+  		+'<input placeholder="Current Location" id="modal-longitude" type="number">'
+ 		+'<label for="latitude">Latitude</label>'
+  		+'<input placeholder="Current Location" id="modal-latitude" type="number">'
 		+ '<p>Ecliptic &amp; Equator</p>'
 		+ '<label>'
 		+ 'Off'
@@ -635,12 +668,13 @@ function createConstellModal() {
 		+ '</select>'
 		+ '<label>Themes</label>'
 		+ '</div>'
-		+ '</form>')
+		+ '</form>'
+		+'</div>')
 
 	var footer = $("<div>");
 	footer.addClass('modal-footer');
 	footer.append('<a href="#!" class=" modal-action modal-close waves-effect btn-flat constell-modal-close">Close</a>')
-	constellPara.append(footer)
+	modal.append(footer)
 	$('#constell-modal-btn').attr('href', '#constell-modal')
 
 	$('body').prepend(modal)
@@ -711,8 +745,18 @@ function moonPhase(data, i) {
 // create a functional clock for UI
 
 function updateClock() {
-	$('#clock').html(moment().format('HH:mm'));
+	if(milTime) {
+		$('#clock').html(moment().format('HH:mm'));
+	} else {
+		$('#clock').html(moment().format('h:mm'));
+	}
 }
+
+$("#clock").click(function (e) { 
+	e.preventDefault();
+	milTime = !milTime;
+	updateClock();
+});
 
 
 /*-----------------------------------------------------------------------------------------------*/
@@ -848,15 +892,21 @@ function initMap() {
 		zoom: 4,
 		center: uluru
 	});
-    
-	var satIcon = "assets/image/satellite.png";
+
+	var icon = "assets/image/satellite.png";
 
 	var marker = new google.maps.Marker({
 		position: uluru,
-		icon: satIcon,
-		map: map,
+		icon: icon,
+		map: map
 	});
-    marker.setMap(map);
+	
+	marker.setMap(map);
+}
+
+function setupMap() {
+	getISS();
+	initMap();
 }
 
 function getISS() {
@@ -1009,7 +1059,7 @@ function getMeteorShower() {
 			var headerDiv = $("<div>");
 			var bodyDiv = $("<div>");
 			var span = $("<span>");
-			var table = $("<table>");
+			var table = $("<table class='responsive-table'>");
 			var thead = $("<thead>");
 			var tbody = $("<tbody>");
             
@@ -1045,7 +1095,7 @@ function getMeteorShower() {
 		//month view
 
 		if (month === activeStartMonth || month === activeEndMonth) {
-			var table = $("<table>");
+			var table = $("<table class='responsive-table'>");
 			var li = $("<li>");
 			var headerDiv = $("<div>");
 			var bodyDiv = $("<div>");
@@ -1082,7 +1132,7 @@ function getMeteorShower() {
         
 		//year view
 		if (yearly === true) {
-			var table = $("<table>");
+			var table = $("<table class='responsive-table'>");
 
 			var li = $("<li>");
 			var headerDiv = $("<div>");
@@ -1216,7 +1266,7 @@ function getSolar(){
             li.append(headerDiv);
 
             var headings = $("<tr>");
-            var table = $("<table>");
+            var table = $("<table class='responsive-table'>");
 
             table.attr("border", 1);
             table.attr("frame", "void");
@@ -1257,7 +1307,7 @@ function getSolar(){
             li.append(headerDiv);
 
             var headings = $("<tr>");
-            var table = $("<table>");
+            var table = $("<table class='responsive-table'>");
 
             headings.html("<th>Event</th><th>Link</th>");
 
@@ -1305,7 +1355,7 @@ function getSolar(){
             li.append(headerDiv);
 
             var headings = $("<tr>");
-            var table = $("<table>");
+            var table = $("<table class='responsive-table'>");
 
             table.attr("border", 1);
             table.attr("frame", "void");
@@ -1436,7 +1486,7 @@ function getAsteroids() {
 		li.append(headerDiv);
 
 		var headings = $("<tr>");
-		var table = $("<table>");
+		var table = $("<table class='responsive-table'>");
 
 		table.attr("border", 1);
 		table.attr("frame", "void");
@@ -1498,7 +1548,7 @@ function getAsteroids() {
 			li.append(headerDiv);
 
 			var headings = $("<tr>");
-			var table = $("<table>");
+			var table = $("<table class='responsive-table'>");
 
 			table.attr("border", 1);
 			table.attr("frame", "void");
@@ -1667,7 +1717,7 @@ function getMoonPhases() {
 
 					li.append(headerDiv);
 
-					var table = $("<table>");
+					var table = $("<table class='responsive-table'>");
 
 					table.attr("border", 1);
 					table.attr("frame", "void");
@@ -1709,7 +1759,7 @@ function getMoonPhases() {
 
 					li.append(headerDiv);
 
-					var table = $("<table>");
+					var table = $("<table class='responsive-table'>");
 
 					table.attr("border", 1);
 					table.attr("frame", "void");
@@ -1752,7 +1802,7 @@ function getMoonPhases() {
 
 					li.append(headerDiv);
 
-					var table = $("<table>");
+					var table = $("<table class='responsive-table'>");
 
 
 					table.attr("border", 1);
@@ -1823,7 +1873,7 @@ $(document).ready(function () {
 	console.log("document.ready function run");
 	getSolar();
 	getMeteorShower();
-    whenISS();
+    	whenISS();
 	getISS();
 	getTodaysDate();
 	getAsteroids();
@@ -1912,7 +1962,7 @@ $(document).ready(function () {
 	})
 
 	// embded constellation when click on constellation tab
-	$('#tab-id-constell').click(function () {
+	$(window).on('load',function () {
 		getConstellation();
 		createConstellModal();
 
@@ -1937,7 +1987,7 @@ $(document).ready(function () {
 	// slider on constellation UI
 	$('#constell-img-size').mousemove(function () {
 		var size = $('#constell-img-size').val();
-		$('#constell-display').css('width', size + '%')
+		$('.constell-display').css('width', size + '%')
 	})
 
 	$('#constell-theme').on('change', function () {
