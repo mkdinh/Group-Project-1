@@ -55,6 +55,11 @@ function logInOut(user) {
     // User is signed in
     signedIn = true;
     database = firebase.database().ref(user.uid);
+    
+    database.on("child_added", function(snapshot){
+      buildLi(snapshot.val());
+    });
+
     $("#login-modal").modal('close');
     Materialize.toast("Welcome " + user.displayName + "!", 5000);
     $(".profile-btn").html(`<img class="img-responsive circle userpic" src=${user.photoURL}>`);

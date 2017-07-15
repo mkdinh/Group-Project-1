@@ -90,9 +90,9 @@ function buildLi(li) {
   $("#cal-collection").append(li);
 }
 
-database.on("child_added", function(snapshot){
-  buildLi(snapshot.val());
-});
+// database.on("child_added", function(snapshot){
+//   buildLi(snapshot.val());
+// });
 
 // $("body").on("click", ".cal-del", function (e) {
 //   e.preventDefault();
