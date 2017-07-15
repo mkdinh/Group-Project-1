@@ -1920,6 +1920,21 @@ $(document).ready(function () {
 
 		}
 	})
+    
+    $('#res-switch-view').click(function () {
+
+		// if day-view is hidden -> make week-view hidden, day-view visible and change icon to view_week
+		if ($('#day-view').css('display') === 'none') {
+			$("#week-view").css("display", "none");
+			setTimeout(function () { $("#day-view").fadeToggle('slow'), 500 })
+			$('#switch-view').text('view_week')
+		} else { // if day-view is visible -> make day-view hidden, week-view visible, and change icon to view_quilt
+			$("#day-view").css("display", "none");
+			setTimeout(function () { $("#week-view").fadeToggle('slow'), 500 })
+			$('#switch-view').text('view_quilt')
+
+		}
+	})
 
 	// fade in tab when clicked
 	$('.tab').click(function () {
