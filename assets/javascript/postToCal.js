@@ -88,22 +88,3 @@ function buildLi(li) {
   $("#cal-placeholder").remove();
   $("#cal-collection").append(li);
 }
-
-// database.on("child_added", function(snapshot){
-//   buildLi(snapshot.val());
-// });
-
-// $("body").on("click", ".cal-del", function (e) {
-//   e.preventDefault();
-//   var parentLi = $(this).parent().parent();
-//   var url = "https://www.googleapis.com/calendar/v3/calendars/primary/events/" + $(this).attr("data-delID");
-//   $.ajax({
-//     type: "DELETE",
-//     url: url,
-//     success: function () {
-//       Materialize.toast("Event deleted", 5000);
-//       parentLi.remove();
-//     }
-//   });
-
-// });
