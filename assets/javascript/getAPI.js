@@ -1323,7 +1323,7 @@ function getSolar() {
 			bodyDiv.append(span);
 			li.append(bodyDiv);
 			$("#accordion4").append(li);
-			wiki(data.eclipses_in_year[i].event, ($("#monthSolarWiki" + i)));
+			wiki(eclipse[1].type, ($("#monthSolarWiki" + i)));
 		} else {
 			var li = $("<li>");
 			var headerDiv = $("<div>");
