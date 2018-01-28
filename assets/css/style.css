@@ -386,8 +386,9 @@ input#search-input:focus,input#news-input:focus,input#event-input:focus {
 
 .src-container{
 	width:100%;
-	overflow: scroll;
-	white-space: nowrap; 
+	overflow: hidden;
+	white-space: nowrap;
+    text-align:center;
 	margin-top:20px;
 	background-color: rgba(255,255,255,.1);
 }

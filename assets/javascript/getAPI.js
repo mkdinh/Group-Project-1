@@ -22,7 +22,7 @@ var milTime = true;
 
 function getLocation() {
 	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(showPosition)
+		navigator.geolocation.getCurrentPosition(showPosition);
 	} else {
 		console.log("Error: Geolocation is not supported by this browser.");
 	}
@@ -34,9 +34,7 @@ function getLocation() {
 function showPosition(position) {
 	latitude = position.coords.latitude;
 	longitude = position.coords.longitude;
-	console.log("Latitude: " + latitude + " Longitude: " + longitude);
 
-	getWeather();
 
 }
 
@@ -71,7 +69,9 @@ function getWeather() {
 	//CORS prefix
 	var cors = "https://cors-anywhere.herokuapp.com/";
 	//API URL
-	var url = cors + "https://api.darksky.net/forecast/ef8d2f0e9af37edb6fa8639b613e662d/" + latitude + "," + longitude;
+	var latitude = 35.9132;
+	var longitude = 79.0558;
+	var url = "https://api.darksky.net/forecast/ef8d2f0e9af37edb6fa8639b613e662d/" + latitude + "," + longitude;
 
 	//ajax call
 	$.ajax({
@@ -321,7 +321,7 @@ function getWeeklyUpdate(data) {
 		var astroEvent = $('<div>');
 		astroEvent.append('<h4>Astronomy Event</h4><hr>')
 
-		modalContent.append(weather, astroEvent)
+		modalContent.append(weather)
 		modalContentContainer.append(modalContent)
 	}
 
@@ -521,7 +521,8 @@ function getConstellation() {
 	var src = 'https://www.fourmilab.ch/cgi-bin/Yoursky?date=0&utc=1998%2F02%2F06+12%3A42%3A40&jd=2450851.02963&lat=' + p.lat + '%B0&ns=North&lon=' + p.long + '%B0&ew=East' + p.ecEq + p.moPlan + p.deObj + '&deepm=2.5' + p.outlines + p.names + p.boundaries + '&limag=5.5&starnm=2.0&starbm=2.5&imgsize=550&dynimg=y&fontscale=1.0&scheme=' + p.theme + '&elements='
 	img.attr('src', src)
 	$('.constell-display').html(img)
-	$('.src-container').html('<a href="'+src"></a>")
+
+	$('.src-container').html("<a href='" + src + ">" + "Click to view Image" +"</a>")
 }
 
 
@@ -892,6 +893,7 @@ function initMap() {
 		zoom: 4,
 		center: uluru
 	});
+
 	var icon = "assets/image/satellite.png";
 
 	var marker = new google.maps.Marker({
@@ -908,11 +910,6 @@ function setupMap() {
 	initMap();
 }
 
-$("#spaceStation").on("shown.bs.collapse", function(e){
-    
-       google.maps.event.trigger(map, "resize");
-});
-
 function getISS() {
 	var url = "https://api.wheretheiss.at/v1/satellites/25544/";
 
@@ -928,11 +925,16 @@ function getISS() {
 		},
 		error: function (errorMessage) {
 			console.log("Error" + errorMessage);
-		}
+        }
 	});
 }
 
-function whenISS(){
+function setupMap(){
+    getISS();
+    initMap();
+}
+
+/*function whenISS(){
     var li = $("<li>");
     var headerDiv = $("<div>");
     var bodyDiv = $("<div>");
@@ -950,7 +952,7 @@ function whenISS(){
     li.append(bodyDiv);
     $("#accordion9").append(li);
    
-}
+}*/
 
 function getTimeRemaining(endtime){
     var t = Date.parse(endtime) - Date.parse(new Date());
@@ -1058,7 +1060,7 @@ function getMeteorShower() {
 			var headerDiv = $("<div>");
 			var bodyDiv = $("<div>");
 			var span = $("<span>");
-			var table = $("<table>");
+			var table = $("<table class='responsive-table'>");
 			var thead = $("<thead>");
 			var tbody = $("<tbody>");
             
@@ -1094,7 +1096,7 @@ function getMeteorShower() {
 		//month view
 
 		if (month === activeStartMonth || month === activeEndMonth) {
-			var table = $("<table>");
+			var table = $("<table class='responsive-table'>");
 			var li = $("<li>");
 			var headerDiv = $("<div>");
 			var bodyDiv = $("<div>");
@@ -1131,7 +1133,7 @@ function getMeteorShower() {
         
 		//year view
 		if (yearly === true) {
-			var table = $("<table>");
+			var table = $("<table class='responsive-table'>");
 
 			var li = $("<li>");
 			var headerDiv = $("<div>");
@@ -1265,7 +1267,7 @@ function getSolar(){
             li.append(headerDiv);
 
             var headings = $("<tr>");
-            var table = $("<table>");
+            var table = $("<table class='responsive-table'>");
 
             table.attr("border", 1);
             table.attr("frame", "void");
@@ -1306,7 +1308,7 @@ function getSolar(){
             li.append(headerDiv);
 
             var headings = $("<tr>");
-            var table = $("<table>");
+            var table = $("<table class='responsive-table'>");
 
             headings.html("<th>Event</th><th>Link</th>");
 
@@ -1354,7 +1356,7 @@ function getSolar(){
             li.append(headerDiv);
 
             var headings = $("<tr>");
-            var table = $("<table>");
+            var table = $("<table class='responsive-table'>");
 
             table.attr("border", 1);
             table.attr("frame", "void");
@@ -1485,7 +1487,7 @@ function getAsteroids() {
 		li.append(headerDiv);
 
 		var headings = $("<tr>");
-		var table = $("<table>");
+		var table = $("<table class='responsive-table'>");
 
 		table.attr("border", 1);
 		table.attr("frame", "void");
@@ -1547,7 +1549,7 @@ function getAsteroids() {
 			li.append(headerDiv);
 
 			var headings = $("<tr>");
-			var table = $("<table>");
+			var table = $("<table class='responsive-table'>");
 
 			table.attr("border", 1);
 			table.attr("frame", "void");
@@ -1716,7 +1718,7 @@ function getMoonPhases() {
 
 					li.append(headerDiv);
 
-					var table = $("<table>");
+					var table = $("<table class='responsive-table'>");
 
 					table.attr("border", 1);
 					table.attr("frame", "void");
@@ -1758,7 +1760,7 @@ function getMoonPhases() {
 
 					li.append(headerDiv);
 
-					var table = $("<table>");
+					var table = $("<table class='responsive-table'>");
 
 					table.attr("border", 1);
 					table.attr("frame", "void");
@@ -1801,7 +1803,7 @@ function getMoonPhases() {
 
 					li.append(headerDiv);
 
-					var table = $("<table>");
+					var table = $("<table class='responsive-table'>");
 
 
 					table.attr("border", 1);
@@ -1869,16 +1871,18 @@ function wiki(search, location) {
 
 // Html page interactions js 
 $(document).ready(function () {
-	console.log("document.ready function run");
-	getSolar();
-	getMeteorShower();
-    	whenISS();
-	getISS();
+	// console.log("document.ready function run");
+	// getSolar();
+	// getMeteorShower();
+    	//whenISS();
+	// getISS();
 	getTodaysDate();
-	getAsteroids();
-    	
-	setInterval(setupMap, 5000);
+	getWeather();
 
+	// getAsteroids();
+    
+    // setInterval(setupMap, 5000);
+    
 
 	// update clock every 1 second
 	setInterval(updateClock, 1000);
@@ -1902,7 +1906,7 @@ $(document).ready(function () {
 	$('.tooltipped').tooltip({ delay: 50 });
 
 	getLocation();
-	getAPOD();
+	// getAPOD();
 
 	// when click on #switch view...
 	$('#switch-view').click(function () {
@@ -1919,6 +1923,23 @@ $(document).ready(function () {
 
 		}
 	})
+
+		$('#switch-view').click(function () {
+
+		// if day-view is hidden -> make week-view hidden, day-view visible and change icon to view_week
+		if ($('#day-view').css('display') === 'none') {
+			$("#week-view").css("display", "none");
+			setTimeout(function () { $("#day-view").fadeToggle('slow'), 500 })
+			$('#switch-view').text('view_week')
+		} else { // if day-view is visible -> make day-view hidden, week-view visible, and change icon to view_quilt
+			$("#day-view").css("display", "none");
+			setTimeout(function () { $("#week-view").fadeToggle('slow'), 500 })
+			$('#switch-view').text('view_quilt')
+
+		}
+	})
+
+
 
 	// fade in tab when clicked
 	$('.tab').click(function () {
