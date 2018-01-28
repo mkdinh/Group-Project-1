@@ -521,12 +521,8 @@ function getConstellation() {
 	var src = 'https://www.fourmilab.ch/cgi-bin/Yoursky?date=0&utc=1998%2F02%2F06+12%3A42%3A40&jd=2450851.02963&lat=' + p.lat + '%B0&ns=North&lon=' + p.long + '%B0&ew=East' + p.ecEq + p.moPlan + p.deObj + '&deepm=2.5' + p.outlines + p.names + p.boundaries + '&limag=5.5&starnm=2.0&starbm=2.5&imgsize=550&dynimg=y&fontscale=1.0&scheme=' + p.theme + '&elements='
 	img.attr('src', src)
 	$('.constell-display').html(img)
-<<<<<<< HEAD
 
 	$('.src-container').html("<a href='" + src + ">" + "Click to view Image" +"</a>")
-=======
-	$('.src-container').html("<a href='" + src + "' target='_blank'>" + "Click to view Image" + "</a>")
->>>>>>> 1f5d7a062f87526c8706757af29bf00c78eab02f
 }
 
 
@@ -1875,7 +1871,6 @@ function wiki(search, location) {
 
 // Html page interactions js 
 $(document).ready(function () {
-<<<<<<< HEAD
 	// console.log("document.ready function run");
 	// getSolar();
 	// getMeteorShower();
@@ -1888,18 +1883,6 @@ $(document).ready(function () {
     
     // setInterval(setupMap, 5000);
     
-=======
-	console.log("document.ready function run");
-	getSolar();
-	getMeteorShower();
-	//whenISS();
-	getISS();
-	getTodaysDate();
-	getAsteroids();
-
-	setInterval(setupMap, 5000);
-
->>>>>>> 1f5d7a062f87526c8706757af29bf00c78eab02f
 
 	// update clock every 1 second
 	setInterval(updateClock, 1000);
@@ -1941,11 +1924,7 @@ $(document).ready(function () {
 		}
 	})
 
-<<<<<<< HEAD
 		$('#switch-view').click(function () {
-=======
-	$('#res-switch-view').click(function () {
->>>>>>> 1f5d7a062f87526c8706757af29bf00c78eab02f
 
 		// if day-view is hidden -> make week-view hidden, day-view visible and change icon to view_week
 		if ($('#day-view').css('display') === 'none') {
@@ -1960,11 +1939,8 @@ $(document).ready(function () {
 		}
 	})
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 1f5d7a062f87526c8706757af29bf00c78eab02f
 	// fade in tab when clicked
 	$('.tab').click(function () {
 		var tab = $(this).attr('tab-data');
