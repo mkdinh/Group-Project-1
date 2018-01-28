@@ -71,7 +71,7 @@ function getWeather() {
 	//API URL
 	var latitude = 35.9132;
 	var longitude = 79.0558;
-	var url = "https://api.darksky.net/forecast/ef8d2f0e9af37edb6fa8639b613e662d/" + latitude + "," + longitude;
+	var url = cors + "https://api.darksky.net/forecast/ef8d2f0e9af37edb6fa8639b613e662d/" + latitude + "," + longitude;
 
 	//ajax call
 	$.ajax({
@@ -141,12 +141,10 @@ function updateTodayWeather(data) {
 	$('#convert-unit').attr('data-state', 'f')
 	//Updating WindSpeed
 	$('.windSpeed').html(data.currently.windSpeed + " mph")
-
 	//Updating Addtional Info
 	$(".humidity").html((data.currently.humidity * 100).toFixed(0) + "%");
 	$(".precipProbability").html((data.currently.precipProbability * 100).toFixed(0) + "%");
 	$(".cloudCover").html((data.currently.cloudCover * 100).toFixed(0) + "%");
-	$(".visibility").html(data.currently.visibility.toFixed(0) + " mi");
 	$(".moonPhase-data").html((data.daily.data[0].moonPhase * 100).toFixed(0) + "%");
 
 }
