@@ -1,11 +1,11 @@
 // Initialize Firebase
 var config = {
-	apiKey: "AIzaSyDAk_q6CgSSX-dcQzPesIBcwTJ0aBxe_A0",
-	authDomain: "night-by-night.firebaseapp.com",
-	databaseURL: "https://night-by-night.firebaseio.com",
-	projectId: "night-by-night",
-	storageBucket: "night-by-night.appspot.com",
-	messagingSenderId: "996621044302"
+  apiKey: "AIzaSyDAk_q6CgSSX-dcQzPesIBcwTJ0aBxe_A0",
+  authDomain: "night-by-night.firebaseapp.com",
+  databaseURL: "https://night-by-night.firebaseio.com",
+  projectId: "night-by-night",
+  storageBucket: "night-by-night.appspot.com",
+  messagingSenderId: "996621044302"
 };
 
 firebase.initializeApp(config);
@@ -58,8 +58,8 @@ function logInOut(user) {
     // User is signed in
     signedIn = true;
     database = firebase.database().ref(user.uid);
-    
-    database.on("child_added", function(snapshot){
+
+    database.on("child_added", function (snapshot) {
       buildLi(snapshot.val());
     });
 
@@ -81,7 +81,7 @@ $(document).on("click", "#login-submit", function (e) {
 });
 
 // sign in with Google
-$(document).on("click", "#g-signin", function (e) { 
+$(document).on("click", "#g-signin", function (e) {
   e.preventDefault();
   var provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider).catch(handleAuthError);
@@ -97,7 +97,7 @@ $(document).on("click", ".create-account", function (e) {
   if (email === "" || password === "") {
     Materialize.toast("Please enter your email and password.", 5000);
   } else {
-    firebase.auth().createUserWithEmailAndPassword(email, password).then(function(){
+    firebase.auth().createUserWithEmailAndPassword(email, password).then(function () {
       $("#update-modal").modal("open");
     }).catch(handleAuthError);
   }
@@ -109,8 +109,8 @@ $(document).on("click", "#update-submit", function (e) {
   var displayName = $("#name").val().trim();
   var photoURL = $("input[name=icon]:checked").attr("data-image");
   firebase.auth().currentUser.updateProfile({
-      displayName: displayName,
-      photoURL: photoURL
+    displayName: displayName,
+    photoURL: photoURL
   });
   // call logInOut a second time with the new data
   logInOut(firebase.auth().currentUser);
@@ -145,13 +145,13 @@ $(".profile-btn").click(function (e) {
   e.preventDefault();
   if (signedIn) {
     $("#logout-modal").modal('open');
-  } else{
+  } else {
     $("#login-modal").modal('open');
   }
 });
 
 // sign out user
-$("#signout").click(function (e) { 
+$("#signout").click(function (e) {
   e.preventDefault();
   firebase.auth().signOut();
   $("#logout-modal").modal('close');

@@ -59,10 +59,8 @@
 				</a>
 
 			<ul class="right nav-list">
-				<li><input type="text" id="search-input"></li>
-				<li><i class="material-icons nav-search">search</i></li>
 				<li><a href="index.html" id="refresh"><i class="material-icons refresh">refresh</i></a></li>
-				<li><i class="material-icons" id="switch-view">view_week</i></li>
+				<li><a href="#/"><i class="material-icons" id="switch-view">view_week</i></a></li>
 				<li><a href="#" data-activates="slide-out" class="button-collapse" id="nav-profile-button"><i class="right material-icons show-on-large med">settings</i></a>
 					<li>
 						<li class="profile-btn hide-on-small-and-down"><a class="btn btn-floating pulse"><i class="material-icons">perm_identity</i></a></li>
@@ -74,35 +72,37 @@
 
 
 	<!-- Modal Structure -->
-	<div id="modal1" class="modal">
+	<div id="modal1" class="modal"></div>
+
+	<div id="modal2" class="modal">
 		<div class="modal-content">
 			<h4>Asteroid Events</h4>
 			<ul id="asteroidEvents">
-				
+
 			</ul>
 		</div>
 		<div class="modal-footer">
 			<a href="#!" class="modal-action modal-close waves-effect btn-flat">Close</a>
 		</div>
 	</div>
-    
-    <div id="modal2" class="modal">
+
+	<div id="modal3" class="modal">
 		<div class="modal-content">
 			<h4>Solar Eclipse Events</h4>
 			<ul id="eclipseEvents">
-				
+
 			</ul>
 		</div>
 		<div class="modal-footer">
 			<a href="#!" class="modal-action modal-close waves-effect btn-flat">Close</a>
 		</div>
 	</div>
-    
-    <div id="modal3" class="modal">
+
+	<div id="modal4" class="modal">
 		<div class="modal-content">
 			<h4>Meteor Shower Events</h4>
 			<ul id="meteorShowerEvents">
-				
+
 			</ul>
 		</div>
 		<div class="modal-footer">
@@ -146,10 +146,10 @@
 			<div class='col s12 m7 offset-m1' id="main-content">
 
 				<ul class="tabs row">
-					<li class="tab col s3" id='tab-id-forecast' tab-data="tab-forecast"><a href="#tab-forecast">Forecast</a></li>
-					<li class="tab col s3" id='tab-id-events' tab-data="tab-events"><a href="#tab-events">Events</a></li>
-					<li class="tab col s3" id='tab-id-news' tab-data="tab-news"><a href="#tab-news">News</a></li>
-					<li class="tab col s3" id='tab-id-constell' tab-data="tab-constell"><a href="#tab-constell">Constellation</a></li>
+					<li class="tab col s3 main-tab" id='tab-id-forecast' tab-data="tab-forecast"><a href="#tab-forecast">Forecast</a></li>
+					<li class="tab col s3 main-tab" id='tab-id-events' tab-data="tab-events"><a href="#tab-events">Events</a></li>
+					<li class="tab col s3 main-tab" id='tab-id-news' tab-data="tab-news"><a href="#tab-news">News</a></li>
+					<li class="tab col s3 main-tab" id='tab-id-constell' tab-data="tab-constell"><a href="#tab-constell">Constellation</a></li>
 				</ul>
 
 				<!-- .........................    MAIN TABS ............................ -->
@@ -178,7 +178,7 @@
 								<tr>
 									<td>Humidity</td>
 									<td class="humidity"></td>
-									<td>Precipipation Prob</td>
+									<td>Precipitation Prob</td>
 									<td class="precipProbability"></td>
 								</tr>
 								<tr>
@@ -190,8 +190,8 @@
 								<tr>
 									<td>Moon Phase</td>
 									<td class="moonPhase-data"></td>
-									<td>Humidity</td>
-									<td class="humidity"></td>
+									<td></td>
+									<td></td>
 								</tr>
 							</tbody>
 						</table>
@@ -281,15 +281,15 @@
 
 							<li>
 								<div class="collapsible-header">International Space Station</div>
-                                  <div class="collapsible-body">
-                                      <span>
+								<div class="collapsible-body">
+									<span>
                                           <div id="ISS">
                                     
                                               <!-- Map of ISS -->
                                               <div id="map"></div>
                                         </div>
                                       </span>
-                                    </div>
+								</div>
 							</li>
 
 							<!--  END ISS TAB -->
@@ -395,7 +395,7 @@
 						<div class='center constell-display'></div>
 
 						<div class="row" id="constell-input-container">
-						<div class='src-container'></div>
+							<div class='src-container'></div>
 
 							<!-- Adjust image size -->
 							<form class="constell-row2">
@@ -407,10 +407,10 @@
 							<div class='row' id="constell-parameter">
 								<!-- Switch for other objects -->
 								<form class="switch col s6">
-								
-								 <label for="longitude">Longitude</label>
-		          	          		<input placeholder="Current Location" id="longitude" type="number">
-         						
+
+									<label for="longitude">Longitude</label>
+									<input placeholder="Current Location" id="longitude" type="number">
+
 
 									<p>Ecliptic &amp; Equator</p>
 
@@ -441,8 +441,8 @@
 								<!-- Checkbox for constellation display -->
 								<form action="#" class="checkboxes col s6">
 
-         							<label for="latitude">Latitude</label>
-		          	          		<input placeholder="Current Location" id="latitude" type="number">
+									<label for="latitude">Latitude</label>
+									<input placeholder="Current Location" id="latitude" type="number">
 
 									<p>Constellation</p>
 									<p>
@@ -494,22 +494,30 @@
 						via <a href="https://apod.nasa.gov/apod/astropix.html">Astronomy Picture of the Day</a>
 					</div>
 
-					<h5 class="side-bar-sect">Upcoming Events<a href="#/"><i class="material-icons right white-text">view_list</i></a></h5>
+					<h5 class="side-bar-sect">Upcoming Events<i class="material-icons right white-text">view_list</i></h5>
 					<hr>
 
 					<ul class="collection collection-events">
 						<li class="collection-item">
-							<div>Asteroid Events<a href="#modal1" class="secondary-content"><i class="material-icons object-more" >send</i></a></div>
+							<div>Asteroid Events<a href="#modal2" class="secondary-content"><i class="material-icons object-more" >send</i></a></div>
 						</li>
 						<li class="collection-item">
-							<div>Eclipse Events<a href="#modal2" class="secondary-content"><i class="material-icons object-more">send</i></a></div>
+							<div>Eclipse Events<a href="#modal3" class="secondary-content"><i class="material-icons object-more">send</i></a></div>
 						</li>
 						<li class="collection-item">
-							<div>Meteor Shower Events<a href="#modal3" class="secondary-content"><i class="material-icons object-more">send</i></a></div>
+							<div>Meteor Shower Events<a href="#modal4" class="secondary-content"><i class="material-icons object-more">send</i></a></div>
 						</li>
 					</ul>
+<<<<<<< HEAD
                     <h5>Next time ISS will be overhead</h5>
                         <!-- <div style='display:inline-block; border: 1px solid #CCC; border-radius: 6px; -webkit-border-radius: 6px; -o-border-radius: 6px; position: relative; overflow: hidden; width: 100%; height: 100%;'><iframe src='https://spotthestation.nasa.gov/widget/widget.cfm?country=United_States&region=North_Carolina&city=Chapel_Hill'frameborder='0' width='100%' height='450px'></iframe></div> -->
+=======
+
+					<div style='display:inline-block; border: 1px solid #CCC; border-radius: 6px; -webkit-border-radius: 6px; -o-border-radius: 6px; position: relative; overflow: hidden; width: 100%; height: 100%;'>
+						<iframe src='https://spotthestation.nasa.gov/widget/widget.cfm?country=United_States&region=North_Carolina&city=Chapel_Hill'
+						 frameborder='0' width='100%' height='450px'></iframe>
+					</div>
+>>>>>>> 1f5d7a062f87526c8706757af29bf00c78eab02f
 				</div>
 			</div>
 			<div class="col m1"></div>
@@ -612,16 +620,22 @@
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
 
 	<!-- Google Cal -->
+<<<<<<< HEAD
 	<!-- <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()">
 	</script> -->
+=======
+	<script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()">
+
+	</script>
+>>>>>>> 1f5d7a062f87526c8706757af29bf00c78eab02f
 
 	<!--Import jQuery before materialize.js-->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script type="text/javascript" src="assets/javascript/materialize.min.js"></script>
-    
-    <!-- Google Maps-->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4ya-QQ9KFOYVNcp-ejxBwaY_NeZ0txBE&callback=initMap"></script>
-        
+
+	<!-- Google Maps-->
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4ya-QQ9KFOYVNcp-ejxBwaY_NeZ0txBE&callback=initMap"></script>
+
 
 	<!-- Script for Materialize Accordions and Tabs within Events tab -->
 	<script>

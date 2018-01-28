@@ -463,15 +463,15 @@ function getConstellation() {
 
 	var getLongitude;
 	var getLatitude
-	if($('#longitude').val().trim() !== ""){
+	if ($('#longitude').val().trim() !== "") {
 		getLongitude = $('#longitude').val().trim()
 		console.log(getLongitude)
-	}else{getLongitude = longitude}
+	} else { getLongitude = longitude }
 
-	if($('#latitude').val().trim() !== ""){
+	if ($('#latitude').val().trim() !== "") {
 		getLatitude = $('#latitude').val().trim()
-	}else{getLatitude = latitude}
-	console.log(getLongitude,getLatitude)
+	} else { getLatitude = latitude }
+	console.log(getLongitude, getLatitude)
 	if ($('#ecEq').is(':checked')) {
 		var ecEq = '&coords=on'
 	} else {
@@ -521,8 +521,12 @@ function getConstellation() {
 	var src = 'https://www.fourmilab.ch/cgi-bin/Yoursky?date=0&utc=1998%2F02%2F06+12%3A42%3A40&jd=2450851.02963&lat=' + p.lat + '%B0&ns=North&lon=' + p.long + '%B0&ew=East' + p.ecEq + p.moPlan + p.deObj + '&deepm=2.5' + p.outlines + p.names + p.boundaries + '&limag=5.5&starnm=2.0&starbm=2.5&imgsize=550&dynimg=y&fontscale=1.0&scheme=' + p.theme + '&elements='
 	img.attr('src', src)
 	$('.constell-display').html(img)
+<<<<<<< HEAD
 
 	$('.src-container').html("<a href='" + src + ">" + "Click to view Image" +"</a>")
+=======
+	$('.src-container').html("<a href='" + src + "' target='_blank'>" + "Click to view Image" + "</a>")
+>>>>>>> 1f5d7a062f87526c8706757af29bf00c78eab02f
 }
 
 
@@ -530,15 +534,15 @@ function getModalConstellation() {
 
 	var getLongitude;
 	var getLatitude
-	if($('#modal-longitude').val().trim() !== ""){
+	if ($('#modal-longitude').val().trim() !== "") {
 		getLongitude = $('#modal-longitude').val().trim()
 		console.log(getLongitude)
-	}else{getLongitude = longitude}
+	} else { getLongitude = longitude }
 
-	if($('#modal-latitude').val().trim() !== ""){
+	if ($('#modal-latitude').val().trim() !== "") {
 		getLatitude = $('#modal-latitude').val().trim()
-	}else{getLatitude = latitude}
-	console.log(getLongitude,getLatitude)
+	} else { getLatitude = latitude }
+	console.log(getLongitude, getLatitude)
 
 	if ($('#modal-ecEq').is(':checked')) {
 		var ecEq = '&coords=on'
@@ -609,17 +613,17 @@ function createConstellModal() {
 
 	var constellPara = $('<div>');
 	constellPara.addClass('col s3');
-	constellPara.attr('id','modal-sidebar')
+	constellPara.attr('id', 'modal-sidebar')
 	row.append(constellPara);
 
 	constellDisplay.html('<div id="constell-modal-display" class="center constell-display"></div><div class="src-container"></div>')
 
 	constellPara.append('<div>'
-		+'<form class="switch">'
-		+'<label for="longitude">Longitude</label>'
-  		+'<input placeholder="Current Location" id="modal-longitude" type="number">'
- 		+'<label for="latitude">Latitude</label>'
-  		+'<input placeholder="Current Location" id="modal-latitude" type="number">'
+		+ '<form class="switch">'
+		+ '<label for="longitude">Longitude</label>'
+		+ '<input placeholder="Current Location" id="modal-longitude" type="number">'
+		+ '<label for="latitude">Latitude</label>'
+		+ '<input placeholder="Current Location" id="modal-latitude" type="number">'
 		+ '<p>Ecliptic &amp; Equator</p>'
 		+ '<label>'
 		+ 'Off'
@@ -670,7 +674,7 @@ function createConstellModal() {
 		+ '<label>Themes</label>'
 		+ '</div>'
 		+ '</form>'
-		+'</div>')
+		+ '</div>')
 
 	var footer = $("<div>");
 	footer.addClass('modal-footer');
@@ -746,14 +750,14 @@ function moonPhase(data, i) {
 // create a functional clock for UI
 
 function updateClock() {
-	if(milTime) {
+	if (milTime) {
 		$('#clock').html(moment().format('HH:mm'));
 	} else {
 		$('#clock').html(moment().format('h:mm'));
 	}
 }
 
-$("#clock").click(function (e) { 
+$("#clock").click(function (e) {
 	e.preventDefault();
 	milTime = !milTime;
 	updateClock();
@@ -901,7 +905,7 @@ function initMap() {
 		icon: icon,
 		map: map
 	});
-	
+
 	marker.setMap(map);
 }
 
@@ -925,13 +929,13 @@ function getISS() {
 		},
 		error: function (errorMessage) {
 			console.log("Error" + errorMessage);
-        }
+		}
 	});
 }
 
-function setupMap(){
-    getISS();
-    initMap();
+function setupMap() {
+	getISS();
+	initMap();
 }
 
 /*function whenISS(){
@@ -954,24 +958,24 @@ function setupMap(){
    
 }*/
 
-function getTimeRemaining(endtime){
-    var t = Date.parse(endtime) - Date.parse(new Date());
-    
-    var seconds = Math.floor((t/1000) % 60);
-    var minutes = Math.floor((t/1000/60) % 60);
-    var hours = Math.floor((t/(1000*60*60)) % 24);
-    var days = Math.floor(t/(1000*60*60*24));
-    
-    timeRemain = {
-        "total": t,
-        "days": days,
-        "hours": hours,
-        "minutes": minutes,
-        "seconds": seconds
-    };
-    
-    return timeRemain;
-    
+function getTimeRemaining(endtime) {
+	var t = Date.parse(endtime) - Date.parse(new Date());
+
+	var seconds = Math.floor((t / 1000) % 60);
+	var minutes = Math.floor((t / 1000 / 60) % 60);
+	var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+	var days = Math.floor(t / (1000 * 60 * 60 * 24));
+
+	var timeRemain = {
+		"total": t,
+		"days": days,
+		"hours": hours,
+		"minutes": minutes,
+		"seconds": seconds
+	};
+
+	return timeRemain;
+
 }
 
 function getMeteorShower() {
@@ -1046,12 +1050,12 @@ function getMeteorShower() {
 			start: peakStart,
 			end: peakEnd
 		});
-        
-        //add events to modal
-        var liEvents = $("<li>");
-        liEvents.text("- A " + meteorShowers[i].name + " meteor shower starts on " + activeStartMonth + " " + activeDay1 + " and ends on " + activeEndMonth + " " + activeDay2 + ". The best viewing days are on " + meteorShowers[i].peakNight);
-        $("#meteorShowerEvents").append(liEvents);
-        
+
+		//add events to modal
+		var liEvents = $("<li>");
+		liEvents.text("- A " + meteorShowers[i].name + " meteor shower starts on " + activeStartMonth + " " + activeDay1 + " and ends on " + activeEndMonth + " " + activeDay2 + ". The best viewing days are on " + meteorShowers[i].peakNight);
+		$("#meteorShowerEvents").append(liEvents);
+
 
 		// day view
 		if (month === activeStartMonth && day <= activeDay1 || month === activeEndMonth && day <= activeDay2) {
@@ -1063,7 +1067,7 @@ function getMeteorShower() {
 			var table = $("<table class='responsive-table'>");
 			var thead = $("<thead>");
 			var tbody = $("<tbody>");
-            
+
 			bodyDiv.addClass("collapsible-body");
 			headerDiv.addClass("collapsible-header");
 
@@ -1103,7 +1107,7 @@ function getMeteorShower() {
 			var span = $("<span>");
 			var thead = $("<thead>");
 			var tbody = $("<tbody>");
-            
+
 			bodyDiv.addClass("collapsible-body");
 			headerDiv.addClass("collapsible-header");
 
@@ -1130,7 +1134,7 @@ function getMeteorShower() {
 
 			wiki(meteorShowers[i].name, ($("#monthMeteorWiki" + i)));
 		}
-        
+
 		//year view
 		if (yearly === true) {
 			var table = $("<table class='responsive-table'>");
@@ -1174,224 +1178,224 @@ function getMeteorShower() {
 }
 
 //get a list of solar eclipses
-function getSolar(){
-    var date = new Date();
-    var year = date.getFullYear();
-    var month = date.getMonth();
-    var day = date.getDate();
+function getSolar() {
+	var date = new Date();
+	var year = date.getFullYear();
+	var month = date.getMonth();
+	var day = date.getDate();
 
-    var eclipse = {
-        0: {
-            date:"February 26, 2017",
-            month:"February",
-            monthNum: 1,
-            day: 26,
-            year: 2017,
-            type:"Annular Eclipse"
-        },
-        1: {
-            date:"August 21, 2017",
-            month:"August",
-            monthNum: 7,
-            day: 21,
-            year: 2017,
-            type:"Total Eclipse"
-        }
-    };
-    
-    for (var j = 0; j <= 1; j++){
-        if(eclipse[j].monthNum >= month){
-                //add events to modal
-                var liEvents = $("<li>");
-                liEvents.text("- A " + eclipse[j].type + " eclipse on " + eclipse[j].date);
-                $("#eclipseEvents").append(liEvents);
-            }
-    }
-    
-    switch(month){
-        case 0:
-            month = "January";
-            break;
-        case 1:
-            month = "February";
-            break;
-        case 2:
-            month = "March";
-            break;
-        case 3:
-            month = "April";
-            break;
-        case 4:
-            month = "May";
-            break;
-        case 5:
-            month = "June";
-            break;
-        case 6:
-            month = "July";
-            break;
-        case 7:
-            month = "August";
-            break;
-        case 8:
-            month = "September";
-            break;
-        case 9:
-            month = "October";
-            break;
-        case 10:
-            month = "November";
-            break;
-        case 11:
-            month = "December";
-            break;    
-        }
-    for (var i = 0; i < 2; i++){
-        //set up year view
-        if (eclipse[i].year === year){
-            var li = $("<li>");
-            var headerDiv = $("<div>");
-            var bodyDiv = $("<div>");
-            var span = $("<span>");
-            var thead = $("<thead>");
-            var tbody = $("<tbody>");
-            
-            wiki(eclipse[i].type, ($("#wiki" + i)));
+	var eclipse = {
+		0: {
+			date: "February 26, 2017",
+			month: "February",
+			monthNum: 1,
+			day: 26,
+			year: 2017,
+			type: "Annular Eclipse"
+		},
+		1: {
+			date: "August 21, 2017",
+			month: "August",
+			monthNum: 7,
+			day: 21,
+			year: 2017,
+			type: "Total Eclipse"
+		}
+	};
+
+	for (var j = 0; j <= 1; j++) {
+		if (eclipse[j].monthNum >= month) {
+			//add events to modal
+			var liEvents = $("<li>");
+			liEvents.text("- A " + eclipse[j].type + " eclipse on " + eclipse[j].date);
+			$("#eclipseEvents").append(liEvents);
+		}
+	}
+
+	switch (month) {
+		case 0:
+			month = "January";
+			break;
+		case 1:
+			month = "February";
+			break;
+		case 2:
+			month = "March";
+			break;
+		case 3:
+			month = "April";
+			break;
+		case 4:
+			month = "May";
+			break;
+		case 5:
+			month = "June";
+			break;
+		case 6:
+			month = "July";
+			break;
+		case 7:
+			month = "August";
+			break;
+		case 8:
+			month = "September";
+			break;
+		case 9:
+			month = "October";
+			break;
+		case 10:
+			month = "November";
+			break;
+		case 11:
+			month = "December";
+			break;
+	}
+	for (var i = 0; i < 2; i++) {
+		//set up year view
+		if (eclipse[i].year === year) {
+			var li = $("<li>");
+			var headerDiv = $("<div>");
+			var bodyDiv = $("<div>");
+			var span = $("<span>");
+			var thead = $("<thead>");
+			var tbody = $("<tbody>");
+
+			wiki(eclipse[i].type, ($("#wiki" + i)));
 
 
-            bodyDiv.addClass("collapsible-body");
-            headerDiv.addClass("collapsible-header");
+			bodyDiv.addClass("collapsible-body");
+			headerDiv.addClass("collapsible-header");
 
-            headerDiv.text(eclipse[i].date);
+			headerDiv.text(eclipse[i].date);
 
-            li.append(headerDiv);
+			li.append(headerDiv);
 
-            var headings = $("<tr>");
-            var table = $("<table class='responsive-table'>");
+			var headings = $("<tr>");
+			var table = $("<table class='responsive-table'>");
 
-            table.attr("border", 1);
-            table.attr("frame", "void");
-            table.attr("rules", "all");
+			table.attr("border", 1);
+			table.attr("frame", "void");
+			table.attr("rules", "all");
 
-            headings.html("<th>Event</th><th>Wikipedia</th>");
+			headings.html("<th>Event</th><th>Wikipedia</th>");
 
-            thead.append(headings);
+			thead.append(headings);
 
-            var information = $("<tr>");
-            information.html("<td style='padding: 0 10px 0 10px'>" + eclipse[i].type + "</td><td style='padding: 0 10px 0 10px' id='daySolarWiki" + i + "'></td>");
+			var information = $("<tr>");
+			information.html("<td style='padding: 0 10px 0 10px'>" + eclipse[i].type + "</td><td style='padding: 0 10px 0 10px' id='daySolarWiki" + i + "'></td>");
 
-            tbody.append(information);
-            table.append(thead);
-            table.append(tbody);
-            span.append(table);
-            bodyDiv.append(span);
-            li.append(bodyDiv);
+			tbody.append(information);
+			table.append(thead);
+			table.append(tbody);
+			span.append(table);
+			bodyDiv.append(span);
+			li.append(bodyDiv);
 
-            $("#accordion5").append(li);
-            wiki(eclipse[i].type, ($("#daySolarWiki" + i)));
-        } 
-        
-        //set up month view
-        if(eclipse[i].month === month && eclipse[i].year === year){
-            var li = $("<li>");
-            var headerDiv = $("<div>");
-            var bodyDiv = $("<div>");
-            var span = $("<span>");
-            var thead = $("<thead>");
-            var tbody = $("<tbody>");            
-            
-            bodyDiv.addClass("collapsible-body");
-            headerDiv.addClass("collapsible-header");
+			$("#accordion5").append(li);
+			wiki(eclipse[i].type, ($("#daySolarWiki" + i)));
+		}
 
-            headerDiv.text(eclipse[i].date);
+		//set up month view
+		if (eclipse[i].month === month && eclipse[i].year === year) {
+			var li = $("<li>");
+			var headerDiv = $("<div>");
+			var bodyDiv = $("<div>");
+			var span = $("<span>");
+			var thead = $("<thead>");
+			var tbody = $("<tbody>");
 
-            li.append(headerDiv);
+			bodyDiv.addClass("collapsible-body");
+			headerDiv.addClass("collapsible-header");
 
-            var headings = $("<tr>");
-            var table = $("<table class='responsive-table'>");
+			headerDiv.text(eclipse[i].date);
 
-            headings.html("<th>Event</th><th>Link</th>");
+			li.append(headerDiv);
 
-            thead.append(headings);
+			var headings = $("<tr>");
+			var table = $("<table class='responsive-table'>");
 
-            var information = $("<tr>");
-            information.html("<td style='padding: 0 10px 0 10px'>" + eclipse[i].type + "</td><td style='padding: 0 10px 0 10px' id='monthSolarWiki" + i + "'></td>");
+			headings.html("<th>Event</th><th>Link</th>");
 
-            tbody.append(information);
-            table.append(thead);
-            table.append(tbody);
-            span.append(table);
-            bodyDiv.append(span);
-            li.append(bodyDiv);
-            $("#accordion4").append(li);
-            wiki(data.eclipses_in_year[i].event, ($("#monthSolarWiki" + i)));
-        }else {
-            var li = $("<li>");
-            var headerDiv = $("<div>");
-            bodyDiv.addClass("collapsible-body");
-            headerDiv.addClass("collapsible-header");
+			thead.append(headings);
 
-            headerDiv.text("No Eclipse this month.");
-            
-            li.append(headerDiv);
-            $("#accordion4").html(li);
-        }
-        
-        //set up day view
-        if(eclipse[i].day === day && eclipse[i].month === month && eclipse[i].year === year){
-            console.log(day);
-            var li = $("<li>");
-            var headerDiv = $("<div>");
-            var bodyDiv = $("<div>");
-            var span = $("<span>");
-            var thead = $("<thead>");
-            var tbody = $("<tbody>");
-            
+			var information = $("<tr>");
+			information.html("<td style='padding: 0 10px 0 10px'>" + eclipse[i].type + "</td><td style='padding: 0 10px 0 10px' id='monthSolarWiki" + i + "'></td>");
 
-            bodyDiv.addClass("collapsible-body");
-            headerDiv.addClass("collapsible-header");
+			tbody.append(information);
+			table.append(thead);
+			table.append(tbody);
+			span.append(table);
+			bodyDiv.append(span);
+			li.append(bodyDiv);
+			$("#accordion4").append(li);
+			wiki(eclipse[1].type, ($("#monthSolarWiki" + i)));
+		} else {
+			var li = $("<li>");
+			var headerDiv = $("<div>");
+			bodyDiv.addClass("collapsible-body");
+			headerDiv.addClass("collapsible-header");
 
-            headerDiv.text(eclipse[i].date);
+			headerDiv.text("No Eclipse this month.");
 
-            li.append(headerDiv);
+			li.append(headerDiv);
+			$("#accordion4").html(li);
+		}
 
-            var headings = $("<tr>");
-            var table = $("<table class='responsive-table'>");
+		//set up day view
+		if (eclipse[i].day === day && eclipse[i].month === month && eclipse[i].year === year) {
+			console.log(day);
+			var li = $("<li>");
+			var headerDiv = $("<div>");
+			var bodyDiv = $("<div>");
+			var span = $("<span>");
+			var thead = $("<thead>");
+			var tbody = $("<tbody>");
 
-            table.attr("border", 1);
-            table.attr("frame", "void");
-            table.attr("rules", "all");
 
-            headings.html("<th>Event</th><th>Wikipedia</th>");
+			bodyDiv.addClass("collapsible-body");
+			headerDiv.addClass("collapsible-header");
 
-            thead.append(headings);
+			headerDiv.text(eclipse[i].date);
 
-            var information = $("<tr>");
-            information.html("<td style='padding: 0 10px 0 10px'>" + eclipse[i].type + "</td><td style='padding: 0 10px 0 10px' id='yearSolarWiki" + i + "'></td>");
+			li.append(headerDiv);
 
-            tbody.append(information);
-            table.append(thead);
-            table.append(tbody);
-            span.append(table);
-            bodyDiv.append(span);
-            li.append(bodyDiv);
-            $("#accordion3").append(li);
+			var headings = $("<tr>");
+			var table = $("<table class='responsive-table'>");
 
-            wiki(eclipse[i].type, ($("#yearSolarWiki" + i)));
-        }else {
-            var li = $("<li>");
-            var headerDiv = $("<div>");
-            bodyDiv.addClass("collapsible-body");
-            headerDiv.addClass("collapsible-header");
+			table.attr("border", 1);
+			table.attr("frame", "void");
+			table.attr("rules", "all");
 
-            headerDiv.text("No Eclipse Today.");
-            
-            li.append(headerDiv);
-            $("#accordion3").html(li);
-        }
-    }
+			headings.html("<th>Event</th><th>Wikipedia</th>");
+
+			thead.append(headings);
+
+			var information = $("<tr>");
+			information.html("<td style='padding: 0 10px 0 10px'>" + eclipse[i].type + "</td><td style='padding: 0 10px 0 10px' id='yearSolarWiki" + i + "'></td>");
+
+			tbody.append(information);
+			table.append(thead);
+			table.append(tbody);
+			span.append(table);
+			bodyDiv.append(span);
+			li.append(bodyDiv);
+			$("#accordion3").append(li);
+
+			wiki(eclipse[i].type, ($("#yearSolarWiki" + i)));
+		} else {
+			var li = $("<li>");
+			var headerDiv = $("<div>");
+			bodyDiv.addClass("collapsible-body");
+			headerDiv.addClass("collapsible-header");
+
+			headerDiv.text("No Eclipse Today.");
+
+			li.append(headerDiv);
+			$("#accordion3").html(li);
+		}
+	}
 };
-    
+
 //gets information for asteroids close to earth from todays date through 7 days
 function getAsteroids() {
 	var date = new Date();
@@ -1451,7 +1455,7 @@ function getAsteroids() {
 						diameterMin: Math.round(currentObj[i].estimated_diameter.feet.estimated_diameter_min).toLocaleString("en-US", { minimumFractionDigits: 0 }),
 						danger: currentObj[i].is_potentially_hazardous_asteroid,
 						calObj: calObjStr,
-                        info: Math.round(currentObj[i].close_approach_data[0].miss_distance.miles).toLocaleString("en-US", { minimumFractionDigits: 0 })
+						info: Math.round(currentObj[i].close_approach_data[0].miss_distance.miles).toLocaleString("en-US", { minimumFractionDigits: 0 })
 					}
 
 					if (info.date === todaysDate) {
@@ -1526,11 +1530,11 @@ function getAsteroids() {
 		var cap = i + 1;
 		var thead = $("<thead>");
 		var tbody = $("<tbody>");
-        
-        //add events to modal
-        var liEvents = $("<li>");
-        liEvents.text("- An asteroid named " + weekEvents[i].name + " is passing by earth on " + weekEvents[i].date + " missing Earth by " + weekEvents[i].missEarth + " miles");
-        $("#asteroidEvents").append(liEvents);
+
+		//add events to modal
+		var liEvents = $("<li>");
+		liEvents.text("- An asteroid named " + weekEvents[i].name + " is passing by earth on " + weekEvents[i].date + " missing Earth by " + weekEvents[i].missEarth + " miles");
+		$("#asteroidEvents").append(liEvents);
 
 		if (cap === weekEvents.length) {
 			cap = i;
@@ -1871,6 +1875,7 @@ function wiki(search, location) {
 
 // Html page interactions js 
 $(document).ready(function () {
+<<<<<<< HEAD
 	// console.log("document.ready function run");
 	// getSolar();
 	// getMeteorShower();
@@ -1883,6 +1888,18 @@ $(document).ready(function () {
     
     // setInterval(setupMap, 5000);
     
+=======
+	console.log("document.ready function run");
+	getSolar();
+	getMeteorShower();
+	//whenISS();
+	getISS();
+	getTodaysDate();
+	getAsteroids();
+
+	setInterval(setupMap, 5000);
+
+>>>>>>> 1f5d7a062f87526c8706757af29bf00c78eab02f
 
 	// update clock every 1 second
 	setInterval(updateClock, 1000);
@@ -1924,7 +1941,11 @@ $(document).ready(function () {
 		}
 	})
 
+<<<<<<< HEAD
 		$('#switch-view').click(function () {
+=======
+	$('#res-switch-view').click(function () {
+>>>>>>> 1f5d7a062f87526c8706757af29bf00c78eab02f
 
 		// if day-view is hidden -> make week-view hidden, day-view visible and change icon to view_week
 		if ($('#day-view').css('display') === 'none') {
@@ -1939,8 +1960,11 @@ $(document).ready(function () {
 		}
 	})
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 1f5d7a062f87526c8706757af29bf00c78eab02f
 	// fade in tab when clicked
 	$('.tab').click(function () {
 		var tab = $(this).attr('tab-data');
@@ -1982,7 +2006,7 @@ $(document).ready(function () {
 	})
 
 	// embded constellation when click on constellation tab
-	$(window).on('load',function () {
+	$(window).on('load', function () {
 		getConstellation();
 		createConstellModal();
 
@@ -1996,11 +2020,11 @@ $(document).ready(function () {
 
 	$('select').material_select();
 
-	$('.constell-input').click(function (e) {
+	$('.constell-input').click(function () {
 		getConstellation()
 	})
 
-	$('body').on('click', '.constell-modal-input', function (e) {
+	$('body').on('click', '.constell-modal-input', function () {
 		getModalConstellation()
 	})
 
@@ -2027,9 +2051,22 @@ $(document).ready(function () {
 });
 
 // "add to calendar" click handler
-$("body").on("click", ".cal-btn", function (e) { 
-    e.preventDefault();
-    var args = JSON.parse($(this).attr("data-cal"));
-		console.log("click was passed:",args);
-    postToCal(args.summary, args.description, args.start, args.end);
+$("body").on("click", ".cal-btn", function (e) {
+	e.preventDefault();
+	var args = JSON.parse($(this).attr("data-cal"));
+	console.log("click was passed:", args);
+	postToCal(args.summary, args.description, args.start, args.end);
+});
+
+$(".main-tab").click(function (e) {
+	e.preventDefault();
+	if ($(this).attr("id") === "tab-id-events" && $(window).width() <= 992) {
+		$("#main-content").addClass("m12");
+		$("#today-events-container").addClass("m12");
+		$("#today-events-container").css("width", "100%");
+	} else {
+		$("#main-content").removeClass("m12 l7 offset-l1");
+		$("#today-events-container").removeClass("m12");
+		$("#today-events-container").css("width", "");
+	}
 });
